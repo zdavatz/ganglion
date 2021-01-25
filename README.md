@@ -6,7 +6,9 @@ APACHE2_MPMS="prefork"
 ```
 ## php configure options
 `./configure --with-mysql --with-apxs2=/usr/bin/apxs --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-phpdbg`
+for PHP 5.6.24
 ## /etc/apache2/vhosts.d/ganglion.ch.conf 
+for Apache 2.4.46
 ```
 <Directory /var/www/ganglion.ch/doc>
   Options ExecCGI FollowSymlinks
