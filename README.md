@@ -1,4 +1,6 @@
 # ganglion
+## php configure options
+`./configure --with-mysql --with-apxs2=/usr/bin/apxs --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-phpdbg`
 ## /etc/apache2/vhosts.d/ganglion.ch.conf 
 ```
 <Directory /var/www/ganglion.ch/doc>
