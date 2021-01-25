@@ -1,0 +1,11 @@
+diff --git a/doc/html/podcast.php b/doc/html/podcast.php
+index 8af4c02..13e194c 100644
+--- a/doc/html/podcast.php
++++ b/doc/html/podcast.php
+@@ -21,5 +21,6 @@
+ <h2>Wie kann ich einen Podcast abonnieren?</h2>
+ <p>Wenn Sie iTunes benutzen, k&ouml;nnen Sie den Podcast <a href='itpc://www.ganglion.ch/feed.xml'>mit diesem Link abonnieren</a>.</p>
+ <p>Wenn Sie ein anderes Programm benutzen, kopieren Sie bitte folgenden Link und erstellen in ihrer Software ein neues Podcast Abonnement mit folgendem Link:<br><b>http://www.ganglion.ch/feed.xml</b></p>
++<p>Als dritte M&ouml;glichkeit steht Ihnen <a href="http://feeds.feedburner.com/VortrgeVonDerWebsiteGanglionch" target="_blank">FeedBurner.com</a> zur Verf&umml;gung. Auf dieser Seite finden Sie f&uuml;r einige Programme optimierte Abonnement-Links.</p>
+ </body>
+ </html>

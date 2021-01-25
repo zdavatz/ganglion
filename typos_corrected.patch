@@ -1,0 +1,20 @@
+diff --git a/doc/html/podcast.php b/doc/html/podcast.php
+index feccfb9..8af4c02 100644
+--- a/doc/html/podcast.php
++++ b/doc/html/podcast.php
+@@ -14,12 +14,12 @@
+ <h1>Die Vortr&auml;ge von Ursula Davatz als Podcast</h1>
+ <h2>Was ist ein Podcast?</h2>
+ <p>Die Vortr&auml;ge von Ursula Davatz k&ouml;nnen als m4a-Audiodateien heruntergeladen und angeh&ouml;rt werden. Im Gegensatz zu dieser Downloadm&ouml;glichkeit m&uuml;ssen Sie sich als Podcast-AbonnentIn keine Sorgen machen einen Vortrag zu verpassen. Die Audiodateien werden automatisch auf Ihren Computer geladen und Sie k&ouml;nnen Sie dann anh&ouml;ren.</p>
+-<p>In Kombination von iTunes und iPod k&ouml;nnen Sie Vortr&auml;ge sogar unterwegs im Zug anh&ouml;ren.</p>
++<p>In Kombination von iTunes und iPod k&ouml;nnen Sie Vortr&auml;ge sogar unterwegs anh&ouml;ren.</p>
+ <h2>Was brauche ich dazu?</h2>
+ <p>Sie brauchen eine Software, die es Ihnen erlaubt Podcasts zu abonnieren und diese dann f&uuml;r Sie herunterl&auml;dt. Zum Beispiel k&ouml;nnen Sie das oben genannte <a href='http://www.apple.com/itunes/' target='_blank'>iTunes</a> verwenden.</p>
+ <p>Es gibt aber noch viele andere Programme, die Sie kostenlos einsetzen k&ouml;nnen. Eine &Uuml;bersicht finden Sie zum Beispiel auf <a href='http://www.podcastalley.com/forum/links.php?id=1' target='_blank'>Podcastalley</a>.</p>
+ <h2>Wie kann ich einen Podcast abonnieren?</h2>
+-<p>Wenn Sie iTunes benutzen k&ouml;nnen Sie den Podcast <a href='itpc://www.ganglion.ch/feed.xml'>mit diesem Link abonnieren</a>.</p>
+-<p>Wenn Sie ein anderes Programm benutzen kopieren Sie bitte folgenden Link. Dann erstellen Sie bitte in ihrer Software ein neues Podcast Abonnement und f&uuml;gen folgenden Link ein:<br><b>http://www.ganglion.ch/feed.xml</b></p>
++<p>Wenn Sie iTunes benutzen, k&ouml;nnen Sie den Podcast <a href='itpc://www.ganglion.ch/feed.xml'>mit diesem Link abonnieren</a>.</p>
++<p>Wenn Sie ein anderes Programm benutzen, kopieren Sie bitte folgenden Link und erstellen in ihrer Software ein neues Podcast Abonnement mit folgendem Link:<br><b>http://www.ganglion.ch/feed.xml</b></p>
+ </body>
+ </html>

@@ -1,0 +1,12 @@
+diff --git a/doc/wsadmin/php/save.php b/doc/wsadmin/php/save.php
+index f983303..9500a94 100644
+--- a/doc/wsadmin/php/save.php
++++ b/doc/wsadmin/php/save.php
+@@ -112,6 +112,7 @@ if ($page == "vortrag" && $new == "true"
+ //aendern
+ 
+ if ($page == "vortrag" && $change == "true"){
++	$audiofile_size = round(str_replace(" ", "", $audiofile_size));
+ 	$datum = "$day.$month.$year";
+ 	$gehalten = input2date($datum);
+ 	$fields = "	Titel='$Titel', 

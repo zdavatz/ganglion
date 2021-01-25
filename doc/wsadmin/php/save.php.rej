@@ -1,0 +1,55 @@
+***************
+*** 84,92 ****
+  
+  	$gehalten = input2date($datum);
+  
+- 	$felder_mysql = "Titel, Zusammenfassung, Zielpublikum, gehalten, zeit, location, pdf, audiofile, audiofile_size, Arbeit, Erziehung, Gesundheit, Familie, thema_id, datumchange";
+  
+- 	$felder_form = "'$Titel', '$Zusammenfassung', '$Zielpublikum', '$gehalten', '$time', '$location', '$file_name', '$audiofile_name', '$audiofile_size', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$datumchange'";
+  
+  	if ($file != ""){
+  		$path = "../../pdf/" .$file_name;
+--- 84,92 ----
+  
+  	$gehalten = input2date($datum);
+  
++ 	$felder_mysql = "Titel, Zusammenfassung, Zielpublikum, gehalten, zeit, location, pdf, audiofile, audiofile_size, google_video_url, google_video_size, Arbeit, Erziehung, Gesundheit, Familie, thema_id, datumchange";
+  
++ 	$felder_form = "'$Titel', '$Zusammenfassung', '$Zielpublikum', '$gehalten', '$time', '$location', '$file_name', '$audiofile_name', '$audiofile_size', '$google_video_url', '$google_video_size', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$datumchange'";
+  
+  	if ($file != ""){
+  		$path = "../../pdf/" .$file_name;
+***************
+*** 115,120 ****
+  //aendern
+  
+  if ($page == "vortrag" && $change == "true"){
+  	$datum = "$day.$month.$year";
+  	$gehalten = input2date($datum);
+  	$fields = "	Titel='$Titel', 
+--- 115,122 ----
+  //aendern
+  
+  if ($page == "vortrag" && $change == "true"){
++ 	$audiofile_size = round(str_replace(" ", "", $audiofile_size));
++ 	$google_video_size = round(str_replace(" ", "", $google_video_size));
+  	$datum = "$day.$month.$year";
+  	$gehalten = input2date($datum);
+  	$fields = "	Titel='$Titel', 
+***************
+*** 125,130 ****
+  				location='$location', 
+  				audiofile='$audiofile_name',
+  				audiofile_size='$audiofile_size',
+  				Arbeit='$Arbeit', 
+  				Erziehung='$Erziehung', 
+  				Gesundheit='$Gesundheit', 
+--- 127,134 ----
+  				location='$location', 
+  				audiofile='$audiofile_name',
+  				audiofile_size='$audiofile_size',
++ 				google_video_url='$google_video_url',
++ 				google_video_size='$google_video_size',
+  				Arbeit='$Arbeit', 
+  				Erziehung='$Erziehung', 
+  				Gesundheit='$Gesundheit', 

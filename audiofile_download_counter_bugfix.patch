@@ -1,0 +1,13 @@
+diff --git a/doc/html/php/download_vortrag.php b/doc/html/php/download_vortrag.php
+index 7f71cb5..f3cf033 100644
+--- a/doc/html/php/download_vortrag.php
++++ b/doc/html/php/download_vortrag.php
+@@ -15,7 +15,7 @@ if(isset($_GET["id"]) && preg_match("/^[
+   $query = "select audiofile from vortrag where id=".$_GET["id"];
+   $result = mysql_query($query);
+   $values = mysql_fetch_assoc($result);
+-  $query = "update vortrag set audiofile_downloads=downloads+1 where id=".$_GET["id"];
++  $query = "update vortrag set audiofile_downloads=audiofile_downloads+1 where id=".$_GET["id"];
+   mysql_query($query);
+ 
+   header("Location: http://ganglion.zftp.com/".$values["audiofile"]);

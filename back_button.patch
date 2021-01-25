@@ -1,0 +1,38 @@
+diff --git a/doc/html/css/browser5.css b/doc/html/css/browser5.css
+index 98e3887..b3cf719 100644
+--- a/doc/html/css/browser5.css
++++ b/doc/html/css/browser5.css
+@@ -550,3 +550,14 @@ p.hometext {
+   text-decoration : none;
+ }
+ 
++#back-vortraege:link, #back-vortraege:visited {
++  font : bold 13px Arial, Helvetica, sans-serif;
++  color : #002050;
++	text-decoration : none;
++}
++
++#back-vortraege:hover {
++  font : bold 13px Arial, Helvetica, sans-serif;
++  color : #0053d0;
++  text-decoration : none;
++}
+diff --git a/doc/html/podcast.php b/doc/html/podcast.php
+index 0890c5c..f22c90c 100644
+--- a/doc/html/podcast.php
++++ b/doc/html/podcast.php
+@@ -11,6 +11,7 @@
+ <?php
+ 	require_once($DOCUMENT_ROOT."/html/php/navbar.php");
+ ?>
++<div class="tabltxt-dl"><a id="back-vortraege" href="/html/vortraege.php">Zur&uuml;ck zur Vortrags&uuml;bersicht</a></div>
+ <h1>Die Vortr&auml;ge von Ursula Davatz als Podcast</h1>
+ <h2>Was ist ein Podcast?</h2>
+ <p>Die Vortr&auml;ge von Ursula Davatz k&ouml;nnen als m4a-Audiodateien heruntergeladen und angeh&ouml;rt werden. Im Gegensatz zu dieser Downloadm&ouml;glichkeit m&uuml;ssen Sie sich als Podcast-AbonnentIn keine Sorgen machen einen Vortrag zu verpassen. Die Audiodateien werden automatisch auf Ihren Computer geladen und Sie k&ouml;nnen Sie dann anh&ouml;ren.</p>
+@@ -22,5 +23,6 @@
+ <p>Wenn Sie iTunes benutzen, k&ouml;nnen Sie den Podcast <a href='itpc://www.ganglion.ch/feed.xml'>mit diesem Link abonnieren</a>.</p>
+ <p>Wenn Sie ein anderes Programm benutzen, kopieren Sie bitte folgenden Link und erstellen in ihrer Software ein neues Podcast Abonnement mit folgendem Link:<br><b>http://www.ganglion.ch/feed.xml</b></p>
+ <p>Als dritte M&ouml;glichkeit steht Ihnen <a href="http://feeds.feedburner.com/VortrgeVonDerWebsiteGanglionch" target="_blank">FeedBurner.com</a> zur Verf&uuml;gung. Auf dieser Seite finden Sie f&uuml;r einige Programme optimierte Abonnement-Links.</p>
++<p><a href="/html/vortraege.php">Zur&uuml;ck zur Vortrags&uuml;bersicht</a></p>
+ </body>
+ </html>

@@ -1,0 +1,317 @@
+TH, .th, .th:link, .th:visited {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #e4e1ee;
+  background : #002050;
+  vertical-align : top; 
+  height : auto; 
+  text-decoration : none;
+
+ }
+
+
+.th:hover
+{
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #914f20;
+  background : #002050;
+  vertical-align : top; 
+  height : auto; 
+	text-decoration : none;
+}
+
+DIV {
+
+  font : bold 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : left;
+  border-style : none;
+
+
+}
+
+TEXTAREA {
+  font : 13px Arial, Helvetica, sans-serif; 
+  color : black; 
+  background : #ffffff;
+  vertical-align : top;
+	width : 400px;
+	height : 350px;
+ }
+
+
+TD#SiteTitel {
+  font : bold 16px Arial, Helvetica, sans-serif;
+  text-align : left;
+  padding : 5px;
+	width : auto;
+ }
+
+TD {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-decoration : none;
+  vertical-align : top;
+  border-style : none;
+	padding : 5px;
+	border-width : 0px;
+}
+
+TABLE {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : left;
+  border-style : none;
+	border-width : 0px;
+  padding : 5px;
+	
+ }
+ 
+.nopaddingTABLE {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : left;
+  border-style : none;
+	border-width : 0px;
+  padding : 0px;
+	
+ }
+ 
+IMG {
+  vertical-align : top;
+  border-style : none;
+}
+
+BODY {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  background-color : #f79231;
+  background-image : url(../images/swoosh.gif);
+  background-repeat : no-repeat;
+  background-attachment : fixed;
+ }
+
+.navbar-table {
+
+  font : bold 14px Arial, Helvetica, sans-serif;
+  color : #002050;
+  background : #d57530;
+  vertical-align : top; 
+  border-width : 1px;
+  border-style : solid;
+	border-color	: #002050;
+	text-decoration : none;
+	padding : 0px;
+	
+}
+
+.navbar, .navbar:link, .navbar:visited {
+ 
+  font : bold 14px Arial, Helvetica, sans-serif;
+  color : #002050;
+  background : #d57530;
+  vertical-align : top; 
+	text-decoration : none;
+  
+}
+
+.navbar:hover {
+ 
+  font : bold 14px Arial, Helvetica, sans-serif;
+  color : #0053d0;
+  background : #d57530;
+  vertical-align : top; 
+  text-decoration : none;
+  
+}
+
+
+.navbar-hell, .navbar-hell:link, .navbar-hell:visited {
+ 
+  font : bold 14px Arial, Helvetica, sans-serif;
+  color : #001330;
+  background : #d57530;
+  vertical-align : top; 
+  height : auto;
+  width : auto;
+  text-decoration : none;
+
+}
+
+.tabltxt-c, .tabltxt-c:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : center;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.tabltxt-c-bg, .tabltxt-c-bg:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+	background : #e9ac72;
+  text-align : center;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.tabltxt-r, .tabltxt-r:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : right;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.tabltxt-r-bg, .tabltxt-r-bg:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+	background : #e9ac72;
+  text-align : right;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.tabltxt-l, .tabltxt-l:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : left;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.tabltxt-l-bg, .tabltxt-l-bg:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+	background : #e9ac72;
+  text-align : left;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.links, .links:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : right;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.links-bg, .links-bg:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : right;
+	background : #e9ac72;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.links:hover {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #0053d0;
+  text-align : left;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.links-bg:hover {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #0053d0;
+  text-align : left;
+	background : #e9ac72;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.TDbold {
+  font : bold 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-decoration : none;
+  vertical-align : top;
+  border-style : none;
+	border-width : 0
+}
+
+.small-textinput {
+  font : 13px Arial, Helvetica, sans-serif; 
+  color : black; 
+  background : #ffffff;
+  vertical-align : top;
+	width : 40px
+ }
+
+.med-textinput {
+  font : 13px Arial, Helvetica, sans-serif; 
+  color : black; 
+  background : #ffffff;
+  vertical-align : top;
+	width : 150px;
+ }
+
+.tablecenter {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : center;
+  border-style : none;
+	border-width : 0;
+  padding : 5px;
+	width : 100%;
+		
+ }
+.tabltxt-c-b, .tabltxt-c-b:link {
+
+  font : bold 15px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : center;
+  border-style : none;
+  text-decoration : none;
+}
+
+.tabltxt-c-b:hover {
+
+  font : bold 15px Arial, Helvetica, sans-serif;
+  color : #0040a0;
+  text-align : center;
+  border-style : none;
+  text-decoration : none;
+}
+
+
+.TDbold-bigfont {
+  font : bold 17px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-decoration : none;
+  vertical-align : top;
+  border-style : none;
+	border-width : 0;
+}
+
+.missing-email {
+  font : bold 14px Arial, Helvetica, sans-serif;
+  color : black;
+  text-decoration : none;
+  vertical-align : top;
+  border-style : none;
+	padding = 5px
+	border-width : 0px;
+}
+

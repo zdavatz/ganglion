@@ -1,0 +1,21 @@
+<?php //property.php
+$server	=	"localhost";	//MySQL-Server
+$user	=	"******";		//MySQL-User
+$pass	=	"******";		//MySQL-Passwort
+$db		=	"ganglion";		//MySQL-Datenbank
+//
+//
+$disRow = 1000;				//Anzahl tabellenzeilen pro bildschirm
+//
+$conn1	=	mysql_connect($server, $user, $pass);
+$select	=	mysql_select_db($db,$conn1);
+mysql_query("SET NAMES 'utf8'"); mysql_query("SET CHARACTER SET utf8"); 
+//
+$debug = "true";	// true || false
+$nocache = time();
+$nocache = "nocache=$nocache";
+
+// for debugging if now password is shown
+// echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+
+?>

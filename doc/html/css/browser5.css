@@ -1,0 +1,563 @@
+TH, .th, .th:link, .th:visited {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #e4e1ee;
+  background : #002050;
+  vertical-align : top; 
+  height : auto; 
+  text-decoration : none;
+
+ }
+ 
+.nohover  {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #e4e1ee;
+  background : #002050;
+  vertical-align : top; 
+  height : auto; 
+  text-decoration : none;
+
+ }
+
+
+
+.th:hover, TH:hover
+{
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #914f20;
+  background : #002050;
+  vertical-align : top; 
+  height : auto; 
+	text-decoration : none;
+}
+
+TH-bg, .th-bg, .th-bg:link, .th-bg:visited {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #e4e1ee;
+  background : #002050;
+  vertical-align : top; 
+  height : auto; 
+  text-decoration : none;
+
+ }
+
+
+.th-bg:hover, .TH-bg:hover
+{
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #914f20;
+  background : #002050;
+  vertical-align : top; 
+  height : auto; 
+	text-decoration : none;
+}
+
+TH-bg2, .th-bg2, .th-bg2:link, .th-bg2:visited {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #e4e1ee;
+  background : #002000;
+  vertical-align : top; 
+  height : auto; 
+  text-decoration : none;
+
+ }
+
+
+.th-bg2:hover, .TH-bg2:hover
+{
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #914f20;
+  background : #002000;
+  vertical-align : top; 
+  height : auto; 
+	text-decoration : none;
+}
+DIV {
+
+  font : bold 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : left;
+  border-style : none;
+
+
+}
+
+TEXTAREA {
+  font : 13px Arial, Helvetica, sans-serif; 
+  color : black; 
+  background : #ffffff;
+  vertical-align : top;
+	width : 400px;
+	height : 350px;
+ }
+
+
+TD#SiteTitel {
+  font : bold 16px Arial, Helvetica, sans-serif;
+  text-align : left;
+  padding : 5px;
+	width : auto;
+ }
+
+TD {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-decoration : none;
+  vertical-align : top;
+  border-style : none;
+	border-width : 0px;
+	padding : 5px;
+}
+
+TABLE {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : left;
+  border-style : none;
+	border-width : 0px;
+  padding : 5px;
+	
+ }
+ 
+ .100proTABLE {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : left;
+  border-style : none;
+	border-width : 0px;
+  padding : 5px;
+	width : 100%;
+	
+ }
+
+ 
+.nopaddingTABLE {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : left;
+  border-style : none;
+	border-width : 0px;
+  padding : 0px;
+	
+ }
+ 
+IMG {
+  vertical-align : top;
+  border-style : none;
+}
+
+BODY {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  background-color : #fca455;
+  background-image : url(../images/swoosh.gif);
+  background-repeat : no-repeat;
+  background-attachment : fixed;
+ }
+
+.navbar-table {
+
+  font : bold 14px Arial, Helvetica, sans-serif;
+  color : #002050;
+  background : #d57530;
+  vertical-align : top; 
+  border-width : 1px;
+  border-style : solid;
+	border-color	: #002050;
+	text-decoration : none;
+	padding : 0px;
+	
+}
+
+.navbar, .navbar:link, .navbar:visited {
+ 
+  font : bold 14px Arial, Helvetica, sans-serif;
+  color : #002050;
+  background : #d57530;
+  vertical-align : top; 
+	text-decoration : none;
+  
+}
+
+.navbar:hover {
+ 
+  font : bold 14px Arial, Helvetica, sans-serif;
+  color : #0053d0;
+  background : #d57530;
+  vertical-align : top; 
+  text-decoration : none;
+  
+}
+
+
+.navbar-hell, .navbar-hell:link, .navbar-hell:visited {
+ 
+  font : bold 14px Arial, Helvetica, sans-serif;
+  color : #001330;
+  background : #d57530;
+  vertical-align : top; 
+  height : auto;
+  width : auto;
+  text-decoration : none;
+
+}
+
+.tabltxt-c, .tabltxt-c:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : center;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.tabltxt-c-bg, .tabltxt-c-bg:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+	background : #e9ac72;
+  text-align : center;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.tabltxt-r, .tabltxt-r:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : right;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.tabltxt-r-bg, .tabltxt-r-bg:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+	background : #e9ac72;
+  text-align : right;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.tabltxt-l, .tabltxt-l:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : left;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.tabltxt-l-b, {
+
+  font : bold 15px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : left;
+  border-style : none;
+  text-decoration : none;
+}
+.tabltxt-l-bg, .tabltxt-l-bg:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+	background : #e9ac72;
+  text-align : left;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.tabltxt-dl {
+
+  font : 13px Arial, Helvetica, sans-serif;
+	font-weight: bold;
+  color : #002050;
+  text-align : right;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+div.tabltxt-dl-art {
+
+  font : 13px Arial, Helvetica, sans-serif;
+	font-weight: bold;
+  color : #002050;
+  text-align : right;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.links, .links:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : right;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.links-bg, .links-bg:link {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : right;
+	background : #e9ac72;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.links:hover {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #0053d0;
+  text-align : right;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.links-bg:hover {
+
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #0053d0;
+  text-align : right;
+	background : #e9ac72;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.TDbold {
+  font : bold 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-decoration : none;
+  vertical-align : top;
+  border-style : none;
+	border-width : 0;
+}
+a.TDbold:hover {
+	color : #0053d0;
+}
+.TDbold-nopad {
+  font : bold 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-decoration : none;
+  vertical-align : top;
+  border-style : none;
+	border-width : 0;
+  padding : 0px;
+}
+a.TDbold:hover {
+	color : #0053d0;
+  border-style : none;
+	border-width : 0px;
+  padding : 0px;
+}
+.TDbold-big {
+  font : bold 16px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-decoration : underline;
+  vertical-align : top;
+  border-style : none;
+	border-width : 0;
+}	
+a.TDbold-big:hover {
+	color : #0053d0;
+}
+.TDbold-verybig {
+  font : bold 18px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-decoration : underline;
+  vertical-align : top;
+  border-style : none;
+	border-width : 0;
+}	
+a.TDbold-big:hover {
+	color : #0053d0;
+}
+.TDbold-verybig-nopad {
+  font : bold 18px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-decoration : underline;
+  vertical-align : top;
+  border-style : none;
+	border-width : 0;
+  padding : 0px;
+}	
+a.TDbold-big:hover {
+	color : #0053d0;
+  padding : 0px;
+}
+
+.small-textinput {
+  font : 13px Arial, Helvetica, sans-serif; 
+  color : black; 
+  background : #ffffff;
+  vertical-align : top;
+	width : 40px;
+ }
+
+.med-textinput {
+  font : 13px Arial, Helvetica, sans-serif; 
+  color : black; 
+  background : #ffffff;
+  vertical-align : top;
+	width : 150px;
+ }
+
+.tablecenter {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : center;
+  border-style : none;
+	border-width : 0;
+  padding : 5px;
+	width : 100%;
+		
+ }
+.tabltxt-c-b, .tabltxt-c-b:link {
+
+  font : bold 15px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : center;
+  border-style : none;
+  text-decoration : none;
+}
+
+.tabltxt-c-b:hover {
+
+  font : bold 15px Arial, Helvetica, sans-serif;
+  color : #0040a0;
+  text-align : center;
+  border-style : none;
+  text-decoration : none;
+}
+
+
+.TDbold-bigfont {
+  font : bold 17px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-decoration : none;
+  vertical-align : top;
+  border-style : none;
+	border-width : 0;
+}
+
+.missing-email {
+  font : bold 14px Arial, Helvetica, sans-serif;
+  color : black;
+  text-decoration : none;
+  vertical-align : top;
+  border-style : none;
+	padding = 5px
+	border-width : 0px;
+}
+
+.borderTABLE {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  text-align : left;
+  border-style : solid;
+	border-color : #002050;
+	border-width : 1px;
+  padding : 5px;
+	width : 100%;
+	
+ }
+
+.flashlink, .flashlink:link, .flashlink:visited {
+
+  font : bold 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+	width : 100%;
+  text-align : right;
+  border-style : none;
+  text-decoration : none;
+	
+}
+
+.flashlink:hover {
+
+  font : bold 13px Arial, Helvetica, sans-serif;
+  color : #0053d0;
+	width : 100%;
+  text-align : right;
+  border-style : none;
+  text-decoration : none;
+
+}
+
+.hometext {
+
+	font : 15px Arial, Helvetica, sans-serif;
+	color : #002050;
+	width : 550;
+
+}
+p.hometext {
+
+	font-weight : bold;
+
+}
+
+.smalltxt {
+
+
+	font : 11px Arial, Helvetica, sans-serif;
+	color : #002050;
+
+}
+
+.big-dot, .big-dot:link, .big-dot:visited {
+
+  font : bold 20px Arial, Helvetica, sans-serif;
+  text-decoration : none;
+  border-style : none;
+	text-align : center;
+	color : blue;
+
+}
+.big-dot:hover {
+
+  color : #55ffff;
+
+}
+
+.pdf-ico {
+  text-decoration : none;
+	text-align : center;
+  border-style : none;
+}
+
+#podcast:link, #podcast:visited {
+  font : bold 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+	text-decoration : none;
+}
+
+#podcast:hover {
+  font : bold 13px Arial, Helvetica, sans-serif;
+  color : #0053d0;
+  text-decoration : none;
+}
+
+#back-vortraege:link, #back-vortraege:visited {
+  font : bold 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+	text-decoration : none;
+}
+
+#back-vortraege:hover {
+  font : bold 13px Arial, Helvetica, sans-serif;
+  color : #0053d0;
+  text-decoration : none;
+}

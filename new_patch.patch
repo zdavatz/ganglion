@@ -1,0 +1,35 @@
+diff --git a/doc/html/css/browser5.css b/doc/html/css/browser5.css
+index 195857c..98e3887 100644
+--- a/doc/html/css/browser5.css
++++ b/doc/html/css/browser5.css
+@@ -539,15 +539,13 @@ p.hometext {
+ }
+ 
+ #podcast:link, #podcast:visited {
+-	margin-top: 10px;
+-  font : bold 12px Arial, Helvetica, sans-serif;
++  font : bold 13px Arial, Helvetica, sans-serif;
+   color : #002050;
+ 	text-decoration : none;
+ }
+ 
+ #podcast:hover {
+-	margin-top: 10px;
+-  font : bold 12px Arial, Helvetica, sans-serif;
++  font : bold 13px Arial, Helvetica, sans-serif;
+   color : #0053d0;
+   text-decoration : none;
+ }
+diff --git a/doc/wsadmin/php/save.php b/doc/wsadmin/php/save.php
+index 11012bd..f983303 100644
+--- a/doc/wsadmin/php/save.php
++++ b/doc/wsadmin/php/save.php
+@@ -162,6 +162,8 @@ if ($page == "vortrag" && $delete == "tr
+ 	mysql_query("DELETE FROM vortrag WHERE id = '$id'");
+ 
+ 	@unlink($delfile);
++		
++	system('ruby /var/www/ganglion.ch/create_xml_from_db.rb');
+ 
+ 	@header("Location: admin.php?page=$page&search=$search");
+ 

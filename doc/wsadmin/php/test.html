@@ -1,0 +1,649 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<title>Willkommen bei ywesee</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script language="Javascript" type="text/javascript" src="../js/standart.js" charset="utf-8">
+
+</script>
+<script language="Javascript" type="text/javascript" src="../js/popUp.js" charset="utf-8">
+
+</script>
+<link rel='stylesheet' href='../css/browser5.css' type='text/css'>
+</head>
+<body>
+<table width="100%" border="1" bordercolor="#FF0033">
+<tr> 
+<td class='TDSiteTitel' colspan="2">
+<img src="../images/clear.gif" width="700" height="1" alt=""></td>
+</tr>
+
+<tr> 
+<td class='TDSiteTitel' colspan="2">
+
+
+<table id="nav" class="TABLEnav" width="100%">
+ <tr> 
+  <td class='TDSiteTitel'>&Uuml;bersicht Themen</td>
+  <td class='TDSiteNav'> 
+   <form name="go" method="post"  action="admin.php">
+        <select name="page" onChange="go.submit()">
+         <option value="" selected>&Uuml;bersicht...</option>
+         <option value="vortrag">Vortr&auml;ge</option>
+         <option value="kurse">Kurse</option>
+         <option value="foren">Forum</option>
+         <option value="profil">Profile</option>
+         <option value="themen">Themen</option>
+         <option value="links">Links</option>
+        </select>
+        <input type="hidden" name="search" value="all">
+        <noscript> 
+        <input type=SUBMIT value=Go name="SUBMIT"/>
+        </noscript> 
+   </form>
+  </td>
+ </tr>
+</table>
+</td>
+</tr>
+<tr>
+<td >
+
+
+<form name="new" method="post"  action="save.php">
+        
+<input type="button" name="send" value="neues Thema" onClick="closeAll(); MM_showHideLayers('newthema','','show')">
+        <input type="hidden" name="search" value="all">
+        <input type="hidden" name="datumchange" value="2000-11-17">
+        <input type="hidden" name="page" value="themen">
+        <input type="hidden" name="new" value="true">
+</form>
+
+
+</td>
+
+<td>
+<table class='TABLEpaging'  align="right">
+<tr>
+<td class='TDvon2'>Seite 1 von 4</td>
+<td class='TDrechtslinks'>
+<img src='../images/links_na.gif' border='0' width='20' height='20' alt=''>
+</td>
+<td class='TDrechtslinks'>
+<a href='/wsadmin/php/admin.php?page=themen&P=1&search=all&sortby=&n=next'>
+<img src='../images/rechts.gif' border='0' width='20' height='20' alt=''>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class='TDSiteTitel' colspan="2">
+<table class='TABLEliste' width='100%' cellspacing='2'>
+<tr>
+<th class='THnr' nowrap>Nr. <font size='1'>(34)</font></th>
+<th class='THtitel' >
+<a class='Atitel' href='/wsadmin/php/admin.php?page=themen&P=1&search=all&sortby=Thema-'
+onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Thema');return document.returnValue">Thema</a></th>
+<th  class='THtrash'>&nbsp;</th>
+<th class='THbereich'>letzte &Auml;nderung</th>
+<th class='THbereich'>Links</th>
+<th class='THbereich'>Vortr&auml;ge</th>
+<th class='THbereich'>Kurse</th>
+<th class='THbereich'>Foren</th>
+</tr>
+<tr>
+<td class='TDnr'>1</td>
+<td class='TDtitel'>
+ 
+<a href="#" onClick="closeAll();MM_showHideLayers('changeThema0','','show')"
+onMouseOut="FnormText()" onMouseOver="StatusMsg('Thema: Aggression und Gewalt');return document.returnValue"> 
+Aggression und Gewalt</a></td>
+<td class='TDtrash'>
+<img  class='IMGtrash' src='../images/notrash.gif' width='16' height='16' align='right' border='0' alt=''>
+
+</td>
+<td class='TDbereich'>14.11.2000</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>3</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>1</td>
+</tr>
+<tr>
+<td class='TDnr'>2</td>
+<td class='TDtitel'>
+ 
+<a href="#" onClick="closeAll();MM_showHideLayers('changeThema1','','show')"
+onMouseOut="FnormText()" onMouseOver="StatusMsg('Thema: Alter');return document.returnValue"> 
+Alter</a></td>
+<td class='TDtrash'>
+<img  class='IMGtrash' src='../images/notrash.gif' width='16' height='16' align='right' border='0' alt=''>
+
+</td>
+<td class='TDbereich'>14.11.2000</td>
+<td class='TDbereich'>1</td>
+<td class='TDbereich'>1</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>2</td>
+</tr>
+<tr>
+<td class='TDnr'>3</td>
+<td class='TDtitel'>
+ 
+<a href="#" onClick="closeAll();MM_showHideLayers('changeThema2','','show')"
+onMouseOut="FnormText()" onMouseOver="StatusMsg('Thema: Andere Kulturen');return document.returnValue"> 
+Andere Kulturen</a></td>
+<td class='TDtrash'>
+<img  class='IMGtrash' src='../images/notrash.gif' width='16' height='16' align='right' border='0' alt=''>
+
+</td>
+<td class='TDbereich'>16.11.2000</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>2</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>0</td>
+</tr>
+<tr>
+<td class='TDnr'>4</td>
+<td class='TDtitel'>
+ 
+<a href="#" onClick="closeAll();MM_showHideLayers('changeThema3','','show')"
+onMouseOut="FnormText()" onMouseOver="StatusMsg('Thema: Angst');return document.returnValue"> 
+Angst</a></td>
+<td class='TDtrash'>
+<img  class='IMGtrash' src='../images/notrash.gif' width='16' height='16' align='right' border='0' alt=''>
+
+</td>
+<td class='TDbereich'>16.11.2000</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>1</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>0</td>
+</tr>
+<tr>
+<td class='TDnr'>5</td>
+<td class='TDtitel'>
+ 
+<a href="#" onClick="closeAll();MM_showHideLayers('changeThema4','','show')"
+onMouseOut="FnormText()" onMouseOver="StatusMsg('Thema: Asthma');return document.returnValue"> 
+Asthma</a></td>
+<td class='TDtrash'>
+<img  class='IMGtrash' src='../images/notrash.gif' width='16' height='16' align='right' border='0' alt=''>
+
+</td>
+<td class='TDbereich'>14.11.2000</td>
+<td class='TDbereich'>1</td>
+<td class='TDbereich'>3</td>
+<td class='TDbereich'>1</td>
+<td class='TDbereich'>4</td>
+</tr>
+<tr>
+<td class='TDnr'>6</td>
+<td class='TDtitel'>
+ 
+<a href="#" onClick="closeAll();MM_showHideLayers('changeThema5','','show')"
+onMouseOut="FnormText()" onMouseOver="StatusMsg('Thema: Bemeisen');return document.returnValue"> 
+Bemeisen</a></td>
+<td class='TDtrash'>
+<img  class='IMGtrash' src='../images/notrash.gif' width='16' height='16' align='right' border='0' alt=''>
+
+</td>
+<td class='TDbereich'>10.11.2000</td>
+<td class='TDbereich'>1</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>0</td>
+</tr>
+<tr>
+<td class='TDnr'>7</td>
+<td class='TDtitel'>
+ 
+<a href="#" onClick="closeAll();MM_showHideLayers('changeThema6','','show')"
+onMouseOut="FnormText()" onMouseOver="StatusMsg('Thema: Cemeisen2');return document.returnValue"> 
+Cemeisen2</a></td>
+<td class='TDtrash'>
+<img  class='IMGtrash' src='../images/notrash.gif' width='16' height='16' align='right' border='0' alt=''>
+
+</td>
+<td class='TDbereich'>17.11.2000</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>4</td>
+</tr>
+<tr>
+<td class='TDnr'>8</td>
+<td class='TDtitel'>
+ 
+<a href="#" onClick="closeAll();MM_showHideLayers('changeThema7','','show')"
+onMouseOut="FnormText()" onMouseOver="StatusMsg('Thema: Chronische Leiden');return document.returnValue"> 
+Chronische Leiden</a></td>
+<td class='TDtrash'>
+<img  class='IMGtrash' src='../images/notrash.gif' width='16' height='16' align='right' border='0' alt=''>
+
+</td>
+<td class='TDbereich'>16.11.2000</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>1</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>0</td>
+</tr>
+<tr>
+<td class='TDnr'>9</td>
+<td class='TDtitel'>
+ 
+<a href="#" onClick="closeAll();MM_showHideLayers('changeThema8','','show')"
+onMouseOut="FnormText()" onMouseOver="StatusMsg('Thema: Depression');return document.returnValue"> 
+Depression</a></td>
+<td class='TDtrash'>
+<img  class='IMGtrash' src='../images/notrash.gif' width='16' height='16' align='right' border='0' alt=''>
+
+</td>
+<td class='TDbereich'>14.11.2000</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>6</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>0</td>
+</tr>
+<tr>
+<td class='TDnr'>10</td>
+<td class='TDtitel'>
+ 
+<a href="#" onClick="closeAll();MM_showHideLayers('changeThema9','','show')"
+onMouseOut="FnormText()" onMouseOver="StatusMsg('Thema: Drogensucht');return document.returnValue"> 
+Drogensucht</a></td>
+<td class='TDtrash'>
+<img  class='IMGtrash' src='../images/notrash.gif' width='16' height='16' align='right' border='0' alt=''>
+
+</td>
+<td class='TDbereich'>14.11.2000</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>4</td>
+<td class='TDbereich'>0</td>
+<td class='TDbereich'>0</td>
+</tr>
+</table></td></tr></table>
+
+
+
+<form method="post" action="save.php" name="delform0">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="33">
+<input type="hidden" name="delete" value="true">
+</form>
+
+<div id="changeThema0" class="DIVthema">
+<form name="new" method="post" action="save.php">
+<table class="TABLEthema"  bgcolor="#f7a65a">
+<tr> 
+<td colspan="2" nowrap>Bitte Thema &auml;ndern.</td>
+<td align="right" valign="top"> <a href="#" onClick="closeAll();"> <img src="../images/end.gif" width="20" height="20" border="0" alt=""> 
+</a> </td>
+</tr>
+<tr> 
+<td> 
+<input class='INPUTtexts' type="text" name="Thema" value="Aggression und Gewalt">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="33">
+<input type="hidden" name="change" value="true">
+</td>
+<td colspan="2"> 
+<input type="submit" name="send" value="Abschicken">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+
+
+<form method="post" action="save.php" name="delform1">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="9">
+<input type="hidden" name="delete" value="true">
+</form>
+
+<div id="changeThema1" class="DIVthema">
+<form name="new" method="post" action="save.php">
+<table class="TABLEthema"  bgcolor="#f7a65a">
+<tr> 
+<td colspan="2" nowrap>Bitte Thema &auml;ndern.</td>
+<td align="right" valign="top"> <a href="#" onClick="closeAll();"> <img src="../images/end.gif" width="20" height="20" border="0" alt=""> 
+</a> </td>
+</tr>
+<tr> 
+<td> 
+<input class='INPUTtexts' type="text" name="Thema" value="Alter">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="9">
+<input type="hidden" name="change" value="true">
+</td>
+<td colspan="2"> 
+<input type="submit" name="send" value="Abschicken">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+
+
+<form method="post" action="save.php" name="delform2">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="46">
+<input type="hidden" name="delete" value="true">
+</form>
+
+<div id="changeThema2" class="DIVthema">
+<form name="new" method="post" action="save.php">
+<table class="TABLEthema"  bgcolor="#f7a65a">
+<tr> 
+<td colspan="2" nowrap>Bitte Thema &auml;ndern.</td>
+<td align="right" valign="top"> <a href="#" onClick="closeAll();"> <img src="../images/end.gif" width="20" height="20" border="0" alt=""> 
+</a> </td>
+</tr>
+<tr> 
+<td> 
+<input class='INPUTtexts' type="text" name="Thema" value="Andere Kulturen">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="46">
+<input type="hidden" name="change" value="true">
+</td>
+<td colspan="2"> 
+<input type="submit" name="send" value="Abschicken">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+
+
+<form method="post" action="save.php" name="delform3">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="45">
+<input type="hidden" name="delete" value="true">
+</form>
+
+<div id="changeThema3" class="DIVthema">
+<form name="new" method="post" action="save.php">
+<table class="TABLEthema"  bgcolor="#f7a65a">
+<tr> 
+<td colspan="2" nowrap>Bitte Thema &auml;ndern.</td>
+<td align="right" valign="top"> <a href="#" onClick="closeAll();"> <img src="../images/end.gif" width="20" height="20" border="0" alt=""> 
+</a> </td>
+</tr>
+<tr> 
+<td> 
+<input class='INPUTtexts' type="text" name="Thema" value="Angst">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="45">
+<input type="hidden" name="change" value="true">
+</td>
+<td colspan="2"> 
+<input type="submit" name="send" value="Abschicken">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+
+
+<form method="post" action="save.php" name="delform4">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="2">
+<input type="hidden" name="delete" value="true">
+</form>
+
+<div id="changeThema4" class="DIVthema">
+<form name="new" method="post" action="save.php">
+<table class="TABLEthema"  bgcolor="#f7a65a">
+<tr> 
+<td colspan="2" nowrap>Bitte Thema &auml;ndern.</td>
+<td align="right" valign="top"> <a href="#" onClick="closeAll();"> <img src="../images/end.gif" width="20" height="20" border="0" alt=""> 
+</a> </td>
+</tr>
+<tr> 
+<td> 
+<input class='INPUTtexts' type="text" name="Thema" value="Asthma">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="2">
+<input type="hidden" name="change" value="true">
+</td>
+<td colspan="2"> 
+<input type="submit" name="send" value="Abschicken">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+
+
+<form method="post" action="save.php" name="delform5">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="16">
+<input type="hidden" name="delete" value="true">
+</form>
+
+<div id="changeThema5" class="DIVthema">
+<form name="new" method="post" action="save.php">
+<table class="TABLEthema"  bgcolor="#f7a65a">
+<tr> 
+<td colspan="2" nowrap>Bitte Thema &auml;ndern.</td>
+<td align="right" valign="top"> <a href="#" onClick="closeAll();"> <img src="../images/end.gif" width="20" height="20" border="0" alt=""> 
+</a> </td>
+</tr>
+<tr> 
+<td> 
+<input class='INPUTtexts' type="text" name="Thema" value="Bemeisen">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="16">
+<input type="hidden" name="change" value="true">
+</td>
+<td colspan="2"> 
+<input type="submit" name="send" value="Abschicken">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+
+
+<form method="post" action="save.php" name="delform6">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="4">
+<input type="hidden" name="delete" value="true">
+</form>
+
+<div id="changeThema6" class="DIVthema">
+<form name="new" method="post" action="save.php">
+<table class="TABLEthema"  bgcolor="#f7a65a">
+<tr> 
+<td colspan="2" nowrap>Bitte Thema &auml;ndern.</td>
+<td align="right" valign="top"> <a href="#" onClick="closeAll();"> <img src="../images/end.gif" width="20" height="20" border="0" alt=""> 
+</a> </td>
+</tr>
+<tr> 
+<td> 
+<input class='INPUTtexts' type="text" name="Thema" value="Cemeisen2">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="4">
+<input type="hidden" name="change" value="true">
+</td>
+<td colspan="2"> 
+<input type="submit" name="send" value="Abschicken">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+
+
+<form method="post" action="save.php" name="delform7">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="47">
+<input type="hidden" name="delete" value="true">
+</form>
+
+<div id="changeThema7" class="DIVthema">
+<form name="new" method="post" action="save.php">
+<table class="TABLEthema"  bgcolor="#f7a65a">
+<tr> 
+<td colspan="2" nowrap>Bitte Thema &auml;ndern.</td>
+<td align="right" valign="top"> <a href="#" onClick="closeAll();"> <img src="../images/end.gif" width="20" height="20" border="0" alt=""> 
+</a> </td>
+</tr>
+<tr> 
+<td> 
+<input class='INPUTtexts' type="text" name="Thema" value="Chronische Leiden">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="47">
+<input type="hidden" name="change" value="true">
+</td>
+<td colspan="2"> 
+<input type="submit" name="send" value="Abschicken">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+
+
+<form method="post" action="save.php" name="delform8">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="25">
+<input type="hidden" name="delete" value="true">
+</form>
+
+<div id="changeThema8" class="DIVthema">
+<form name="new" method="post" action="save.php">
+<table class="TABLEthema"  bgcolor="#f7a65a">
+<tr> 
+<td colspan="2" nowrap>Bitte Thema &auml;ndern.</td>
+<td align="right" valign="top"> <a href="#" onClick="closeAll();"> <img src="../images/end.gif" width="20" height="20" border="0" alt=""> 
+</a> </td>
+</tr>
+<tr> 
+<td> 
+<input class='INPUTtexts' type="text" name="Thema" value="Depression">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="25">
+<input type="hidden" name="change" value="true">
+</td>
+<td colspan="2"> 
+<input type="submit" name="send" value="Abschicken">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+
+
+<form method="post" action="save.php" name="delform9">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="1">
+<input type="hidden" name="delete" value="true">
+</form>
+
+<div id="changeThema9" class="DIVthema">
+<form name="new" method="post" action="save.php">
+<table class="TABLEthema"  bgcolor="#f7a65a">
+<tr> 
+<td colspan="2" nowrap>Bitte Thema &auml;ndern.</td>
+<td align="right" valign="top"> <a href="#" onClick="closeAll();"> <img src="../images/end.gif" width="20" height="20" border="0" alt=""> 
+</a> </td>
+</tr>
+<tr> 
+<td> 
+<input class='INPUTtexts' type="text" name="Thema" value="Drogensucht">
+<input type="hidden" name="search" value="all">
+<input type="hidden" name="datumchange" value="2000-11-17">
+<input type="hidden" name="page" value="themen">
+<input type="hidden" name="idThema" value="1">
+<input type="hidden" name="change" value="true">
+</td>
+<td colspan="2"> 
+<input type="submit" name="send" value="Abschicken">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+<div id="newthema" class="DIVthema"> 
+<form name="new" method="post"  action="save.php">
+<table class="TABLEthema" id="newThema" bgcolor="#f7a65a">
+<tr> 
+<td colspan="2" height="39">Bitte Thema eingeben. </td>
+<td align="right" valign="top" height="39"> <a href="#" onClick="closeAll();"> 
+<img src="../images/end.gif" width="20" height="20" border="0" alt=""></a> </td>
+</tr>
+<tr> 
+<td> 
+<input class='INPUTtexts' type="text" name="Thema">
+</td>
+<td colspan="2"> 
+<input type="submit" name="Button" value="Abschicken">
+</td>
+</tr>
+</table>
+</form>
+</div>
+</body>
+</html>

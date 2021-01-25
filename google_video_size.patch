@@ -1,0 +1,103 @@
+diff --git a/doc/html/vortraege.php b/doc/html/vortraege.php
+index 5753109..819f2b9 100644
+--- a/doc/html/vortraege.php
++++ b/doc/html/vortraege.php
+@@ -149,7 +149,7 @@ mysql_free_result($result);
+ 	</th>
+ 	<th>Info<br>
+ 	</th>
+-	<th>Pdf<br>
++	<th>Pdf / Video<br>
+ 	</th>
+ 	<th>Audio-File<br>
+ 	</th>
+@@ -251,8 +251,9 @@ mysql_free_result($result);
+ 			}	
+ 			else
+ 			{
+-				$videoSizeMb = strval(round($values["google_video_size"]/1024/1024, 2))."M";
+-				echo "<a class='links".$suffix."'	href='/html/php/download_vortrag.php?id=".$values["id"]."&download=google_video' alt='Google Video: ".$videoSizeMb."' title='Google Video: ".$videoSizeMb."' target='_blank'>
++				list($google_video_hours, $google_video_minutes, $google_video_seconds) = split(":", $values["google_video_size"]); 
++				$videoLength = $google_video_hours."h&nbsp;".$google_video_minutes."m&nbsp;".$google_video_seconds."s";
++				echo "<a class='links".$suffix."'	href='/html/php/download_vortrag.php?id=".$values["id"]."&download=google_video' alt='Google Video: ".$videoLength."' title='Google Video: ".$videoLength."' target='_blank'>
+ 						".stripslashes(urldecode ($values["Titel"]))."
+ 					</a>";
+ 			}	
+@@ -267,19 +268,23 @@ mysql_free_result($result);
+ 			echo "<td class='tabltxt-c".$suffix."'>";
+ 			if(empty($values["pdf"]))
+ 			{
+-				echo "&nbsp;";
++				echo "";
+ 			}
+ 			else
+ 			{
+ 				echo "<a class='pdf-ico".$suffix."'	href='/html/php/download_vortrag.php?id=".$values["id"]."&download=pdf'
+ 				target='_blank'><img src='../html/images/adobe.gif' alt='PDF File'></a>";
++				if(empty($values["google_video_url"])) {
++					echo "";
++				} else {
++					echo "&nbsp";
++				}
+ 			}
+ 			if(empty($values["google_video_url"])) {
+-				echo "&nbsp;";
++				echo "";
+ 			} else {
+-				echo "&nbsp;";
+ 				echo "<a class='pdf-ico".$suffix."'	href='/html/php/download_vortrag.php?id=".$values["id"]."&download=google_video'
+-				target='_blank'><img src='../html/images/google_video.gif' alt='Google Video: ".$videoSizeMb."' title='Google Video: ".$videoSizeMb."'></a>";
++				target='_blank'><img src='../html/images/google_video.gif' alt='Google Video: ".$videoLength."' title='Google Video: ".$videoLength."'></a>";
+ 			}
+ 			echo "</td>";
+ 			echo "<td class='tabltxt-l".$suffix."'>";
+diff --git a/doc/wsadmin/php/save.php b/doc/wsadmin/php/save.php
+index 4b5c8dc..dd853e2 100644
+--- a/doc/wsadmin/php/save.php
++++ b/doc/wsadmin/php/save.php
+@@ -83,6 +83,7 @@ if ($page == "vortrag" && $new == "true"
+ 
+ 	$felder_mysql = "Titel, Zusammenfassung, Zielpublikum, gehalten, zeit, location, pdf, audiofile, audiofile_size, google_video_url, google_video_size, Arbeit, Erziehung, Gesundheit, Familie, thema_id, datumchange";
+ 
++	$google_video_size = $google_video_hours.":".$google_video_minutes.":".$google_video_seconds;
+ 	$felder_form = "'$Titel', '$Zusammenfassung', '$Zielpublikum', '$gehalten', '$time', '$location', '$file_name', '$audiofile_name', '$audiofile_size', '$google_video_url', '$google_video_size', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$datumchange'";
+ 
+ 	if ($file != ""){
+@@ -116,6 +117,8 @@ if ($page == "vortrag" && $change == "tr
+ 	$google_video_size = round(str_replace(" ", "", $google_video_size));
+ 	$datum = "$day.$month.$year";
+ 	$gehalten = input2date($datum);
++
++	$google_video_size = $google_video_hours.":".$google_video_minutes.":".$google_video_seconds;
+ 	$fields = "	Titel='$Titel', 
+ 				Zusammenfassung='$Zusammenfassung', 
+ 				Zielpublikum='$Zielpublikum', 
+diff --git a/doc/wsadmin/php/vortrag.php b/doc/wsadmin/php/vortrag.php
+index 01f0603..ef72d86 100644
+--- a/doc/wsadmin/php/vortrag.php
++++ b/doc/wsadmin/php/vortrag.php
+@@ -33,6 +33,7 @@ if ($change == "true"){
+ $datumchange = date("Y-m-d");
+ $msgConf = "Wollen Sie den Eintrag: <$javatitel> wirklich löschen?";
+ $msgConf_pdf = "Wollen Sie diese Pdf Datei: <$file_name> wirklich löschen?";
++list($google_video_hours, $google_video_minutes, $google_video_seconds) = split(":", $google_video_size); 
+ }
+ elseif ($new == "true") {
+ $datumchange = date("Y-m-d");
+@@ -249,10 +250,13 @@ if ($change == "true"){
+    </td>
+   </tr>
+   <tr> 
+-   <td id='title'>Goolge Video Gr&ouml;sse (in Bytes):</td>
++   <td id='title'>Goolge Video Gr&ouml;sse:</td>
+    <td colspan="2"> 
+-	
+-<input class='INPUTtext' type="text" name="google_video_size"  value='<?php print $google_video_size ?>' size="35" maxlength="100">
++<input type="text" name="google_video_hours"  value='<?php print $google_video_hours ?>' size="2" maxlength="2">&nbsp;Stunden&nbsp;
++<input type="text" name="google_video_minutes"  value='<?php print $google_video_minutes ?>' size="2" maxlength="2">&nbsp;Minuten&nbsp;
++<input type="text" name="google_video_seconds"  value='<?php print $google_video_seconds ?>' size="2" maxlength="2">&nbsp;Sekunden
++   </td>
++   </td>
+    </td>
+ 	</tr>
+   <tr> 

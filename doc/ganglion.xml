@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml-stylesheet title="XSL_formatting" type="text/xsl" href="xsl/mpx.xsl" ?>
+
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+	<channel>
+		<title>Vorträge von der Website Ganglion.ch</title>
+		<description>Vorträge von Frau Dr. med. Ursula Davatz</description>
+		<link>http://ganglion.hal/html/vortraege.php</link>
+		<language>DE</language>
+		<lastBuildDate>Thu, 27 Apr 2006 14:00:35 +0200</lastBuildDate>
+		<generator>ganglion.ch</generator> 		
+		<webMaster>mhuggler@ywesee.com</webMaster> 
+		<copyright>Copyright: (C) Ganglion.ch</copyright>
+		<ttl>600</ttl>
+
+		<itunes:author>Frau Dr. med. Ursula Davatz</itunes:author>
+		<itunes:subtitle>Vortraege von der Website Ganglion.ch</itunes:subtitle>
+		<itunes:summary>Vortraege von Frau Dr. med. Ursula Davatz</itunes:summary>
+		<itunes:owner>
+			<itunes:name>Frau Dr. med. Ursula Davatz</itunes:name>
+			<itunes:email>mhuggler@ywesee.com</itunes:email>
+		</itunes:owner>
+		<itunes:category text="Science"/>
+		<itunes:category text="International">
+			<itunes:category text="German"/>
+		</itunes:category>
+		<itunes:explicit>no</itunes:explicit>
+		<itunes:image href="http://www.ganglion.ch/images/drdavatz.jpg" />
+
+	<item>
+		<title>Hilfe! Mein Kind wird gemobbt</title>
+		<link>http://ganglion.hal/html/vortraege.php</link>
+		<description>Mein Kind wird gemobbt</description>
+		<enclosure url="http://www.ganglion.ch/audio/25.04.06_015655.m4a" length="216000000" type='audio/mpeg' /><guid>http://www.ganglion.ch/audio/25.04.06_015655.m4a</guid>
+			<itunes:author>Frau Dr med Ursula Davatz</itunes:author>
+			<itunes:subtitle>Mein Kind wird gemobbt</itunes:subtitle>
+			<itunes:summary>Zusammenfassung</itunes:summary>
+			<itunes:duration>00:55:00</itunes:duration>
+			<itunes:keywords>davatz, children</itunes:keywords>
+			<itunes:image href="http://www.ganglion.ch/images/drdavatz.jpg" />
+		<author>mhuggler@ywesee.com</author>
+		<category domain="http://ganglion.hal/html/vortraege.php">Vorträge von Ganglion.ch</category>
+		<pubDate>Tue, 25 Apr 2006 18:00:00 +0100</pubDate>
+	</item>
+</channel>
+</rss>
+

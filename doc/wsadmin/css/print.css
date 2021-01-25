@@ -1,0 +1,95 @@
+TH {
+  font : bold 10pt Arial, Helvetica, sans-serif;
+  color : black;
+  background : white;
+  vertical-align : text-top;
+  border-width : 0;
+  border-style : none;
+  height : 10px;
+  text-align : left;
+}
+
+
+TD {
+  font : 10pt Arial, Helvetica, sans-serif;
+  color : black;
+  background : white;
+  text-decoration : none;
+  vertical-align : text-top;
+}
+
+
+TABLE {
+  font : 10pt Arial, Helvetica, sans-serif;
+  color : black;
+  background : white;
+  text-align : left;
+}
+
+
+IMG {
+  vertical-align : top;
+  border-width : 0;
+  border-style : none;
+}
+
+
+BODY {
+  font : 10pt Arial, Helvetica, sans-serif;
+  color : black;
+  background : white;
+}
+
+
+A:visited {
+  font : 10pt Arial, Helvetica, sans-serif;
+  color : black;
+  background : white;
+  text-decoration : none;
+  vertical-align : text-top;
+}
+
+
+A:link {
+  font : 10pt Arial, Helvetica, sans-serif;
+  color : black;
+  background : white;
+  text-decoration : none;
+  vertical-align : text-top;
+}
+
+
+A:hover {
+  font : 10pt Arial, Helvetica, sans-serif;
+  color : red;
+  background : white;
+  text-decoration : none;
+  vertical-align : text-top;
+}
+
+
+.Atitel:visited {
+  font : bold 10pt Arial, Helvetica, sans-serif;
+  color : black;
+  background : white;
+  text-decoration : none;
+  vertical-align : text-top;
+}
+
+
+.Atitel:link {
+  font : bold 10pt Arial, Helvetica, sans-serif;
+  color : black;
+  background : white;
+  text-decoration : none;
+  vertical-align : text-top;
+}
+
+
+.Atitel:hover {
+  font : bold 10pt Arial, Helvetica, sans-serif;
+  color : red;
+  background : white;
+  text-decoration : none;
+  vertical-align : text-top;
+}

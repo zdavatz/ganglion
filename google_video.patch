@@ -1,0 +1,107 @@
+diff --git a/doc/html/vortraege.php b/doc/html/vortraege.php
+index 4d065d9..231afc2 100644
+--- a/doc/html/vortraege.php
++++ b/doc/html/vortraege.php
+@@ -164,7 +164,7 @@ mysql_free_result($result);
+ 		{
+ 			$thema_condition = "thema_id!=255";
+ 		}
+-		$query = "select Titel, thema, pdf, audiofile, audiofile_size, audiofile_downloads, id, downloads, zeit, Zielpublikum, location, date_format(gehalten,'%d.%m.%Y') 
++		$query = "select Titel, thema, pdf, audiofile, audiofile_size, audiofile_downloads, id, google_video_url, downloads, zeit, Zielpublikum, location, date_format(gehalten,'%d.%m.%Y') 
+ 							as gehalten_formatted 
+ 							from vortrag, thema
+ 							where $thema_condition and id_thema=thema_id
+@@ -173,7 +173,8 @@ mysql_free_result($result);
+ 		echo	'<td valign="top" rowspan="'.(mysql_num_rows($vortrag_result)+1).'" colspan="1" width="25%">';
+ 		
+ 		$query = "select Titel, thema, Zusammenfassung, zeit, Zielpublikum, location, id, date_format(gehalten,'%d.%m.%Y') 
+-							as gehalten_formatted, unix_timestamp(gehalten) as gehalten_unix
++							as gehalten_formatted, unix_timestamp(gehalten) as gehalten_unix,
++							google_video_url
+ 							from vortrag, thema 
+ 							where thema_id!=255 and id_thema=thema_id
+ 							and gehalten >= now()
+@@ -237,13 +238,13 @@ mysql_free_result($result);
+ 			}
+ 			$zieltext = implode(', ', $umfeld);
+ 			echo "<td>";
+-			if(empty($values["pdf"]))
++			if(empty($values["google_video_url"]))
+ 			{
+ 				echo "".stripslashes(urldecode ($values["Titel"]))."";
+ 			}	
+ 			else
+ 			{
+-				echo "<a class='links".$suffix."'href='/html/php/download_vortrag.php?id=".$values["id"]."'target='_blank' title='".$zieltext."'>".stripslashes(urldecode ($values["Titel"]))."</a>";
++				echo "<a class='links".$suffix."'href='".$values["google_video_url"]."' target='_blank' title='".$zieltext."'>".stripslashes(urldecode ($values["Titel"]))."</a>";
+ 			}	
+ 			echo "</td>";
+ 			
+diff --git a/doc/wsadmin/php/save.php b/doc/wsadmin/php/save.php
+index f983303..4b5c8dc 100644
+--- a/doc/wsadmin/php/save.php
++++ b/doc/wsadmin/php/save.php
+@@ -81,9 +81,9 @@ if ($page == "vortrag" && $new == "true"
+ 
+ 	$gehalten = input2date($datum);
+ 
+-	$felder_mysql = "Titel, Zusammenfassung, Zielpublikum, gehalten, zeit, location, pdf, audiofile, audiofile_size, Arbeit, Erziehung, Gesundheit, Familie, thema_id, datumchange";
++	$felder_mysql = "Titel, Zusammenfassung, Zielpublikum, gehalten, zeit, location, pdf, audiofile, audiofile_size, google_video_url, google_video_size, Arbeit, Erziehung, Gesundheit, Familie, thema_id, datumchange";
+ 
+-	$felder_form = "'$Titel', '$Zusammenfassung', '$Zielpublikum', '$gehalten', '$time', '$location', '$file_name', '$audiofile_name', '$audiofile_size', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$datumchange'";
++	$felder_form = "'$Titel', '$Zusammenfassung', '$Zielpublikum', '$gehalten', '$time', '$location', '$file_name', '$audiofile_name', '$audiofile_size', '$google_video_url', '$google_video_size', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$datumchange'";
+ 
+ 	if ($file != ""){
+ 		$path = "../../pdf/" .$file_name;
+@@ -112,6 +112,8 @@ if ($page == "vortrag" && $new == "true"
+ //aendern
+ 
+ if ($page == "vortrag" && $change == "true"){
++	$audiofile_size = round(str_replace(" ", "", $audiofile_size));
++	$google_video_size = round(str_replace(" ", "", $google_video_size));
+ 	$datum = "$day.$month.$year";
+ 	$gehalten = input2date($datum);
+ 	$fields = "	Titel='$Titel', 
+@@ -122,6 +124,8 @@ if ($page == "vortrag" && $change == "tr
+ 				location='$location', 
+ 				audiofile='$audiofile_name',
+ 				audiofile_size='$audiofile_size',
++				google_video_url='$google_video_url',
++				google_video_size='$google_video_size',
+ 				Arbeit='$Arbeit', 
+ 				Erziehung='$Erziehung', 
+ 				Gesundheit='$Gesundheit', 
+diff --git a/doc/wsadmin/php/vortrag.php b/doc/wsadmin/php/vortrag.php
+index 00d8079..01f0603 100644
+--- a/doc/wsadmin/php/vortrag.php
++++ b/doc/wsadmin/php/vortrag.php
+@@ -16,6 +16,8 @@ if ($change == "true"){
+ 		$file_name = $row["pdf"];
+ 		$audiofile_name = $row["audiofile"];
+ 		$audiofile_size = stripslashes(urldecode($row["audiofile_size"]));
++		$google_video_url = $row['google_video_url'];
++		$google_video_size = $row['google_video_size'];
+ 		$filecheck = $DOCUMENT_ROOT."/pdf/$file_name";
+ 		$audiofilecheck = $DOCUMENT_ROOT."/audio/$audiofile_name";
+ 		$Familie = $row["Familie"];      
+@@ -240,6 +242,20 @@ if ($change == "true"){
+    </td>
+   </tr>
+   <tr> 
++   <td id='title'>Google Video-Link:</td>
++   <td colspan="2"> 
++	
++<input class='INPUTtext' type="text" name="google_video_url" value='<?php print $google_video_url ?>' size="35" maxlength="100">
++   </td>
++  </tr>
++  <tr> 
++   <td id='title'>Goolge Video Gr&ouml;sse (in Bytes):</td>
++   <td colspan="2"> 
++	
++<input class='INPUTtext' type="text" name="google_video_size"  value='<?php print $google_video_size ?>' size="35" maxlength="100">
++   </td>
++	</tr>
++  <tr> 
+    <td rowspan="4">Bereich:</td>
+    <td> 
+ 	<input type="checkbox" value="1" name="Familie" <?php if ($Familie == 1) echo"checked"?>>

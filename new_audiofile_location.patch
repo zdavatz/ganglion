@@ -1,0 +1,262 @@
+diff --git a/doc/html/php/download_vortrag.php b/doc/html/php/download_vortrag.php
+index 55080e1..7f71cb5 100644
+--- a/doc/html/php/download_vortrag.php
++++ b/doc/html/php/download_vortrag.php
+@@ -18,7 +18,7 @@ if(isset($_GET["id"]) && preg_match("/^[
+   $query = "update vortrag set audiofile_downloads=downloads+1 where id=".$_GET["id"];
+   mysql_query($query);
+ 
+-  header("Location: /audio/".$values["audiofile"]);
++  header("Location: http://ganglion.zftp.com/".$values["audiofile"]);
+ }
+ 
+ ?>
+diff --git a/doc/html/vortraege.php b/doc/html/vortraege.php
+index c4f9733..e4e2baf 100644
+--- a/doc/html/vortraege.php
++++ b/doc/html/vortraege.php
+@@ -162,7 +162,7 @@ mysql_free_result($result);
+ 		{
+ 			$thema_condition = "thema_id!=255";
+ 		}
+-		$query = "select Titel, thema, pdf, audiofile, audiofile_length, audiofile_downloads, id, downloads, zeit, Zielpublikum, location, date_format(gehalten,'%d.%m.%Y') 
++		$query = "select Titel, thema, pdf, audiofile, audiofile_length, audiofile_size, audiofile_downloads, id, downloads, zeit, Zielpublikum, location, date_format(gehalten,'%d.%m.%Y') 
+ 							as gehalten_formatted 
+ 							from vortrag, thema
+ 							where $thema_condition and id_thema=thema_id
+@@ -266,8 +266,9 @@ mysql_free_result($result);
+ 			if(empty($values["audiofile"])) {
+ 				echo "&nbsp;";
+ 			} else {
++				$sizeMb = strval(round($values["audiofile_size"]/1024/1024, 0))."M";
+ 				echo "<a class='pdf-ico".$suffix."'	href='/html/php/download_vortrag.php?id=".$values["id"]."&download=audiofile'
+-				target='_blank'><img src='../html/images/audiofile.gif' alt='Audio File' title='$mbSize'></a>";
++				target='_blank'><img src='../html/images/audiofile.gif' alt='Audio File'>".$sizeMb."</a>";
+ 			}
+ 			echo "</td>";
+ 			echo "<td class='tabltxt-c".$suffix."'>".urldecode ($values["downloads"])."</td>";	
+diff --git a/doc/wsadmin/php/save.php b/doc/wsadmin/php/save.php
+index e1a60ce..6ef8595 100644
+--- a/doc/wsadmin/php/save.php
++++ b/doc/wsadmin/php/save.php
+@@ -81,9 +81,9 @@ if ($page == "vortrag" && $new == "true"
+ 
+ 	$gehalten = input2date($datum);
+ 
+-	$felder_mysql = "Titel, Zusammenfassung, Zielpublikum, gehalten, zeit, location, pdf, audiofile, audiofile_length, Arbeit, Erziehung, Gesundheit, Familie, thema_id, datumchange";
++	$felder_mysql = "Titel, Zusammenfassung, Zielpublikum, gehalten, zeit, location, pdf, audiofile, audiofile_length, audiofile_size, Arbeit, Erziehung, Gesundheit, Familie, thema_id, datumchange";
+ 
+-	$felder_form = "'$Titel', '$Zusammenfassung', '$Zielpublikum', '$gehalten', '$time', '$location', '$file_name', '$audiofile_name', '$audiofile_length', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$datumchange'";
++	$felder_form = "'$Titel', '$Zusammenfassung', '$Zielpublikum', '$gehalten', '$time', '$location', '$file_name', '$audiofile_name', '$audiofile_length', '$audiofile_size', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$datumchange'";
+ 
+ 	if ($file != ""){
+ 		$path = "../../pdf/" .$file_name;
+@@ -95,15 +95,6 @@ if ($page == "vortrag" && $new == "true"
+ 		}
+ 	}	
+ 
+-	if ($audiofile != ""){
+-		$path = "../../audio/".$audiofile_name;
+-		if(!copy($audiofile,$path)) {
+-			echo "Fehler - kann Audiofile nicht ablegen<BR>\n";
+-			exit;
+-		} else {
+-			chmod($path, 0777);
+-		}
+-	}
+ 	$sql = "INSERT INTO vortrag ($felder_mysql) VALUES ($felder_form)";
+ 	mysql_query($sql);
+ //echo nl2br($query);
+@@ -124,7 +115,9 @@ if ($page == "vortrag" && $change == "tr
+ 				gehalten='$gehalten',
+ 				zeit='$time', 
+ 				location='$location', 
++				audiofile_name='$audiofile_name',
+ 				audiofile_length='$audiofile_length',
++				audiofile_size='$audiofile_size',
+ 				Arbeit='$Arbeit', 
+ 				Erziehung='$Erziehung', 
+ 				Gesundheit='$Gesundheit', 
+@@ -145,21 +138,6 @@ if ($page == "vortrag" && $change == "tr
+ 				@unlink($delfile);
+ 		}
+ 	} 
+-	if ($audiofile != ""){
+-		$fields = $fields.", audiofile='$audiofile_name'";
+-		$path = "../../audio/".$audiofile_name;
+-		if (!copy($audiofile,$path)) {
+-			echo "Fehler - kann Datei nicht ablegen<BR>\n";
+-			exit;
+-		} else {
+-			chmod($path, 0777);
+-			$delfile = "../../pdf/$oldaudiofile";
+-			if ($audiofile_name != $oldaudiofile)
+-				@unlink($delfile);
+-		}
+-	} 
+-
+-
+ 
+ 	$query="UPDATE vortrag SET $fields WHERE id='$id'";
+ 	mysql_query($query);
+@@ -190,13 +168,6 @@ if ($page == "vortrag" && $pdfdelete == 
+ 
+ }
+ 
+-if ($page == "vortrag" && $audiofiledelete == "true"){
+-	mysql_query("UPDATE vortrag SET audiofile = '' WHERE id = '$id'");
+-	$delfile = "../../audio/$oldaudiofile";
+-	@unlink($delfile);
+-	@header("Location: admin.php?page=$page&search=$search");
+-}
+-
+ //
+ 
+ //hier werden die Links behandelt
+diff --git a/doc/wsadmin/php/uebersicht.php b/doc/wsadmin/php/uebersicht.php
+index 9bdd55e..af77d25 100644
+--- a/doc/wsadmin/php/uebersicht.php
++++ b/doc/wsadmin/php/uebersicht.php
+@@ -108,8 +108,9 @@ if ($sortby == "standart" && $search == 
+ 	elseif	(isset($sortby) && $sortby=="Erziehung")		{	$SortBy="Erziehung DESC";	$order[6] = 1;	}
+ 	elseif	(isset($sortby) && $sortby=="hits")			{	$SortBy="hits DESC";		$order[7] = 1;	}
+ 	elseif	(isset($sortby) && $sortby=="downloads"	)	{	$SortBy="downloads DESC";	$order[8] = 1;	}
+-	elseif	(isset($sortby) && $sortby=="pdf")			{	$SortBy="pdf DESC";			$order[9] = 1;	}
+-	elseif	(isset($sortby) && $sortby=="audiofile")			{	$SortBy="audiofile DESC";			$order[9] = 1;	}
++	elseif	(isset($sortby) && $sortby=="audiofile_downloads"	)	{	$SortBy="audiofile_downloads DESC";	$order[9] = 1;	}
++	elseif	(isset($sortby) && $sortby=="pdf")			{	$SortBy="pdf DESC";			$order[10] = 1;	}
++	elseif	(isset($sortby) && $sortby=="audiofile")			{	$SortBy="audiofile DESC";			$order[11] = 1;	}
+ //
+ 	elseif(isset($sortby) && $sortby=="Titel-")		{	$SortBy="Titel DESC";		}
+ 	elseif(isset($sortby) && $sortby=="datum-")	{	$SortBy="gehalten ASC";		}
+@@ -119,6 +120,8 @@ if ($sortby == "standart" && $search == 
+ 	elseif	(isset($sortby) && $sortby=="Gesundheit-")	{	$SortBy="Gesundheit ASC";	}
+ 	elseif	(isset($sortby) && $sortby=="Erziehung-")		{	$SortBy="Erziehung ASC";	}
+ 	elseif	(isset($sortby) && $sortby=="hits-")			{	$SortBy="hits ASC";			}
++	elseif	(isset($sortby) && $sortby=="downloads-")			{	$SortBy="downloads ASC";			}
++	elseif	(isset($sortby) && $sortby=="audiofile_downloads-")			{	$SortBy="audiofile_downloads ASC";			}
+ 	elseif	(isset($sortby) && $sortby=="pdf-")			{	$SortBy="pdf ASC";			}
+ 	elseif	(isset($sortby) && $sortby=="audiofile-")			{	$SortBy="audiofile ASC";			}
+ //
+@@ -132,8 +135,9 @@ if ($sortby == "standart" && $search == 
+ 	$order[6]==1?$Erziehung="Erziehung-"		: $Erziehung="Erziehung";
+ 	$order[7]==1?$hits="hits-"					: $hits="hits";
+ 	$order[8]==1?$downloads="downloads-"	: $downloads="downloads";
+-	$order[9]==1?$pdf="pdf-"				: $pdf="pdf";
+-	$order[9]==1?$audiofile="audiofile-"				: $audiofile="audiofile";
++	$order[9]==1?$audiofile_downloads="audiofile_downloads-"	: $audiofile_downloads="audiofile_downloads";
++	$order[10]==1?$pdf="pdf-"				: $pdf="pdf";
++	$order[11]==1?$audiofile="audiofile-"				: $audiofile="audiofile";
+ //
+ 
+ 	echo "<table class='TABLEliste' width='100%' cellspacing='2'>\n";
+@@ -162,7 +166,11 @@ if ($sortby == "standart" && $search == 
+ 	echo "</th>\n";
+ 
+ 	echo "<th class='THzahl'>\n";
+-	echo "	<a class='Atitel' href='$url&sortby=$downloads'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach downloads');return document.returnValue">Downloads</a><?php
++	echo "	<a class='Atitel' href='$url&sortby=$downloads'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach downloads');return document.returnValue">PDF Downloads</a><?php
++	echo "</th>\n";
++
++	echo "<th class='THzahl'>\n";
++	echo "	<a class='Atitel' href='$url&sortby=$audiofile_downloads'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Audiofile Downloads');return document.returnValue">Audio Downloads</a><?php
+ 	echo "</th>\n";
+ 
+ 	echo "<th class='THthema'>"; include("getmenu.php"); echo"</th>\n";
+@@ -223,22 +231,16 @@ if (isset($request) && $request=="uebers
+ 					$statusTitel = addslashes($Titel);
+ 					$statusTitel = htmlentities($Titel);
+ 					$pdf_file = $row["pdf"];
+-					$audio_file = $row["audiofile"];
+ 					$pdf_path = "../../pdf/".$pdf_file;
+-					$audio_path = "../../audio/".$audio_file;
+ 					if (@filetype($pdf_path) == "file"){
+ 						$pdf_file = $ok;
+ 					}
+ 					else{
+ 						$pdf_file ="";
+ 					}
+-					if(@filetype($audio_path) == "file") {
+-						$audio_file = $ok;
+-					} else { 
+-						$audio_file ="";
+-					}
+ 					$thema = stripslashes(urldecode($row["thema"]));
+ 					$thema = htmlentities($thema);
++					$audiofile = $row["audiofile"];
+ 					$hits = $row["hits"];
+ 					$fam = $row["Familie"];
+ 					$arb = $row["Arbeit"];
+@@ -258,9 +260,10 @@ if (isset($request) && $request=="uebers
+ 					echo "		<a href='$url&change=true&id=$id&thema=$thema_id'";?> onMouseOut="FnormText()" onMouseOver="StatusMsg('<?php echo "Detaileintrag: $statusTitel";?>');return document.returnValue"> <?php echo"$Titel</a></td>\n";
+ 					echo "	<td class='TDdatum'>".$gehalten."</td>\n";
+ 					echo "	<td class='TDzahl'>".$pdf_file."</td>\n";
+-					echo "	<td class='TDzahl'>".$audio_file."</td>\n";
++					echo "	<td class='TDzahl'>".$audiofile."</td>\n";
+ 					echo "	<td class='TDzahl'>".$row["hits"]."</td>\n";
+ 					echo "	<td class='TDzahl'>".$row["downloads"]."</td>\n";
++					echo "	<td class='TDzahl'>".$row["audiofile_downloads"]."</td>\n";
+ 					echo "	<td class='TDthema'>$thema</td>\n";
+ 					echo "	<td class='TDbereich'>$fam</td>\n";
+ 					echo "	<td class='TDbereich'>$arb</td>\n";
+diff --git a/doc/wsadmin/php/vortrag.php b/doc/wsadmin/php/vortrag.php
+index c0c7e7a..ddc6f63 100644
+--- a/doc/wsadmin/php/vortrag.php
++++ b/doc/wsadmin/php/vortrag.php
+@@ -16,6 +16,7 @@ $result = mysql_query ("SELECT * FROM vo
+ 		$file_name = $row["pdf"];
+ 		$audiofile_name = $row["audiofile"];
+ 		$audiofile_length = stripslashes(urldecode($row["audiofile_length"]));
++		$audiofile_size = stripslashes(urldecode($row["audiofile_size"]));
+ 		$filecheck = $DOCUMENT_ROOT."/pdf/$file_name";
+ 		$audiofilecheck = $DOCUMENT_ROOT."/audio/$audiofile_name";
+ 		$Familie = $row["Familie"];      
+@@ -248,27 +249,13 @@ if ($change == "true"){
+ 	echo "</tr>\n";
+ }
+ ?> 
+-	<tr>
+-		<td>Audiofile:</td>
+-		<td colspan="2">
+-			<input class='INPUTtext' type='file' name='audiofile' />
+-		</td>
+-	</tr>
+-  <?php
+-if ($change == "true"){
+-	echo "<tr>\n";
+-	echo "<td>&nbsp;</td>\n";
+-	if (@filetype($audiofilecheck) == "file")	
+-	{
+-		echo "<td>Es existiert ein Audiofile: $audiofile_name</td>\n"; 
+-	} 
+-	else	
+-	{ 
+-		echo "<td>Es existiert kein Audiofile</td>"; 
+-	}
+-	echo "</tr>\n";
+-}
+-?> 
++  <tr> 
++   <td id='title'>Audiofile:</td>
++   <td colspan="2"> 
++	
++<input class='INPUTtext' type="text" name="audiofile_length"  value='<?php print $audiofile_name ?>' size="35" maxlength="100">
++   </td>
++  </tr>
+   <tr> 
+    <td id='title'>Audiofile L&auml;nge (in Sekunden):</td>
+    <td colspan="2"> 
+@@ -277,6 +264,13 @@ if ($change == "true"){
+    </td>
+   </tr>
+   <tr> 
++   <td id='title'>Audiofile Gr&ouml;sse (in Bytes):</td>
++   <td colspan="2"> 
++	
++<input class='INPUTtext' type="text" name="audiofile_size"  value='<?php print $audiofile_size ?>' size="35" maxlength="100">
++   </td>
++  </tr>
++  <tr> 
+    <td rowspan="4">Bereich:</td>
+    <td> 
+ 	<input type="checkbox" value="1" name="Familie" <?php if ($Familie == 1) echo"checked"?>>

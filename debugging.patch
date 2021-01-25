@@ -1,0 +1,13 @@
+diff --git a/doc/wsadmin/php/save.php b/doc/wsadmin/php/save.php
+index 6d9bb00..0377582 100644
+--- a/doc/wsadmin/php/save.php
++++ b/doc/wsadmin/php/save.php
+@@ -115,7 +115,7 @@ if ($page == "vortrag" && $change == "tr
+ 				gehalten='$gehalten',
+ 				zeit='$time', 
+ 				location='$location', 
+-				audiofile_name='$audiofile_name',
++				audiofile='$audiofile_name',
+ 				audiofile_length='$audiofile_length',
+ 				audiofile_size='$audiofile_size',
+ 				Arbeit='$Arbeit', 

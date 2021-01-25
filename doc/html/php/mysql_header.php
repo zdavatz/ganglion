@@ -1,0 +1,14 @@
+<?php //mysql_header.php -->benfay
+session_name("ganglion");
+session_start();
+//
+$server	=	"localhost";		//MySQL-Server
+$user	=	"******";		//MySQL-User
+$pass	=	"******";		//MySQL-Passwort
+$db		=	"ganglion";		//MySQL-Datenbank
+//
+$conn1	=	mysql_connect($server, $user, $pass);
+$select	=	mysql_select_db($db,$conn1);
+mysql_query("SET NAMES 'utf8'"); mysql_query("SET CHARACTER SET utf8"); 
+//
+?>

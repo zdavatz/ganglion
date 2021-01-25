@@ -1,0 +1,402 @@
+TH {
+   font : bold 10pt Arial, Helvetica, sans-serif; 
+   color : navy; 
+   background : #f7a65a; 
+   vertical-align : top; 
+   border-width : 0; 
+   border-style : none; 
+   height : 10px; 
+}
+
+
+TEXTAREA {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   color : black; 
+   background : white; 
+   vertical-align : top; 
+   width : 500px; 
+}
+
+
+TD#SiteTitel {
+   font : bold 12pt Arial, Helvetica, sans-serif; 
+   text-align : left; 
+   width : auto; 
+}
+
+
+TD {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   color : navy; 
+   text-decoration : none; 
+   vertical-align : top; 
+}
+
+
+TABLE {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   color : navy; 
+   text-align : left; 
+}
+
+
+IMG {
+   vertical-align : top; 
+   border-width : 0; 
+   border-style : none; 
+}
+
+
+DIV {
+   width : auto; 
+   height : auto; 
+   top : 20px; 
+   left : 180px; 
+   position : absolute; 
+   z-index : 1; 
+   visibility : hidden;
+}
+
+
+BODY {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   color : navy; 
+   background-color : #f79231; 
+   background-image : url(../images/swoosh.gif);
+   background-repeat : no-repeat; 
+   background-attachment : fixed; 
+}
+
+
+A:visited {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   color : navy; 
+   text-decoration : none; 
+   vertical-align : text-top; 
+}
+
+
+A:link {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   color : navy; 
+   text-decoration : none; 
+   vertical-align : text-top; 
+}
+
+
+A:hover {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   color : red; 
+   text-decoration : none; 
+   vertical-align : text-top; 
+}
+
+
+.THzahl {
+   text-align : center; 
+   width : 70px; 
+}
+
+
+.THtrash {
+   color : black; 
+   background : #f7a65a; 
+   text-align : left; 
+   width : 13px; 
+}
+
+
+.THtitel {
+   text-align : left; 
+   width : auto; 
+}
+
+
+.THthema {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   text-align : left; 
+   width : 50px; 
+}
+
+
+.THnr {
+   color : navy; 
+   background : #f7a65a; 
+   text-align : left; 
+   width : 50px; 
+}
+
+
+.THnotification {
+   text-align : center; 
+   width : 140px; 
+}
+
+
+.THemail {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   text-align : left; 
+   width : 100px; 
+}
+
+
+.THdatum {
+   text-align : left; 
+   width : 65px; 
+}
+
+
+.THbereich {
+   text-align : center; 
+   width : 12px; 
+}
+
+
+.TDzahl {
+   color : navy; 
+   background : #f7a65a; 
+   text-align : center; 
+   width : 70px; 
+}
+
+
+.TDvon2 {
+   color : navy; 
+   vertical-align : middle; 
+   text-align : right; 
+   width : auto; 
+}
+
+
+.TDtrash {
+   color : navy; 
+   background : #f7a65a; 
+   text-align : center; 
+   width : 16px; 
+}
+
+
+.TDtitel {
+   color : navy; 
+   background : #f7a65a; 
+   width : auto; 
+}
+
+
+.TDthema {
+   color : navy; 
+   background : #f7a65a; 
+   text-align : left; 
+   width : 50px; 
+}
+
+
+.TDrechtslinks {
+   color : navy; 
+   vertical-align : middle; 
+   width : 20px; 
+}
+
+
+.TDnr {
+   color : navy; 
+   background : #f7a65a; 
+   text-align : right; 
+   width : 50px; 
+}
+
+
+.TDnotification {
+   color : navy; 
+   background : #f7a65a; 
+   text-align : center; 
+   width : 140px; 
+}
+
+
+.TDemail {
+   color : navy; 
+   background : #f7a65a; 
+   text-align : left; 
+   width : 100px; 
+}
+
+
+.TDdiskussiondelete {
+   color : navy; 
+   text-align : right; 
+}
+
+
+.TDdiskussion {
+   color : navy; 
+   background : #f7a65a; 
+}
+
+
+.TDdatum {
+   color : navy; 
+   background : #f7a65a; 
+   text-align : right; 
+   width : 65px; 
+}
+
+
+.TDbereich {
+   color : navy; 
+   background : #f7a65a; 
+   text-align : center; 
+   width : 12px; 
+}
+
+
+.TDSiteNav {
+   text-align : right; 
+   width : auto; 
+}
+
+
+.TABLEvortrag {
+   width : 700px; 
+}
+
+
+.TABLEthema {
+   color : navy; 
+   background : #f7a65a; 
+   border-width : 1px; 
+   border-style : solid; 
+   border-color : black; 
+   width : 300px; 
+}
+
+
+.TABLEpaging {
+   width : auto; 
+}
+
+
+.TABLEnew {
+   width : auto; 
+}
+
+
+.TABLEnav {
+   z-index : 1; 
+}
+
+
+.TABLEliste {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   width : 100%; 
+}
+
+
+.TABLEdiskussion {
+   width : 500px; 
+   z-index : 1; 
+}
+
+
+.INPUTtrash {
+   padding : 0; 
+   width : 16px; 
+   height : 16px; 
+   float : right; 
+}
+
+
+.INPUTtexts {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   color : black; 
+   background : white; 
+   vertical-align : top; 
+   width : 200px; 
+}
+
+
+.INPUTtextm {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   color : black; 
+   background : white; 
+   vertical-align : top; 
+   width : 350px; 
+}
+
+
+.INPUTtext {
+   font : 10pt Arial, Helvetica, sans-serif; 
+   color : black; 
+   background : white; 
+   vertical-align : top; 
+   width : 500px; 
+}
+
+
+.INPUTpaging {
+   width : 20px; 
+   height : 20px; 
+}
+
+
+.INPUTok {
+   width : 12px; 
+   height : 12px; 
+}
+
+
+.Atitel:visited {
+   font : bold 10pt Arial, Helvetica, sans-serif; 
+   color : navy; 
+   text-decoration : none; 
+   vertical-align : text-top; 
+   text-align : center; 
+}
+
+
+.Atitel:link {
+   font : bold 10pt Arial, Helvetica, sans-serif; 
+   color : navy; 
+   text-decoration : none; 
+   vertical-align : text-top; 
+   text-align : center; 
+}
+
+
+.Atitel:hover {
+   font : bold 10pt Arial, Helvetica, sans-serif; 
+   color : red; 
+   background : #f7a65a; 
+   text-decoration : none; 
+   vertical-align : text-top; 
+   text-align : center; 
+}
+
+
+.ASiteTitel:visited {
+   font : bold 12pt Arial, Helvetica, sans-serif; 
+   color : navy; 
+   text-decoration : none; 
+   text-align : left; 
+   width : auto; 
+}
+
+
+.ASiteTitel:link {
+   font : bold 12pt Arial, Helvetica, sans-serif; 
+   color : navy; 
+   text-decoration : none; 
+   text-align : left; 
+   width : auto; 
+}
+
+
+.ASiteTitel:hover {
+   font : bold 12pt Arial, Helvetica, sans-serif; 
+   color : red; 
+   text-decoration : none; 
+   text-align : left; 
+   width : auto; 
+}
+
+

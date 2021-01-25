@@ -1,0 +1,13 @@
+diff --git a/doc/html/vortraege.php b/doc/html/vortraege.php
+index 8450abc..c4f9733 100644
+--- a/doc/html/vortraege.php
++++ b/doc/html/vortraege.php
+@@ -144,7 +144,7 @@ mysql_free_result($result);
+ 	</th>
+ 	<th>Audio-File<br>
+ 	</th>
+-	<th><a class="th" href="<?php echo	$url."?orderby=Downloads&amp;orderdir=".$directions["downloads"];?>">Downloads</a><br>
++	<th><a class="th" href="<?php echo	$url."?orderby=Downloads&amp;orderdir=".$directions["downloads"];?>">PDF Downloads</a><br>
+ 	</th>
+ 	<th><a class="th" href="<?php echo	$url."?orderby=AudioFileDownloads&amp;orderdir=".$directions["audiofile_downloads"];?>">Audio File Downloads</a><br>
+ 	</th>
