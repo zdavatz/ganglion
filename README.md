@@ -20,8 +20,6 @@ APACHE2_MPMS="prefork"
 </Directory>
 
 <VirtualHost *:80>
-#  DBDriver mysql
-#  DBDParams host=localhost,dbname=ganglion,user=gangli,pass=gg6438
   ServerName www.ganglion.ch
   ServerAlias ganglion.ch 
   ServerAlias www.ursuladavatz-institut.ch ursuladavatz-institut.ch
