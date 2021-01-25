@@ -55,3 +55,6 @@ for Apache 2.4.46
 
 #AddDefaultCharset ISO-8859-1
 ```
+## Useful tools for MySQL connections
+* [DBKiss](https://github.com/cztomczak/dbkiss)
+* [TinyMy](https://github.com/einars/tinymy)
