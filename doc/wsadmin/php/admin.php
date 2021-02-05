@@ -4,29 +4,42 @@ include("auth.inc");
 
 //error_reporting(E_ALL);
 
+// Emulate register_globals on, 
+// see https://www.php.net/manual/de/faq.misc.php#faq.misc.registerglobals
+if (!ini_get('register_globals')) {
+    $superglobals = array($_SERVER, $_ENV, $_FILES, $_COOKIE, $_POST, $_GET);
+    if (isset($_SESSION)) {
+        array_unshift($superglobals, $_SESSION);
+    }
+    foreach ($superglobals as $superglobal) {
+        extract($superglobal, EXTR_SKIP);
+    }
+}
+
+
 //
 if (!isset($sessionPage)) $sessionPage = "";
 if (!isset($sessionSearch)) $sessionSearch = "";
 if (!isset($oldquerystring)) $oldquerystring = "";
 
 session_start();
-#session_name("ganglion");
 
 $_SESSION['username'] = 'ganglion';
 
-$_SESSION['sessionPage'] = @$$sessionPage;
-$_SESSION['sessionSearch'] = @$$sessionSearch;
-$_SESSION['oldquerystring'] = @$$oldquerystring;
-$_SESSION['session_searchterm'] = @$$session_searchterm;
+$_SESSION['sessionPage'] = $sessionPage;
+$_SESSION['sessionSearch'] = $sessionSearch;
+$_SESSION['oldquerystring'] = $oldquerystring;
+$_SESSION['session_searchterm'] = $session_searchterm;
 
-#session_register("sessionPage");
-#session_register("sessionSearch");
-#session_register("oldquerystring");
-#session_register("session_searchterm");
+
+//print_r($array);
 
 $oldquery = $oldquerystring;
-$oldquerystring = @$QUERY_STRING;
+$oldquerystring = $QUERY_STRING;
 
+//echo '<pre>';
+//var_dump($_SERVER);
+//echo '</pre>';
 
 //echo $oldquery."<br>";
 //echo $QUERY_STRING."<br>";
@@ -35,6 +48,8 @@ $oldquerystring = @$QUERY_STRING;
 if (!empty($page))	{ $sessionPage = $page; }
 if (!empty($search)){ $sessionSearch = $search; }
 if (isset($searchterm)) 
+
+
 {
 	$session_searchterm = $searchterm;
 }
@@ -57,8 +72,8 @@ include("object.php");
 //
 $closeTable = "</table>";
 //echo $nocache;
-header ("Cache-Control: no-cache, must-revalidate");
-header ("Pragma: no-cache");
+//header ("Cache-Control: no-cache, must-revalidate");
+//header ("Pragma: no-cache");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">

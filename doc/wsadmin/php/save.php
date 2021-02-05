@@ -2,6 +2,20 @@
 include("function.php");
 include("property.php");
 
+//error_reporting(E_ALL);
+
+// Emulate register_globals on
+if (!ini_get('register_globals')) {
+    $superglobals = array($_SERVER, $_ENV,
+        $_FILES, $_COOKIE, $_POST, $_GET);
+    if (isset($_SESSION)) {
+        array_unshift($superglobals, $_SESSION);
+    }
+    foreach ($superglobals as $superglobal) {
+        extract($superglobal, EXTR_SKIP);
+    }
+}
+
 // set mysql-encoding
 mysql_query("SET NAMES 'utf8'"); mysql_query("SET CHARACTER SET utf8"); 
 
@@ -84,26 +98,25 @@ if ($page == "vortrag" && $new == "true"){
 
 	$gehalten = input2date($datum);
 
+// with php 5.6 this has to be before the sql query otherwiese
+  // the pdf will not be shown/found 
+  if( $_FILES['file']['name'] != "" ) {
+    $file_name=$_FILES['file']['name'];
+    $pathto="../../pdf/".$file_name;
+    move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
+}
+//now comes the query
 	$felder_mysql = "Titel, Zusammenfassung, Zielpublikum, gehalten, zeit, location, pdf, audiofile, audiofile_size, google_video_url, google_video_size, Arbeit, Erziehung, Gesundheit, Familie, thema_id, datumchange";
 
 	$google_video_size = $google_video_hours.":".$google_video_minutes.":".$google_video_seconds;
 	$felder_form = "'$Titel', '$Zusammenfassung', '$Zielpublikum', '$gehalten', '$time', '$location', '$file_name', '$audiofile_name', '$audiofile_size', '$google_video_url', '$google_video_size', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$datumchange'";
 
-	if ($file != ""){
-		$path = "../../pdf/" .$file_name;
-		if (!copy($file,$path)) {
-			echo "Fehler - kann Datei nicht ablegen<BR>\n";
-			exit;
-		} else{
-			chmod($path, 0777);
-		}
-	}	
 
 	$sql = "INSERT INTO vortrag ($felder_mysql) VALUES ($felder_form)";
 	mysql_query($sql);
 //echo nl2br($query);
 
-//echo mysql_error();
+echo mysql_error();
 
 	if($audiofile_name != '') {
 		system('ruby /var/www/ganglion.ch/create_xml_from_db.rb');
@@ -139,19 +152,16 @@ if ($page == "vortrag" && $change == "true"){
 				thema_id='$searchnew', 
 				datumchange='$datumchange'";
 
-	if ($file != ""){
-		$fields = $fields.", pdf='$file_name'";
-		$path = "../../pdf/".$file_name;
-		if (!copy($file,$path)) {
-			echo "Fehler - kann Datei nicht ablegen<BR>\n";
-			exit;
-		} else {
-			chmod($path, 0777);
-			$delfile = "../../pdf/$oldfile";
-			if ($file_name != $oldfile)
-				@unlink($delfile);
-		}
-	} 
+if( $_FILES['file']['name'] != "" ) {
+    $file_name=$_FILES['file']['name'];
+    $pathto="../../pdf/".$file_name;
+    move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
+}
+else {
+    $delfile = "../../pdf/$oldfile";
+      if ($file_name != $oldfile)
+    @unlink($delfile);
+}
 
 	$query="UPDATE vortrag SET $fields WHERE id='$id'";
 	mysql_query($query);
@@ -359,20 +369,20 @@ if ($page == "kurse" && $delete == "true"){
 
 //neu
 
+// with php 5.6 this has to be before the sql query otherwiese
+  // the pdf will not be shown/found
+  if( $_FILES['file']['name'] != "" ) {
+    $file_name=$_FILES['file']['name'];
+    $pathto="../../pdf/".$file_name;
+    move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
+}
+// then comes the query
 if ($page == "artikel" && $new == "true"){
 	$datum = "$day.$month.$year";
 	$erschienen = input2date($datum);
 	$felder_mysql = "titel_artikel,Zeitschrift,pdf,Arbeit,Erziehung,Gesundheit,Familie,thema_id,erschienen";
 	$felder_form = "'$titel_artikel', '$Zeitschrift', '$file_name', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$erschienen'";
-	if ($file != ""){
-		$path = "../../pdf/" .$file_name;
-		if (!copy($file,$path)) {
-			echo "Fehler - kann Datei nicht ablegen<BR>\n";
-			exit;
-		} else {
-			chmod($path, 0777);
-		}
-	}	
+  
 	$sql = "INSERT INTO artikel ($felder_mysql) VALUES ($felder_form)";
 	mysql_query($sql);
 //	echo nl2br($query);
@@ -399,12 +409,12 @@ if ($page == "artikel" && $change == "true"){
 			thema_id='$searchnew', 
 			erschienen='$erschienen'";
 
-		$path = "../../pdf/".$file_name;
-		if (!copy($file,$path)) {
-			echo "Fehler - kann Datei nicht ablegen<BR>\n";
-			exit;
-		} else {
-			chmod($path, 0777);
+// for the deleting part it can come after the sql query ;) no idea why.
+  if( $_FILES['file']['name'] != "" ) {
+    $file_name=$_FILES['file']['name'];
+    $pathto="../../pdf/".$file_name;
+    move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
+    } else {
 			$delfile = "../../pdf/$oldfile";
 			if ($file_name != $oldfile) 
 				@unlink($delfile);
