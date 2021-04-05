@@ -19,7 +19,7 @@
 <tr>
 <td width="310"><img src="../images/drdavatz.jpg" alt="Fr. Dr.med. Ursula Davatz" width="640" height="427"><br><br>
 Frau Dr.med. Ursula Davatz, geboren 1942, ist mit dem K&uuml;nstler 
-<a href="http://www.davaz.com">J&uuml;rg DaVaz</a> verheiratet und hat drei erwachsene Kinder.
+<a href="https://davaz.com">J&uuml;rg DaVaz</a> verheiratet und hat drei erwachsene Kinder.
 <br>
 <br>
 <br>
