@@ -474,28 +474,6 @@ a.TDbold-big:hover {
 	
  }
 
-.flashlink, .flashlink:link, .flashlink:visited {
-
-  font : bold 13px Arial, Helvetica, sans-serif;
-  color : #002050;
-	width : 100%;
-  text-align : right;
-  border-style : none;
-  text-decoration : none;
-	
-}
-
-.flashlink:hover {
-
-  font : bold 13px Arial, Helvetica, sans-serif;
-  color : #0053d0;
-	width : 100%;
-  text-align : right;
-  border-style : none;
-  text-decoration : none;
-
-}
-
 .hometext {
 
 	font : 15px Arial, Helvetica, sans-serif;

@@ -38,6 +38,5 @@ foreach($link as $key => $value)
   }
 }
 echo	"</tr></table>";
-echo	"<div class='flashlink'><a class='flashlink' href='http://www.ganglion.ch/flash/ganglion.php' target='blank'>Zur Flash Seite</a></div>";
 ?>
 

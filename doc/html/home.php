@@ -20,8 +20,7 @@
 	<td>Bitte w&auml;hlen Sie:</td>
 </tr>
 <tr>
-	<td><a class="tabltxt-c-b" href="/flash/index.html">Flash Seite</a>  &nbsp;oder&nbsp;
-	<a class="tabltxt-c-b" href="/html/zur_person.php">Html Seite</a></td>
+	<td><a class="tabltxt-c-b" href="/html/zur_person.php">Html Seite</a></td>
 </tr>
 	</table>
 </body>
