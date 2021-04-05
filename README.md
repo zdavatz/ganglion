@@ -32,7 +32,7 @@ Runtime options:
 
 ```bash
 % cat /etc/conf.d/apache
-APACHE2_OPTS="-D DEFAULT_VHOST -D INFO -D SSL -D SSL_DEFAULT_VHOST -D LANGUAGE -D PHP5"
+APACHE2_OPTS="-D DEFAULT_VHOST -D INFO -D SSL -D SSL_DEFAULT_VHOST -D LANGUAGE -D PHP"
 ```
 
 Sample apache.conf (located in: `/etc/apache2/vhosts.d/ganglion.ch.conf`)
