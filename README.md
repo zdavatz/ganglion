@@ -1,6 +1,6 @@
 # ganglion.ch
 
-## Required middlewares
+## Requirements
 
 * Apache 2.4.46
 * MySQL 5.1.66 (using readline 5.1)
@@ -9,11 +9,24 @@
 
 ## Setup
 
+### Credentials
+
+Copy sample files and update `user[name]` and `pass[word]` variables as you need.
+
+```bash
+# copy .sample files into the each same location
+$ cp etc/db_connection_data.txt{.sample,}
+$ cp doc/html/php/mysql_header.php{.sample,}
+$ cp doc/wsadmin/php/auth.inc{.sample,}
+```
+
+### Middlewares
+
 e.g. Gentoo Linux
 
-### Apache2
+#### Apache2
 
-#### Modules
+##### Modules
 
 For the Ebuild:
 
@@ -30,7 +43,7 @@ APACHE2_MODULES="access auth auth_dbm auth_anon auth_digest alias filter file-ca
 APACHE2_MPMS="prefork"
 ```
 
-#### Options
+##### Options
 
 Runtime options:
 
@@ -87,9 +100,9 @@ Sample apache.conf (located in: `/etc/apache2/vhosts.d/ganglion.ch.conf`)
 </VirtualHost>
 ```
 
-### PHP
+#### PHP
 
-#### USE flags
+##### USE flags
 
 * Omit `threads` USE flag (We enable "prefork" for Apache2)
 * Add `mysql`, `apache2` USE flag
@@ -110,7 +123,7 @@ $ sudo su
 $ sudo emerge -av dev-lang/php
 ```
 
-#### Select version
+##### Select version
 
 Swich PHP for Apache 2 with `eselect`.
 
@@ -121,7 +134,7 @@ $ sudo eselect php list apache2
 $ sudo eselect php set apache2 2
 ```
 
-### MySQL
+#### MySQL
 
 Nothing special.
 
