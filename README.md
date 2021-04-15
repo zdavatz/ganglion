@@ -16,7 +16,9 @@ Copy sample files and update `user[name]` and `pass[word]` variables as you need
 ```bash
 # copy .sample files into the each same location
 $ cp etc/db_connection_data.txt{.sample,}
+$ cp doc/php/mysql.php{.sample,}
 $ cp doc/html/php/mysql_header.php{.sample,}
+$ cp doc/wsadmin/php/property.php{.sample,}
 $ cp doc/wsadmin/php/auth.inc{.sample,}
 ```
 
