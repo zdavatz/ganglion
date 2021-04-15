@@ -3,8 +3,8 @@ session_name("ganglion");
 session_start();
 //
 $server	=	"localhost";		//MySQL-Server
-$user	=	"******";		//MySQL-User
-$pass	=	"******";		//MySQL-Passwort
+$user	=	"*****";		//MySQL-User
+$pass	=	"*****";		//MySQL-Passwort
 $db		=	"ganglion";		//MySQL-Datenbank
 //
 $conn1	=	mysql_connect($server, $user, $pass);
