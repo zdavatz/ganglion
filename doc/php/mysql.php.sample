@@ -6,8 +6,8 @@ require("function.php");
 //Bitte alle Werte hier eintragen!
 //
 $server	=	"localhost";		//MySQL-Server
-$user	=	"******";		//MySQL-User
-$pass	=	"******";		//MySQL-Passwort
+$user	=	"*****";		//MySQL-User
+$pass	=	"*****";		//MySQL-Passwort
 $db		=	"ganglion";		//MySQL-Datenbank
 //$table	=	"";		//MySQL-Tabelle
 //
