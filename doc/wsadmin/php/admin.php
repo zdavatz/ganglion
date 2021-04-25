@@ -71,16 +71,6 @@ $closeTable = "</table>";
 <head>
 <title>Ganglion Backend</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<SCRIPT language="JavaScript" type="text/javascript">
-	djConfig = { 
-		isDebug: true, 
-	};
-</SCRIPT>
-<SCRIPT language="JavaScript" src="/javascript/dojo/dojo.js" type="text/javascript"></SCRIPT>
-<SCRIPT language="JavaScript" type="text/javascript">
-	dojo.require('dojo.fx.*');dojo.require('dojo.fx.html');dojo.require('dojo.io.*');dojo.require('dojo.io.IframeIO');dojo.require('dojo.animation.*');
-</SCRIPT>
-<script language="Javascript" type="text/javascript" src="../js/standart.js" charset="utf-8">
 </script>
 <?php print $css; ?> 
 <style type="text/css">

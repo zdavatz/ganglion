@@ -18,17 +18,10 @@ $result = mysql_query ("SELECT * FROM newsletter WHERE id_news ='$id_news'");
 	$change_news = deStampDate($row["change_news"]);
 @mysql_free_result($result);
 
-$msgConf = "Wollen Sie den Eintrag $titel_news wirklich löschen?";
+$msgConf = "Wollen Sie den Eintrag $titel_news wirklich l?schen?";
 }
 
 ?>
-<script type="text/javascript" language="JavaScript" charset="utf-8">
-<!--
-<?php
-echo "var titel = '$msgConf';\n";
-?>
-//-->
-</script>
 <form method="post" action="save.php" name="news">
  
   <table class="TABLEvortrag">

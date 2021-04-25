@@ -148,47 +148,47 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 	echo "<th class='THnr' nowrap>Nr. <font size='1'>($Ptot)</font></th>\n";
 
 	echo "<th class='THtitel'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$Titel'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Titel');return document.returnValue">Titel</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$Titel'\n";	?>>Titel</a><?php
 	echo "</th>\n";
 
 	echo "<th class='THdatum'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$datum'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Datum');return document.returnValue">Datum</a><?php
+    echo "	<a class='Atitel' href='$url&sortby=$datum'\n";	?>>Datum</a><?php
 	echo "</th>\n";
 
 	echo "<th class='THzahl'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$pdf'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach PDF');return document.returnValue">PDF</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$pdf'\n";	?>>PDF</a><?php
 	echo "</th>\n";
 
 	echo "<th class='THzahl'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$audiofile'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Audiofile');return document.returnValue">Audiofile</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$audiofile'\n";	?>>Audiofile</a><?php
 	echo "</th>\n";
 
 	echo "<th class='THzahl'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$hits'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach gelesen');return document.returnValue">Gelesen</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$hits'\n";	?>>Gelesen</a><?php
 	echo "</th>\n";
 
 	echo "<th class='THzahl'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$downloads'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach downloads');return document.returnValue">PDF Downloads</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$downloads'\n";	?>>PDF Downloads</a><?php
 	echo "</th>\n";
 
 	echo "<th class='THzahl'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$audiofile_downloads'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Audiofile Downloads');return document.returnValue">Audio Downloads</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$audiofile_downloads'\n";	?>>Audio Downloads</a><?php
 	echo "</th>\n";
 
 	echo "<th class='THthema'>"; include("getmenu.php"); echo"</th>\n";
 
 	echo "<th class='THbereich'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$Familie' 	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Familie');return document.returnValue">F</a>	<?php
+	echo "	<a class='Atitel' href='$url&sortby=$Familie' 	\n";?>>F</a>	<?php
 	echo "</th>\n";
 
 	echo "<th class='THbereich'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$Arbeit'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Arbeit');return document.returnValue">A</a></th><?php
+	echo "	<a class='Atitel' href='$url&sortby=$Arbeit'\n";?>>A</a></th><?php
 
 	echo "<th class='THbereich'>\n";
-	echo "<a class='Atitel' href='$url&sortby=$Gesundheit' 	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Gesundheit');return document.returnValue">G</a></th><?php
+	echo "<a class='Atitel' href='$url&sortby=$Gesundheit' 	\n";?>>G</a></th><?php
 
 	echo "<th class='THbereich'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$Erziehung'	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Erziehung');return document.returnValue">E</a></th><?php
+	echo "	<a class='Atitel' href='$url&sortby=$Erziehung'	\n";?>>E</a></th><?php
 
 	echo "</tr>\n";
 
@@ -257,7 +257,7 @@ if (isset($request) && $request=="uebersicht"){
 					echo "<tr>\n";
 					echo "<td class='TDnr'>$i</td>\n";
 					echo "	<td class='TDtitel'>\n";
-					echo "		<a href='$url&change=true&id=$id&thema=$thema_id'";?> onMouseOut="FnormText()" onMouseOver="StatusMsg('<?php echo "Detaileintrag: $statusTitel";?>');return document.returnValue"> <?php echo"$Titel</a></td>\n";
+					echo "		<a href='$url&change=true&id=$id&thema=$thema_id'";?>> <?php echo"$Titel</a></td>\n";
 					echo "	<td class='TDdatum'>".$gehalten."</td>\n";
 					echo "	<td class='TDzahl'>".$pdf_file."</td>\n";
 					echo "	<td class='TDzahl'>".$audiofile."</td>\n";

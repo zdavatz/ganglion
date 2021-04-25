@@ -31,8 +31,8 @@ $result = mysql_query ("SELECT * FROM vortrag WHERE id ='$id'");
 @mysql_free_result($result);
 $datum = datumsplitt($datum);
 $datumchange = date("Y-m-d");
-$msgConf = "Wollen Sie den Eintrag: <$javatitel> wirklich löschen?";
-$msgConf_pdf = "Wollen Sie diese Pdf Datei: <$file_name> wirklich löschen?";
+$msgConf = "Wollen Sie den Eintrag: <$javatitel> wirklich l?schen?";
+$msgConf_pdf = "Wollen Sie diese Pdf Datei: <$file_name> wirklich l?schen?";
 list($google_video_hours, $google_video_minutes, $google_video_seconds) = split(":", $google_video_size); 
 }
 elseif ($new == "true") {
@@ -44,34 +44,16 @@ $minute = -1;
 ?>
 
 <script type="text/javascript" language="JavaScript" charset="utf-8">
-<!--
-<?php
-echo "var titel = '$msgConf';\n";
-echo "var pdfname = '$msgConf_pdf';\n";
-echo "var audiofilename = '$msgConf_audiofile';\n";
-?>
-function slideToRight(mover) {
-	var callback = function() {
-		slideToLeft(mover);
-	}
-	dojo.fx.html.slide(mover, 20000, [365,10], [125,10], callback);
-}
-function slideToLeft(mover) {
-	var callback = function() {
-		slideToRight(mover);
-	}
-	dojo.fx.html.slide(mover, 20000, [125,10], [365,10], callback);
-}
-function check_form(form_id) {
-	var form = dojo.byId(form_id);
-	if(form.Titel.value=='') {
-		var node = dojo.byId('title');
-		node.style.color = 'red';
+function check_form(formId) {
+    var form = document.getElementById(formId);
+    var title = form.elements['Titel'];
+	if (title.value === '') {
+        title.style.borderColor = 'red';
+        title.style.backgroundColor = 'red';
 		alert('Bitte geben Sie einen Titel an.');
 		return false;
 	}
 }
-//-->
 </script>
 <form method="post" id='lectureForm' action="save.php" name="vortrag" onSubmit='return check_form("lectureForm");' enctype="multipart/form-data">
 

@@ -22,19 +22,12 @@ $result = mysql_query ("SELECT * FROM links WHERE id_links ='$id'");
 @mysql_free_result($result);
 $datum = datum_ch($datum);
 $datumchange = date("Y-m-d");
-$msgConf = "Wollen Sie den Eintrag $javatitel wirklich löschen?";
+$msgConf = "Wollen Sie den Eintrag $javatitel wirklich l?schen?";
 }
 elseif ($new == "true") {
 $datumchange = date("Y-m-d");
 }
 ?>
-<script type="text/javascript" language="JavaScript" charset="utf-8">
-<!--
-<?php
-echo "var titel = '$msgConf';\n";
-?>
-//-->
-</script>
 <form method="post" action="save.php" name="vortrag">
  <table id="vortrag">
   <tr> 

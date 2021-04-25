@@ -25,16 +25,9 @@ $row["newsletter"] == 1 	? $newsletter="checked" 	: $newsletter="";
 	
 @mysql_free_result($result);
 
-$msgConf = "Wollen Sie den Benutzer $JSlogin wirklich löschen?";
+$msgConf = "Wollen Sie den Benutzer $JSlogin wirklich l?schen?";
 }
 ?>
-<script type="text/javascript" language="JavaScript" charset="utf-8">
-<!--
-<?php
-echo "var titel = '$msgConf';\n";
-?>
-//-->
-</script>
 <form method="post" action="save.php" name="vortrag" enctype="multipart/form-data">
  
 <table class="TABLEvortrag">
