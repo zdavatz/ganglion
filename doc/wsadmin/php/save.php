@@ -189,7 +189,7 @@ if ($page == "vortrag" && $delete == "true"){
 
 }
 
-//Pdf Löschen
+//Pdf L?schen
 if ($page == "vortrag" && $pdfdelete == "true"){
 
 	mysql_query("UPDATE vortrag SET pdf = '' WHERE id = '$id'");
@@ -304,30 +304,6 @@ if ($page == "profil" && $change == "true"){
 if ($page == "profil" && $delete == "true"){
 	mysql_query("DELETE FROM profil WHERE id_profil = '$id_profil'");
 	@header("Location: admin.php?page=$page&search=$search");
-}
-//
-//ab hier werden die foren behandelt
-//hier wird ein thread komplett geloescht
-if ($page == "foren" && $delete == "true" && $comment == "complete"){
-	$Test1 = mysql_query("DELETE FROM forum_inhalt WHERE thread_id = '$id_thread'");
-	$Test2 = mysql_query("DELETE FROM forum_thread WHERE id_thread = '$id_thread'");
-	//if ($Test1) echo"OK test1";
-	//if ($Test2) echo"OK test2";
-	@header("Location: admin.php?page=$page&search=$search");
-}
-//hier wird der thread veraendert
-if ($page == "foren" && $change == "true"){
-	$update	= "Arbeit='$Arbeit', Erziehung='$Erziehung', Gesundheit='$Gesundheit', Familie='$Familie', thema_id='$searchnew'";
-	$mysqlquery = "UPDATE forum_thread SET $update WHERE id_thread='$id_thread'";
-	//echo $mysqlquery;
-	mysql_query($mysqlquery);
-	@header("Location: admin.php?page=$page&search=$search");
-}
-//hier wird ein einzelner forumsbeitrag geloescht
-if ($page == "foren" && $delete == "true" && $comment == "one"){
-	$Test2 = mysql_query("DELETE FROM forum_inhalt WHERE id_inhalt = '$id_inhalt'");
-	//echo"DELETE FROM forum_inhalt WHERE id_inhalt = '$id_inhalt'";
-	@header("Location: admin.php?page=$page&search=$search&diskussion=$diskussion&id=$id");
 }
 //
 //hier werden die kurse behandelt
@@ -446,7 +422,7 @@ if ($page == "artikel" && $delete == "true"){
 	@unlink($delfile);
 	@header("Location: admin.php?page=$page&search=$searchnew");
 }
-//Artikel pdf löschen
+//Artikel pdf l?schen
 if ($page == "artikel" && $pdfdelete == "true"){
 
 	mysql_query("UPDATE artikel SET pdf = '' WHERE id = '$id_artikel'");

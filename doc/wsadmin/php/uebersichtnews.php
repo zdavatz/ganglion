@@ -1,7 +1,7 @@
 <?php //uebersichtnews.php
 
 
-//Hier werden die Variablen gepr�ft
+//Hier werden die Variablen gepr?ft
 
 
 if (empty($request))$request	= "uebersicht";
@@ -118,27 +118,6 @@ $Ptot=0;
 $all=0;	
 
 
-//
-
-
-$felder_forum_inhalt =	"id_inhalt, thread_id, profil_id, titel, datum";
-
-
-$felder_profil		=	"id_profil, login, email";
-
-
-$tabellen			=	"forum_inhalt AS A, profil AS B";
-
-
-$whereBedingungen	=	"A.profil_id=B.id_profil AND A.thread_id='$id'";
-
-
-
-
-
-
-
-
 $mysqlquery = "SELECT * FROM newsletter";
 
 
@@ -172,19 +151,19 @@ $mysqlquery = "SELECT * FROM newsletter";
 	if ( $Pdis > 1 ){
 
 
-		$Pzur…k = "<a href='$url&news=true&id=$id&sortby=$sortby&n=last'>\n";
+		$Pzurueck = "<a href='$url&news=true&id=$id&sortby=$sortby&n=last'>\n";
 
 
-		$Pzur…k .= "<img src='../images/links.gif' border='0' width='20' height='20' alt=''>\n";
+		$Pzurueck .= "<img src='../images/links.gif' border='0' width='20' height='20' alt=''>\n";
 
 
-		$Pzur…k .= "</a>\n";
+		$Pzurueck .= "</a>\n";
 
 
 	} else {
 
 
-		$Pzur…k = "<img src='../images/links_na.gif' border='0' width='20' height='20' alt=''>\n";
+		$Pzurueck = "<img src='../images/links_na.gif' border='0' width='20' height='20' alt=''>\n";
 
 
 	}
@@ -238,7 +217,7 @@ $mysqlquery = "SELECT * FROM newsletter";
 	echo "	<td class='TDvon2'>Seite $Pdis von $Palle</td>\n";
 
 
-	echo "	<td class='TDrechtslinks'>\n $Pzur…k</td>\n"; 
+	echo "	<td class='TDrechtslinks'>\n $Pzurueck</td>\n"; 
 
 
 	echo "	<td class='TDrechtslinks'>\n	$Pvor	</td>\n"; 
@@ -425,16 +404,6 @@ if ($sortby == "standart" && $search == "all") $sortby = "s1";
 
 
 	echo "</tr>\n";
-
-
-
-
-
-	$q = $Panfang;
-
-
-	$q++;
-
 
 	$i++;
 

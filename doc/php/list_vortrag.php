@@ -31,7 +31,7 @@ if (isset($request) && $request=="uebersicht"){
 		$felderIn_thema = "id_thema, thema";
 		$tabellenIn_ganglion = "$table AS A, thema AS B";
 	
-		if($bereich == "Nächste Vorträge"){
+		if($bereich == "NÃ¤chste VortrÃ¤ge"){
 			$felderIn_vortrag = "id, Titel, gehalten, hits, downloads, thema_id";
 			$whereBedingungen = "A.thema_id=B.id_thema AND gehalten > NOW()";
 			$search="all";
@@ -177,97 +177,10 @@ if (isset($request) && $request=="directThread"){
 	$hits = $row["hits"]+1;
 	mysql_query("UPDATE vortrag SET hits=$hits WHERE id=$id");	
 	mysql_free_result($result);
-			
-	$fieldsIn_vortrag = "A.id, A.Titel, A.thema_id";
-	$fieldsIn_forumThread="B.id_thread, B.titel_thread, B.$bereich, B.thema_id";
-	$allFields = "$fieldsIn_vortrag, $fieldsIn_forumThread";
-	$tablesIn_ganglion = "vortrag AS A, forum_thread AS B";
-	$whereConditions = "A.id = $php_vortrag_id AND A.thema_id=B.thema_id AND CONCAT('%', A.Titel, '%') LIKE CONCAT('%', B.titel_thread, '%')";
-	$query="SELECT $allFields FROM $tablesIn_ganglion WHERE $whereConditions";
-	
-	echo "$query<br>";
-	
-	$result = mysql_query($query);
-	
-	session_register("countOpinions");
-	$countOpinions = mysql_num_rows($result);
-	mysql_free_result($result);
-	
-	$query="SELECT id_thread, $bereich, thema_id FROM forum_thread WHERE thema_id=$thema_id AND $bereich=1";
-	$result=mysql_query($query);
-	$countTopics=mysql_num_rows($result);
-	mysql_free_result($result);
-			
-	echo "<p>&countOpinions=$countOpinions&</p>\n";
-	echo "<p>&countTopics=$countTopics&</p>\n";
-	
-	echo "<p>&eof=true&</p>\n";
-	
-	
-}
-
-if (isset($request) && $request=="opinion"){
-
-	switch($bereich){
-		case "Familie":
-		case "Arbeit":
-		case "Gesundheit":
-		case "Erziehung":
-			$vbereich = $bereich;
-			break;
-		default:
-			$vbereich = $htBereich;
-	}
-
-	if (!empty($search)){
-		
-		$query = "SELECT thema_id, $vbereich FROM forum_thread WHERE thema_id=$search AND $vbereich=1";
-		//echo "$query<br>";
-		$result = mysql_query($query);
-		if (mysql_num_rows($result) > 0){
-			
-			session_register("php_forum_search");
-			$php_forum_search=$search;
-			echo "<p>&nextPage=forum_".strtolower($vbereich).".php&</p>\n";		
-		} else {
-			//make new discussion with same Topic
-			mysql_free_result($result);
-			$query = "SELECT id_thema, thema FROM thema WHERE id_thema=$search";	
-			$result = mysql_query($query);
-			$row = mysql_fetch_array($result);
-			session_register("php_newThread_info");
-			$php_newThread_info = array("thema_id"=>$search, "thema"=>$row["thema"]);
-
-			echo "<p>&nextPage=forum_".strtolower($vbereich)."_neu.php&</p>\n";
-
-		}
-			
-		mysql_free_result($result);
-		$countOpinions = 0;
-	
-	} elseif (empty($countOpinions) || $countOpinions == 0){
-	
-		//mysql_free_result($result);
-		$fieldsIn_vortrag="id, Titel, Familie, Arbeit, Gesundheit, Erziehung, thema_id";
-		$fieldsIn_thema="id_thema, thema";
-		$tablesIn_ganglion="vortrag AS A, thema AS B";
-		$whereConditions="A.id=$php_vortrag_id AND A.thema_id = B.id_thema";
-		$query = "SELECT $fieldsIn_vortrag, $fieldsIn_thema FROM $tablesIn_ganglion WHERE $whereConditions";
-		$result = mysql_query($query);
-		$row = mysql_fetch_array($result);
-		session_register("php_newThread_info");
-		$php_newThread_info = array("titel"=>$row["Titel"], "thema_id"=>$row["thema_id"], "thema"=>$row["thema"], "familie"=>$row["Familie"], "arbeit"=>$row["Arbeit"], "gesundheit"=>$row["Gesundheit"], "erziehung"=>$row["Erziehung"]);
-
-		echo "<p>&nextPage=forum_".strtolower($vbereich)."_neu.php&</p>\n";
-		mysql_free_result($result);
-		
-	} else {
-		
-		echo "<p>&nextPage=forum_".strtolower($vbereich).".php&</p>\n";
-		
-	}
 
 	echo "<p>&eof=true&</p>\n";
+	
+	
 }
 
 if (isset($request) && $request=="updateDownloads"){

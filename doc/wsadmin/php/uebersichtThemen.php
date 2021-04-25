@@ -1,5 +1,5 @@
 <?php //uebersichtThemen.php
-//Hier werden die Variablen geprüft
+//Hier werden die Variablen gepr?ft
 if (empty($request))$request= "uebersicht";
 if (empty($search))$search = "all";
 //
@@ -26,6 +26,7 @@ if (empty($P)) $P = 1;
 //
 //
 //Paging-Funktion
+$sortby = "";
 //
 if (isset($n) && $n=="next") {$P++;}
 if (isset($n) && $n=="last") {$P--;}
@@ -88,7 +89,6 @@ if($order[0]==1){$SortThema="Thema-";}else { $SortThema="Thema";}
 $resultLinks = mysql_query("SELECT id_thema, thema, datumchange, count(B.thema_id) as anzahlLinks FROM thema AS A LEFT OUTER JOIN links AS B ON A.id_thema=B.thema_id GROUP BY id_thema ORDER BY $SortBy");
 $resultVortrag = mysql_query("SELECT id_thema, thema, count(B.thema_id) as anzahlVortrag FROM thema AS A LEFT OUTER JOIN vortrag AS B ON A.id_thema=B.thema_id GROUP BY id_thema ORDER BY $SortBy");
 $resultKurse = mysql_query("SELECT id_thema, thema, count(B.thema_id) as anzahlKurse FROM thema AS A LEFT OUTER JOIN kurse AS B ON A.id_thema=B.thema_id GROUP BY id_thema ORDER BY $SortBy");
-$resultForum = mysql_query("SELECT id_thema, thema, count(B.thema_id) as anzahlForum FROM thema AS A LEFT OUTER JOIN forum_thread AS B ON A.id_thema=B.thema_id GROUP BY id_thema ORDER BY $SortBy");
 $i=1;
 echo "<table class='TABLEliste' width='100%' cellspacing='2'>\n";
 echo "<tr>\n";
@@ -109,8 +109,7 @@ $r=0;
 while ($rowLinks = mysql_fetch_array($resultLinks)){
 	$rowVortrag = mysql_fetch_array($resultVortrag);
 	$rowKurse = mysql_fetch_array($resultKurse);
-	$rowForum = mysql_fetch_array($resultForum);
-	$row = array_merge($rowLinks, $rowVortrag, $rowKurse, $rowForum);
+	$row = array_merge($rowLinks, $rowVortrag, $rowKurse);
 	$datum = datum_ch($row["datumchange"]);
 	if (empty($row["thema"])) $row["thema"] = "***";
 	$thema = urldecode($row["thema"]);
@@ -130,7 +129,6 @@ echo "<tr>\n";
     echo "<td class='TDzahl'>".$row["anzahlLinks"]."</td>\n";
     echo "<td class='TDzahl'>".$row["anzahlVortrag"]."</td>\n";
     echo "<td class='TDzahl'>".$row["anzahlKurse"]."</td>\n";
-    echo "<td class='TDzahl'>".$row["anzahlForum"]."</td>\n";
     echo "</tr>\n";
     $nummerThema[$r] = $row["id_thema"];
     $Thema[$r] = $thema;
@@ -140,7 +138,7 @@ echo "<tr>\n";
 $i++;
 }
 echo "</table></td></tr></table>\n";
-//hier ist die schlaufe um die löschen und ändern forms zu schreiben
+//hier ist die schlaufe um die l?schen und ?ndern forms zu schreiben
 $r = 0;
 while ($r < 15){
 include("changeThema.php");
@@ -149,7 +147,6 @@ $r++;
 mysql_free_result($resultLinks);
 mysql_free_result($resultVortrag);
 mysql_free_result($resultKurse);
-mysql_free_result($resultForum);
 ?> 
 <div id="newthema"> 
 <table class="TABLEthema" bgcolor="#f7a65a" cellpadding="0" cellspacing="0" border="0">

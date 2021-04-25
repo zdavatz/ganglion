@@ -1,7 +1,7 @@
 <?php //uebersichtLinks.php
 
 
-//Hier werden die Variablen gepr�ft
+//Hier werden die Variablen gepr?ft
 
 
 if (empty($request))$request	= "uebersicht";
@@ -136,19 +136,19 @@ $all=0;
 	if ( $P > 1 ){
 
 
-		$Pzur…k = "<a href='$url&sortby=$sortby&n=last'>\n";
+		$Pzurueck = "<a href='$url&sortby=$sortby&n=last'>\n";
 
 
-		$Pzur…k .= "<img src='../images/links.gif' border='0' width='20' height='20' alt=''>\n";
+		$Pzurueck .= "<img src='../images/links.gif' border='0' width='20' height='20' alt=''>\n";
 
 
-		$Pzur…k .= "</a>\n";
+		$Pzurueck .= "</a>\n";
 
 
 	} else {
 
 
-		$Pzur…k = "<img src='../images/links_na.gif' border='0' width='20' height='20' alt=''>\n";
+		$Pzurueck = "<img src='../images/links_na.gif' border='0' width='20' height='20' alt=''>\n";
 
 
 	}
@@ -199,7 +199,7 @@ $all=0;
 	echo "	<td class='TDvon2'>Seite $P von $Palle</td>\n";
 
 
-	echo "	<td class='TDrechtslinks'>\n $Pzur…k</td>\n"; 
+	echo "	<td class='TDrechtslinks'>\n $Pzurueck</td>\n"; 
 
 
 	echo "	<td class='TDrechtslinks'>\n	$Pvor	</td>\n"; 
@@ -386,15 +386,6 @@ if (isset($sortby) && $sortby == "standart") $sortby = "url";
 
 
 	echo "</tr>\n";
-
-
-
-
-
-	$q = $Panfang;
-
-
-	$q++;
 
 
 	$i++;

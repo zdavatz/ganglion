@@ -29,7 +29,6 @@ $_SESSION['username'] = 'ganglion';
 $_SESSION['sessionPage'] = $sessionPage;
 $_SESSION['sessionSearch'] = $sessionSearch;
 $_SESSION['oldquerystring'] = $oldquerystring;
-$_SESSION['session_searchterm'] = $session_searchterm;
 
 
 //print_r($array);
@@ -47,16 +46,6 @@ $oldquerystring = $QUERY_STRING;
 
 if (!empty($page))	{ $sessionPage = $page; }
 if (!empty($search)){ $sessionSearch = $search; }
-if (isset($searchterm)) 
-
-
-{
-	$session_searchterm = $searchterm;
-}
-else
-{
-	$searchterm = @$session_searchterm;
-}
 
 $page = $sessionPage;
 $search = $sessionSearch;
@@ -280,74 +269,6 @@ if ($page == "themen" && $new != "true" && $change == "true"){
 		include("themen.php");
 }
 
-//
-//
-//
-//forum
-if  ($page == "foren" && $new != "true" && $change != "true" && $diskussion != "true" && $entry != "true"){
-		$titel="&Uuml;bersicht Forum";
-		$table = "forum_thread";
-		include("navigation.php");
-		include("uebersichtForen.php");
-}
-//
-if ($page == "foren" && $new == "true" && $change != "true" && $diskussion != "true"  && $entry != "true"){
-		$titel="<a class='ASiteTitel' href='#' onClick='history.back();'>Foren</a> &gt; neue Diskussion";
-		$table = "forum_inhalt";
-		include("navigation.php");
-		echo $closeTable;
-		include("foren.php");
-}
-//
-if ($page == "foren" && $new != "true" && $change == "true" && $diskussion != "true"  && $entry != "true"){
-		$titel="<a class='ASiteTitel' href='#' onClick='history.back();'>Forum</a> &gt; Diskussion &auml;ndern";
-		$table = "forum_inhalt";
-		include("navigation.php");
-		echo $closeTable;
-		include("foren.php");
-}
-//
-if ($page == "foren" && $new != "true" && $change != "true" && $diskussion == "true" && $entry != "true"){
-		$titel="<a class='ASiteTitel' href='#' onClick='history.back();'>Forum</a> &gt; Antworten &gt; &Uuml;bersicht Titel";
-		$table = "forum_inhalt";
-		include("navigation.php");
-		include("uebersichtDiskussion.php");
-}
-//
-if ($page == "foren" && $new != "true" && $change != "true" && $diskussion != "true" && $entry == "true"){
-		$titel="<a class='ASiteTitel' href='#' onClick='history.back();'>Forum</a> &gt; Antworten &gt; Eintrag l&ouml;schen";
-		$table = "forum_inhalt";
-		include("navigation.php");
-		echo $closeTable;
-		include("changeDiskussion.php");
-}
-//
-//
-//
-//Profile
-if  ($page == "profil" && $new != "true" && $change != "true"){
-		$titel="&Uuml;bersicht Profile";
-		$table = "profil";
-		include("navigation.php");
-		include("uebersichtProfil.php");
-}
-//
-
-if ($page == "profil" && $new == "true" && $change != "true"){
-		$titel="<a class='ASiteTitel' href='#' onClick='history.back();'>Profile</a> &gt; neuer Eintrag";
-		$table = "profil";
-		include("navigation.php");
-		echo $closeTable;
-		include("profil.php");
-}
-//
-if ($page == "profil" && $new != "true" && $change == "true"){
-		$titel="<a class='ASiteTitel' href='#' onClick='history.back();'>Profile</a> &gt; Eintrag &auml;ndern";
-		$table = "profil";
-		include("navigation.php");
-		echo $closeTable;
-		include("profil.php");
-}
 //
 //
 //

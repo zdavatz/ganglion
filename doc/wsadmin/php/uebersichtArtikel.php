@@ -1,5 +1,5 @@
 <?php //uebersichtartikel.php
-//Hier werden die Variablen geprüft
+//Hier werden die Variablen gepr?ft
 if (empty($search))	$search 	= "all";
 if (empty($sortby))	$sortby   = "standart";
 //
@@ -92,8 +92,6 @@ $all=0;
 	echo "<th class='THbereich'>\n";
 	echo "	<a class='Atitel' href='$url&sortby=Erziehung'	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Erziehung');return document.returnValue">E</a></th><?php
 	echo "</tr>\n";
-	$q = $Panfang;
-	$q++;
 	$i++;
 
 	if ($search=="all"){

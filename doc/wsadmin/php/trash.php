@@ -4,14 +4,13 @@ $notraschgif = "<img  class='IMGtrash' src='../images/notrash.gif' width='16' he
 $datumchange = date("Y-m-d");
 if ($row["anzahlLinks"] == 0 
 	&& $row["anzahlVortrag"] == 0 
-	&& $row["anzahlKurse"] == 0 
-	&& $row["anzahlForum"] == 0){ 
+	&& $row["anzahlKurse"] == 0){
 
 
 ?> 
 <a href="<?php echo "save.php?search=$search&datumchange=$datumchange&page=$page&idThema=$idThema&delete=true";?>"
 	onMouseOut = "FnormText()"
-	onMouseOver = "StatusMsg('Thema löschen: <?php echo "JSthema";?>')"
+	onMouseOver = "StatusMsg('Thema l?schen: <?php echo "JSthema";?>')"
 	return document.returnValue">
 
 <?php 	
