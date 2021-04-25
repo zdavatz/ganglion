@@ -214,7 +214,7 @@ function deStampTime($stampedDate){
 //
 function navigator($input){
 if 	(empty($input)){ $input = @$HTTP_USER_AGENT; }
-//prÅft das betriebssystem (os)
+//prft das betriebssystem (os)
 if 		(strchr($input,"Win"))		{ 	$out["os"] = "Win";	}
 elseif 	(strchr($input,"Mac"))		{ 	$out["os"] = "Mac";	}
 elseif 	(strchr($input,"Linux"))	{ 	$out["os"] = "Linux";	}
@@ -222,7 +222,7 @@ elseif 	(strchr($input,"Unix"))		{ 	$out["os"] = "Unix";	}
 elseif 	(strchr($input,"Amiga"))	{ 	$out["os"] = "Amiga";	}
 else 	{	$out["os"] = "none";	}
 //
-//prÅft den browser (navigator, version, release)
+//prft den browser (navigator, version, release)
 if 		(strchr($input,"MSIE")){ 	
 		$out["navigator"] = "IE";
 		$version = strchr($input,"MSIE");
@@ -246,7 +246,7 @@ else {	$out["navigator"] = "NC";
 		$out["release"] = strtok($token);
 }       	
 //
-//prÅft die sprache	(language))
+//prft die sprache	(language))
 if 		(strchr($input,"[de]"))	{ 	$out["language"] = "de";	}
 elseif 	(strchr($input,"[en]"))	{ 	$out["language"] = "en";	}
 elseif 	(strchr($input,"[fr]"))	{ 	$out["language"] = "fr";	}
@@ -275,29 +275,4 @@ function getPointer($myArray, $myValue){
 	}
 	return $pointer;
 }
-
-
-//check Newsletter-status and send mail if status now and $status differ - does not actually do anything to the status...
-function changeNewsletter($email, $status){
-	$query = "SELECT email, newsletter FROM profil WHERE email='$email' ORDER BY newsletter DESC";
-	echo $query."<br>";
-	$result = mysql_query($query);
-	if (mysql_num_rows($result)){
-		$row = mysql_fetch_array($result);
-		$oldStatus = $row["newsletter"];
-		if ($status != $oldStatus ){// && !($status=2 && $oldStatus=0)){
-				$body = ($status == 1 ? "Ab sofort erhalten Sie den Newsletter von www.ganglion.ch." : "Ab sofort werden Sie den Newsletter von www.ganglion.ch nicht mehr erhalten.\nFalls Sie den Newsletter von www.ganglion.ch wieder abonnieren m=F6chten, \nk=F6nnen Sie dies unter dieser Adresse tun: http://www.ganglion.ch/flash/kontakt.php?action=3Dnewsletter"); 	
-				$mailHeaders="MIME-Version: 1.0\r\nContent-Type: text/plain; charset='utf-8'\r\nContent-Transfer-Encoding: quoted-printable\r\nFrom: Ganglion - Knotenpunkt menschlicher Beziehungen<newsletter@ganglion.ch>\r\n";                                                                                                                                    
-				$mailTo="$email";   
-				$mailSubject="Ganglion - Newsletter";                                                                                                                                                                                                                   
-				$mailBody="Liebe Ganglion-Besucherin,\nLieber Ganglion-Besucher\n\n";
-				$mailBody .= $body; 
-				$mailBody .= "\n\n\n\n-- \n";
-				$mailBody .= "Ganglion - Knotenpunkt menschlicher Beziehungen\n";
-				$mailBody .= "www.ganglion.ch\n\n";
-				mail($mailTo, $mailSubject, $mailBody, $mailHeaders);
-		}
-	}
-}
-
 ?>

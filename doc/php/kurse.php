@@ -181,45 +181,6 @@ if (isset($request) && $request == "directThread"){
 	mysql_free_result($result);
 }
 
-if (isset($request) && $request == "anmelden"){
-
-
-	// Falls der User nicht eingeloggt ist, wird gepr?ft, ob seine E-Mail-adresse bereits registriert ist.	
-	if (empty($profil_id) && !empty($email)){
-		$result=mysql_query("SELECT id_profil, email FROM profil WHERE email='$email' ORDER BY id_profil DESC");
-		if (mysql_num_rows($result) > 0){
-			$row=mysql_fetch_array($result);
-			$profil_id=$row["id_profil"];
-		}
-		mysql_free_result($result);
-	}
-	
-	// Falls der User identifiziert werden kann, werden seine Angaben in der DB festgehalten 
-	if (!empty($profil_id)){
-		// Nachpr?fen: hat sich dieser user schon mal f?r diesen Kurs eingeschrieben
-		$result = mysql_query("SELECT profil_id, kurs_id FROM kurse_profil WHERE profil_id=$profil_id AND kurs_id=$kurs_id");
-		// Eintrag in die Verbindungstabelle falls nicht bereits vorhanden - Dieser User hat Diesen Kurs besucht
-		if (mysql_num_rows($result) == 0){
-			mysql_query ("INSERT INTO kurse_profil (profil_id, kurs_id) VALUES ($profil_id, $kurs_id)");
-		}
-		mysql_free_result($result);
-		// Eintrag in die Profiltabelle - Dieser User hat diese Adressangaben gemacht
-		$felderUpdateIn_profil = "profil_name='$Name', profil_vorname='$Vorname', profil_adresse='$Adresse', profil_plz='$PLZ', profil_telefon='$Telefon'";
-		mysql_query ("UPDATE profil SET $felderUpdateIn_profil WHERE id_profil=$profil_id");
-		if (empty($email)){
-			$result = mysql_query ("SELECT id_profil, email FROM profil WHERE id_profil=$profil_id");
-			$row = mysql_fetch_array ($result);
-			$email = $row["email"];
-			mysql_free_result($result);
-		}
-	}
-	
-	include("mailserver.php");
-	
-	echo "<p>&eof=true"; echo"&</p>\n";
-
-}
-
 if (isset($request) && $request == "print"){
 	$felderIn_kurse = "id_kurse,titel_kurse,kursziele_kurse,kosten_kurse,thema_id, daten_kurse, ort_kurse, leitung_kurse, platz_kurse,teilnehmer_kurse";
 	$felderIn_thema = "id_thema, thema";

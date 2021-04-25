@@ -35,7 +35,6 @@
 		 <option value="artikel">Zeitungsartikel</option>
 		 <option value="themen">Themen</option>
 		 <option value="links">Links</option>
-		 <option value="news">Newsletter</option>
 		</select>
 		<input type="hidden" name="search" value="<?php print $search ?>">
 		<noscript> 

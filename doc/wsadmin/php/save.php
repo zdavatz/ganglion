@@ -258,54 +258,6 @@ if ($page == "links" && $delete == "true"){
 }
 
 //
-
-//
-
-//hier werden die profile behandelt
-
-//hier werden die daten codiert
-
-if ($page == "profil"){
-
-	$publikationen = htmlflashen($publikationen);
-
-	$fachgebiet = htmlflashen($fachgebiet);
-
-	$biographie = htmlflashen($biographie);
-
-	$signatur = htmlflashen($signatur);
-
-}
-
-
-
-//neu
-
-if ($page == "profil" && $new == "true"){
-
-	$mysql = "login, pass, email, url, publikationen, fachgebiet, biographie, signatur, notification, newsletter";
-
-	$form = "'$login','$passwort','$email','$urlprofil','$publikationen','$fachgebiet','$biographie','$signatur','$notifikation','$newsletter'";
-
-	//echo $form;
-	mysql_query("INSERT INTO profil ($mysql) VALUES ($form)");
-	@header("Location: admin.php?page=$page&search=$search");
-}
-//aendern
-if ($page == "profil" && $change == "true"){
-	$mysql = "id_profil, login, pass, email, url, publikationen, fachgebiet, biographie, signatur, notification, newsletter";
-	$form = "'$id_profil','$login','$passwort','$email','$urlprofil','$publikationen','$fachgebiet','$biographie','$signatur','$notifikation','$newsletter'";
-	$query = "REPLACE INTO profil ($mysql) VALUES ($form)";
-	//echo $query;
-	mysql_query($query);
-	@header("Location: admin.php?page=$page&search=$search");
-}
-//loeschen
-if ($page == "profil" && $delete == "true"){
-	mysql_query("DELETE FROM profil WHERE id_profil = '$id_profil'");
-	@header("Location: admin.php?page=$page&search=$search");
-}
-//
 //hier werden die kurse behandelt
 //hier werden die daten codiert
 if ($page == "kurse"){
@@ -460,32 +412,5 @@ if ($page == "text" && $change == "true"){
 if ($page == "text" && $delete == "true"){
 	mysql_query("DELETE FROM text WHERE id_text = '$id_text'");
 	@header("Location: admin.php?page=$page&search=$search");
-}
-//
-
-if ($page == "news"){
-	$titel_news = htmlflashen($titel_news);
-	$text_news = htmlflashen($text_news);
-
-	if($new == "true"){
-		$mysql = "titel_news,text_news,send_news,change_news";
-		$form = "'$titel_news','$text_news','19700101000000',NOW('')";
-		$query = "INSERT INTO newsletter ($mysql) VALUES ($form)";
-		//echo $query;
-		mysql_query($query);
-		@header("Location: admin.php?page=$page&search=$search");
-	}
-	if($change == "true"){
-		$mysql = "id_news,titel_news,text_news,send_news,change_news";
-		$form = "'$id_news','$titel_news','$text_news','$send_news',NOW('')";
-		$query = "REPLACE INTO newsletter ($mysql) VALUES ($form)";
-		//echo $query;
-		mysql_query($query);
-		@header("Location: admin.php?page=$page&search=$search");
-	}	
-	if ($delete == "true"){
-		mysql_query("DELETE FROM newsletter WHERE id_news = '$id_news'");
-		@header("Location: admin.php?page=$page&search=$search");
-	}
 }
 ?>
