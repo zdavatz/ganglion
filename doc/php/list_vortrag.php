@@ -186,9 +186,6 @@ if (isset($request) && $request=="directThread"){
 if (isset($request) && $request=="updateDownloads"){
 	
 	mysql_query ("UPDATE vortrag SET downloads=(downloads+1) WHERE id=$pdf_id");
-	if (!empty($currentUser)){
-		mysql_query ("UPDATE profil SET downloads=(downloads+1) WHERE id_profil=$currentUser");
-	}
 	echo "<p>&eof=true&</p>\n";
 	
 }

@@ -287,33 +287,6 @@ if ($page == "text" && $new != "true" && $change == "true"){
 		echo $closeTable;
 		include("text.php");
 }
-//
-//Newsletter
-if  ($page == "news" && $new != "true" && $change != "true"){
-		$titel="&Uuml;bersicht Newsletter";
-		$table = "news";
-		include("navigation.php");
-		include("uebersichtnews.php");
-}
-//
-
-if ($page == "news" && $new == "true" && $change != "true"){
-		$titel="<a class='ASiteTitel' href='#' onClick='history.back();'>Newsletter</a> &gt; neuer Eintrag";
-		$table = "news";
-		include("navigation.php");
-		echo $closeTable;
-		include("news.php");
-}
-//
-if ($page == "news" && $new != "true" && $change == "true"){
-		$titel="<a class='ASiteTitel' href='#' onClick='history.back();'>Newsletter</a> &gt; Eintrag &auml;ndern";
-		$table = "news";
-		include("navigation.php");
-		echo $closeTable;
-		include("news.php");
-}
-//
-
 ?> 
 </body>
 </html>

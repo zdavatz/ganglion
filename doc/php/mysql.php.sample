@@ -71,10 +71,6 @@ if (isset($command) && $command=="init"){
 	echo "&heute=$datum";
 }
 
-if (isset($command) && $command=="mailPage") {
-	include("mailserver.php");
-}
-
 if (isset($command) && $command=="zeitfenster") {
 	include("zeitfenster.php");
 }
