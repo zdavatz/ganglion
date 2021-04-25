@@ -1,2 +1,0 @@
-alter table vortrag add audiofile_length int(10) unsigned after audiofile;
-alter table vortrag add audiofile_size int(10) unsigned after audiofile_length;
