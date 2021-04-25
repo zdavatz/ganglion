@@ -97,15 +97,15 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 	echo "<th class='THnr' nowrap>Nr. <font size='1'>($Ptot)</font></th>\n";
 	
 	echo "<th class='THtitel'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$inhalt_text'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Text');return document.returnValue">Text</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$inhalt_text'\n";	?>>Text</a><?php
 	echo "</th>\n";
 	
 	echo "<th class='THzahl'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$bereich_text'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Bereich');return document.returnValue">Bereich</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$bereich_text'\n";	?>>Bereich</a><?php
 	echo "</th>\n";
 	
 	echo "<th class='THdatum'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$datum_text'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Datum');return document.returnValue">Datum</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$datum_text'\n";	?>>Datum</a><?php
 	echo "</th>\n";
 
 	echo "</tr>\n";
@@ -132,7 +132,7 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 					echo "<tr>\n";
 					echo "<td class='TDnr'>$i</td>\n";
 					echo "	<td class='TDtitel'>\n";
-					echo "		<a href='$url&change=true&id_text=$id_text'";?> onMouseOut="FnormText()" onMouseOver="StatusMsg('<?php echo "Detaileintrag bearbeiten";?>');return document.returnValue"> <?php echo"$inhalt_text</a></td>\n";
+					echo "		<a href='$url&change=true&id_text=$id_text'";?>> <?php echo"$inhalt_text</a></td>\n";
 					echo "	<td class='TDbereich'>".$bereich_text."</td>\n";
 					echo "	<td class='TDdatum'>".$datum_text."</td>\n";
 					echo "</tr>\n";

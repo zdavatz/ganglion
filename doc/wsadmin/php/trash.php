@@ -9,8 +9,6 @@ if ($row["anzahlLinks"] == 0
 
 ?> 
 <a href="<?php echo "save.php?search=$search&datumchange=$datumchange&page=$page&idThema=$idThema&delete=true";?>"
-	onMouseOut = "FnormText()"
-	onMouseOver = "StatusMsg('Thema l?schen: <?php echo "JSthema";?>')"
 	return document.returnValue">
 
 <?php 	

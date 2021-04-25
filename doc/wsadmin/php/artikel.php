@@ -27,8 +27,8 @@ $datum = datumsplitt($row["erschienen"]);
 $datumend = datumsplitt($row["ende_artikel"]);
 @mysql_free_result($result);
 
-$msgConf = "Wollen Sie den Eintrag <$javatitel> wirklich löschen?";
-$msgConf_pdf = "Wollen Sie diese Pdf Datei: <$file_name> wirklich löschen?";
+$msgConf = "Wollen Sie den Eintrag <$javatitel> wirklich l?schen?";
+$msgConf_pdf = "Wollen Sie diese Pdf Datei: <$file_name> wirklich l?schen?";
 }
 elseif ($new == "true") {
 $Vdatum = date("Y-m-d");
@@ -37,14 +37,6 @@ $datumend = datumsplitt($Vdatum);
 $datum_artikel = date("Y-m-d");
 }
 ?>
-<script type="text/javascript" language="JavaScript" charset="utf-8">
-<!--
-<?php
-echo "var titel = '$msgConf';\n";
-echo "var pdfname = '$msgConf_pdf';\n";
-?>
-//-->
-</script>
 <form method="post" action="save.php" name="artikel" enctype="multipart/form-data">
  
 <table class="TABLEvortrag">

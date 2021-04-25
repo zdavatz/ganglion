@@ -340,7 +340,7 @@ if (isset($sortby) && $sortby == "standart") $sortby = "url";
 	echo "<th class='THtitel'>\n";
 
 
-	echo "	<a class='Atitel' href='$url&sortby=$lurl'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Url');return document.returnValue">Url</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$lurl'\n";	?>>Url</a><?php
 
 
 	echo "</th>\n";
@@ -349,7 +349,7 @@ if (isset($sortby) && $sortby == "standart") $sortby = "url";
 	echo "<th class='THdatum'>\n";
 
 
-	echo "	<a class='Atitel' href='$url&sortby=$datum'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Datum');return document.returnValue">Datum</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$datum'\n";	?>>Datum</a><?php
 
 
 	echo "</th>\n";
@@ -361,7 +361,7 @@ if (isset($sortby) && $sortby == "standart") $sortby = "url";
 	echo "<th class='THbereich'>\n";
 
 
-	echo "	<a class='Atitel' href='$url&sortby=$Familie' 	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Familie');return document.returnValue">F</a>	<?php
+	echo "	<a class='Atitel' href='$url&sortby=$Familie' 	\n";?>>F</a>	<?php
 
 
 	echo "</th>\n";
@@ -370,19 +370,19 @@ if (isset($sortby) && $sortby == "standart") $sortby = "url";
 	echo "<th class='Atitel' class='THbereich'>\n";
 
 
-	echo "	<a class='Atitel' href='$url&sortby=$Arbeit'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Arbeit');return document.returnValue">A</a></th><?php
+	echo "	<a class='Atitel' href='$url&sortby=$Arbeit'\n";?>>A</a></th><?php
 
 
 	echo "<th class='THbereich'>\n";
 
 
-	echo "<a class='Atitel' href='$url&sortby=$Gesundheit' 	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Gesundheit');return document.returnValue">G</a></th><?php
+	echo "<a class='Atitel' href='$url&sortby=$Gesundheit' 	\n";?>>G</a></th><?php
 
 
 	echo "<th class='THbereich'>\n";
 
 
-	echo "	<a class='Atitel' href='$url&sortby=$Erziehung'	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Erziehung');return document.returnValue">E</a></th><?php
+	echo "	<a class='Atitel' href='$url&sortby=$Erziehung'	\n";?>>E</a></th><?php
 
 
 	echo "</tr>\n";
@@ -526,7 +526,7 @@ if (isset($request) && $request=="uebersicht"){
 					echo "	<td class='TDtitel'>\n";
 
 
-					echo "		<a href='$url&change=true&id=$id&thema=$thema_id'";?> onMouseOut="FnormText()" onMouseOver="StatusMsg('<?php echo "Detaileintrag: $statusTitel";?>');return document.returnValue"> <?php echo"$Titel</a></td>\n";
+					echo "		<a href='$url&change=true&id=$id&thema=$thema_id'";?>> <?php echo"$Titel</a></td>\n";
 
 
 					echo "	<td class='TDdatum'>$gehalten</td>\n";

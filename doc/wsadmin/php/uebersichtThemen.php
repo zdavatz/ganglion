@@ -95,8 +95,7 @@ echo "<tr>\n";
 echo "<th class='THnr' nowrap>Nr. <font size='1'>($Ptot)</font></th>\n";
 echo "<th class='THtitel' >\n";
 echo "<a class='Atitel' href='$url&sortby=$SortThema'\n";?>
-onMouseOut="FnormText()" 
-onMouseOver="StatusMsg('Sortieren nach Thema');return document.returnValue">Thema</a><?php
+>Thema</a><?php
 echo "</th>\n";
 echo "<th  class='THtrash'>&nbsp;</th>\n";
 echo "<th class='THzahl'>Datum</th>\n";

@@ -352,7 +352,7 @@ if ($sortby == "standart" && $search == "all") $sortby = "s1";
 	echo "<th class='THtitel'>\n";
 
 
-	echo "	<a class='Atitel' href='$url&sortby=$sort0'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Titel');return document.returnValue"><?php echo"Titel</a>";
+	echo "	<a class='Atitel' href='$url&sortby=$sort0'\n";	?>><?php echo"Titel</a>";
 
 
 	echo "</th>\n";
@@ -364,7 +364,7 @@ if ($sortby == "standart" && $search == "all") $sortby = "s1";
 	echo "<th class='THnr'>\n";
 
 
-	echo "	<a class='Atitel' href='$url&sortby=$sort1'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Text');return document.returnValue">Text</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$sort1'\n";	?>>Text</a><?php
 
 
 	echo "</th>\n";
@@ -382,7 +382,7 @@ if ($sortby == "standart" && $search == "all") $sortby = "s1";
 	echo "<th class='THnr'>\n";
 
 
-	echo "	<a class='Atitel' href='$url&sortby=$sort2'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Gesendet Am');return document.returnValue">Gesendet</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$sort2'\n";	?>>Gesendet</a><?php
 
 
 	echo "</th>\n";
@@ -394,7 +394,7 @@ if ($sortby == "standart" && $search == "all") $sortby = "s1";
 	echo "<th class='THdatum'>\n";
 
 
-	echo "	<a class='Atitel' href='$url&sortby=$sort3'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Datum');return document.returnValue">Datum</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$sort3'\n";	?>>Datum</a><?php
 
 
 	echo "</th>\n";
@@ -472,9 +472,6 @@ $result = mysql_query ($mysqlquery);
 
 
 					if ($send_news == "01.01.1970") $send_news = "Nie";
-
-
-					//$statusText = "onMouseOut=\"FnormText()\" onMouseOver=\"StatusMsg('<?php echo \"Detaileintrag: $JStitel\";');return document.returnValue\" ";
 
 
 					$url_entry = "$PHP_SELF?page=$page&Pdis=$Pdis&search=$search&change=true&id_news=$id_news";

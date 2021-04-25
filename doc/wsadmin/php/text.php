@@ -9,17 +9,10 @@ $result = mysql_query ("SELECT * FROM text WHERE id_text ='$id_text'");
 		
 
 @mysql_free_result($result);
-$msgConf = "Wollen Sie den Eintrag wirklich löschen?";
+$msgConf = "Wollen Sie den Eintrag wirklich l?schen?";
 }
 $datum_text = date(YmdGis);
 ?>
-<script type="text/javascript" language="JavaScript" charset="utf-8">
-<!--
-<?php
-echo "var titel = '$msgConf';\n";
-?>
-//-->
-</script>
 <form method="post" action="save.php" name="vortrag" enctype="multipart/form-data">
  
 <table class="TABLEvortrag">

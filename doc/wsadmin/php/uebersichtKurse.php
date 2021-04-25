@@ -110,33 +110,33 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 	echo "<tr>\n";
 	echo "<th class='THnr' nowrap>Nr. <font size='1'>($Ptot)</font></th>\n";
 	echo "<th class='THtitel'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$Titel'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Titel');return document.returnValue">Titel</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$Titel'\n";	?>>Titel</a><?php
 	echo "</th>\n";
 	echo "<th class='THdatum'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$beginn'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Kursbeginn');return document.returnValue">Kursbeginn</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$beginn'\n";?>>Kursbeginn</a><?php
 	echo "</th>\n";
 	echo "<th class='THdatum'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$ende'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Kursende');return document.returnValue">Kursende</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$ende'\n";?>>Kursende</a><?php
 	echo "</th>\n";	
 	echo "<th class='THzahl'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$platz'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Pl?tze');return document.returnValue">Pl&auml;tze</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$platz'\n";?>>Pl&auml;tze</a><?php
 	echo "</th>\n";
 	echo "<th class='THzahl'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$teilnehmer'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Teilnehmer');return document.returnValue">Teilnehmer</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$teilnehmer'\n";?>>Teilnehmer</a><?php
 	echo "</th>\n";
 	echo "<th class='THdatum'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$datum'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Datum');return document.returnValue">letzte &Auml;nderung</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$datum'\n";?>>letzte &Auml;nderung</a><?php
 	echo "</th>\n";
 	echo "<th class='THthema'>"; include("getmenu.php"); echo"</th>\n";
 	echo "<th class='THbereich'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$Familie' 	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Familie');return document.returnValue">F</a>	<?php
+	echo "	<a class='Atitel' href='$url&sortby=$Familie' 	\n";?>>F</a>	<?php
 	echo "</th>\n";
 	echo "<th class='THbereich'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$Arbeit'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Arbeit');return document.returnValue">A</a></th><?php
+	echo "	<a class='Atitel' href='$url&sortby=$Arbeit'\n";?>>A</a></th><?php
 	echo "<th class='THbereich'>\n";
-	echo "<a class='Atitel' href='$url&sortby=$Gesundheit' 	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Gesundheit');return document.returnValue">G</a></th><?php
+	echo "<a class='Atitel' href='$url&sortby=$Gesundheit' 	\n";?>>G</a></th><?php
 	echo "<th class='THbereich'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$Erziehung'	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Erziehung');return document.returnValue">E</a></th><?php
+	echo "	<a class='Atitel' href='$url&sortby=$Erziehung'	\n";?>>E</a></th><?php
 	echo "</tr>\n";
 	$i++;
 //
@@ -178,7 +178,7 @@ $result = mysql_query ($mysqlquery);
 					echo "<tr>\n";
 					echo "<td class='TDnr'>$i</td>\n";
 					echo "	<td class='TDtitel'>\n";
-					echo "		<a href='$url&change=true&id=$id&thema=$thema_id'";?> onMouseOut="FnormText()" onMouseOver="StatusMsg('<?php echo "Detaileintrag: $statusTitel";?>');return document.returnValue"> <?php echo"$Titel</a></td>\n";					
+					echo "		<a href='$url&change=true&id=$id&thema=$thema_id'";?>> <?php echo"$Titel</a></td>\n";					
 					echo "	<td class='TDdatum'>$beginn</td>\n";
 					echo "	<td class='TDdatum'>$ende</td>\n";					
 					echo "	<td class='TDzahl'>".$row["platz_kurse"]."</td>\n";

@@ -73,24 +73,24 @@ $all=0;
 	echo "<tr>\n";
 	echo "<th class='THnr' nowrap>Nr. <font size='1'>($Ptot)</font></th>\n";
 	echo "<th class='THtitel'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=titel_artikel'\n";	?> onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Titel');return document.returnValue">Titel</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=titel_artikel'\n";	?>>Titel</a><?php
 	echo "</th>\n";
 	echo "<th class='THdatum'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=erschienen'\n";?> onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Erschienen');return document.returnValue">Erschienen</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=erschienen'\n";?>>Erschienen</a><?php
 	echo "</th>\n";
 	echo "<th class='THzahl'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$pdf'\n";	?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach PDF');return document.returnValue">PDF</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$pdf'\n";	?>>PDF</a><?php
 	echo "</th>\n";
 	echo "<th class='THthema'>"; include("getmenu.php"); echo"</th>\n";
 	echo "<th class='THbereich'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=Familie' 	\n";?> onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Familie');return document.returnValue">F</a>	<?php
+	echo "	<a class='Atitel' href='$url&sortby=Familie' 	\n";?>>F</a>	<?php
 	echo "</th>\n";
 	echo "<th class='THbereich'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=Arbeit'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Arbeit');return document.returnValue">A</a></th><?php
+	echo "	<a class='Atitel' href='$url&sortby=Arbeit'\n";?>>A</a></th><?php
 	echo "<th class='THbereich'>\n";
-	echo "<a class='Atitel' href='$url&sortby=Gesundheit' 	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Gesundheit');return document.returnValue">G</a></th><?php
+	echo "<a class='Atitel' href='$url&sortby=Gesundheit' 	\n";?>>G</a></th><?php
 	echo "<th class='THbereich'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=Erziehung'	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Erziehung');return document.returnValue">E</a></th><?php
+	echo "	<a class='Atitel' href='$url&sortby=Erziehung'	\n";?>>E</a></th><?php
 	echo "</tr>\n";
 	$i++;
 
