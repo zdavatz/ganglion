@@ -222,18 +222,6 @@ A:hover {
 }
 
 
-.TDdiskussiondelete {
-   color : navy; 
-   text-align : right; 
-}
-
-
-.TDdiskussion {
-   color : navy; 
-   background : #f7a65a; 
-}
-
-
 .TDdatum {
    color : navy; 
    background : #f7a65a; 
@@ -289,12 +277,6 @@ A:hover {
 .TABLEliste {
    font : 10pt Arial, Helvetica, sans-serif; 
    width : 100%; 
-}
-
-
-.TABLEdiskussion {
-   width : 500px; 
-   z-index : 1; 
 }
 
 

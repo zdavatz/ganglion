@@ -33,8 +33,6 @@
 		 <option value="vortrag">Vortr&auml;ge</option>
 		 <option value="kurse">Kurse</option>
 		 <option value="artikel">Zeitungsartikel</option>
-		 <!--<option value="foren">Forum</option>-->
-		 <option value="profil">Profile</option>
 		 <option value="themen">Themen</option>
 		 <option value="links">Links</option>
 		 <option value="news">Newsletter</option>

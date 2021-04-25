@@ -66,10 +66,6 @@ if (isset($command) && $command=="list"){
 if (isset($command) && $command=="del"){
 	mysql_query ("DELETE FROM $table WHERE id = '$id'");
 }
-//
-if (isset($command) && $command=="forum"){
-	include("forum.php");
-}
 if (isset($command) && $command=="init"){
 	$datum = date("j.n.Y");
 	echo "&heute=$datum";

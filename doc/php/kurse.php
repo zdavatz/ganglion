@@ -24,7 +24,7 @@ if (isset($request) && ($request == "uebersicht" || $request == "zeitfenster")){
 	echo "<p>&kurseSumme=$kurseSumme&</p>\n";
 
 	//keep vars or replace
-	if($bereich == "N‰chste Kurse") $zeitfenster = "future";
+	if($bereich == "N√§chste Kurse") $zeitfenster = "future";
 	if (!isset($search)) 	$search 	= (empty($php_kurse_search) ? "all" : $php_kurse_search);
 	if (!isset($sortierung))	$sortierung = (empty($php_kurse_sortierung) ? "beginn_kurse DESC" : $php_kurse_sortierung);
 	if (!isset($zeitfenster)) $zeitfenster = (empty($php_kurse_zeitfenster) ? "default" : $php_kurse_zeitfenster);
@@ -184,7 +184,7 @@ if (isset($request) && $request == "directThread"){
 if (isset($request) && $request == "anmelden"){
 
 
-	// Falls der User nicht eingeloggt ist, wird geprüft, ob seine E-Mail-adresse bereits registriert ist.	
+	// Falls der User nicht eingeloggt ist, wird gepr?ft, ob seine E-Mail-adresse bereits registriert ist.	
 	if (empty($profil_id) && !empty($email)){
 		$result=mysql_query("SELECT id_profil, email FROM profil WHERE email='$email' ORDER BY id_profil DESC");
 		if (mysql_num_rows($result) > 0){
@@ -196,7 +196,7 @@ if (isset($request) && $request == "anmelden"){
 	
 	// Falls der User identifiziert werden kann, werden seine Angaben in der DB festgehalten 
 	if (!empty($profil_id)){
-		// Nachprüfen: hat sich dieser user schon mal für diesen Kurs eingeschrieben
+		// Nachpr?fen: hat sich dieser user schon mal f?r diesen Kurs eingeschrieben
 		$result = mysql_query("SELECT profil_id, kurs_id FROM kurse_profil WHERE profil_id=$profil_id AND kurs_id=$kurs_id");
 		// Eintrag in die Verbindungstabelle falls nicht bereits vorhanden - Dieser User hat Diesen Kurs besucht
 		if (mysql_num_rows($result) == 0){

@@ -1,11 +1,3 @@
-<?php //new.php 
-
-if ($page == "foren"){
-	$TextButton = "neue Diskussion";
-} else {
-	$TextButton = "neuer Eintrag";
-}
-?>
 <table id='new' class ='TABLEnew' border="0">
  <tr>
   <td>
@@ -13,7 +5,7 @@ if ($page == "foren"){
 	<input type="hidden" name="search" value="<?php print $search ?>">
 	<input type="hidden" name="page" value="<?php print $page ?>">
 	<input type="hidden" name="new" value="true">
-	<input type="submit" name="send" value="<?php print $TextButton ?>">
+	<input type="submit" name="send" value="neuer Eintrag">
    </form>
   </td>
 <?php 

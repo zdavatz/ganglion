@@ -192,8 +192,6 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 
 	echo "</tr>\n";
 
-	$q = @$Panfang;
-	$q++;
 	$i++;
 
 

@@ -1,5 +1,5 @@
 <?php //uebersichtKurse.php
-//Hier werden die Variablen geprüft
+//Hier werden die Variablen gepr?ft
 if (empty($search))	$search 	= "all";
 //
 $i=0;
@@ -119,7 +119,7 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 	echo "	<a class='Atitel' href='$url&sortby=$ende'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Kursende');return document.returnValue">Kursende</a><?php
 	echo "</th>\n";	
 	echo "<th class='THzahl'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$platz'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Pl„tze');return document.returnValue">Pl&auml;tze</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$platz'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Pl?tze');return document.returnValue">Pl&auml;tze</a><?php
 	echo "</th>\n";
 	echo "<th class='THzahl'>\n";
 	echo "	<a class='Atitel' href='$url&sortby=$teilnehmer'\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Teilnehmer');return document.returnValue">Teilnehmer</a><?php
@@ -138,8 +138,6 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 	echo "<th class='THbereich'>\n";
 	echo "	<a class='Atitel' href='$url&sortby=$Erziehung'	\n";?>	onMouseOut="FnormText()" onMouseOver="StatusMsg('Sortieren nach Erziehung');return document.returnValue">E</a></th><?php
 	echo "</tr>\n";
-	$q = $Panfang;
-	$q++;
 	$i++;
 //
 $tabellen			=	"kurse AS A LEFT OUTER JOIN thema AS B ON(A.thema_id=B.id_thema)";
