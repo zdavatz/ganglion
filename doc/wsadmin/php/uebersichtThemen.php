@@ -36,9 +36,9 @@ $url = "$PHP_SELF?$nocache&page=$page&P=$P&search=$search";
 $Ptot=0;
 $all=0;
 //
-$result = mysql_query("SELECT * FROM thema");
-$Ptot = mysql_num_rows($result);
-mysql_free_result($result);
+$result = mysqli_query($conn1, "SELECT * FROM thema");
+$Ptot = mysqli_num_rows($result);
+mysqli_free_result($result);
 //if (empty($disRow))
 $disRow = 20;
 $Pend = $P * $disRow;
@@ -86,9 +86,9 @@ elseif (isset($sortby) && $sortby=="Thema-"){$SortBy="thema DESC";}
 //
 if($order[0]==1){$SortThema="Thema-";}else { $SortThema="Thema";}
 //
-$resultLinks = mysql_query("SELECT id_thema, thema, datumchange, count(B.thema_id) as anzahlLinks FROM thema AS A LEFT OUTER JOIN links AS B ON A.id_thema=B.thema_id GROUP BY id_thema ORDER BY $SortBy");
-$resultVortrag = mysql_query("SELECT id_thema, thema, count(B.thema_id) as anzahlVortrag FROM thema AS A LEFT OUTER JOIN vortrag AS B ON A.id_thema=B.thema_id GROUP BY id_thema ORDER BY $SortBy");
-$resultKurse = mysql_query("SELECT id_thema, thema, count(B.thema_id) as anzahlKurse FROM thema AS A LEFT OUTER JOIN kurse AS B ON A.id_thema=B.thema_id GROUP BY id_thema ORDER BY $SortBy");
+$resultLinks = mysqli_query($conn1, "SELECT id_thema, thema, datumchange, count(B.thema_id) as anzahlLinks FROM thema AS A LEFT OUTER JOIN links AS B ON A.id_thema=B.thema_id GROUP BY id_thema ORDER BY $SortBy");
+$resultVortrag = mysqli_query($conn1, "SELECT id_thema, thema, count(B.thema_id) as anzahlVortrag FROM thema AS A LEFT OUTER JOIN vortrag AS B ON A.id_thema=B.thema_id GROUP BY id_thema ORDER BY $SortBy");
+$resultKurse = mysqli_query($conn1, "SELECT id_thema, thema, count(B.thema_id) as anzahlKurse FROM thema AS A LEFT OUTER JOIN kurse AS B ON A.id_thema=B.thema_id GROUP BY id_thema ORDER BY $SortBy");
 $i=1;
 echo "<table class='TABLEliste' width='100%' cellspacing='2'>\n";
 echo "<tr>\n";
@@ -105,9 +105,9 @@ echo "<th class='THbzahl'>Kurse</th>\n";
 echo "<th class='THbzahl'>Foren</th>\n";
 echo "</tr>\n";
 $r=0;
-while ($rowLinks = mysql_fetch_array($resultLinks)){
-	$rowVortrag = mysql_fetch_array($resultVortrag);
-	$rowKurse = mysql_fetch_array($resultKurse);
+while ($rowLinks = mysqli_fetch_array($resultLinks)){
+	$rowVortrag = mysqli_fetch_array($resultVortrag);
+	$rowKurse = mysqli_fetch_array($resultKurse);
 	$row = array_merge($rowLinks, $rowVortrag, $rowKurse);
 	$datum = datum_ch($row["datumchange"]);
 	if (empty($row["thema"])) $row["thema"] = "***";
@@ -143,9 +143,9 @@ while ($r < 15){
 include("changeThema.php");
 $r++;
 }
-mysql_free_result($resultLinks);
-mysql_free_result($resultVortrag);
-mysql_free_result($resultKurse);
+mysqli_free_result($resultLinks);
+mysqli_free_result($resultVortrag);
+mysqli_free_result($resultKurse);
 ?> 
 <div id="newthema"> 
 <table class="TABLEthema" bgcolor="#f7a65a" cellpadding="0" cellspacing="0" border="0">

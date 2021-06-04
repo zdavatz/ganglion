@@ -29,12 +29,12 @@ $Ptot=0;
 $all=0;	
 //
 	if (isset($search) &&  $search == "all") {
-		$all = mysql_query("SELECT * FROM $table"); 
+		$all = mysqli_query($conn1, "SELECT * FROM $table"); 
 	} else {
-		$all = mysql_query("SELECT * FROM $table WHERE thema_id=$search");
+		$all = mysqli_query($conn1, "SELECT * FROM $table WHERE thema_id=$search");
 	}
-	$Ptot = mysql_num_rows($all);
-	mysql_free_result($all);
+	$Ptot = mysqli_num_rows($all);
+	mysqli_free_result($all);
 	if (empty($disRow)) $disRow = 10;
 	$Pend = $P * $disRow;
 	$Pstart = $Pend - ($disRow-1);
@@ -106,15 +106,15 @@ $all=0;
 	}
 //echo $sortby;
 $sql = "SELECT * FROM artikel $precision ORDER BY $sort";
-$result = mysql_query ($sql) or die (mysql_error());
+$result = mysqli_query($conn1, $sql) or die (mysqli_error($conn1));
 
 			$ok = "<img class='IMGok' src='../images/OK.gif' alt=''>";
 			$i=1;	
-			while ($row = mysql_fetch_array($result)){
+			while ($row = mysqli_fetch_array($result)){
 				if ( $i >= $Pstart && $i <= $Pend ){
 					$thema_id = $row["thema_id"];
-					$result_thema = mysql_query ("SELECT * FROM thema WHERE id_thema=$thema_id");
-					while ($thema_row = mysql_fetch_array($result_thema)){
+					$result_thema = mysqli_query($conn1, "SELECT * FROM thema WHERE id_thema=$thema_id");
+					while ($thema_row = mysqli_fetch_array($result_thema)){
 					$thema_title = urldecode($thema_row["thema"]); 
 					}
 					$article_id = $row["id_artikel"];
@@ -149,7 +149,7 @@ $result = mysql_query ($sql) or die (mysql_error());
 				}
 				$i++;
 			}
-		@mysql_free_result($result);
+		@mysqli_free_result($result);
 ?>
 </table>
 </td>

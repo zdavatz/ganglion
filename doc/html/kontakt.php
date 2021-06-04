@@ -20,8 +20,8 @@ if(isset($_GET["id"]))
 		$query =	"select titel_kurse, date_format(beginn_kurse,'%d.%m.%Y') as
 						beginn_formatted from kurse
 						where id_kurse = ".$_GET["id"];
-		$result = mysql_query($query);
-  	$values = mysql_fetch_assoc($result);
+		$result = mysqli_query($conn1, $query);
+  	$values = mysqli_fetch_assoc($result);
 		$textvalue = "Anmeldung f&uuml;r den Kurs:\n".urldecode($values["titel_kurse"]);
 		$subject = "apply";
 }

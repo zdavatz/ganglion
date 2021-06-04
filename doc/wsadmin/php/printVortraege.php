@@ -69,8 +69,8 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 //
 
 
-$result = mysql_query ("SELECT * FROM vortrag AS A, thema AS B WHERE A.thema_id=B.id_thema ORDER BY $SortBy");
-$Ptot = mysql_num_rows($result);
+$result = mysqli_query($conn1, "SELECT * FROM vortrag AS A, thema AS B WHERE A.thema_id=B.id_thema ORDER BY $SortBy");
+$Ptot = mysqli_num_rows($result);
 
 
 	echo "<table class='TABLEliste' width='100%' cellspacing='2'>\n";
@@ -119,7 +119,7 @@ $Ptot = mysql_num_rows($result);
 
 $ok = "<img class='IMGok' src='../images/OK.gif' alt=''>";
 $i = 1;
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	$gehalten = datum_ch($row["gehalten"]);
 	$id = $row["id"];
 	$thema_id = $row["thema_id"];
@@ -162,7 +162,7 @@ while ($row = mysql_fetch_array($result)){
 	$i++;
 
 }
-@mysql_free_result($result);
+@mysqli_free_result($result);
 echo "</table>";
 ?>
 

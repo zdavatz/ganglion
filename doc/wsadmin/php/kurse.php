@@ -1,7 +1,7 @@
 <?php
 if ($change == "true"){
-$result = mysql_query ("SELECT * FROM kurse WHERE id_kurse ='$id'");
-	$row = @mysql_fetch_array($result);
+$result = mysqli_query($conn1, "SELECT * FROM kurse WHERE id_kurse ='$id'");
+	$row = @mysqli_fetch_array($result);
 		$id_kurse = $row["id_kurse"];
 		$thema_id = $row["thema_id"];
 		$titel_kurse = stripslashes(urldecode($row["titel_kurse"]));
@@ -32,7 +32,7 @@ $result = mysql_query ("SELECT * FROM kurse WHERE id_kurse ='$id'");
 $datum_kurse = date("Y-m-d");
 $datum = datumsplitt($row["beginn_kurse"]);
 $datumend = datumsplitt($row["ende_kurse"]);
-@mysql_free_result($result);
+@mysqli_free_result($result);
 
 $msgConf = "Wollen Sie den Eintrag $javatitel wirklich l?schen?";
 }

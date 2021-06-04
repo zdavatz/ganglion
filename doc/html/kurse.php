@@ -71,10 +71,10 @@ if($orderdir == "asc")
 							FROM kurse 
 							WHERE kurs_art = 'regkurse' 
 							ORDER BY ".$orderby." ".$orderdir;
-	$kurse_result = mysql_query($query);
-	$result = mysql_query($query);
-	$values = mysql_fetch_assoc($result);
-	while($values = mysql_fetch_assoc($kurse_result))
+	$kurse_result = mysqli_query($conn1, $query);
+	$result = mysqli_query($conn1, $query);
+	$values = mysqli_fetch_assoc($result);
+	while($values = mysqli_fetch_assoc($kurse_result))
 		{		
 		echo "<tr>";
 		echo "<td>";
@@ -97,10 +97,10 @@ if($orderdir == "asc")
 							FROM kurse 
 							WHERE kurs_art = 'spezkurse' 
 							ORDER BY ".$orderby." ".$orderdir;
-	$kurse_result = mysql_query($query);
-	$result = mysql_query($query);
-	$values = mysql_fetch_assoc($result);
-	while($values = mysql_fetch_assoc($kurse_result))
+	$kurse_result = mysqli_query($conn1, $query);
+	$result = mysqli_query($conn1, $query);
+	$values = mysqli_fetch_assoc($result);
+	while($values = mysqli_fetch_assoc($kurse_result))
 		{		
 		echo "<tr>";
 		echo "<td>";
@@ -125,10 +125,10 @@ if($orderdir == "asc")
 							FROM kurse 
 							WHERE kurs_art = 'gruppe' 
 							ORDER BY ".$orderby." ".$orderdir;
-	$kurse_result = mysql_query($query);
-	$result = mysql_query($query);
-	$values = mysql_fetch_assoc($result);
-	while($values = mysql_fetch_assoc($kurse_result))
+	$kurse_result = mysqli_query($conn1, $query);
+	$result = mysqli_query($conn1, $query);
+	$values = mysqli_fetch_assoc($result);
+	while($values = mysqli_fetch_assoc($kurse_result))
 		{		
 		echo "<tr>";
 		echo "<td>";

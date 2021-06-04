@@ -18,22 +18,22 @@
 <a id='podcast' href='/html/podcast.php'><img src='/images/pod.gif' /> Abonnieren Sie die Vortr&auml;ge als Podcast</a><br>
 Downloads Vortr&auml;ge:&nbsp;
 <?php
-	($result = mysql_query("select sum(downloads) as sumd from vortrag"));
- 	$values = mysql_fetch_array($result);
+	($result = mysqli_query($conn1, "select sum(downloads) as sumd from vortrag"));
+ 	$values = mysqli_fetch_array($result);
 	$total_downloads = $values['sumd'];
 	echo number_format($total_downloads,0,".","'");
 ?>
 &nbsp;(als PDF)&nbsp;
 <?php
-	($result = mysql_query("select sum(audiofile_downloads) as audiosumd from vortrag"));
- 	$values = mysql_fetch_array($result);
+	($result = mysqli_query($conn1, "select sum(audiofile_downloads) as audiosumd from vortrag"));
+ 	$values = mysqli_fetch_array($result);
 	$total_audio_downloads = $values['audiosumd'];
 	echo number_format($total_audio_downloads,0,".","'");
 ?>
 &nbsp;(als Audio-File)&nbsp;
 <?php
-	($result = mysql_query("select sum(google_video_downloads) as googlevideosumd from vortrag"));
- 	$values = mysql_fetch_array($result);
+	($result = mysqli_query($conn1, "select sum(google_video_downloads) as googlevideosumd from vortrag"));
+ 	$values = mysqli_fetch_array($result);
 	$total_audio_downloads = $values['googlevideosumd'];
 	echo number_format($total_audio_downloads,0,".","'");
 ?>
@@ -88,7 +88,7 @@ $directions[$orderby] = "desc";
 <?php //getmenu.php
 
 if (@$new == "true" || @$change == "true"){
-	$result = mysql_query ("SELECT * FROM thema ORDER BY thema ASC");
+	$result = mysqli_query($conn1, "SELECT * FROM thema ORDER BY thema ASC");
 	$i=0;
 	$lastThema="";
 ?>
@@ -102,7 +102,7 @@ if (@$new == "true" || @$change == "true"){
 		$thema = "";
 	}
 	$thema_id = $thema;
-	while ($row = mysql_fetch_array($result)){
+	while ($row = mysqli_fetch_array($result)){
 	 		$idWWW = $row["id_thema"];
 	 		$thema = urldecode($row["thema"]);
 	 		$select = "";
@@ -116,7 +116,7 @@ if (@$new == "true" || @$change == "true"){
 else 
 {
 	if(!isset($table)) $table = "vortrag";
-	$result = mysql_query ("SELECT id_thema, thema, thema_id FROM thema AS A, $table AS B WHERE A.id_thema=B.thema_id GROUP BY id_thema ORDER BY thema ASC");
+	$result = mysqli_query($conn1, "SELECT id_thema, thema, thema_id FROM thema AS A, $table AS B WHERE A.id_thema=B.thema_id GROUP BY id_thema ORDER BY thema ASC");
 	$lastThema="";
 ?>
 <form method="get" action="vortraege.php" name="themen">
@@ -125,7 +125,7 @@ else
 if ($search == "all"){ $select = "selected"; }
 	echo"<option value='all' $select>alle Themen</option>";
 	
-	while ($row = mysql_fetch_array($result)){
+	while ($row = mysqli_fetch_array($result)){
 	 		$id = $row["id_thema"];
 	 		$thema = urldecode($row["thema"]);
 	 		$select = "";
@@ -136,7 +136,7 @@ if ($search == "all"){ $select = "selected"; }
 	echo "</select>\n";
 	echo "</form>\n";
 }
-mysql_free_result($result);
+mysqli_free_result($result);
 ?>
 	</td>
 </tr>
@@ -176,8 +176,8 @@ mysql_free_result($result);
 							from vortrag, thema
 							where $thema_condition and id_thema=thema_id
 							order by ".$orderby." ".$orderdir;
-		$vortrag_result = mysql_query($query);
-		echo	'<td valign="top" rowspan="'.(mysql_num_rows($vortrag_result)+1).'" colspan="1" width="25%">';
+		$vortrag_result = mysqli_query($conn1, $query);
+		echo	'<td valign="top" rowspan="'.(mysqli_num_rows($vortrag_result)+1).'" colspan="1" width="25%">';
 		
 		$query = "select Titel, thema, Zusammenfassung, zeit, Zielpublikum, location, id, date_format(gehalten,'%d.%m.%Y') 
 							as gehalten_formatted, unix_timestamp(gehalten) as gehalten_unix,
@@ -187,8 +187,8 @@ mysql_free_result($result);
 							and gehalten >= now()
 							order by gehalten ASC limit 1";
 							
-		$result = mysql_query($query);
-		$values = mysql_fetch_assoc($result);
+		$result = mysqli_query($conn1, $query);
+		$values = mysqli_fetch_assoc($result);
 		echo "<table class='nopaddingTABLE'>";
 		echo "<tr>";
 		echo "<td colspan='2' class='TDbold-big'>";
@@ -224,7 +224,7 @@ mysql_free_result($result);
 		echo "</td>";
 		$open_row = false;
 		
-		while($values = mysql_fetch_assoc($vortrag_result))
+		while($values = mysqli_fetch_assoc($vortrag_result))
 		{
 			if($open_row)
 			{

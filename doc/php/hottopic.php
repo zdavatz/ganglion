@@ -1,12 +1,12 @@
 <?php
 	session_register("htBereich");
-	$result = mysql_query("
+	$result = mysqli_query($conn1, "
 		SELECT id, Titel, Zusammenfassung, gehalten, pdf, Familie, Arbeit, Gesundheit, Erziehung, thema_id, id_thema, thema 
 		FROM vortrag AS A, thema AS B 
 		WHERE B.id_thema=A.thema_id
 		AND gehalten<CURRENT_DATE() 
 		ORDER BY gehalten DESC");
-		$row = mysql_fetch_array($result);	
+		$row = mysqli_fetch_array($result);	
 		$htBereich=$row[$bereich];
 	
 		if(!$htBereich){
@@ -20,6 +20,6 @@
 	echo "<p>&hotTopic_text=".stripslashes(urldecode($row["Zusammenfassung"]))."&</p>\n";
 
 	echo "<p>&eof=true"; echo"&</p>\n";  
-	mysql_free_result($result);
+	mysqli_free_result($result);
 
 ?>

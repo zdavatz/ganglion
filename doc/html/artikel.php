@@ -16,8 +16,8 @@
 ?>
 <div colspan="4" class="tabltxt-dl-art">Downloads Artikel:&nbsp;
 <?php
-	($result = mysql_query("select sum(downloads) as sumd from artikel"));
- 	$values = mysql_fetch_array($result);
+	($result = mysqli_query($conn1, "select sum(downloads) as sumd from artikel"));
+ 	$values = mysqli_fetch_array($result);
 	$total_downloads = $values['sumd'];
 	echo number_format($total_downloads,0,".","'");
 ?>
@@ -84,12 +84,12 @@ if($orderdir == "asc")
 							as erschienen_formatted 
 							from artikel 
 							order by ".$orderby." ".$orderdir;
-		$vortrag_result = mysql_query($query);
-		$result = mysql_query($query);
-		$values = mysql_fetch_assoc($result);
+		$vortrag_result = mysqli_query($conn1, $query);
+		$result = mysqli_query($conn1, $query);
+		$values = mysqli_fetch_assoc($result);
 		$open_row = false;
 		
-		while($values = mysql_fetch_assoc($vortrag_result))
+		while($values = mysqli_fetch_assoc($vortrag_result))
 		{
 			if($open_row)
 			{

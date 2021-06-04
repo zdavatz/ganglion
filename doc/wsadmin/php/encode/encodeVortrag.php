@@ -5,8 +5,8 @@ include("property.php");
 //SELECT Titel,Zusammenfassung,gehalten,Zielpublikum,hits,downloads,pdf,Arbeitsplatz,Erziehung,Gesundheit,Familie,thema_id,datumchange from vortrag
 //SELECT bereich_text,inhalt_text,datum_text from text 
 $i=0;
-$result = mysql_query("SELECT Titel,Zusammenfassung,gehalten,Zielpublikum,hits,downloads,pdf,Arbeitsplatz,Erziehung,Gesundheit,Familie,thema_id,datumchange from vortrag");
-while ($row = mysql_fetch_array($result)){
+$result = mysqli_query($conn1, "SELECT Titel,Zusammenfassung,gehalten,Zielpublikum,hits,downloads,pdf,Arbeitsplatz,Erziehung,Gesundheit,Familie,thema_id,datumchange from vortrag");
+while ($row = mysqli_fetch_array($result)){
 	$Titel = urlencode($row["Titel"]);
 	$Zusammenfassung = urlencode($row["Zusammenfassung"]);
 	$gehalten = $row["gehalten"];
@@ -25,7 +25,7 @@ while ($row = mysql_fetch_array($result)){
 	$felder_form = "'$Titel', '$Zusammenfassung', '$Zielpublikum','$gehalten', '$pdf', '$Arbeitsplatz', '$Erziehung', '$Gesundheit', '$Familie', '$thema_id', '$datumchange'";
 	$query = "INSERT INTO vortrag2 ($felder_mysql) VALUES ($felder_form)";
 	echo $query."<br>\n";
-	mysql_query($query);
+	mysqli_query($conn1, $query);
 	$i++;
 
 }

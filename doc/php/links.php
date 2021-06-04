@@ -17,9 +17,9 @@ $php_link_zeitfenster=$zeitfenster;
 
 //check in which Bereich there are entries to be displayed...
 $query = "SELECT MAX(Familie) AS f, MAX(Arbeit) AS a, MAX(Gesundheit) AS g, MAX(Erziehung) AS e FROM links";
-$result = mysql_query($query);
-list ($Familie, $Arbeit, $Gesundheit, $Erziehung) = mysql_fetch_row($result);
-mysql_free_result($result);
+$result = mysqli_query($conn1, $query);
+list ($Familie, $Arbeit, $Gesundheit, $Erziehung) = mysqli_fetch_row($result);
+mysqli_free_result($result);
 echo "<p>&linksFamilie=$Familie&</p>\n";
 echo "<p>&linksArbeit=$Arbeit&</p>\n";
 echo "<p>&linksGesundheit=$Gesundheit&</p>\n";
@@ -37,11 +37,11 @@ $epoche = ($zeitfenster == 0 ? "" : "AND TO_DAYS(datum) > (TO_DAYS(NOW())-$zeitf
 $query = "SELECT $felderIn_links, $felderIn_thema FROM $tabellenIn_ganglion WHERE $precision $whereBedingungen $epoche ORDER BY $sortierung";
 echo "query = $query <br>";
 
-$result = mysql_query($query);
+$result = mysqli_query($conn1, $query);
 
 $i=0;
 
-while($row = mysql_fetch_array($result)){
+while($row = mysqli_fetch_array($result)){
 	$url=$row["url"];
 	$uri=(substr($url, 0, 7) == "http://" ? "" : "http://").$url;
 	$link=($url == $uri ? substr($url, 7, strlen($url)-6) : $url);
@@ -62,7 +62,7 @@ while($row = mysql_fetch_array($result)){
 echo"<p>&anzahl=$i&</p>\n";
 echo"<p>&eof=true&</p>\n";
 
-mysql_free_result($result);
+mysqli_free_result($result);
 
 ?>
 

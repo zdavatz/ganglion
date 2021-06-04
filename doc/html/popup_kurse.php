@@ -38,9 +38,9 @@ $url = $_SERVER["PHP_SELF"];
 								as beginn_formatted
 								FROM kurse, thema 
 								WHERE id_kurse = $id"; 
-		$kurse_result = mysql_query($query);
-		$result = mysql_query($query);
-  	$values = mysql_fetch_assoc($result);
+		$kurse_result = mysqli_query($conn1, $query);
+		$result = mysqli_query($conn1, $query);
+  	$values = mysqli_fetch_assoc($result);
 		?>
 			<table class="bordertable">
 			<tr><td class='TDbold-big'>Ganglion Kursanmeldung</td></tr>
