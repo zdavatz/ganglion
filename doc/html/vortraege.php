@@ -74,6 +74,7 @@ $directions = array
 "hits"			=>	"asc",
 "downloads"	=>	"asc",
 "gehalten"	=>	"asc",
+"audiofile_downloads"	=>	"asc",
 );
 if($orderdir == "asc")
 {
@@ -122,6 +123,7 @@ else
 <form method="get" action="vortraege.php" name="themen">
 <select name="search" size="1" onChange='this.form.submit()'>		
 <?php
+$search = $_GET["search"] or "";
 if ($search == "all"){ $select = "selected"; }
 	echo"<option value='all' $select>alle Themen</option>";
 	
@@ -202,8 +204,8 @@ mysqli_free_result($result);
 			}
 		echo "</tr>";
 		echo "<tr>";
-		$time_H = time("%H",$values["zeit"]);
-		$time_M = time("%M",$values["zeit"]);
+		$time_H = date("h",$values["zeit"]);
+		$time_M = date("i",$values["zeit"]);
 		if (!empty($values["zeit"]))
 			{
 				echo '<td>Zeit:</td><td class="TDbold">'.strftime('%H:%M' ,$values["zeit"]).'</td>';
@@ -251,7 +253,7 @@ mysqli_free_result($result);
 			}	
 			else
 			{
- 				list($google_video_hours, $google_video_minutes, $google_video_seconds) = split(":", $values["google_video_size"]); 
+ 				list($google_video_hours, $google_video_minutes, $google_video_seconds) = explode(":", $values["google_video_size"]); 
  				$videoLength = $google_video_hours."h&nbsp;".$google_video_minutes."m&nbsp;".$google_video_seconds."s";
  				echo "<a class='links".$suffix."'	href='/html/php/download_vortrag.php?id=".$values["id"]."&download=google_video' alt='Google Video: ".$videoLength."' title='Google Video: ".$videoLength."' target='_blank'>
  						".stripslashes(urldecode ($values["Titel"]))."

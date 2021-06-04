@@ -11,7 +11,7 @@ $result = mysqli_query($conn1, "SELECT * FROM text WHERE id_text ='$id_text'");
 @mysqli_free_result($result);
 $msgConf = "Wollen Sie den Eintrag wirklich l?schen?";
 }
-$datum_text = date(YmdGis);
+$datum_text = date("YmdGis");
 ?>
 <form method="post" action="save.php" name="vortrag" enctype="multipart/form-data">
  

@@ -85,7 +85,7 @@ if ($page == "vortrag"){
 	else
 	{
 		if($minute == 'notime') $minute = 0;
-		$time = mktime($hour, $minute);
+		$time = mktime(intval($hour), intval($minute));
 	}
 }
 

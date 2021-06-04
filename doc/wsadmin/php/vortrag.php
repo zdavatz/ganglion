@@ -33,7 +33,7 @@ $datum = datumsplitt($datum);
 $datumchange = date("Y-m-d");
 $msgConf = "Wollen Sie den Eintrag: <$javatitel> wirklich l?schen?";
 $msgConf_pdf = "Wollen Sie diese Pdf Datei: <$file_name> wirklich l?schen?";
-list($google_video_hours, $google_video_minutes, $google_video_seconds) = split(":", $google_video_size); 
+list($google_video_hours, $google_video_minutes, $google_video_seconds) = explode(":", $google_video_size); 
 }
 elseif ($new == "true") {
 $datumchange = date("Y-m-d");
