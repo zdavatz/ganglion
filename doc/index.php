@@ -31,8 +31,8 @@ Frau Dr.med. Ursula Davatz, geboren 1942, ist mit dem K&uuml;nstler
 							where thema_id!=255 and id_thema=thema_id
 							and gehalten >= now()
 							order by gehalten ASC limit 1";
-		$result = mysql_query($query);
-		$values = mysql_fetch_assoc($result);
+		$result = mysqli_query($conn1, $query);
+		$values = mysqli_fetch_assoc($result);
 		echo '<nobr class="TDbold-big">N&auml;chster&nbsp;Vortrag:</nobr><br><br><a href="html/vortraege.php">'.urldecode ($values["Titel"]).'</a>';
 		if (!empty($values["gehalten_formatted"]))
 			{

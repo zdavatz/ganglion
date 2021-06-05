@@ -1,7 +1,7 @@
 <?php //getmenu.php
 
 if ($new == "true" || $change == "true"){
-	$result = mysql_query ("SELECT * FROM thema ORDER BY thema ASC");
+	$result = mysqli_query($conn1, "SELECT * FROM thema ORDER BY thema ASC");
 	$i=0;
 	$lastThema="";
 ?>
@@ -15,7 +15,7 @@ if ($new == "true" || $change == "true"){
 		$thema = "";
 	}
 	$thema_id = $thema;
-	while ($row = mysql_fetch_array($result)){
+	while ($row = mysqli_fetch_array($result)){
 	 		$idWWW = $row["id_thema"];
 	 		$thema = urldecode($row["thema"]);
 	 		$select = "";
@@ -29,7 +29,7 @@ if ($new == "true" || $change == "true"){
 else 
 {
 	if(!isset($table)) $table = "vortrag";
-	$result = mysql_query ("SELECT id_thema, thema, thema_id FROM thema AS A, $table AS B WHERE A.id_thema=B.thema_id GROUP BY id_thema ORDER BY thema ASC");
+	$result = mysqli_query($conn1, "SELECT id_thema, thema, thema_id FROM thema AS A, $table AS B WHERE A.id_thema=B.thema_id GROUP BY id_thema ORDER BY thema ASC");
 	$lastThema="";
 ?>
 <form method="get" action="admin.php" name="themen">
@@ -41,7 +41,7 @@ else
 if ($search == "all"){ $select = "selected"; }
 	echo"<option value='all' $select>alle Themen</option>";
 	
-	while ($row = mysql_fetch_array($result)){
+	while ($row = mysqli_fetch_array($result)){
 	 		$id = $row["id_thema"];
 	 		$thema = urldecode($row["thema"]);
 	 		$select = "";
@@ -52,5 +52,5 @@ if ($search == "all"){ $select = "selected"; }
 	echo "</select>\n";
 	echo "</form>\n";
 }
-mysql_free_result($result);
+mysqli_free_result($result);
 ?>

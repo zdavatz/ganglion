@@ -13,9 +13,9 @@ if (isset($request) && ($request == "uebersicht" || $request == "zeitfenster")){
 	
 	//check in which Bereich there are entries to be displayed...
 	$query = "SELECT MAX(Familie) AS f, MAX(Arbeit) AS a, MAX(Gesundheit) AS g, MAX(Erziehung) AS e FROM kurse";
-	$result = mysql_query($query);
-	list ($Familie, $Arbeit, $Gesundheit, $Erziehung) = mysql_fetch_row($result);
-	mysql_free_result($result);
+	$result = mysqli_query($conn1, $query);
+	list ($Familie, $Arbeit, $Gesundheit, $Erziehung) = mysqli_fetch_row($result);
+	mysqli_free_result($result);
 	echo "<p>&kurseFamilie=$Familie&</p>\n";
 	echo "<p>&kurseArbeit=$Arbeit&</p>\n";
 	echo "<p>&kurseGesundheit=$Gesundheit&</p>\n";
@@ -56,21 +56,21 @@ if (isset($request) && ($request == "uebersicht" || $request == "zeitfenster")){
 		default			: 	$epoche = "";
 	}
 
-	$result = mysql_query("SELECT $felderIn_kurse, $felderIn_thema FROM $tabellenIn_ganglion WHERE $precision $whereBedingungen $epoche ORDER BY $sortierung");
+	$result = mysqli_query($conn1, "SELECT $felderIn_kurse, $felderIn_thema FROM $tabellenIn_ganglion WHERE $precision $whereBedingungen $epoche ORDER BY $sortierung");
 	
-	if ($zeitfenster == "default" && mysql_num_rows($result) == 0) {
+	if ($zeitfenster == "default" && mysqli_num_rows($result) == 0) {
 		$epoche = "AND TO_DAYS(beginn_kurse) > TO_DAYS(NOW())";
-		mysql_free_result($result);
-		$result = mysql_query("SELECT $felderIn_kurse, $felderIn_thema FROM $tabellenIn_ganglion WHERE $precision $whereBedingungen $epoche ORDER BY $sortierung");
-		if (mysql_num_rows($result) == 0) {
-			mysql_free_result($result);
-			$result = mysql_query("SELECT $felderIn_kurse, $felderIn_thema FROM $tabellenIn_ganglion WHERE $precision $whereBedingungen ORDER BY $sortierung");
+		mysqli_free_result($result);
+		$result = mysqli_query($conn1, "SELECT $felderIn_kurse, $felderIn_thema FROM $tabellenIn_ganglion WHERE $precision $whereBedingungen $epoche ORDER BY $sortierung");
+		if (mysqli_num_rows($result) == 0) {
+			mysqli_free_result($result);
+			$result = mysqli_query($conn1, "SELECT $felderIn_kurse, $felderIn_thema FROM $tabellenIn_ganglion WHERE $precision $whereBedingungen ORDER BY $sortierung");
 		}
 	}
 
 	$i=0;
 
-	while($row = mysql_fetch_array($result)){
+	while($row = mysqli_fetch_array($result)){
 		$kurse_array[]=$row["id_kurse"];
 		if ($request == "uebersicht"){		
 			echo"<p>&id$i=".$row["id_kurse"]."&</p>\n";
@@ -90,7 +90,7 @@ if (isset($request) && ($request == "uebersicht" || $request == "zeitfenster")){
 	echo"<p>&anzahl=$i&</p>\n";
 	echo"<p>&eof=true&</p>\n";
 
-	mysql_free_result($result);
+	mysqli_free_result($result);
 
 }
 
@@ -109,9 +109,9 @@ if (isset($request) && $request == "directThread"){
 
 	//check in which Bereich there are entries to be displayed...
 	$query = "SELECT MAX(Familie) AS f, MAX(Arbeit) AS a, MAX(Gesundheit) AS g, MAX(Erziehung) AS e FROM kurse";
-	$result = mysql_query($query);
-	list ($Familie, $Arbeit, $Gesundheit, $Erziehung) = mysql_fetch_row($result);
-	mysql_free_result($result);
+	$result = mysqli_query($conn1, $query);
+	list ($Familie, $Arbeit, $Gesundheit, $Erziehung) = mysqli_fetch_row($result);
+	mysqli_free_result($result);
 	echo "<p>&kurseFamilie=$Familie&</p>\n";
 	echo "<p>&kurseArbeit=$Arbeit&</p>\n";
 	echo "<p>&kurseGesundheit=$Gesundheit&</p>\n";
@@ -122,8 +122,8 @@ if (isset($request) && $request == "directThread"){
 	if (sizeof($kurse_array) == 0){
 	//echo "kein kurse_array gefunden<br>";
 		$query="SELECT id_kurse, $bereich FROM kurse WHERE $bereich=1 ORDER BY beginn_kurse DESC";
-		$result = mysql_query($query);
-		while ($row = mysql_fetch_array($result)){
+		$result = mysqli_query($conn1, $query);
+		while ($row = mysqli_fetch_array($result)){
 			$kurse_array[]=$row["id_kurse"];
 		}
 	}
@@ -155,9 +155,9 @@ if (isset($request) && $request == "directThread"){
 	$tabellenIn_ganglion = "kurse AS A, thema AS B";
 	$whereBedingungen = "A.id_kurse = $php_kurse_id AND A.thema_id = B.id_thema";
 	
-	$result = mysql_query("SELECT $felderIn_kurse, $felderIn_thema FROM $tabellenIn_ganglion WHERE $whereBedingungen");
+	$result = mysqli_query($conn1, "SELECT $felderIn_kurse, $felderIn_thema FROM $tabellenIn_ganglion WHERE $whereBedingungen");
 	
-	$row = mysql_fetch_array($result);
+	$row = mysqli_fetch_array($result);
 	
 	$kursbeginn=$row["beginn_kurse"];
 	$heute =  date("Y-m-d");
@@ -178,7 +178,7 @@ if (isset($request) && $request == "directThread"){
 	
 	echo "<p>&eof=true&</p>\n";
 
-	mysql_free_result($result);
+	mysqli_free_result($result);
 }
 
 if (isset($request) && $request == "print"){
@@ -187,9 +187,9 @@ if (isset($request) && $request == "print"){
 	$tabellenIn_ganglion = "kurse AS A, thema AS B";
 	$whereBedingungen = "A.id_kurse = $id AND A.thema_id = B.id_thema";
 	
-	$result = mysql_query("SELECT $felderIn_kurse, $felderIn_thema FROM $tabellenIn_ganglion WHERE $whereBedingungen");
+	$result = mysqli_query($conn1, "SELECT $felderIn_kurse, $felderIn_thema FROM $tabellenIn_ganglion WHERE $whereBedingungen");
 	
-	$row = mysql_fetch_array($result);
+	$row = mysqli_fetch_array($result);
 	
 	echo "<html>
 <head>
@@ -243,7 +243,7 @@ if (isset($request) && $request == "print"){
 </html>
 ";	
 
-	mysql_free_result($result);
+	mysqli_free_result($result);
 
 }
 

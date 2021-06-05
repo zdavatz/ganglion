@@ -25,9 +25,9 @@ $felder_mysql	=	"Titel, Zusammenfassung, Zielpublikum, gehalten, pdf, Arbeit, Er
 //
 //
 //
-$conn1	=	mysql_connect($server, $user, $pass);
-$select	=	mysql_select_db($db,$conn1);
-mysql_query("SET NAMES 'utf8'"); mysql_query("SET CHARACTER SET utf8"); 
+$conn1	=	mysqli_connect($server, $user, $pass);
+$select	=	mysqli_select_db($conn1, $db);
+mysqli_query($conn1, "SET NAMES 'utf8'"); mysqli_query($conn1, "SET CHARACTER SET utf8"); 
 //
 //
 if(!isset($request)||$request!="print") include("head.php");
@@ -41,14 +41,14 @@ if (isset($command) && $command == "new"){
 		exit;
 		}
 	}	
-	mysql_query("INSERT INTO $table ($felder_mysql) VALUES ('$Titel', '$Zusammenfassung', '$Zielpublikum','$gehalten', '$file_name', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$thema_id')");
+	mysqli_query($conn1, "INSERT INTO $table ($felder_mysql) VALUES ('$Titel', '$Zusammenfassung', '$Zielpublikum','$gehalten', '$file_name', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$thema_id')");
 }
 //
 if (isset($command) && $command=="getmenu"){
-	$result = mysql_query ("SELECT id_thema, thema, Arbeit, Erziehung, Gesundheit, Familie, thema_id FROM thema AS A, $table AS B WHERE A.id_thema=B.thema_id AND $bereich=1 GROUP BY id_thema ");
+	$result = mysqli_query($conn1, "SELECT id_thema, thema, Arbeit, Erziehung, Gesundheit, Familie, thema_id FROM thema AS A, $table AS B WHERE A.id_thema=B.thema_id AND $bereich=1 GROUP BY id_thema ");
 		$i=0;
 		$lastThema="";
-			while ($row = mysql_fetch_array($result)){
+			while ($row = mysqli_fetch_array($result)){
 				echo "<p>&menu_thema_id$i="; echo $row["id_thema"];echo "&</p>\n";
 				echo "<p>&menu_thema$i="; echo stripslashes($row["thema"]);echo "&</p>\n";
 				$i++;
@@ -56,7 +56,7 @@ if (isset($command) && $command=="getmenu"){
 			}
 		echo "<p>&menu_anzahl=$i&</p>\n";
 		echo "<p>&eof=true&</p>\n";
-		mysql_free_result($result);
+		mysqli_free_result($result);
 }	
 //
 if (isset($command) && $command=="list"){ 
@@ -64,7 +64,7 @@ if (isset($command) && $command=="list"){
 }
 //
 if (isset($command) && $command=="del"){
-	mysql_query ("DELETE FROM $table WHERE id = '$id'");
+	mysqli_query($conn1, "DELETE FROM $table WHERE id = '$id'");
 }
 if (isset($command) && $command=="init"){
 	$datum = date("j.n.Y");
@@ -105,6 +105,6 @@ if (isset($command) && $command=="kontaktmail"){
 	include("kontaktmail.php");
 }
 //
-mysql_close($conn1);
+mysqli_close($conn1);
 if(!isset($request)||$request!="print") include("end.php");
 ?>

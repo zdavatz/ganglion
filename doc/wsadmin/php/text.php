@@ -1,17 +1,17 @@
 <?php
 if ($change == "true"){
-$result = mysql_query ("SELECT * FROM text WHERE id_text ='$id_text'");
-	$row = @mysql_fetch_array($result);
+$result = mysqli_query($conn1, "SELECT * FROM text WHERE id_text ='$id_text'");
+	$row = @mysqli_fetch_array($result);
 		$id_text = $row["id_text"];
 		$inhalt_text = urldecode($row["inhalt_text"]);
 		$bereich_text = urldecode($row["bereich_text"]);
 		$datumchangeold = deStampDate($row["datum_text"]);
 		
 
-@mysql_free_result($result);
+@mysqli_free_result($result);
 $msgConf = "Wollen Sie den Eintrag wirklich l?schen?";
 }
-$datum_text = date(YmdGis);
+$datum_text = date("YmdGis");
 ?>
 <form method="post" action="save.php" name="vortrag" enctype="multipart/form-data">
  

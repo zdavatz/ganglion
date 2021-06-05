@@ -1,7 +1,7 @@
 <?php
 if ($change == "true"){
-$result = mysql_query ("SELECT * FROM artikel WHERE id_artikel ='$id'");
-	$row = @mysql_fetch_array($result);
+$result = mysqli_query($conn1, "SELECT * FROM artikel WHERE id_artikel ='$id'");
+	$row = @mysqli_fetch_array($result);
 		$id_artikel = $row["id_artikel"];
 		$titel_artikel = stripslashes(urldecode($row["titel_artikel"]));
 		$javatitel = stripslashes($row["titel_artikel"]);
@@ -25,7 +25,7 @@ $result = mysql_query ("SELECT * FROM artikel WHERE id_artikel ='$id'");
 $datum_artikel = date("Y-m-d");
 $datum = datumsplitt($row["erschienen"]);
 $datumend = datumsplitt($row["ende_artikel"]);
-@mysql_free_result($result);
+@mysqli_free_result($result);
 
 $msgConf = "Wollen Sie den Eintrag <$javatitel> wirklich l?schen?";
 $msgConf_pdf = "Wollen Sie diese Pdf Datei: <$file_name> wirklich l?schen?";

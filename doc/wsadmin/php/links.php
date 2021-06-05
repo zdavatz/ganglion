@@ -1,7 +1,7 @@
 <?php
 if ($change == "true"){
-$result = mysql_query ("SELECT * FROM links WHERE id_links ='$id'");
-	$row = @mysql_fetch_array($result);
+$result = mysqli_query($conn1, "SELECT * FROM links WHERE id_links ='$id'");
+	$row = @mysqli_fetch_array($result);
 		$id_vortrag = $row["id_links"];
 		$datum = $row["datum"];
 		$beschreibung = $row["text"];
@@ -19,7 +19,7 @@ $result = mysql_query ("SELECT * FROM links WHERE id_links ='$id'");
 	$javatitel = addslashes($url);
 	
 	
-@mysql_free_result($result);
+@mysqli_free_result($result);
 $datum = datum_ch($datum);
 $datumchange = date("Y-m-d");
 $msgConf = "Wollen Sie den Eintrag $javatitel wirklich l?schen?";

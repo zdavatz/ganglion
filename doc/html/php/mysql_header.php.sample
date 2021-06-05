@@ -7,8 +7,8 @@ $user	=	"*****";		//MySQL-User
 $pass	=	"*****";		//MySQL-Passwort
 $db		=	"ganglion";		//MySQL-Datenbank
 //
-$conn1	=	mysql_connect($server, $user, $pass);
-$select	=	mysql_select_db($db,$conn1);
-mysql_query("SET NAMES 'utf8'"); mysql_query("SET CHARACTER SET utf8"); 
+$conn1	=	mysqli_connect($server, $user, $pass);
+$select	=	mysqli_select_db($conn1, $db);
+mysqli_query($conn1, "SET NAMES 'utf8'"); mysqli_query($conn1, "SET CHARACTER SET utf8"); 
 //
 ?>

@@ -97,13 +97,13 @@ $all=0;
 	if (isset($search) &&  $search == "all") {
 
 
-		$all = mysql_query("SELECT * FROM $table"); 
+		$all = mysqli_query($conn1, "SELECT * FROM $table"); 
 
 
 	} else {
 
 
-		$all = mysql_query("SELECT * FROM $table WHERE thema_id=$search");
+		$all = mysqli_query($conn1, "SELECT * FROM $table WHERE thema_id=$search");
 
 
 	}
@@ -112,10 +112,10 @@ $all=0;
 
 
 
-	$Ptot = mysql_num_rows($all);
+	$Ptot = mysqli_num_rows($all);
 
 
-	mysql_free_result($all);
+	mysqli_free_result($all);
 
 
 	
@@ -409,10 +409,10 @@ if (isset($request) && $request=="uebersicht"){
 	if (isset($search) &&  $search == "all") {
 
 
-			$result = mysql_query ("SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema ORDER BY $SortBy");
+			$result = mysqli_query($conn1, "SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema ORDER BY $SortBy");
 
 
-			$isresult = mysql_num_rows($result);
+			$isresult = mysqli_num_rows($result);
 
 
 	}
@@ -424,13 +424,13 @@ if (isset($request) && $request=="uebersicht"){
 	{
 
 
-			$result = mysql_query ("SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema AND thema_id=$search ORDER BY $SortBy");
+			$result = mysqli_query($conn1, "SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema AND thema_id=$search ORDER BY $SortBy");
 
 
-			$isresult = mysql_num_rows($result);
+			$isresult = mysqli_num_rows($result);
 
 
-			if ($isresult == 0)	$result = mysql_query ("SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema ORDER BY $SortBy");
+			if ($isresult == 0)	$result = mysqli_query($conn1, "SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema ORDER BY $SortBy");
 
 
 			
@@ -454,7 +454,7 @@ if (isset($request) && $request=="uebersicht"){
 			$i=1;	
 
 
-			while ($row = mysql_fetch_array($result)){
+			while ($row = mysqli_fetch_array($result)){
 
 
 				if ( $i >= $Pstart && $i <= $Pend ){
@@ -565,7 +565,7 @@ if (isset($request) && $request=="uebersicht"){
 
 
 
-			@mysql_free_result($result);	     
+			@mysqli_free_result($result);	     
 
 
 

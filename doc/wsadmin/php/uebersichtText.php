@@ -30,8 +30,8 @@ $url = "$PHP_SELF?$nocache&page=$page&P=$P&search=$search";
 $Ptot=0;
 $all=0;
 //
-	$result = mysql_query("SELECT id_text,bereich_text,inhalt_text,datum_text from text");
-	$Ptot = mysql_num_rows($result);
+	$result = mysqli_query($conn1, "SELECT id_text,bereich_text,inhalt_text,datum_text from text");
+	$Ptot = mysqli_num_rows($result);
 	if (empty($disRow)) $disRow = 10;
 	$Pend = $P * $disRow;
 	$Pstart = $Pend - ($disRow-1);
@@ -116,8 +116,8 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 //SELECT id_text,bereich_text,inhalt_text,datum_text from text 
 
 			$i=1;
-		$result = mysql_query("SELECT id_text,bereich_text,inhalt_text,datum_text from text");
-			while ($row = mysql_fetch_array($result)){
+		$result = mysqli_query($conn1, "SELECT id_text,bereich_text,inhalt_text,datum_text from text");
+			while ($row = mysqli_fetch_array($result)){
 				if ( $i >= $Pstart && $i <= $Pend ){
 					$id_text = $row["id_text"];
 					$bereich_text = urldecode($row["bereich_text"]);
@@ -141,7 +141,7 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 
 			}
 
-		@mysql_free_result($result);
+		@mysqli_free_result($result);
 ?>
 </table>
 </td>

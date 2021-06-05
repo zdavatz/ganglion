@@ -37,16 +37,16 @@ $all=0;
 		$query = "	SELECT * 
 					FROM $table
 					WHERE Titel LIKE '%$searchterm%'";
-		$all = mysql_query ($query);
+		$all = mysqli_query($conn1, $query);
 	}
 	elseif (isset($search) &&  $search == "all") {
-		$all = mysql_query("SELECT * FROM $table");
+		$all = mysqli_query($conn1, "SELECT * FROM $table");
 	} else {
-		$all = mysql_query("SELECT * FROM $table WHERE thema_id=$search");
+		$all = mysqli_query($conn1, "SELECT * FROM $table WHERE thema_id=$search");
 	}
 
-	$Ptot = mysql_num_rows($all);
-	mysql_free_result($all);
+	$Ptot = mysqli_num_rows($all);
+	mysqli_free_result($all);
 	if (empty($disRow)) $disRow = 10;
 	$Pend = $P * $disRow;
 	$Pstart = $Pend - ($disRow-1);
@@ -205,23 +205,23 @@ if (isset($request) && $request=="uebersicht"){
 					WHERE A.thema_id=B.id_thema 
 					AND Titel LIKE '%$searchterm%'
 					ORDER BY $SortBy";
-		$result = mysql_query ($query);
+		$result = mysqli_query($conn1, $query);
 	}
 	elseif (isset($search) &&  $search == "all") {
-		$result = mysql_query ("SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema ORDER BY $SortBy");
+		$result = mysqli_query($conn1, "SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema ORDER BY $SortBy");
 	}
 	else
 	{
-		$result = mysql_query ("SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema AND thema_id=$search ORDER BY $SortBy");
-		$isresult = mysql_num_rows($result);
-		if ($isresult == 0) $result = mysql_query ("SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema ORDER BY $SortBy");
+		$result = mysqli_query($conn1, "SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema AND thema_id=$search ORDER BY $SortBy");
+		$isresult = mysqli_num_rows($result);
+		if ($isresult == 0) $result = mysqli_query($conn1, "SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema ORDER BY $SortBy");
 	}
 	
-	if(mysql_num_rows($result)>0)
+	if(mysqli_num_rows($result)>0)
 	{	
 			$ok = "<img class='IMGok' src='../images/OK.gif' alt=''>";
 			$i=1;
-			while ($row = mysql_fetch_array($result)){
+			while ($row = mysqli_fetch_array($result)){
 				if ( $i >= $Pstart && $i <= $Pend ){
 					$gehalten = datum_ch($row["gehalten"]);
 					$id = $row["id"];
@@ -279,7 +279,7 @@ if (isset($request) && $request=="uebersicht"){
 		{
 			echo "<td colspan='11'>Es wurden keine Vortr&auml;ge gefunden</td>";
 		}
-		@mysql_free_result($result);
+		@mysqli_free_result($result);
 			
 
 }

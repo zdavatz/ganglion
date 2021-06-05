@@ -1,11 +1,11 @@
 <?php //function.php
 function deStampDate($stampedDate){
-	$year=substr($stampedDate, 0,4);
-	$month=substr($stampedDate, 4,2);
-	$day=substr($stampedDate, 6,2);
-	$hour=substr($stampedDate, 8,2);
-	$minute=substr($stampedDate, 10,2);
-	$second=substr($stampedDate, 12,2);
+	$year= intval(substr($stampedDate, 0,4));
+	$month= intval(substr($stampedDate, 4,2));
+	$day= intval(substr($stampedDate, 6,2));
+	$hour= intval(substr($stampedDate, 8,2));
+	$minute= intval(substr($stampedDate, 10,2));
+	$second= intval(substr($stampedDate, 12,2));
 	$UXStamp=mktime($hour,$minute,$second,$month,$day,$year);
 	$deStampDate=date("d.m.Y", $UXStamp);
 	return $deStampDate;
@@ -13,10 +13,10 @@ function deStampDate($stampedDate){
 //
 function datum_ch($datum){
 	$token="-";
-	$y = strtok($datum,$token);
-	$m = strtok($token);
-	$d = strtok($token);
-	$DatumCH = (time("d.m.Y", time(0,0,0,$m,$d,$y)));
+	$y = intval(strtok($datum,$token));
+	$m = intval(strtok($token));
+	$d = intval(strtok($token));
+	$DatumCH = (date("d.m.Y", mktime(0,0,0,$m,$d,$y)));
 	return $DatumCH;
 }
 //

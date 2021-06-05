@@ -22,9 +22,9 @@ $url = $_SERVER["PHP_SELF"];
 							from vortrag, thema
 							where id_thema=thema_id
 							and id=$_GET[id]";
-		$vortrag_result = mysql_query($query);
-		$result = mysql_query($query);
-		$values = mysql_fetch_assoc($result);
+		$vortrag_result = mysqli_query($conn1, $query);
+		$result = mysqli_query($conn1, $query);
+		$values = mysqli_fetch_assoc($result);
 			echo "<table class='borderTABLE'>";
 			echo "<tr><td colspan='2' class='TDbold-big'>Ganglion Vortrag Kurzinformationen</td></tr>";
 			echo "<tr><td colspan='2' class='TDbold-big'>".stripslashes(trim(urldecode ($values["Titel"])))."</td></tr>";

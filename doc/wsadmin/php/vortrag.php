@@ -1,7 +1,7 @@
 <?php
 if ($change == "true"){
-$result = mysql_query ("SELECT * FROM vortrag WHERE id ='$id'");
-	$row = @mysql_fetch_array($result);
+$result = mysqli_query($conn1, "SELECT * FROM vortrag WHERE id ='$id'");
+	$row = @mysqli_fetch_array($result);
 		$id_vortrag = $row["id"];
 		$datum = $row["gehalten"];
 		$Titel = stripslashes(urldecode($row["Titel"]));
@@ -28,12 +28,12 @@ $result = mysql_query ("SELECT * FROM vortrag WHERE id ='$id'");
 		$datumchangeold = datum_ch($datumchangeold);
 
 		
-@mysql_free_result($result);
+@mysqli_free_result($result);
 $datum = datumsplitt($datum);
 $datumchange = date("Y-m-d");
 $msgConf = "Wollen Sie den Eintrag: <$javatitel> wirklich l?schen?";
 $msgConf_pdf = "Wollen Sie diese Pdf Datei: <$file_name> wirklich l?schen?";
-list($google_video_hours, $google_video_minutes, $google_video_seconds) = split(":", $google_video_size); 
+list($google_video_hours, $google_video_minutes, $google_video_seconds) = explode(":", $google_video_size); 
 }
 elseif ($new == "true") {
 $datumchange = date("Y-m-d");

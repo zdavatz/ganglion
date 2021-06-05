@@ -116,9 +116,9 @@ function send()
  
 function datum_ch($datum){
 	$token="-";
-	$y = strtok($datum,$token);
-	$m = strtok($token);
-	$d = strtok($token);
+	$y = intval(strtok($datum,$token));
+	$m = intval(strtok($token));
+	$d = intval(strtok($token));
 	$DatumCH = (date("d.m.Y", mktime(0,0,0,$m,$d,$y)));
 	return $DatumCH;
 }
@@ -189,24 +189,24 @@ function input2date($idate){
 }
 //
 function deStampDate($stampedDate){
-	$year=substr($stampedDate, 0,4);
-	$month=substr($stampedDate, 4,2);
-	$day=substr($stampedDate, 6,2);
-	$hour=substr($stampedDate, 8,2);
-	$minute=substr($stampedDate, 10,2);
-	$second=substr($stampedDate, 12,2);
+	$year=intval(substr($stampedDate, 0,4));
+	$month=intval(substr($stampedDate, 4,2));
+	$day=intval(substr($stampedDate, 6,2));
+	$hour=intval(substr($stampedDate, 8,2));
+	$minute=intval(substr($stampedDate, 10,2));
+	$second=intval(substr($stampedDate, 12,2));
 	$UXStamp=mktime($hour,$minute,$second,$month,$day,$year);
 	$deStampDate=date("j.n.Y", $UXStamp);
 	return $deStampDate;
 }
 //
 function deStampTime($stampedDate){
-	$year=substr($stampedDate, 0,4);
-	$month=substr($stampedDate, 4,2);
-	$day=substr($stampedDate, 6,2);
-	$hour=substr($stampedDate, 8,2);
-	$minute=substr($stampedDate, 10,2);
-	$second=substr($stampedDate, 12,2);
+	$year=intval(substr($stampedDate, 0,4));
+	$month=intval(substr($stampedDate, 4,2));
+	$day=intval(substr($stampedDate, 6,2));
+	$hour=intval(substr($stampedDate, 8,2));
+	$minute=intval(substr($stampedDate, 10,2));
+	$second=intval(substr($stampedDate, 12,2));
 	$UXStamp=mktime($hour,$minute,$second,$month,$day,$year);
 	$deStampTime=date("H:i", $UXStamp);
 	return $deStampTime;

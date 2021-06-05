@@ -68,9 +68,9 @@ $query = "select thema, text, url, date_format(datum,'%d.%m.%Y')
 					from links, thema 
 					where id_thema=thema_id 
 					order by ".$orderby." ".$orderdir;
-		$links_result = mysql_query($query);
+		$links_result = mysqli_query($conn1, $query);
 
-		while($values = mysql_fetch_assoc($links_result))
+		while($values = mysqli_fetch_assoc($links_result))
 		{
 		
 			echo "<tr>";

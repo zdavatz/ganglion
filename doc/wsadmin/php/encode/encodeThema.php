@@ -5,8 +5,8 @@ include("../property.php");
 //SELECT Titel,Zusammenfassung,gehalten,Zielpublikum,hits,downloads,pdf,Arbeitsplatz,Erziehung,Gesundheit,Familie,thema_id,datumchange from vortrag
 //SELECT id_thema,thema,datumchange from thema 
 $i=0;
-$result = mysql_query("SELECT id_thema,thema,datumchange from thema");
-while ($row = mysql_fetch_array($result)){
+$result = mysqli_query($conn1, "SELECT id_thema,thema,datumchange from thema");
+while ($row = mysqli_fetch_array($result)){
 	$id_thema = $row["id_thema"];
 	$thema = urlencode($row["thema"]);
 	$datumchange = $row["datumchange"];
@@ -15,7 +15,7 @@ while ($row = mysql_fetch_array($result)){
 	$felder_form = "'$id_thema','$thema','$datumchange'";
 	$query = "INSERT INTO thema2 ($felder_mysql) VALUES ($felder_form)";
 	echo $query."<br>\n";
-	mysql_query($query);
+	mysqli_query($conn1, $query);
 	$i++;
 
 }

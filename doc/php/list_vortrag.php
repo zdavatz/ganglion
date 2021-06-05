@@ -55,11 +55,11 @@ if (isset($request) && $request=="uebersicht"){
 		$query="SELECT $felderIn_vortrag, $felderIn_thema FROM $tabellenIn_ganglion WHERE $precision $whereBedingungen $epoche ORDER BY $sortierung";
 		echo "$query<br>";
 
-		$result = mysql_query ($query);
+		$result = mysqli_query($conn1, $query);
 				$i=0;
 				$datum = date("j.n.Y");	
 				echo "<p>&datum=$datum&</p>\n";	
-				while ($row = mysql_fetch_array($result)){		
+				while ($row = mysqli_fetch_array($result)){		
 						$gehalten = datum_ch($row["gehalten"]);
 						$id = $row["id"];
 						
@@ -91,7 +91,7 @@ if (isset($request) && $request=="uebersicht"){
 			echo "<p>&php_richtung=".trim(strstr($sortierung, " "))."&</p>\n";
 			echo "<p>&anzahl=$i&</p>\n";
 			echo "<p>&eof=true&</p>\n";
-			mysql_free_result($result);	
+			mysqli_free_result($result);	
 }
 
 if (isset($request) && $request=="keepPointer"){
@@ -112,8 +112,8 @@ if (isset($request) && $request=="directThread"){
 	if (sizeof($vortrag_array) == 0){
 	//echo "kein vortrag_array gefunden<br>";
 		$query="SELECT id, $bereich FROM vortrag WHERE $bereich=1 ORDER BY datumchange DESC";
-		$result = mysql_query($query);
-		while ($row = mysql_fetch_array($result)){
+		$result = mysqli_query($conn1, $query);
+		while ($row = mysqli_fetch_array($result)){
 			$vortrag_array[]=$row["id"];
 		}
 	}
@@ -148,8 +148,8 @@ if (isset($request) && $request=="directThread"){
 	$query="SELECT $felderIn_vortrag, $felderIn_thema FROM $tabellenIn_ganglion WHERE $whereBedingungen";
 //	echo $query."<br>";
 	
-	$result = mysql_query ($query);
-	$row = mysql_fetch_array($result);
+	$result = mysqli_query($conn1, $query);
+	$row = mysqli_fetch_array($result);
 				$id = $row["id"];
 				$Titel = stripslashes($row["Titel"]);		
 				$Zusammenfassung = stripslashes(urldecode($row["Zusammenfassung"]));
@@ -175,8 +175,8 @@ if (isset($request) && $request=="directThread"){
 			echo "<p>&anzahl=".sizeof($vortrag_array)."&</p>\n";
 			
 	$hits = $row["hits"]+1;
-	mysql_query("UPDATE vortrag SET hits=$hits WHERE id=$id");	
-	mysql_free_result($result);
+	mysqli_query($conn1, "UPDATE vortrag SET hits=$hits WHERE id=$id");	
+	mysqli_free_result($result);
 
 	echo "<p>&eof=true&</p>\n";
 	
@@ -185,7 +185,7 @@ if (isset($request) && $request=="directThread"){
 
 if (isset($request) && $request=="updateDownloads"){
 	
-	mysql_query ("UPDATE vortrag SET downloads=(downloads+1) WHERE id=$pdf_id");
+	mysqli_query($conn1, "UPDATE vortrag SET downloads=(downloads+1) WHERE id=$pdf_id");
 	echo "<p>&eof=true&</p>\n";
 	
 }

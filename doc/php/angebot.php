@@ -9,9 +9,9 @@ if (isset($request) && $request == "text"){
 	$whereBedingungen="bereich_text = '$bereich'";
 	$sortierung="datum_text DESC";
 	
-	$result = mysql_query("SELECT $felderIn_text FROM $tabellenIn_ganglion WHERE $whereBedingungen ORDER BY $sortierung");
+	$result = mysqli_query($conn1, "SELECT $felderIn_text FROM $tabellenIn_ganglion WHERE $whereBedingungen ORDER BY $sortierung");
 	
-	$row=mysql_fetch_array($result);
+	$row=mysqli_fetch_array($result);
 	
 	echo "<p>&text=Frau Dr. med. Ursula Davatz\n\n".stripslashes($row["inhalt_text"])."&</p>\n";
 	echo "<p>&eof=true&</p>\n";
@@ -25,9 +25,9 @@ if (isset($request) && $request == "print"){
 	$whereBedingungen="bereich_text = '$bereich'";
 	$sortierung="datum_text DESC";
 	
-	$result = mysql_query("SELECT $felderIn_text FROM $tabellenIn_ganglion WHERE $whereBedingungen ORDER BY $sortierung");
+	$result = mysqli_query($conn1, "SELECT $felderIn_text FROM $tabellenIn_ganglion WHERE $whereBedingungen ORDER BY $sortierung");
 	
-	$row=mysql_fetch_array($result);
+	$row=mysqli_fetch_array($result);
 	if($bereich="Zur Person"){
 		$img = "<td><img src='/images/drdavatz.jpg' width='236' height='252' alt='' /></td>";
 		$colspan = "colspan='2'";
@@ -68,7 +68,7 @@ if (isset($request) && $request == "print"){
 </html>
 ";	
 
-	mysql_free_result($result);
+	mysqli_free_result($result);
 
 }
 
