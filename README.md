@@ -28,10 +28,8 @@ $ cp doc/wsadmin/php/auth.inc{.sample,}
 * sudo a2enmod php8.0
 
 ##### Apache2
-```
 Sample apache.conf (located in: `/etc/apache2/sites-enabled/ganglion.ch.conf`)
-
-```txt
+```
 <Directory /var/www/ganglion.ch/doc>
   Options ExecCGI FollowSymlinks
   Require all granted
