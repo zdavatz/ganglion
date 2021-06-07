@@ -26,6 +26,8 @@ $ cp doc/wsadmin/php/auth.inc{.sample,}
 ##### Modules
 * sudo apt install php8.0 libapache2-mod-php8.0
 * sudo a2enmod php8.0
+* sudo apt-get install php8.0-mysql
+* sudo phpenmod mysqli
 
 ##### Apache2
 Sample apache.conf (located in: `/etc/apache2/sites-enabled/ganglion.ch.conf`)
