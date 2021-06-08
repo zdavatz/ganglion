@@ -81,6 +81,8 @@ function input2date($idate){
 	if ($y!=""){
 		if (checkdate($m, $d, $y))
 		$datum="$y-$m-$d";
+	} else {
+		$datum = '';
 	}
 	return $datum;
 }
