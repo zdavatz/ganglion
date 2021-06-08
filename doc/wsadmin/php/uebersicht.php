@@ -99,7 +99,7 @@ if (empty($sortby)) $sortby="datum";
 if ($sortby == "standart" && $search != "all") $sortby = "Titel";
 if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 
-
+	$order = array(0,0,0,0,0,0,0,0,0,0,0,0);
 	if 	(isset($sortby) && $sortby=="Titel")			{	$SortBy="Titel ASC";		$order[0] = 1;	}
 	elseif	(isset($sortby) && $sortby=="datum")		{	$SortBy="gehalten DESC"; 	$order[1] = 1;	}
 	elseif	(isset($sortby) && $sortby=="Thema")		{	$SortBy="thema  ASC";		$order[2] = 1;	}

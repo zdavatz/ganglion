@@ -16,6 +16,28 @@ if (!ini_get('register_globals')) {
     }
 }
 
+if (!isset($change)) {
+	$change = '';
+}
+if (!isset($delete)) {
+	$delete = '';
+}
+if (!isset($pdfdelete)) {
+	$pdfdelete = '';
+}
+if (!isset($dayend)) {
+	$dayend = '';
+}
+if (!isset($monthend)) {
+	$monthend = '';
+}
+if (!isset($yearend)) {
+	$yearend = '';
+}
+if (!isset($datum)) {
+	$datum = '';
+}
+
 // set mysql-encoding
 mysqli_query($conn1, "SET NAMES 'utf8'"); mysqli_query($conn1, "SET CHARACTER SET utf8"); 
 
@@ -107,13 +129,54 @@ if ($page == "vortrag" && $new == "true"){
 }
 //now comes the query
 	$felder_mysql = "Titel, Zusammenfassung, Zielpublikum, gehalten, zeit, location, pdf, audiofile, audiofile_size, google_video_url, google_video_size, Arbeit, Erziehung, Gesundheit, Familie, thema_id, datumchange";
+	$placeholders = "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?";
 
+	$sql = "INSERT INTO vortrag ($felder_mysql) VALUES ($placeholders)";
+	$stmt = mysqli_prepare($conn1, $sql);
+
+	$google_video_hours = isset($google_video_hours) ? $google_video_hours : '';
+	$google_video_minutes = isset($google_video_minutes) ? $google_video_minutes : '';
+	$google_video_seconds = isset($google_video_seconds) ? $google_video_seconds : '';
 	$google_video_size = $google_video_hours.":".$google_video_minutes.":".$google_video_seconds;
-	$felder_form = "'$Titel', '$Zusammenfassung', '$Zielpublikum', '$gehalten', '$time', '$location', '$file_name', '$audiofile_name', '$audiofile_size', '$google_video_url', '$google_video_size', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$datumchange'";
+	$Titel = isset($Titel) ? $Titel : '';
+	$Zusammenfassung = isset($Zusammenfassung) ? $Zusammenfassung : '';
+	$Zielpublikum = isset($Zielpublikum) ? $Zielpublikum : '';
+	$gehalten = isset($gehalten) ? $gehalten : '';
+	$time = intval($time ?: '0');
+	$location = isset($location) ? $location : '';
+	$file_name = isset($file_name) ? $file_name : '';
+	$audiofile_name = isset($audiofile_name) ? $audiofile_name : '';
+	$audiofile_size = intval($audiofile_size ?: '0');
+	$google_video_url = isset($google_video_url) ? $google_video_url : '';
+	$google_video_size = isset($google_video_size) ? $google_video_size : '';
+	$Arbeit = intval(isset($Arbeit) ? $Arbeit : '0');
+	$Erziehung = intval(isset($Erziehung) ? $Erziehung : '0');
+	$Gesundheit = intval(isset($Gesundheit) ? $Gesundheit : '0');
+	$Familie = intval(isset($Familie) ? $Familie : '0');
+	$searchnew = intval($searchnew ?: '0');
+	$datumchange = isset($datumchange) ? $datumchange : '';
+	mysqli_stmt_bind_param($stmt,
+		'ssssisssissiiiiis',
+		$Titel,
+		$Zusammenfassung,
+		$Zielpublikum,
+		$gehalten,
+		$time,
+		$location,
+		$file_name,
+		$audiofile_name,
+		$audiofile_size,
+		$google_video_url,
+		$google_video_size,
+		$Arbeit,
+		$Erziehung,
+		$Gesundheit,
+		$Familie,
+		$searchnew,
+		$datumchange
+	);
 
-
-	$sql = "INSERT INTO vortrag ($felder_mysql) VALUES ($felder_form)";
-	mysqli_query($conn1, $sql);
+	mysqli_stmt_execute($stmt);
 //echo nl2br($query);
 
 echo mysqli_error($conn1);

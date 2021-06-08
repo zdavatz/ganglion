@@ -36,6 +36,28 @@ $msgConf_pdf = "Wollen Sie diese Pdf Datei: <$file_name> wirklich l?schen?";
 list($google_video_hours, $google_video_minutes, $google_video_seconds) = explode(":", $google_video_size); 
 }
 elseif ($new == "true") {
+		$Titel = '';
+		$javatitel = '';
+		$Zusammenfassung = '';
+		$Zielpublikum = '';
+		$time = '';
+		$location = '';
+		$hits = 0;
+		$file_name = '';
+		$audiofile_name = '';
+		$audiofile_size = '';
+		$google_video_url = '';
+		$google_video_size = '';
+		$filecheck = '';
+		$audiofilecheck = '';
+		$Familie = 0;
+		$Arbeit = 0;
+		$Gesundheit = 0;
+		$Erziehung = 0;
+		$google_video_hours = '';
+		$google_video_minutes = '';
+		$google_video_seconds = '';
+
 $datumchange = date("Y-m-d");
 $datum = datumsplitt($datumchange);
 $hour = -1;
