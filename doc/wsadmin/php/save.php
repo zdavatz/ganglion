@@ -22,11 +22,23 @@ if (!isset($change)) {
 if (!isset($delete)) {
 	$delete = '';
 }
+if (!isset($new)) {
+	$new = '';
+}
 if (!isset($pdfdelete)) {
 	$pdfdelete = '';
 }
 if (!isset($dayend)) {
 	$dayend = '';
+}
+if (!isset($day)) {
+	$day = '';
+}
+if (!isset($month)) {
+	$month = '';
+}
+if (!isset($year)) {
+	$year = '';
 }
 if (!isset($monthend)) {
 	$monthend = '';
@@ -192,42 +204,79 @@ echo mysqli_error($conn1);
 //aendern
 
 if ($page == "vortrag" && $change == "true"){
-	$audiofile_size = round(str_replace(" ", "", $audiofile_size));
-	$google_video_size = round(str_replace(" ", "", $google_video_size));
-	$datum = "$day.$month.$year";
-	$gehalten = input2date($datum);
-
-	$google_video_size = $google_video_hours.":".$google_video_minutes.":".$google_video_seconds;
-	$fields = "	Titel='$Titel', 
-				Zusammenfassung='$Zusammenfassung', 
-				Zielpublikum='$Zielpublikum', 
-				gehalten='$gehalten',
-				zeit='$time', 
-				location='$location', 
-				audiofile='$audiofile_name',
-				audiofile_size='$audiofile_size',
-				google_video_url='$google_video_url',
-				google_video_size='$google_video_size',
-				Arbeit='$Arbeit', 
-				Erziehung='$Erziehung', 
-				Gesundheit='$Gesundheit', 
-				Familie='$Familie', 
-				thema_id='$searchnew', 
-				datumchange='$datumchange'";
-
-if( $_FILES['file']['name'] != "" ) {
+	if( $_FILES['file']['name'] != "" ) {
     $file_name=$_FILES['file']['name'];
     $pathto="../../pdf/".$file_name;
     move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
-}
-else {
-    $delfile = "../../pdf/$oldfile";
-      if ($file_name != $oldfile)
-    @unlink($delfile);
-}
+	} else {
+	    $delfile = "../../pdf/$oldfile";
+	      if ($file_name != $oldfile)
+	    @unlink($delfile);
+	}
 
-	$query="UPDATE vortrag SET $fields WHERE id='$id'";
-	mysqli_query($conn1, $query);
+	$google_video_hours = isset($google_video_hours) ? $google_video_hours : '';
+	$google_video_minutes = isset($google_video_minutes) ? $google_video_minutes : '';
+	$google_video_seconds = isset($google_video_seconds) ? $google_video_seconds : '';
+	$google_video_size = $google_video_hours.":".$google_video_minutes.":".$google_video_seconds;
+	$Titel = isset($Titel) ? $Titel : '';
+	$Zusammenfassung = isset($Zusammenfassung) ? $Zusammenfassung : '';
+	$Zielpublikum = isset($Zielpublikum) ? $Zielpublikum : '';
+	$time = intval($time ?: '0');
+	$location = isset($location) ? $location : '';
+	$file_name = isset($file_name) ? $file_name : '';
+	$audiofile_name = isset($audiofile_name) ? $audiofile_name : '';
+	$audiofile_size = intval(str_replace(" ", "", $audiofile_size));
+	$google_video_url = isset($google_video_url) ? $google_video_url : '';
+	$google_video_size = isset($google_video_size) ? str_replace(" ", "", $google_video_size) : '';
+	$Arbeit = intval(isset($Arbeit) ? $Arbeit : '0');
+	$Erziehung = intval(isset($Erziehung) ? $Erziehung : '0');
+	$Gesundheit = intval(isset($Gesundheit) ? $Gesundheit : '0');
+	$Familie = intval(isset($Familie) ? $Familie : '0');
+	$searchnew = intval($searchnew ?: '0');
+	$datumchange = isset($datumchange) ? $datumchange : '';
+	$datum = "$day.$month.$year";
+	$gehalten = input2date($datum);
+
+	$placeholders = "	Titel=?, 
+				Zusammenfassung=?, 
+				Zielpublikum=?, 
+				gehalten=?,
+				zeit=?, 
+				location=?, 
+				audiofile=?,
+				audiofile_size=?,
+				google_video_url=?,
+				google_video_size=?,
+				Arbeit=?, 
+				Erziehung=?, 
+				Gesundheit=?, 
+				Familie=?, 
+				thema_id=?, 
+				datumchange=?";
+	
+	$query="UPDATE vortrag SET $placeholders WHERE id='$id'";
+	$stmt = mysqli_prepare($conn1, $query);
+	mysqli_stmt_bind_param(
+		$stmt,
+		'ssssississiiiiis',
+		$Titel,
+		$Zusammenfassung,
+		$Zielpublikum,
+		$gehalten,
+		$time,
+		$location,
+		$audiofile_name,
+		$audiofile_size,
+		$google_video_url,
+		$google_video_size,
+		$Arbeit,
+		$Erziehung,
+		$Gesundheit,
+		$Familie,
+		$searchnew,
+		$datumchange
+	);
+	mysqli_stmt_execute($stmt);
 
  	if($audiofile_name != '') {
  		system('ruby /var/www/ganglion.ch/create_xml_from_db.rb');
@@ -271,6 +320,8 @@ if ($page == "vortrag" && $pdfdelete == "true"){
 //hier werden die daten codiert
 
 if ($page == "links"){
+	$url = isset($url) ? $url : "";
+	$text = isset($text) ? $text : "";
 
 	$url = htmlflashen($url);
 
@@ -283,12 +334,31 @@ if ($page == "links"){
 if ($page == "links" && $new == "true"){
 
 	$felder_mysql = "url, text, datum, Arbeit, Erziehung, Gesundheit, Familie, thema_id";
+	$placeholders = "?, ?, ?,?,?,?, ?, ?";
 
-	$felder_form = "'$url', '$beschreibung', '$datum','$Arbeit','$Erziehung','$Gesundheit', '$Familie', '$searchnew'";
+	$url = isset($url) ? $url : "";
+	$beschreibung = isset($beschreibung) ? $beschreibung : "";
+	$datum = isset($datum) ? $datum : "";
+	$searchne = isset($searchne) ? $searchne : "";
+	$Arbeit = isset($Arbeit) ? intval($Arbeit) : 0;
+	$Erziehung = isset($Erziehung) ? intval($Erziehung) : 0;
+	$Gesundheit = isset($Gesundheit) ? intval($Gesundheit) : 0;
+	$Familie = isset($Familie) ? intval($Familie) : 0;
 
-
-
-	mysqli_query($conn1, "INSERT INTO links ($felder_mysql) VALUES ($felder_form)");
+	$stmt = mysqli_prepare($conn1, "INSERT INTO links ($felder_mysql) VALUES ($placeholders)");
+	mysqli_stmt_bind_param(
+		$stmt,
+		'sssiiiis',
+		$url,
+		$beschreibung,
+		$datum,
+		$Arbeit,
+		$Erziehung,
+		$Gesundheit,
+		$Familie,
+		$searchnew
+	);
+	mysqli_stmt_execute($stmt);
 
 	@header("Location: admin.php?page=$page&search=$searchnew");
 
@@ -299,12 +369,34 @@ if ($page == "links" && $new == "true"){
 if ($page == "links" && $change == "true"){
 
 	$felder_mysql = "id_links, url, text, datum, Arbeit, Erziehung, Gesundheit, Familie, thema_id";
+	$placeholders = "?,?,?,?,?,?,?,?,?";
 
-	$felder_form = "'$id','$url', '$beschreibung', '$datum','$Arbeit','$Erziehung','$Gesundheit', '$Familie', '$searchnew'";
+	$stmt = mysqli_prepare($conn1, "REPLACE INTO links ($felder_mysql) VALUES ($placeholders)");
 
-	mysqli_query($conn1, "REPLACE INTO links ($felder_mysql) VALUES ($felder_form)");
+	$id = isset($id) ? $id : "";
+	$url = isset($url) ? $url : "";
+	$beschreibung = isset($beschreibung) ? $beschreibung : "";
+	$datum = isset($datum) ? $datum : "";
+	$Arbeit = isset($Arbeit) ? $Arbeit : 0;
+	$Erziehung = isset($Erziehung) ? $Erziehung : 0;
+	$Gesundheit = isset($Gesundheit) ? $Gesundheit : 0;
+	$Familie = isset($Familie) ? $Familie : 0;
+	$searchnew = isset($searchnew) ? $searchnew : "";
 
-
+	mysqli_stmt_bind_param(
+		$stmt,
+		'ssssiiiis',
+		$id,
+		$url,
+		$beschreibung,
+		$datum,
+		$Arbeit,
+		$Erziehung,
+		$Gesundheit,
+		$Familie,
+		$searchnew,
+	);
+	mysqli_stmt_execute($stmt);
 
 	@header("Location: admin.php?page=$page&search=$searchnew");
 
@@ -336,16 +428,62 @@ $beginn_kurse = "$day.$month.$year";
 $beginn_kurse = input2date($beginn_kurse);
 $ende_kurse = "$dayend.$monthend.$yearend";
 $ende_kurse = input2date($ende_kurse);
-if ($page == "kurse" && $new == "true"){
+if ($page == "kurse" && $new == "true") {
+
+	$titel_kurse = isset($titel_kurse) ? $titel_kurse : "";
+	$kursziele_kurse = isset($kursziele_kurse) ? $kursziele_kurse : "";
+	$ort_kurse = isset($ort_kurse) ? $ort_kurse : "";
+	$kosten_kurse = isset($kosten_kurse) ? $kosten_kurse : "";
+	$Arbeit = isset($Arbeit) ? $Arbeit : 0;
+	$Erziehung = isset($Erziehung) ? $Erziehung : 0;
+	$Gesundheit = isset($Gesundheit) ? $Gesundheit : 0;
+	$Familie = isset($Familie) ? $Familie : 0;
+	$searchnew = isset($searchnew) ? $searchnew : 0;
+	$datum_kurse = isset($datum_kurse) ? $datum_kurse : 0;
+	$beginn_kurse = isset($beginn_kurse) ? $beginn_kurse : 0;
+	$ende_kurse = isset($ende_kurse) ? $ende_kurse : 0;
+	$daten_kurse = isset($daten_kurse) ? $daten_kurse : "";
+	$leitung_kurse = isset($leitung_kurse) ? $leitung_kurse : "";
+	$platz_kurse = isset($platz_kurse) ? $platz_kurse : "";
+	$teilnehmer_kurse = isset($teilnehmer_kurse) ? $teilnehmer_kurse : "";
+	$kurs_art = isset($kurs_art) ? $kurs_art : "";
+
 	$mysql = "titel_kurse,kursziele_kurse,ort_kurse,kosten_kurse,Arbeit,Erziehung,Gesundheit,Familie,thema_id,datum_kurse,beginn_kurse,ende_kurse,daten_kurse,leitung_kurse,platz_kurse,teilnehmer_kurse,kurs_art";
-	$form = "'$titel_kurse','$kursziele_kurse','$ort_kurse','$kosten_kurse','$Arbeit','$Erziehung','$Gesundheit','$Familie','$searchnew','$datum_kurse','$beginn_kurse','$ende_kurse','$daten_kurse','$leitung_kurse','$platz_kurse','$teilnehmer_kurse','$kurs_art'";
-	$query = "INSERT INTO kurse ($mysql) VALUES ($form)";
-	//echo $query;
-	mysqli_query($conn1, $query);
+	$placeholders = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+	$query = "INSERT INTO kurse ($mysql) VALUES ($placeholders)";
+	$stmt = mysqli_prepare($conn1, $query);
+	mysqli_stmt_bind_param(
+		$stmt,
+		'ssssiiiiiiiisssss',
+		$titel_kurse,
+		$kursziele_kurse,
+		$ort_kurse,
+		$kosten_kurse,
+		$Arbeit,
+		$Erziehung,
+		$Gesundheit,
+		$Familie,
+		$searchnew,
+		$datum_kurse,
+		$beginn_kurse,
+		$ende_kurse,
+		$daten_kurse,
+		$leitung_kurse,
+		$platz_kurse,
+		$teilnehmer_kurse,
+		$kurs_art,
+	);
+	mysqli_stmt_execute($stmt);
+
 	@header("Location: admin.php?page=$page&search=$search");
 }
 //aendern
 if ($page == "kurse" && $change == "true"){
+	$Arbeit = isset($Arbeit) ? $Arbeit : 0;
+	$Erziehung = isset($Erziehung) ? $Erziehung : 0;
+	$Gesundheit = isset($Gesundheit) ? $Gesundheit : 0;
+	$Familie = isset($Familie) ? $Familie : 0;
+
 	$form = "'$id_kurse','$titel_kurse','$kursziele_kurse','$ort_kurse','$kosten_kurse','$Arbeit','$Erziehung','$Gesundheit','$Familie','$searchnew','$datum_kurse','$beginn_kurse','$ende_kurse','$daten_kurse','$leitung_kurse','$platz_kurse','$teilnehmer_kurse','$kurs_art'";
 	$query = "REPLACE INTO kurse VALUES ($form)";
 	//echo $query;
@@ -360,17 +498,25 @@ if ($page == "kurse" && $delete == "true"){
 
 //neu
 
-// with php 5.6 this has to be before the sql query otherwiese
-  // the pdf will not be shown/found
-  if( $_FILES['file']['name'] != "" ) {
-    $file_name=$_FILES['file']['name'];
-    $pathto="../../pdf/".$file_name;
-    move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
-}
 // then comes the query
 if ($page == "artikel" && $new == "true"){
+	// with php 5.6 this has to be before the sql query otherwiese
+  // the pdf will not be shown/found
+	try {
+		if( $_FILES['file']['name'] != "" ) {
+		    $file_name=$_FILES['file']['name'];
+		    $pathto="../../pdf/".$file_name;
+		    move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
+		}
+	}
+	catch (Exception $e) {
+	}
 	$datum = "$day.$month.$year";
 	$erschienen = input2date($datum);
+	$Arbeit = isset($Arbeit) ? $Arbeit : 0;
+	$Erziehung = isset($Erziehung) ? $Erziehung : 0;
+	$Gesundheit = isset($Gesundheit) ? $Gesundheit : 0;
+	$Familie = isset($Familie) ? $Familie : 0;
 	$felder_mysql = "titel_artikel,Zeitschrift,pdf,Arbeit,Erziehung,Gesundheit,Familie,thema_id,erschienen";
 	$felder_form = "'$titel_artikel', '$Zeitschrift', '$file_name', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$erschienen'";
   
@@ -387,6 +533,10 @@ if ($page == "artikel" && $new == "true"){
 if ($page == "artikel" && $change == "true"){
 	$datum = "$day.$month.$year";
 	$erschienen = input2date($datum);
+	$Arbeit = isset($Arbeit) ? $Arbeit : 0;
+	$Erziehung = isset($Erziehung) ? $Erziehung : 0;
+	$Gesundheit = isset($Gesundheit) ? $Gesundheit : 0;
+	$Familie = isset($Familie) ? $Familie : 0;
 	if ($file != ""){
 		//print '->'.$file.'<-';
 		$fields = "

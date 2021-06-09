@@ -10,6 +10,10 @@ $result = mysqli_query($conn1, "SELECT * FROM text WHERE id_text ='$id_text'");
 
 @mysqli_free_result($result);
 $msgConf = "Wollen Sie den Eintrag wirklich l?schen?";
+} else {
+	$bereich_text = "";
+	$inhalt_text = "";
+	$id_text = "";
 }
 $datum_text = date("YmdGis");
 ?>
