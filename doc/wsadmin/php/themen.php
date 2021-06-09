@@ -2,7 +2,7 @@
 if ($change == "true"){
 $result = mysqli_query($conn1, "SELECT * FROM thema WHERE id_thema ='$id'");
 	$row = @mysqli_fetch_array($result);
-		$id_thema = $row["id"];
+		$id_thema = $row["id_thema"];
 		$Thema = urldecode($row["thema"]);
 		$datum = $row["datumchange"];
 		$datumchangeold = $row["datumchange"];

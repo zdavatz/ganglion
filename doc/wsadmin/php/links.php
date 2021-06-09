@@ -25,6 +25,13 @@ $datumchange = date("Y-m-d");
 $msgConf = "Wollen Sie den Eintrag $javatitel wirklich l?schen?";
 }
 elseif ($new == "true") {
+	$url = "";
+	$beschreibung = "";
+	$Familie = 0;
+	$Gesundheit = 0;
+	$Arbeit = 0;
+	$Erziehung = 0;
+	$id = "";
 $datumchange = date("Y-m-d");
 }
 ?>

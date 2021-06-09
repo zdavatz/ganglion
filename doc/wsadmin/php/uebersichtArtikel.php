@@ -69,6 +69,7 @@ $all=0;
 <td class='TDSiteTitel' colspan="2">
 <?php
 //
+	$pdf = isset($pdf) ? $pdf : "";
 	echo "<table class='TABLEliste' width='100%' cellspacing='2'>\n";
 	echo "<tr>\n";
 	echo "<th class='THnr' nowrap>Nr. <font size='1'>($Ptot)</font></th>\n";

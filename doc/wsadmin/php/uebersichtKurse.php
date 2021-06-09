@@ -73,6 +73,7 @@ $all=0;
 if (empty($sortby)) $sortby="beginn";
 if ($sortby == "standart" && $search != "all") $sortby = "titel";
 if ($sortby == "standart" && $search == "all") $sortby = "Thema";
+	$order = array(0,0,0,0,0,0,0,0,0,0,0);
 	if 		(isset($sortby) && $sortby=="titel")		{	$SortBy="titel_kurse ASC";		$order[0] = 1;	}
 	elseif	(isset($sortby) && $sortby=="kosten")		{	$SortBy="kosten_kurse ASC"; 	$order[1] = 1;	}
 	elseif	(isset($sortby) && $sortby=="Thema")		{	$SortBy="thema  ASC";			$order[2] = 1;	}
@@ -106,6 +107,19 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 	$order[8]==1?$beginn="beginn-" 				: $beginn="beginn";
 	$order[8]==1?$ende="ende-" 					: $ende="ende";
 //
+
+	$Titel = isset($Titel) ? $Titel : "";
+	$beginn = isset($beginn) ? $beginn : "";
+	$ende = isset($ende) ? $ende : "";
+	$platz = isset($platz) ? $platz : "";
+	$teilnehmer = isset($teilnehmer) ? $teilnehmer : "";
+	$datum = isset($datum) ? $datum : "";
+	$Familie = isset($Familie) ? $Familie : "";
+	$Arbeit = isset($Arbeit) ? $Arbeit : "";
+	$Gesundheit = isset($Gesundheit) ? $Gesundheit : "";
+	$Erziehung = isset($Erziehung) ? $Erziehung : "";
+	$gehalten = isset($gehalten) ? $gehalten : "";
+
 	echo "<table class='TABLEliste' width='100%' cellspacing='2'>\n";
 	echo "<tr>\n";
 	echo "<th class='THnr' nowrap>Nr. <font size='1'>($Ptot)</font></th>\n";

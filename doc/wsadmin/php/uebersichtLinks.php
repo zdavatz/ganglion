@@ -296,7 +296,7 @@ if (isset($sortby) && $sortby == "standart") $sortby = "url";
 
 
 //
-
+	$order = array(0,0,0,0,0,0,0);
 
 	if	($order[0]==1){$lurl="url-";					}	else 	{ $lurl="url";					}
 

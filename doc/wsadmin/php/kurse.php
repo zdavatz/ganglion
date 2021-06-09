@@ -37,6 +37,20 @@ $datumend = datumsplitt($row["ende_kurse"]);
 $msgConf = "Wollen Sie den Eintrag $javatitel wirklich l?schen?";
 }
 elseif ($new == "true") {
+	$kurs_art = "";
+	$titel_kurse = "";
+	$leitung_kurse = "";
+	$kursziele_kurse = "";
+	$daten_kurse = "";
+	$ort_kurse = "";
+	$platz_kurse = "";
+	$teilnehmer_kurse = "";
+	$kosten_kurse = "";
+	$Familie = 0;
+	$Gesundheit = 0;
+	$Arbeit = 0;
+	$Erziehung = 0;
+	$id_kurse = "";
 $Vdatum = date("Y-m-d");
 $datum = datumsplitt($Vdatum);
 $datumend = datumsplitt($Vdatum);

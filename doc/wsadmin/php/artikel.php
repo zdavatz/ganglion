@@ -31,6 +31,15 @@ $msgConf = "Wollen Sie den Eintrag <$javatitel> wirklich l?schen?";
 $msgConf_pdf = "Wollen Sie diese Pdf Datei: <$file_name> wirklich l?schen?";
 }
 elseif ($new == "true") {
+	$titel_artikel = "";
+	$Zeitschrift = "";
+	$Familie = 0;
+	$Gesundheit = 0;
+	$Arbeit = 0;
+	$Erziehung = 0;
+	$id_artikel = "";
+	$file_name = "";
+
 $Vdatum = date("Y-m-d");
 $datum = datumsplitt($Vdatum);
 $datumend = datumsplitt($Vdatum);

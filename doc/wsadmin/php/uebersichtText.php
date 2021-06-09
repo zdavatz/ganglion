@@ -74,6 +74,7 @@ if (empty($sortby)) $sortby="Titel";
 if ($sortby == "standart" && $search != "all") $sortby = "Titel";
 if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 
+	$order = array(0,0,0);
 //id_text,bereich_text,inhalt_text,datum_text
 	if 		(isset($sortby) && $sortby=="bereich_text")	{	$SortBy="bereich_text ASC";	$order[0] = 1;	}
 	elseif	(isset($sortby) && $sortby=="inhalt_text")	{	$SortBy="inhalt_text ASC"; 	$order[1] = 1;	}
@@ -114,7 +115,7 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 
 
 //SELECT id_text,bereich_text,inhalt_text,datum_text from text 
-
+		$gehalten = isset($gehalten) ? $gehalten : "";
 			$i=1;
 		$result = mysqli_query($conn1, "SELECT id_text,bereich_text,inhalt_text,datum_text from text");
 			while ($row = mysqli_fetch_array($result)){
