@@ -75,6 +75,11 @@ function check_form(formId) {
 		alert('Bitte geben Sie einen Titel an.');
 		return false;
 	}
+	var theme = form.elements['searchnew'];
+	if (theme.value === '1') {
+		alert('Bitte wälen Sie einen Thema an.');
+		return false;
+	}
 }
 </script>
 <form method="post" id='lectureForm' action="save.php" name="vortrag" onSubmit='return check_form("lectureForm");' enctype="multipart/form-data">

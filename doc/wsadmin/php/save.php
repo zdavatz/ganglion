@@ -191,7 +191,10 @@ if ($page == "vortrag" && $new == "true"){
 	mysqli_stmt_execute($stmt);
 //echo nl2br($query);
 
-echo mysqli_error($conn1);
+	$error = mysqli_error($conn1);
+	if ($error != "") {
+		die($error);
+	}
 
 	if($audiofile_name != '') {
 		system('ruby /var/www/ganglion.ch/create_xml_from_db.rb');
