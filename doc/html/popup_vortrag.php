@@ -21,7 +21,7 @@ $url = $_SERVER["PHP_SELF"];
 							as gehalten_formatted 
 							from vortrag, thema
 							where id_thema=thema_id
-							and id=$_GET[id]";
+							and id='" . mysqli_real_escape_string($conn1,$_GET[id])."'";
 		$vortrag_result = mysqli_query($conn1, $query);
 		$result = mysqli_query($conn1, $query);
 		$values = mysqli_fetch_assoc($result);

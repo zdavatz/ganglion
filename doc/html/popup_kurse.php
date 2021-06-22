@@ -37,7 +37,7 @@ $url = $_SERVER["PHP_SELF"];
 								platz_kurse, kosten_kurse, kursziele_kurse, ort_kurse, daten_kurse, date_format(beginn_kurse,'%d.%m.%Y')
 								as beginn_formatted
 								FROM kurse, thema 
-								WHERE id_kurse = $id"; 
+								WHERE id_kurse = '". mysqli_real_escape_string($conn1,$id)."'"; 
 		$kurse_result = mysqli_query($conn1, $query);
 		$result = mysqli_query($conn1, $query);
   	$values = mysqli_fetch_assoc($result);

@@ -42,7 +42,7 @@ if (isset($request) && ($request == "uebersicht" || $request == "zeitfenster")){
 	$felderIn_thema = "id_thema, thema";
 	$tabellenIn_ganglion = "kurse AS A, thema AS B";
 	$whereBedingungen = "B.id_thema = A.thema_id AND 1 IN ($bereich)";
-	$precision = ($search=="all" ? "" : "A.thema_id=$search AND");
+	$precision = ($search=="all" ? "" : "A.thema_id='" . mysqli_real_escape_string($conn1,$search) . "' AND");
 	switch($zeitfenster) {
 		case "default"	: 
 		case "all"		:	$epoche = "";
@@ -153,7 +153,7 @@ if (isset($request) && $request == "directThread"){
 	$felderIn_kurse = "id_kurse,titel_kurse,beginn_kurse,kursziele_kurse,kosten_kurse,thema_id, daten_kurse, ort_kurse, leitung_kurse, platz_kurse,teilnehmer_kurse";
 	$felderIn_thema = "id_thema, thema";
 	$tabellenIn_ganglion = "kurse AS A, thema AS B";
-	$whereBedingungen = "A.id_kurse = $php_kurse_id AND A.thema_id = B.id_thema";
+	$whereBedingungen = "A.id_kurse = '" . mysqli_real_escape_string($conn1,$php_kurse_id) . "' AND A.thema_id = B.id_thema";
 	
 	$result = mysqli_query($conn1, "SELECT $felderIn_kurse, $felderIn_thema FROM $tabellenIn_ganglion WHERE $whereBedingungen");
 	
@@ -185,7 +185,7 @@ if (isset($request) && $request == "print"){
 	$felderIn_kurse = "id_kurse,titel_kurse,kursziele_kurse,kosten_kurse,thema_id, daten_kurse, ort_kurse, leitung_kurse, platz_kurse,teilnehmer_kurse";
 	$felderIn_thema = "id_thema, thema";
 	$tabellenIn_ganglion = "kurse AS A, thema AS B";
-	$whereBedingungen = "A.id_kurse = $id AND A.thema_id = B.id_thema";
+	$whereBedingungen = "A.id_kurse = '" . mysqli_real_escape_string($conn1,$id) . "' AND A.thema_id = B.id_thema";
 	
 	$result = mysqli_query($conn1, "SELECT $felderIn_kurse, $felderIn_thema FROM $tabellenIn_ganglion WHERE $whereBedingungen");
 	

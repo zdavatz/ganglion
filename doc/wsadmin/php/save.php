@@ -60,7 +60,7 @@ if ($page == "themen"){
 //neu
 if ($page == "themen" && $new == "true"){
 	$mysql = "thema, datumchange";
-	$form = "'$Thema', '$datum'";
+	$form = "'" . mysqli_real_escape_string($conn1,$Thema). "', '" . mysqli_real_escape_string($conn1,$datum). "'";
 
 	//echo "$Thema, $datumchange";
 
@@ -75,7 +75,7 @@ if ($page == "themen" && $change == "true"){
 
 //	echo"'$idThema','$Thema', '$datum'";
 
-	$query = "UPDATE thema SET thema='$Thema', datumchange='$datum' WHERE id_thema=$idThema";
+	$query = "UPDATE thema SET thema='" . mysqli_real_escape_string($conn1,$Thema) . "', datumchange='" . mysqli_real_escape_string($conn1,$datum) . "' WHERE id_thema='" . mysqli_real_escape_string($conn1,$idThema) . "'";
 	//echo $query;
 
 	mysqli_query($conn1, $query);
@@ -90,7 +90,7 @@ if ($page == "themen" && $change == "true"){
 
 if ($page == "themen" && $delete == "true"){
 
-	mysqli_query($conn1, "DELETE FROM thema WHERE id_thema = '$idThema'");
+	mysqli_query($conn1, "DELETE FROM thema WHERE id_thema = '" . mysqli_real_escape_string($conn1,$idThema) . "'");
 
 	@header("Location: admin.php?page=$page&search=$search");
 
@@ -294,7 +294,7 @@ if ($page == "vortrag" && $delete == "true"){
 
 	$delfile = "../../pdf/$oldfile";
 
-	mysqli_query($conn1, "DELETE FROM vortrag WHERE id = '$id'");
+	mysqli_query($conn1, "DELETE FROM vortrag WHERE id = '" . mysqli_real_escape_string($conn1,$id) . "'");
 
 	@unlink($delfile);
 		
@@ -307,7 +307,7 @@ if ($page == "vortrag" && $delete == "true"){
 //Pdf L?schen
 if ($page == "vortrag" && $pdfdelete == "true"){
 
-	mysqli_query($conn1, "UPDATE vortrag SET pdf = '' WHERE id = '$id'");
+	mysqli_query($conn1, "UPDATE vortrag SET pdf = '' WHERE id = '" . mysqli_real_escape_string($conn1,$id) . "'");
 	$delfile = "../../pdf/$oldfile";
 	@unlink($delfile);
 	@header("Location: admin.php?page=$page&search=$search");
@@ -409,7 +409,7 @@ if ($page == "links" && $change == "true"){
 
 if ($page == "links" && $delete == "true"){
 
-	mysqli_query($conn1, "DELETE FROM links WHERE id_links = '$id'");
+	mysqli_query($conn1, "DELETE FROM links WHERE id_links = '" . mysqli_real_escape_string($conn1,$id) . "'");
 
 	@header("Location: admin.php?page=$page&search=$search");
 
