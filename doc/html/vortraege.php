@@ -167,7 +167,7 @@ mysqli_free_result($result);
 		
 		if(!empty($search) && $search != "all")
 		{
-			$thema_condition = "thema_id=$search";
+			$thema_condition = "thema_id='".mysqli_real_escape_string($conn1,$search)."'";
 		}
 		else
 		{

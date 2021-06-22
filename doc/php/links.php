@@ -31,7 +31,7 @@ $felderIn_links = "url, text, thema_id, Familie, Arbeit, Gesundheit, Erziehung, 
 $felderIn_thema = "id_thema, thema";
 $tabellenIn_ganglion = "links AS A, thema AS B";
 $whereBedingungen = "B.id_thema = A.thema_id AND $bereich=1";
-$precision = ($search=="all" ? "" : "A.thema_id=$search AND");
+$precision = ($search=="all" ? "" : "A.thema_id='" . mysqli_real_escape_string($conn1,$search) . "' AND");
 $epoche = ($zeitfenster == 0 ? "" : "AND TO_DAYS(datum) > (TO_DAYS(NOW())-$zeitfenster)");
 
 $query = "SELECT $felderIn_links, $felderIn_thema FROM $tabellenIn_ganglion WHERE $precision $whereBedingungen $epoche ORDER BY $sortierung";

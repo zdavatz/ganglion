@@ -1,6 +1,6 @@
 <?php
 if ($change == "true"){
-$result = mysqli_query($conn1, "SELECT * FROM vortrag WHERE id ='$id'");
+$result = mysqli_query($conn1, "SELECT * FROM vortrag WHERE id ='" . mysqli_real_escape_string($conn1,$id) . "'");
 	$row = @mysqli_fetch_array($result);
 		$id_vortrag = $row["id"];
 		$datum = $row["gehalten"];

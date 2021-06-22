@@ -6,7 +6,7 @@ if (isset($request) && $request == "text"){
 	
 	$felderIn_text="bereich_text, inhalt_text, datum_text";
 	$tabellenIn_ganglion="text";
-	$whereBedingungen="bereich_text = '$bereich'";
+	$whereBedingungen="bereich_text = '" . mysqli_real_escape_string($conn1,$bereich) . "'";
 	$sortierung="datum_text DESC";
 	
 	$result = mysqli_query($conn1, "SELECT $felderIn_text FROM $tabellenIn_ganglion WHERE $whereBedingungen ORDER BY $sortierung");
@@ -22,7 +22,7 @@ if (isset($request) && $request == "print"){
 	
 	$felderIn_text="bereich_text, inhalt_text, datum_text";
 	$tabellenIn_ganglion="text";
-	$whereBedingungen="bereich_text = '$bereich'";
+	$whereBedingungen="bereich_text = '" . mysqli_real_escape_string($conn1,$bereich) . "'";
 	$sortierung="datum_text DESC";
 	
 	$result = mysqli_query($conn1, "SELECT $felderIn_text FROM $tabellenIn_ganglion WHERE $whereBedingungen ORDER BY $sortierung");
