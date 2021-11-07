@@ -442,9 +442,9 @@ if ($page == "kurse" && $new == "true") {
 	$Gesundheit = isset($Gesundheit) ? $Gesundheit : 0;
 	$Familie = isset($Familie) ? $Familie : 0;
 	$searchnew = isset($searchnew) ? $searchnew : 0;
-	$datum_kurse = isset($datum_kurse) ? $datum_kurse : 0;
-	$beginn_kurse = isset($beginn_kurse) ? $beginn_kurse : 0;
-	$ende_kurse = isset($ende_kurse) ? $ende_kurse : 0;
+	$datum_kurse = isset($datum_kurse) ? $datum_kurse : "";
+	$beginn_kurse = isset($beginn_kurse) ? $beginn_kurse : "";
+	$ende_kurse = isset($ende_kurse) ? $ende_kurse : "";
 	$daten_kurse = isset($daten_kurse) ? $daten_kurse : "";
 	$leitung_kurse = isset($leitung_kurse) ? $leitung_kurse : "";
 	$platz_kurse = isset($platz_kurse) ? $platz_kurse : "";
@@ -457,7 +457,7 @@ if ($page == "kurse" && $new == "true") {
 	$stmt = mysqli_prepare($conn1, $query);
 	mysqli_stmt_bind_param(
 		$stmt,
-		'ssssiiiiiiiisssss',
+		'ssssiiiiissssssss',
 		$titel_kurse,
 		$kursziele_kurse,
 		$ort_kurse,
