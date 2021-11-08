@@ -64,7 +64,9 @@ if ($page == "themen" && $new == "true"){
 
 	//echo "$Thema, $datumchange";
 
-	mysqli_query($conn1, "INSERT INTO thema ($mysql) VALUES ($form)");
+	if (!mysqli_query($conn1, "INSERT INTO thema ($mysql) VALUES ($form)")) {
+		die($conn1->error);
+	}
 
 	@header("Location: admin.php?page=$page&search=$search");
 }
@@ -78,7 +80,9 @@ if ($page == "themen" && $change == "true"){
 	$query = "UPDATE thema SET thema='" . mysqli_real_escape_string($conn1,$Thema) . "', datumchange='" . mysqli_real_escape_string($conn1,$datum) . "' WHERE id_thema='" . mysqli_real_escape_string($conn1,$idThema) . "'";
 	//echo $query;
 
-	mysqli_query($conn1, $query);
+	if (!mysqli_query($conn1, $query)) {
+		die($conn1->error);
+	}
 
 	
 
@@ -90,7 +94,9 @@ if ($page == "themen" && $change == "true"){
 
 if ($page == "themen" && $delete == "true"){
 
-	mysqli_query($conn1, "DELETE FROM thema WHERE id_thema = '" . mysqli_real_escape_string($conn1,$idThema) . "'");
+	if (!mysqli_query($conn1, "DELETE FROM thema WHERE id_thema = '" . mysqli_real_escape_string($conn1,$idThema) . "'")) {
+		die($conn1->error);
+	}
 
 	@header("Location: admin.php?page=$page&search=$search");
 
@@ -138,7 +144,7 @@ if ($page == "vortrag" && $new == "true"){
     $file_name=$_FILES['file']['name'];
     $pathto="../../pdf/".$file_name;
     move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
-}
+  }
 //now comes the query
 	$felder_mysql = "Titel, Zusammenfassung, Zielpublikum, gehalten, zeit, location, pdf, audiofile, audiofile_size, google_video_url, google_video_size, Arbeit, Erziehung, Gesundheit, Familie, thema_id, datumchange";
 	$placeholders = "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?";
@@ -279,7 +285,9 @@ if ($page == "vortrag" && $change == "true"){
 		$searchnew,
 		$datumchange
 	);
-	mysqli_stmt_execute($stmt);
+	if (!mysqli_stmt_execute($stmt)) {
+		die($conn1->error);
+	}
 
  	if($audiofile_name != '') {
  		system('ruby /var/www/ganglion.ch/create_xml_from_db.rb');
@@ -294,7 +302,9 @@ if ($page == "vortrag" && $delete == "true"){
 
 	$delfile = "../../pdf/$oldfile";
 
-	mysqli_query($conn1, "DELETE FROM vortrag WHERE id = '" . mysqli_real_escape_string($conn1,$id) . "'");
+	if (!mysqli_query($conn1, "DELETE FROM vortrag WHERE id = '" . mysqli_real_escape_string($conn1,$id) . "'")) {
+		die($conn1->error);
+	}
 
 	@unlink($delfile);
 		
@@ -307,7 +317,9 @@ if ($page == "vortrag" && $delete == "true"){
 //Pdf L?schen
 if ($page == "vortrag" && $pdfdelete == "true"){
 
-	mysqli_query($conn1, "UPDATE vortrag SET pdf = '' WHERE id = '" . mysqli_real_escape_string($conn1,$id) . "'");
+	if (!mysqli_query($conn1, "UPDATE vortrag SET pdf = '' WHERE id = '" . mysqli_real_escape_string($conn1,$id) . "'")) {
+		die($conn1->error);
+	}
 	$delfile = "../../pdf/$oldfile";
 	@unlink($delfile);
 	@header("Location: admin.php?page=$page&search=$search");
@@ -361,7 +373,9 @@ if ($page == "links" && $new == "true"){
 		$Familie,
 		$searchnew
 	);
-	mysqli_stmt_execute($stmt);
+	if (!mysqli_stmt_execute($stmt)) {
+		die($conn1->error);
+	}
 
 	@header("Location: admin.php?page=$page&search=$searchnew");
 
@@ -399,7 +413,9 @@ if ($page == "links" && $change == "true"){
 		$Familie,
 		$searchnew,
 	);
-	mysqli_stmt_execute($stmt);
+	if (!mysqli_stmt_execute($stmt)) {
+		die($conn1->error);
+	}
 
 	@header("Location: admin.php?page=$page&search=$searchnew");
 
@@ -409,7 +425,9 @@ if ($page == "links" && $change == "true"){
 
 if ($page == "links" && $delete == "true"){
 
-	mysqli_query($conn1, "DELETE FROM links WHERE id_links = '" . mysqli_real_escape_string($conn1,$id) . "'");
+	if (!mysqli_query($conn1, "DELETE FROM links WHERE id_links = '" . mysqli_real_escape_string($conn1,$id) . "'")) {
+		die($conn1->error);
+	}
 
 	@header("Location: admin.php?page=$page&search=$search");
 
@@ -476,7 +494,9 @@ if ($page == "kurse" && $new == "true") {
 		$teilnehmer_kurse,
 		$kurs_art,
 	);
-	mysqli_stmt_execute($stmt);
+	if (!mysqli_stmt_execute($stmt)) {
+		die($conn1->error);
+	}
 
 	@header("Location: admin.php?page=$page&search=$search");
 }
@@ -490,12 +510,16 @@ if ($page == "kurse" && $change == "true"){
 	$form = "'$id_kurse','$titel_kurse','$kursziele_kurse','$ort_kurse','$kosten_kurse','$Arbeit','$Erziehung','$Gesundheit','$Familie','$searchnew','$datum_kurse','$beginn_kurse','$ende_kurse','$daten_kurse','$leitung_kurse','$platz_kurse','$teilnehmer_kurse','$kurs_art'";
 	$query = "REPLACE INTO kurse VALUES ($form)";
 	//echo $query;
-	mysqli_query($conn1, $query);
+	if (!mysqli_query($conn1, $query)) {
+		die($conn1->error);
+	}
 	@header("Location: admin.php?page=$page&search=$search");
 }
 //loeschen
 if ($page == "kurse" && $delete == "true"){
-	mysqli_query($conn1, "DELETE FROM kurse WHERE id_kurse = '$id_kurse'");
+	if (!mysqli_query($conn1, "DELETE FROM kurse WHERE id_kurse = '$id_kurse'")) {
+		die($conn1->error);
+	}
 	@header("Location: admin.php?page=$page&search=$search");
 }
 
@@ -524,7 +548,9 @@ if ($page == "artikel" && $new == "true"){
 	$felder_form = "'$titel_artikel', '$Zeitschrift', '$file_name', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$erschienen'";
   
 	$sql = "INSERT INTO artikel ($felder_mysql) VALUES ($felder_form)";
-	mysqli_query($conn1, $sql);
+	if (!mysqli_query($conn1, $sql)) {
+		die($conn1->error);
+	}
 //	echo nl2br($query);
 //	echo mysqli_error($conn1);
 //exit;
@@ -579,21 +605,27 @@ if ($page == "artikel" && $change == "true"){
 
 		}
 			$query="UPDATE artikel SET $fields WHERE id_artikel='$id_artikel'";
-			mysqli_query($conn1, $query);
+			if (!mysqli_query($conn1, $query)) {
+				die($conn1->error);
+			}
 			header("Location: admin.php?page=$page&search=$searchnew");
 	}
 
 //loeschen
 if ($page == "artikel" && $delete == "true"){
 	$delfile = "../../pdf/$oldfile";
-	mysqli_query($conn1, "DELETE FROM artikel WHERE id_artikel = '$id_artikel'");
+	if (!mysqli_query($conn1, "DELETE FROM artikel WHERE id_artikel = '$id_artikel'")) {
+		die($conn1->error);
+	}
 	@unlink($delfile);
 	@header("Location: admin.php?page=$page&search=$searchnew");
 }
 //Artikel pdf l?schen
 if ($page == "artikel" && $pdfdelete == "true"){
 
-	mysqli_query($conn1, "UPDATE artikel SET pdf = '' WHERE id = '$id_artikel'");
+	if (!mysqli_query($conn1, "UPDATE artikel SET pdf = '' WHERE id = '$id_artikel'")) {
+		die($conn1->error);
+	}
 	$delfile = "../../pdf/$oldfile";
 	@unlink($delfile);
 	@header("Location: admin.php?page=$page&search=$searchnew");
@@ -613,7 +645,9 @@ if ($page == "text" && $new == "true"){
 	$form = "'$bereich_text','$inhalt_text','$datum_text'";
 	$query = "INSERT INTO text ($mysql) VALUES ($form)";
 	//echo $query;
-	mysqli_query($conn1, $query);
+	if (!mysqli_query($conn1, $query)) {
+		die($conn1->error);
+	}
 	@header("Location: admin.php?page=$page&search=$search");
 }
 //aendern
@@ -621,12 +655,16 @@ if ($page == "text" && $change == "true"){
 	$form = "'$id_text','$bereich_text','$inhalt_text','$datum_text'";
 	$query = "REPLACE INTO text VALUES ($form)";
 	//echo $query;
-	mysqli_query($conn1, $query);
+	if (!mysqli_query($conn1, $query)) {
+		die($conn1->error);
+	}
 	@header("Location: admin.php?page=$page&search=$search");
 }
 //loesche
 if ($page == "text" && $delete == "true"){
-	mysqli_query($conn1, "DELETE FROM text WHERE id_text = '$id_text'");
+	if (!mysqli_query($conn1, "DELETE FROM text WHERE id_text = '$id_text'")) {
+		die($conn1->error);
+	}
 	@header("Location: admin.php?page=$page&search=$search");
 }
 ?>
