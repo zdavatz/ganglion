@@ -8,7 +8,6 @@ $result = mysqli_query($conn1, "SELECT * FROM kurse WHERE id_kurse ='$id'");
 		$JStitel_kurse = $row["titel_kurse"];
 		$kurs_art = $row["kurs_art"];
 		$kursziele_kurse = stripslashes(urldecode($row["kursziele_kurse"]));
-		$koo_kurse = $row["koo_kurse"];
 		$kosten_kurse = $row["kosten_kurse"];
 		$datumold = datum_ch($row["datum_kurse"]);
 		$Familie = $row["Familie"];      
