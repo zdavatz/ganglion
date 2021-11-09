@@ -15,13 +15,12 @@ type="text/css">
 <?php 
 $url = $_SERVER["PHP_SELF"];
 ?>
-		<table>
 <?php
 		$query = "select Titel, thema, id, Zusammenfassung, zeit, Zielpublikum, location, date_format(gehalten,'%d.%m.%Y') 
 							as gehalten_formatted 
 							from vortrag, thema
 							where id_thema=thema_id
-							and id='" . mysqli_real_escape_string($conn1,$_GET[id])."'";
+							and id='" . mysqli_real_escape_string($conn1,$_GET["id"])."'";
 		$vortrag_result = mysqli_query($conn1, $query);
 		$result = mysqli_query($conn1, $query);
 		$values = mysqli_fetch_assoc($result);
@@ -33,11 +32,10 @@ $url = $_SERVER["PHP_SELF"];
 			echo "<tr><td class='TDbold'>".stripslashes(trim(urldecode ($values["gehalten_formatted"])))."</td>";
 			echo "<td class='TDbold'>".strftime('%H:%M' ,$values["zeit"])."</td></tr>";
 			echo "</table>";
-			echo "<tr><td>&nbsp;</td></tr>";
+			// echo "<tr><td>&nbsp;</td></tr>";
 			?>
 			<br>
 <button onClick='javascript:window.print()'>Drucken</button>
 
-</table>
 </body>
 </html>
