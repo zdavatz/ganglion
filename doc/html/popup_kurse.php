@@ -122,7 +122,7 @@ $url = $_SERVER["PHP_SELF"];
 			echo "</tr>";
 			echo "<td colspan='6'>".nl2br(stripslashes(trim(urldecode ($values["kursziele_kurse"]))))."</td>";
 			echo "</tr>";
-			echo "<tr><td class='tabltxt-l'>Pl&auml;tze:</td><td>". ($values["platz_kurse"])."</td></tr>";
+			echo "<tr><td class='tabltxt-l'>Zeit:</td><td>". ($values["platz_kurse"])."</td></tr>";
 			echo "<tr><td class='tabltxt-l'>Beginn:</td><td>". ($values["beginn_formatted"])."</td></tr>";
 			echo "<tr><td class='tabltxt-l'>Daten:</td><td>".urldecode ($values["daten_kurse"])."</td></tr>";
 			echo "<tr><td class='tabltxt-l'>Kosten:</td><td>".urldecode ($values["kosten_kurse"])."</td></tr>";

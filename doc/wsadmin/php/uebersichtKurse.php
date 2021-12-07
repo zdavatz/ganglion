@@ -133,7 +133,7 @@ if ($sortby == "standart" && $search == "all") $sortby = "Thema";
 	echo "	<a class='Atitel' href='$url&sortby=$ende'\n";?>>Kursende</a><?php
 	echo "</th>\n";	
 	echo "<th class='THzahl'>\n";
-	echo "	<a class='Atitel' href='$url&sortby=$platz'\n";?>>Pl&auml;tze</a><?php
+	echo "	<a class='Atitel' href='$url&sortby=$platz'\n";?>>Zeit</a><?php
 	echo "</th>\n";
 	echo "<th class='THzahl'>\n";
 	echo "	<a class='Atitel' href='$url&sortby=$teilnehmer'\n";?>>Teilnehmer</a><?php
