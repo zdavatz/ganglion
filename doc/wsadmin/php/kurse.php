@@ -208,7 +208,7 @@ for($i=1980; $i <= 2025; $i++){
 </td>
 </tr>
 <tr> 
-<td>Pl&auml;tze:</td>
+<td>Zeit:</td>
 <td colspan="2"> 
 <input class='INPUTtext' type="text" name="platz_kurse" size="35" value="<?php print $platz_kurse; ?>">
 </td>
