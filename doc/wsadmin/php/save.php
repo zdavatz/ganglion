@@ -572,7 +572,16 @@ if ($page == "artikel" && $change == "true"){
 	$Gesundheit = isset($Gesundheit) ? $Gesundheit : 0;
 	$Familie = isset($Familie) ? $Familie : 0;
 	if ($file != ""){
-		//print '->'.$file.'<-';
+		// for the deleting part it can come after the sql query ;) no idea why.
+		if( $_FILES['file']['name'] != "" ) {
+			$file_name=$_FILES['file']['name'];
+			$pathto="../../pdf/".$file_name;
+			move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
+		} else {
+			$delfile = "../../pdf/$oldfile";
+			if ($file_name != $oldfile) 
+				@unlink($delfile);
+		}
 		$fields = "
 			titel_artikel='$titel_artikel', 
 			Zeitschrift='$Zeitschrift', 
@@ -583,38 +592,26 @@ if ($page == "artikel" && $change == "true"){
 			Familie='$Familie', 
 			thema_id='$searchnew', 
 			erschienen='$erschienen'";
-
-// for the deleting part it can come after the sql query ;) no idea why.
-  if( $_FILES['file']['name'] != "" ) {
-    $file_name=$_FILES['file']['name'];
-    $pathto="../../pdf/".$file_name;
-    move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
-    } else {
-			$delfile = "../../pdf/$oldfile";
-			if ($file_name != $oldfile) 
-				@unlink($delfile);
-		}
 	} else {
+		$fields = "	
+			titel_artikel='$titel_artikel', 
+			Zeitschrift='$Zeitschrift', 
+			pdf='$oldfile', 
+			Arbeit='$Arbeit', 
+			Erziehung='$Erziehung', 
+			Gesundheit='$Gesundheit', 
+			Familie='$Familie', 
+			thema_id='$searchnew', 
+			erschienen='$erschienen'
+		";
 
-			$fields = "	
-				titel_artikel='$titel_artikel', 
-				Zeitschrift='$Zeitschrift', 
-				pdf='$oldfile', 
-				Arbeit='$Arbeit', 
-				Erziehung='$Erziehung', 
-				Gesundheit='$Gesundheit', 
-				Familie='$Familie', 
-				thema_id='$searchnew', 
-				erschienen='$erschienen'
-			";
-
-		}
-			$query="UPDATE artikel SET $fields WHERE id_artikel='$id_artikel'";
-			if (!mysqli_query($conn1, $query)) {
-				die($conn1->error);
-			}
-			header("Location: admin.php?page=$page&search=$searchnew");
 	}
+	$query="UPDATE artikel SET $fields WHERE id_artikel='$id_artikel'";
+	if (!mysqli_query($conn1, $query)) {
+		die($conn1->error);
+	}
+	header("Location: admin.php?page=$page&search=$searchnew");
+}
 
 //loeschen
 if ($page == "artikel" && $delete == "true"){
