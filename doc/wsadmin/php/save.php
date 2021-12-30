@@ -53,6 +53,11 @@ if (!isset($datum)) {
 // set mysql-encoding
 mysqli_query($conn1, "SET NAMES 'utf8'"); mysqli_query($conn1, "SET CHARACTER SET utf8"); 
 
+// Temp migration for #37
+mysqli_query($conn1, "ALTER TABLE artikel MODIFY thema_id INT unsigned;"); 
+mysqli_query($conn1, "ALTER TABLE forum_thread MODIFY thema_id INT unsigned;"); 
+mysqli_query($conn1, "ALTER TABLE links MODIFY thema_id INT unsigned;"); 
+
 //hier werden die daten codiert
 if ($page == "themen"){
 	$Thema = htmlflashen($Thema);
