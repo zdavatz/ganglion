@@ -109,7 +109,7 @@ Montag bis Freitag 9-11 Uhr<br>
 Fax: 056 200 08 18<br>
 </td>
 </tr>
-<td class="TDbold-big" colspan="3"><a href=https://schizoud.files.wordpress.com/2020/11/team_dr.med_ursula_davatz.pdf>Das Team</a></td>
+<td class="TDbold-big" colspan="3"><https://adhs.expert/wp-content/uploads/2020/11/team_dr.med_ursula_davatz.pdf>Das Team</a></td>
 </table>
 </td>
 </tr>
