@@ -218,14 +218,13 @@ if ($page == "vortrag" && $new == "true"){
 //aendern
 
 if ($page == "vortrag" && $change == "true"){
-	if( $_FILES['file']['name'] != "" ) {
-    $file_name=$_FILES['file']['name'];
-    $pathto="../../pdf/".$file_name;
-    move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
-	} else {
-	    $delfile = "../../pdf/$oldfile";
-	      if ($file_name != $oldfile)
-	    @unlink($delfile);
+	$file_name=$_FILES['file']['name'];
+	if ($file_name != "") {
+		if (isset($oldfile) && $oldfile != "" && $file_name != $oldfile) {
+			@unlink("../../pdf/$oldfile");
+		}
+		$pathto="../../pdf/".$file_name;
+		move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
 	}
 
 	$google_video_hours = isset($google_video_hours) ? $google_video_hours : '';
@@ -237,7 +236,9 @@ if ($page == "vortrag" && $change == "true"){
 	$Zielpublikum = isset($Zielpublikum) ? $Zielpublikum : '';
 	$time = intval($time ?: '0');
 	$location = isset($location) ? $location : '';
-	$file_name = isset($file_name) ? $file_name : '';
+	if ($file_name == '') {
+		$file_name = $oldfile;
+	}
 	$audiofile_name = isset($audiofile_name) ? $audiofile_name : '';
 	$audiofile_size = intval(str_replace(" ", "", $audiofile_size));
 	$google_video_url = isset($google_video_url) ? $google_video_url : '';
@@ -256,7 +257,8 @@ if ($page == "vortrag" && $change == "true"){
 				Zielpublikum=?, 
 				gehalten=?,
 				zeit=?, 
-				location=?, 
+				location=?,
+				pdf=?,
 				audiofile=?,
 				audiofile_size=?,
 				google_video_url=?,
@@ -272,13 +274,14 @@ if ($page == "vortrag" && $change == "true"){
 	$stmt = mysqli_prepare($conn1, $query);
 	mysqli_stmt_bind_param(
 		$stmt,
-		'ssssississiiiiis',
+		'ssssisssissiiiiis',
 		$Titel,
 		$Zusammenfassung,
 		$Zielpublikum,
 		$gehalten,
 		$time,
 		$location,
+		$file_name,
 		$audiofile_name,
 		$audiofile_size,
 		$google_video_url,
