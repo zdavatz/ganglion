@@ -114,6 +114,7 @@ Fax: 056 200 08 18<br>
 <td class="TDbold-big" colspan="3"><a href=https://adhs.expert/wp-content/uploads/2022/01/Psychologinnen_Psychologe-Praxis-in-Baden-Ma%CC%88derstrasse-11.pdf target=_blank>Psychologe/Innen Baden</a></td>
 </tr>
 <td class="TDbold-big" colspan="3"><a href=https://adhs.expert/wp-content/uploads/2022/01/PSYCHOLOGINNEN-Praxis-Zürich_Winterthurerstrasse-52.pdf target=_blank>Psychologinnen Zürich</a></td>
+<td class="TDbold-big" colspan="3"><a href=https://psychiatriewohin.ch/ target=_blank>Grossanlass "Psychiatrie wohin?" zum 80-jährigen Geburtstag von Dr.med. Ursula Davatzh</a></td>
 </table>
 </td>
 </tr>
