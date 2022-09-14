@@ -21,6 +21,7 @@
 Frau Dr.med. Ursula Davatz, geboren 1942, ist mit dem K&uuml;nstler 
 <a href="https://davaz.com">J&uuml;rg DaVaz</a> verheiratet und hat drei erwachsene Kinder.
 <br>
+<a href=https://youtube.com/playlist?list=PLx8ORGwBUsmAeZA5lJs95ngsP57Nr3Tcj target=_blank>Fachtagung "Psychiatrie wohin?" zum 80-jährigen Geburtstag von Dr.med. Ursula Davatz</a>
 <br>
 <br>
 <?php
@@ -115,7 +116,6 @@ Fax: 056 200 08 18<br>
 </tr>
 <td class="TDbold-big" colspan="3"><a href=https://adhs.expert/wp-content/uploads/2022/01/PSYCHOLOGINNEN-Praxis-Zürich_Winterthurerstrasse-52.pdf target=_blank>Psychologinnen Zürich</a></td>
 </tr>
-<td class="TDbold-big" colspan="3"><a href=https://youtube.com/playlist?list=PLx8ORGwBUsmAeZA5lJs95ngsP57Nr3Tcj target=_blank>Grossanlass "Psychiatrie wohin?" zum 80-jährigen Geburtstag von Dr.med. Ursula Davatz</a></td>
 </table>
 </td>
 </tr>
