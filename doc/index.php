@@ -21,7 +21,10 @@
 Frau Dr.med. Ursula Davatz, geboren 1942, ist mit dem K&uuml;nstler 
 <a href="https://davaz.com">J&uuml;rg DaVaz</a> verheiratet und hat drei erwachsene Kinder.
 <br>
+<br>
+<br>
 <a href=https://youtube.com/playlist?list=PLx8ORGwBUsmAeZA5lJs95ngsP57Nr3Tcj target=_blank>Fachtagung "Psychiatrie wohin?" zum 80-jährigen Geburtstag von Dr.med. Ursula Davatz</a>
+<br>
 <br>
 <br>
 <?php
