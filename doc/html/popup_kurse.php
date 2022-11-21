@@ -43,7 +43,7 @@ $url = $_SERVER["PHP_SELF"];
   	$values = mysqli_fetch_assoc($result);
 		?>
 			<table class="bordertable">
-			<tr><td class='TDbold-big'>Ganglion Kursanmeldung</td></tr>
+			<tr><td class='TDbold-big'>Ganglion Anmeldung</td></tr>
 			<tr>
 			<?php echo "<td colspan='2' class='TDbold'>".stripslashes(trim(urldecode ($values["titel_kurse"])))."</td>"; ?>
 			</tr>
@@ -106,7 +106,7 @@ $url = $_SERVER["PHP_SELF"];
 			<tr><td>&nbsp;</td></tr>
 <table class="bordertable">
 <tr>
-<td class="tabltxt-l"><b>Anmeldung</b> per Post an <b>Sekretariat, Praxisgemeinschaft M&auml;derstrasse, M&auml;derstrasse 13, 5400 Baden.</b></td>
+<td class="tabltxt-l"><b>Anmeldung</b> per Email an <b>sekretariat@ganglion.ch</b></td>
 <td align="left">
 <button onClick='javascript:window.print()'>Drucken</button>
 </td>
