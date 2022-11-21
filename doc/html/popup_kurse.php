@@ -60,7 +60,7 @@ $url = $_SERVER["PHP_SELF"];
 			<?php
 			echo "<table class='borderTABLE'>";
 			echo "<tr>";
-			echo "<tr><td colspan='2' class='TDbold-big'>Inhalt der Veranstaltung</td></tr>";
+			echo "<tr><td colspan='2' class='TDbold-big'>Inhalt</td></tr>";
 			echo "<td colspan='2' class='TDbold-big'>".stripslashes(trim(urldecode ($values["titel_kurse"])))."</td>";
 			echo "<td>&nbsp;</td>";
 			echo "</tr>";
