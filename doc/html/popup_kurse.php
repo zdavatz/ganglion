@@ -106,7 +106,7 @@ $url = $_SERVER["PHP_SELF"];
 			<tr><td>&nbsp;</td></tr>
 <table class="bordertable">
 <tr>
-<td class="tabltxt-l"><b>Anmeldung</b> per Email an <b>mailto:sekretariat@ganglion.ch</b></td>
+<td class="tabltxt-l"><b>Anmeldung</b> per Email an <b><a href="mailto:sekretariat@ganglion.ch">sekretariat@ganglion.ch</a></b></td>
 <td align="left">
 <button onClick='javascript:window.print()'>Drucken</button>
 </td>
