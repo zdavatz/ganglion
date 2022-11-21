@@ -47,7 +47,7 @@ $url = $_SERVER["PHP_SELF"];
 			<tr>
 			<?php echo "<td colspan='2' class='TDbold'>".stripslashes(trim(urldecode ($values["titel_kurse"])))."</td>"; ?>
 			</tr>
-			<tr><td class='TDbold'>Anmeldeformular<a href="https://forms.gle/q6Da1cFhF5jvQHA89">hier klicken</a></td></tr>
+			<tr><td class='TDbold'>Anmeldeformular <a href="https://forms.gle/q6Da1cFhF5jvQHA89" target="_blank">hier klicken</a></td></tr>
 			</table>
 			</form>
 			<tr><td>&nbsp;</td></tr>
