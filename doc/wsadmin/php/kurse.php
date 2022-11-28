@@ -68,22 +68,11 @@ include("getmenu.php");
 </tr>
 <tr>
 <td>Kurse oder Gruppe</td>
-<td colspan="2"> 
+<td colspan="2">
 <select name="kurs_art">
-<?php
-	if ($kurs_art == "regkurs")
-	{
-	echo "<option value='regkurse' selected>regelm&auml;ssige Kurse</option>\n";
-	echo "<option value='spezkurse'>spezielle Kurse</option>\n";
-	echo "<option value='gruppe'>Gruppe</option>\n";
-	}
-	else
-	{
-	echo "<option value='regkurse'>regelm&auml;ssige Kurse</option>\n";
-	echo "<option value='spezkurse'>spezielle Kurse</option>\n";
-	echo "<option value='gruppe'>Gruppe</option>\n";
-	};
-?>
+<option value='regkurse' <?php echo $kurs_art == "regkurse" ? "selected" : ""; ?> >regelm&auml;ssige Kurse</option>
+<option value='spezkurse' <?php echo $kurs_art == "spezkurse" ? "selected" : ""; ?> >spezielle Kurse</option>
+<option value='gruppe' <?php echo $kurs_art == "gruppe" ? "selected" : ""; ?> >Gruppe</option>
 </td>
 </tr>
 </select>
