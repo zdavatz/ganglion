@@ -241,7 +241,7 @@ if ($change == "true"){
    <td id='title'>Audiofile:</td>
    <td colspan="2"> 
 	
-<input class='INPUTtext' type="text" name="audiofile_name"  value='<?php print $audiofile_name ?>' size="35" maxlength="100">
+<input class='INPUTtext' type="text" name="audiofile_name"  value='<?php print $audiofile_name ?>' size="35" maxlength="255">
    </td>
   </tr>
   <tr> 
@@ -255,7 +255,7 @@ if ($change == "true"){
    <td id='title'>Google Video-Link:</td>
    <td colspan="2"> 
 	
-<input class='INPUTtext' type="text" name="google_video_url" value='<?php print $google_video_url ?>' size="35" maxlength="100">
+<input class='INPUTtext' type="text" name="google_video_url" value='<?php print $google_video_url ?>' size="35" maxlength="255">
    </td>
   </tr>
   <tr> 
