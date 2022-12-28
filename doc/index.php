@@ -97,27 +97,18 @@ Langj&auml;hrige Mitarbeit in Gremien, Organisationen und Projekten gesundheitsp
 </tr>
 <tr>
 <td>
-Baden:<br>
-<a href="html/maederstr.php">M&auml;derstrasse 13</a><br>
-Anwesend: Mo, Di, Do, Fr<br><br>
 Z&uuml;rich:<br>
 <a href="html/winterthurerstr.php">Winterthurerstrasse 52</a><br>
-Anwesend: Mi, Sa<br>
+Anwesend: Mo, Di, Mi, Do, Fr<br>
 </td>
 <td colspan="2" width="60%">
 Sekretariat:<br>
-Praxisgemeinschaft M&auml;derstrasse,<br>
-<a href="html/maederstr.php">M&auml;derstrasse 13</a><br>
-5400 Baden<br>
+adhs.expert<br>
+8006 Z&uuml;rich<br>
 <a href="mailto:sekretariat@ganglion.ch">sekretariat@ganglion.ch</a><br>
-Tel. 056 200 08 10<br>
-Montag bis Freitag 9-11 Uhr<br>
-Fax: 056 200 08 18<br>
+Tel. 058 255 01 15<br>
+Mittwoch und Donnerstag 9-11 Uhr<br>
 </td>
-</tr>
-<td class="TDbold-big" colspan="3"><a href=https://adhs.expert/wp-content/uploads/2022/01/PSYCHIATER-PRAXIS-BADEN.pdf target=_blank>Ärzte Baden</a></td>
-</tr>
-<td class="TDbold-big" colspan="3"><a href=https://adhs.expert/wp-content/uploads/2022/01/Psychologinnen_Psychologe-Praxis-in-Baden-Ma%CC%88derstrasse-11.pdf target=_blank>Psychologe/Innen Baden</a></td>
 </tr>
 <td class="TDbold-big" colspan="3"><a href=https://adhs.expert/wp-content/uploads/2022/01/PSYCHOLOGINNEN-Praxis-Zürich_Winterthurerstrasse-52.pdf target=_blank>Psychologinnen Zürich</a></td>
 </tr>
