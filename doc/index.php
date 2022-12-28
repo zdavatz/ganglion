@@ -110,8 +110,6 @@ Tel. 058 255 01 15<br>
 Mittwoch und Donnerstag 9-11 Uhr<br>
 </td>
 </tr>
-<td class="TDbold-big" colspan="3"><a href=https://adhs.expert/wp-content/uploads/2022/01/PSYCHOLOGINNEN-Praxis-Zürich_Winterthurerstrasse-52.pdf target=_blank>Psychologinnen Zürich</a></td>
-</tr>
 </table>
 </td>
 </tr>
