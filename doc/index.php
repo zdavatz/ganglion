@@ -99,15 +99,13 @@ Langj&auml;hrige Mitarbeit in Gremien, Organisationen und Projekten gesundheitsp
 <td>
 Z&uuml;rich:<br>
 <a href="https://goo.gl/maps/UsgR2aPa9ntkGxKL7" target="_blank">Winterthurerstrasse 52</a><br>
-Anwesend: Mo, Di, Mi, Do, Fr<br>
 </td>
 <td colspan="2" width="60%">
 Sekretariat:<br>
 adhs.expert<br>
 8006 Z&uuml;rich<br>
 <a href="mailto:sekretariat@ganglion.ch">sekretariat@ganglion.ch</a><br>
-Tel. 058 255 01 15<br>
-Mittwoch und Donnerstag 9-11 Uhr<br>
+Bitte schriftlich via Mail.<br>
 </td>
 </tr>
 </table>
