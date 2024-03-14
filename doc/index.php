@@ -27,8 +27,10 @@ Frau Dr.med. Ursula Davatz, geboren 1942, ist mit dem K&uuml;nstler
 <a href=https://youtube.com/playlist?list=PLx8ORGwBUsmAeZA5lJs95ngsP57Nr3Tcj target=_blank>Videobeiträge "Psychiatrie wohin?"</a>
 </b>
 <br>
+<br>
+<br>
 <b>
-<a href=https://youtube.com/playlist?list=PLx8ORGwBUsmDycdF_eFxXzZFspqGKRgxV&si target=_blank>Dr.med. Ursula Davatz Youtube Playlist"</a>
+<a href=https://youtube.com/playlist?list=PLx8ORGwBUsmDycdF_eFxXzZFspqGKRgxV&si target=_blank>Dr.med. Ursula Davatz Youtube Playlist</a>
 <b>
 <br>
 <br>
