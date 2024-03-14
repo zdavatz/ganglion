@@ -34,6 +34,8 @@ Frau Dr.med. Ursula Davatz, geboren 1942, ist mit dem K&uuml;nstler
 <b>
 <br>
 <br>
+<br>
+<br>
 <?php
 							
 		$query = "select Titel, thema, Zusammenfassung, zeit, Zielpublikum, location, id, date_format(gehalten,'%d.%m.%Y') 
