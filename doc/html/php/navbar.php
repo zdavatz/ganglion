@@ -13,7 +13,7 @@ $link = array
   "therapjur.php"				=>  "<b><a href='http://therapjur.net' target='blank'>Therapjur.net</a></b>",
   "twitter.php"				=>  "<b><a href='https://twitter.com/udavatz' target='blank'>Twitter</a></b>",
   "facebook.php"				=>  "<b><a href='https://facebook.com/schizoadhs' target='blank'>Facebook</a></b>",
-  "youtube.php"				=>  "<b><a href='https://www.youtube.com/watch?v=HyDMtL-W-yI&list=UUDZ9tWjHLJIvwwl40XbaT1w' target='blank'>Youtube</a></b>",
+//  "youtube.php"				=>  "<b><a href='https://www.youtube.com/watch?v=HyDMtL-W-yI&list=UUDZ9tWjHLJIvwwl40XbaT1w' target='blank'>Youtube</a></b>",
 //  "stelle.php"				        =>  "<b><a href='http://goo.gl/0qZjD' target='blank'>Assistenz-Arzt/&Auml;rztin gesucht</a></b>",
 );
 echo  "<table class='navbar-table' cellspacing='0'><tr>";
