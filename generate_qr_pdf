@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Check if the correct number of arguments is provided
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <URL> <Title> <OutputFilename>"
+    exit 1
+fi
+
+URL=$1
+TITLE=$2
+OUTPUT_PDF=$3
+
+# Generate the QR code
+QR_CODE_IMAGE="qrcode.png"
+qrencode -o "$QR_CODE_IMAGE" "$URL"
+
+# Function to wrap text without breaking words
+wrap_text() {
+    local text="$1"
+    local width=25
+    local wrapped_text=""
+    local line=""
+
+    for word in $text; do
+        if [ ${#line} -eq 0 ]; then
+            line="$word"
+        elif [ $(( ${#line} + ${#word} + 1 )) -le $width ]; then
+            line="$line $word"
+        else
+            wrapped_text="$wrapped_text$line\n"
+            line="$word"
+        fi
+    done
+    wrapped_text="$wrapped_text$line"
+    echo -e "$wrapped_text"
+}
+
+# Wrap the title text
+WRAPPED_TITLE=$(wrap_text "$TITLE")
+
+# Create the PDF with the QR code and title
+convert -size 595x842 xc:white \
+    -gravity center \
+    -font Arial -pointsize 24 -annotate +0+100 "\n\n$WRAPPED_TITLE" \
+    -gravity center -geometry +0+250 "$QR_CODE_IMAGE" -composite \
+    -gravity center -annotate +0+500 "\n\n" \
+    "$OUTPUT_PDF"
+
+# Clean up
+rm "$QR_CODE_IMAGE"
+
+echo "PDF created: $OUTPUT_PDF"
+
