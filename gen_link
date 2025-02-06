@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Check if the correct number of arguments is provided
+if [ "$#" -lt 5 ] || [ "$#" -gt 6 ]; then
+    echo "Usage: $0 [<inputfile>] <URL_name> <URL> <font> <font_size> <outputfile>"
+    exit 1
+fi
+
+# Assign arguments to variables
+url_name=$1
+url=$2
+font=$3
+font_size=$4
+outputfile=$5
+
+# Check if an input file is provided
+if [ "$#" -eq 6 ]; then
+    inputfile=$1
+    shift
+    url_name=$1
+    url=$2
+    font=$3
+    font_size=$4
+    outputfile=$5
+    # Construct the cpdf command with input file
+    cpdf_command="cpdf $inputfile -add-text \"%URL[$url_name|$url]\" -font $font -font-size $font_size AND -center-to-fit a3portrait -o $outputfile"
+else
+    # Construct the cpdf command to create a new PDF
+    cpdf_command="cpdf -create-pdf AND -add-text \"%URL[$url_name|$url]\" -font $font -font-size $font_size AND -center-to-fit a4portrait -o $outputfile"
+fi
+
+# Execute the command
+eval $cpdf_command
+
+# Check if the command was successful
+if [ $? -eq 0 ]; then
+    echo "PDF processed successfully. Output saved as $outputfile."
+else
+    echo "Failed to process PDF."
+    exit 1
+fi
+

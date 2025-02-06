@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Check if the correct number of arguments is provided
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <input_pdf> <qr_text>"
+    exit 1
+fi
+
+# Assign command line arguments to variables
+input_pdf="$1"
+qr_text="$2"
+output_pdf="${input_pdf%.*}_qr.pdf"
+qr_code_image="qrcode.png"
+temp_pdf="temp_with_qr.pdf"
+
+# Generate the QR code
+qrencode -o "$qr_code_image" "$qr_text"
+
+# Check if qrencode was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to generate QR code."
+    exit 1
+fi
+
+# Convert the QR code image to a single-page PDF
+convert "$qr_code_image" "qrcode.pdf"
+
+# Check if convert was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to convert QR code image to PDF."
+    exit 1
+fi
+
+# Use pdftk to overlay the QR code PDF onto the input PDF
+pdftk "$input_pdf" multistamp "qrcode.pdf" output "$temp_pdf"
+
+# Check if pdftk was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to overlay QR code onto PDF."
+    exit 1
+fi
+
+# Move the temporary PDF to the final output location
+mv "$temp_pdf" "$output_pdf"
+
+# Clean up temporary files
+rm "$qr_code_image" "qrcode.pdf"
+
+echo "QR code inserted successfully. Output saved to $output_pdf"
+
