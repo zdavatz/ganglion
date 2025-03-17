@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php
-    require_once($DOCUMENT_ROOT."/html/php/navbar.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/html/php/navbar.php");
 ?>
 <div class="tabltxt-dl"><a id="back-vortraege" href="/html/vortraege.php">Zur&uuml;ck zur Vortrags&uuml;bersicht</a></div>
 <h1>Die Vortr&auml;ge von Ursula Davatz als Podcast</h1>
