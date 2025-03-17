@@ -1,15 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<head>									
-	<meta http-equiv="Content-Type"
- content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="../html/css/browser5.css"
- type="text/css">
-	<title>Ganglion - Knotenpunkt menschlicher Beziehungen</title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="../html/css/browser5.css" type="text/css">
+    <title>Ganglion - Knotenpunkt menschlicher Beziehungen</title>
 </head>
 <body>
 <?php
-	require_once($DOCUMENT_ROOT."/html/php/navbar.php");
+    require_once($DOCUMENT_ROOT."/html/php/navbar.php");
 ?>
 <div class="tabltxt-dl"><a id="back-vortraege" href="/html/vortraege.php">Zur&uuml;ck zur Vortrags&uuml;bersicht</a></div>
 <h1>Die Vortr&auml;ge von Ursula Davatz als Podcast</h1>
@@ -20,8 +18,13 @@
 <p>Sie brauchen eine Software, die es Ihnen erlaubt Podcasts zu abonnieren und diese dann f&uuml;r Sie herunterl&auml;dt. Zum Beispiel k&ouml;nnen Sie das oben genannte <a href='http://www.apple.com/itunes/' target='_blank'>iTunes</a> verwenden.</p>
 <p>Es gibt aber noch viele andere Programme, die Sie kostenlos einsetzen k&ouml;nnen. Eine &Uuml;bersicht finden Sie zum Beispiel auf <a href='http://www.podcastalley.com/forum/links.php?id=1' target='_blank'>Podcastalley</a>.</p>
 <h2>Wie kann ich einen Podcast abonnieren?</h2>
-<p>Wenn Sie iTunes benutzen, k&ouml;nnen Sie den Podcast <a href='itpc://www.ganglion.ch/feed.xml'>mit diesem Link abonnieren</a>.</p>
-<p>Wenn Sie ein anderes Programm benutzen, kopieren Sie bitte folgenden Link und erstellen in ihrer Software ein neues Podcast Abonnement mit folgendem Link:<br><b><a href="http://www.ganglion.ch/feed.xml">http://www.ganglion.ch/feed.xml</a></b></p>
+<p>Sie können den Podcast auf folgenden Plattformen abonnieren:</p>
+<ul>
+    <li><a href="https://podcasts.apple.com/ch/podcast/adhs-und-schizophrenie/id1559419856" target="_blank">Apple Podcasts</a></li>
+    <li><a href="https://open.spotify.com/show/67sgy1aLTLXKCWkmgoqJ46" target="_blank">Spotify (Deutsch)</a></li>
+    <li><a href="https://open.spotify.com/show/1ydu8PC6iyOsPNbBIW7I8R" target="_blank">Spotify (English)</a></li>
+</ul>
+<p>Wenn Sie ein anderes Programm benutzen, kopieren Sie bitte folgenden Link und erstellen in Ihrer Software ein neues Podcast-Abonnement mit folgendem Link:<br><b><a href="http://www.ganglion.ch/feed.xml">http://www.ganglion.ch/feed.xml</a></b></p>
 <p>Als dritte M&ouml;glichkeit steht Ihnen <a href="http://feeds.feedburner.com/VortrgeVonDerWebsiteGanglionch" target="_blank">FeedBurner.com</a> zur Verf&uuml;gung. Auf dieser Seite finden Sie f&uuml;r einige Programme optimierte Abonnement-Links.</p>
 <p><a href="/html/vortraege.php">Zur&uuml;ck zur Vortrags&uuml;bersicht</a></p>
 </body>
