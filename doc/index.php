@@ -88,7 +88,7 @@ Langj&auml;hrige Mitarbeit in Gremien, Organisationen und Projekten gesundheitsp
 <td><a href="html/kontakt.php">Buch bestellen</a></td>
 </tr>
 <tr>
-<td class="TDbold" colspan="2">"ADHS und Schizophrenie - Wie emotionale Monsterwellen entstehen und wie sie behandelt werden"</td>
+<td class="TDbold" colspan="2">"ADHS und Schizophrenie - Grenzzerfall"</td>
 <td><a href="http://www.somedia-buchverlag.ch/gesamtverzeichnis/adhs-und-schizophrenie/">Buch bestellen</a> | <a href="https://www.amazon.de/ADHS-Schizophrenie-emotionale-Monsterwellen-entstehen-ebook/dp/B07ND672ZH/">E-Book bei Amazon bestellen</a></td>
 </tr>
 </td>
