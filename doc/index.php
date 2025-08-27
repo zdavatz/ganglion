@@ -97,6 +97,11 @@ Langj&auml;hrige Mitarbeit in Gremien, Organisationen und Projekten gesundheitsp
 <td><a href="https://itunes.apple.com/us/book/id1451739789">Bei iBooks (Apple) kaufen</a> | <a href="https://www.amazon.com/dp/B07NGRBLQ1">Bei Amazon (Kindle) kaufen</a> | <a href="https://www.amazon.de/dp/3033070779">Bei Amazon als Buch kaufen</a></td>
 </tr>
 </td>
+<tr>
+<td class="TDbold" colspan="2">"ADHS/ADS Folgekrankheiten - Psychiatrie im Offside"</td>
+<td><a href="https://www.somedia-buchverlag.ch/gesamtverzeichnis/deadhsads-folgekrankheiten/">Buch bestellen</a></td>
+</tr>
+</td>
 </tr>
 <tr><td class="nopaddingTABLE">&nbsp;</td></tr>
 <tr>
