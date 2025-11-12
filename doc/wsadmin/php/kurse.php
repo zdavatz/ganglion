@@ -108,7 +108,7 @@ echo "<option value='$i' $select>$heute</option>\n";
 <td> 
 <select name="year" size="1">
 <?php
-for($i=1980; $i <= 2025; $i++){
+for($i=1980; $i <= 2035; $i++){
 	$select = "";
 	if ($i == $datum["y"]) $select = "selected";
 	echo "<option value='$i' $select>$i</option>\n";
@@ -152,7 +152,7 @@ echo "<option value='$i' $select>$heute</option>\n";
 <td> 
 <select name="yearend" size="1">
 <?php
-for($i=1980; $i <= 2025; $i++){
+for($i=1980; $i <= 2035; $i++){
 	$select = "";
 	if ($i == $datumend["y"]) $select = "selected";
 	echo "<option value='$i' $select>$i</option>\n";
