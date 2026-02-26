@@ -1,6 +1,9 @@
 <?php
 if ($change == "true"){
-$result = mysqli_query($conn1, "SELECT * FROM artikel WHERE id_artikel ='$id'");
+$stmt = mysqli_prepare($conn1, "SELECT * FROM artikel WHERE id_artikel = ?");
+mysqli_stmt_bind_param($stmt, 's', $id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 	$row = @mysqli_fetch_array($result);
 		$id_artikel = $row["id_artikel"];
 		$titel_artikel = stripslashes(urldecode($row["titel_artikel"]));

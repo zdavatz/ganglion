@@ -34,15 +34,19 @@ $all=0;
 //
 	if (!empty($searchterm))
 	{
-		$query = "	SELECT * 
-					FROM $table
-					WHERE Titel LIKE '%$searchterm%'";
-		$all = mysqli_query($conn1, $query);
+		$searchterm_like = '%' . $searchterm . '%';
+		$stmt = mysqli_prepare($conn1, "SELECT * FROM $table WHERE Titel LIKE ?");
+		mysqli_stmt_bind_param($stmt, 's', $searchterm_like);
+		mysqli_stmt_execute($stmt);
+		$all = mysqli_stmt_get_result($stmt);
 	}
 	elseif (isset($search) &&  $search == "all") {
 		$all = mysqli_query($conn1, "SELECT * FROM $table");
 	} else {
-		$all = mysqli_query($conn1, "SELECT * FROM $table WHERE thema_id=$search");
+		$stmt = mysqli_prepare($conn1, "SELECT * FROM $table WHERE thema_id=?");
+		mysqli_stmt_bind_param($stmt, 's', $search);
+		mysqli_stmt_execute($stmt);
+		$all = mysqli_stmt_get_result($stmt);
 	}
 
 	$Ptot = mysqli_num_rows($all);
@@ -200,19 +204,21 @@ if (isset($request) && $request=="uebersicht"){
 
 	if (!empty($searchterm))
 	{
-		$query = "	SELECT * 
-					FROM $table AS A, thema AS B 
-					WHERE A.thema_id=B.id_thema 
-					AND Titel LIKE '%$searchterm%'
-					ORDER BY $SortBy";
-		$result = mysqli_query($conn1, $query);
+		$searchterm_like = '%' . $searchterm . '%';
+		$stmt = mysqli_prepare($conn1, "SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema AND Titel LIKE ? ORDER BY $SortBy");
+		mysqli_stmt_bind_param($stmt, 's', $searchterm_like);
+		mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
 	}
 	elseif (isset($search) &&  $search == "all") {
 		$result = mysqli_query($conn1, "SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema ORDER BY $SortBy");
 	}
 	else
 	{
-		$result = mysqli_query($conn1, "SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema AND thema_id=$search ORDER BY $SortBy");
+		$stmt = mysqli_prepare($conn1, "SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema AND thema_id=? ORDER BY $SortBy");
+		mysqli_stmt_bind_param($stmt, 's', $search);
+		mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
 		$isresult = mysqli_num_rows($result);
 		if ($isresult == 0) $result = mysqli_query($conn1, "SELECT * FROM $table AS A, thema AS B WHERE A.thema_id=B.id_thema ORDER BY $SortBy");
 	}

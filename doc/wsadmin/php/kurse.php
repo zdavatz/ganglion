@@ -1,6 +1,9 @@
 <?php
 if ($change == "true"){
-$result = mysqli_query($conn1, "SELECT * FROM kurse WHERE id_kurse ='$id'");
+$stmt = mysqli_prepare($conn1, "SELECT * FROM kurse WHERE id_kurse = ?");
+mysqli_stmt_bind_param($stmt, 's', $id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 	$row = @mysqli_fetch_array($result);
 		$id_kurse = $row["id_kurse"];
 		$thema_id = $row["thema_id"];

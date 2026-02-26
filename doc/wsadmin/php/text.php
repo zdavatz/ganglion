@@ -1,6 +1,9 @@
 <?php
 if ($change == "true"){
-$result = mysqli_query($conn1, "SELECT * FROM text WHERE id_text ='$id_text'");
+$stmt = mysqli_prepare($conn1, "SELECT * FROM text WHERE id_text = ?");
+mysqli_stmt_bind_param($stmt, 's', $id_text);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 	$row = @mysqli_fetch_array($result);
 		$id_text = $row["id_text"];
 		$inhalt_text = urldecode($row["inhalt_text"]);

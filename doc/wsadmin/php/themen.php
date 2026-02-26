@@ -1,6 +1,9 @@
 <?php
 if ($change == "true"){
-$result = mysqli_query($conn1, "SELECT * FROM thema WHERE id_thema ='$id'");
+$stmt = mysqli_prepare($conn1, "SELECT * FROM thema WHERE id_thema = ?");
+mysqli_stmt_bind_param($stmt, 's', $id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 	$row = @mysqli_fetch_array($result);
 		$id_thema = $row["id_thema"];
 		$Thema = urldecode($row["thema"]);

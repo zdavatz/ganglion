@@ -4,23 +4,16 @@ include("auth.inc");
 
 //error_reporting(E_ALL);
 
-// Emulate register_globals on, 
-// see https://www.php.net/manual/de/faq.misc.php#faq.misc.registerglobals
-if (!ini_get('register_globals')) {
-    $superglobals = array($_SERVER, $_ENV, $_FILES, $_COOKIE, $_POST, $_GET);
-    if (isset($_SESSION)) {
-        array_unshift($superglobals, $_SESSION);
-    }
-    foreach ($superglobals as $superglobal) {
-        extract($superglobal, EXTR_SKIP);
-    }
-}
-
-
-//
-if (!isset($sessionPage)) $sessionPage = "";
-if (!isset($sessionSearch)) $sessionSearch = "";
-if (!isset($oldquerystring)) $oldquerystring = "";
+// Read request parameters explicitly instead of emulating register_globals
+$page = isset($_GET['page']) ? $_GET['page'] : '';
+$new = isset($_GET['new']) ? $_GET['new'] : '';
+$change = isset($_GET['change']) ? $_GET['change'] : '';
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$searchterm = isset($_GET['searchterm']) ? $_GET['searchterm'] : '';
+$id = isset($_GET['id']) ? $_GET['id'] : '';
+$sessionPage = isset($_GET['sessionPage']) ? $_GET['sessionPage'] : '';
+$sessionSearch = isset($_GET['sessionSearch']) ? $_GET['sessionSearch'] : '';
+$oldquerystring = isset($_GET['oldquerystring']) ? $_GET['oldquerystring'] : '';
 
 session_start();
 
@@ -34,7 +27,7 @@ $_SESSION['oldquerystring'] = $oldquerystring;
 //print_r($array);
 
 $oldquery = $oldquerystring;
-$oldquerystring = $QUERY_STRING;
+$oldquerystring = $_SERVER['QUERY_STRING'];
 
 //echo '<pre>';
 //var_dump($_SERVER);

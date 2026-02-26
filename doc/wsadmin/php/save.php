@@ -4,51 +4,81 @@ include("property.php");
 
 //error_reporting(E_ALL);
 
-// Emulate register_globals on
-if (!ini_get('register_globals')) {
-    $superglobals = array($_SERVER, $_ENV,
-        $_FILES, $_COOKIE, $_POST, $_GET);
-    if (isset($_SESSION)) {
-        array_unshift($superglobals, $_SESSION);
-    }
-    foreach ($superglobals as $superglobal) {
-        extract($superglobal, EXTR_SKIP);
-    }
-}
+// Read request parameters explicitly instead of emulating register_globals
+$page = isset($_POST['page']) ? $_POST['page'] : '';
+$new = isset($_POST['new']) ? $_POST['new'] : '';
+$change = isset($_POST['change']) ? $_POST['change'] : '';
+$delete = isset($_POST['delete']) ? $_POST['delete'] : '';
+$pdfdelete = isset($_POST['pdfdelete']) ? $_POST['pdfdelete'] : '';
+$search = isset($_POST['search']) ? $_POST['search'] : '';
+$searchnew = isset($_POST['searchnew']) ? $_POST['searchnew'] : '';
+$id = isset($_POST['id']) ? $_POST['id'] : '';
+$oldfile = isset($_POST['oldfile']) ? $_POST['oldfile'] : '';
 
-if (!isset($change)) {
-	$change = '';
-}
-if (!isset($delete)) {
-	$delete = '';
-}
-if (!isset($new)) {
-	$new = '';
-}
-if (!isset($pdfdelete)) {
-	$pdfdelete = '';
-}
-if (!isset($dayend)) {
-	$dayend = '';
-}
-if (!isset($day)) {
-	$day = '';
-}
-if (!isset($month)) {
-	$month = '';
-}
-if (!isset($year)) {
-	$year = '';
-}
-if (!isset($monthend)) {
-	$monthend = '';
-}
-if (!isset($yearend)) {
-	$yearend = '';
-}
-if (!isset($datum)) {
-	$datum = '';
-}
+// Date fields
+$day = isset($_POST['day']) ? $_POST['day'] : '';
+$month = isset($_POST['month']) ? $_POST['month'] : '';
+$year = isset($_POST['year']) ? $_POST['year'] : '';
+$dayend = isset($_POST['dayend']) ? $_POST['dayend'] : '';
+$monthend = isset($_POST['monthend']) ? $_POST['monthend'] : '';
+$yearend = isset($_POST['yearend']) ? $_POST['yearend'] : '';
+$datum = isset($_POST['datum']) ? $_POST['datum'] : '';
+$datumchange = isset($_POST['datumchange']) ? $_POST['datumchange'] : '';
+
+// Themen fields
+$Thema = isset($_POST['Thema']) ? $_POST['Thema'] : '';
+$idThema = isset($_POST['idThema']) ? $_POST['idThema'] : '';
+
+// Vortrag fields
+$Titel = isset($_POST['Titel']) ? $_POST['Titel'] : '';
+$Zusammenfassung = isset($_POST['Zusammenfassung']) ? $_POST['Zusammenfassung'] : '';
+$Zielpublikum = isset($_POST['Zielpublikum']) ? $_POST['Zielpublikum'] : '';
+$location = isset($_POST['location']) ? $_POST['location'] : '';
+$hour = isset($_POST['hour']) ? $_POST['hour'] : '';
+$minute = isset($_POST['minute']) ? $_POST['minute'] : '';
+$audiofile_name = isset($_POST['audiofile_name']) ? $_POST['audiofile_name'] : '';
+$audiofile_size = isset($_POST['audiofile_size']) ? $_POST['audiofile_size'] : '';
+$google_video_url = isset($_POST['google_video_url']) ? $_POST['google_video_url'] : '';
+$google_video_hours = isset($_POST['google_video_hours']) ? $_POST['google_video_hours'] : '';
+$google_video_minutes = isset($_POST['google_video_minutes']) ? $_POST['google_video_minutes'] : '';
+$google_video_seconds = isset($_POST['google_video_seconds']) ? $_POST['google_video_seconds'] : '';
+
+// Category fields
+$Arbeit = isset($_POST['Arbeit']) ? $_POST['Arbeit'] : 0;
+$Erziehung = isset($_POST['Erziehung']) ? $_POST['Erziehung'] : 0;
+$Gesundheit = isset($_POST['Gesundheit']) ? $_POST['Gesundheit'] : 0;
+$Familie = isset($_POST['Familie']) ? $_POST['Familie'] : 0;
+
+// Links fields
+$url = isset($_POST['url']) ? $_POST['url'] : '';
+$text = isset($_POST['text']) ? $_POST['text'] : '';
+$beschreibung = isset($_POST['beschreibung']) ? $_POST['beschreibung'] : '';
+
+// Kurse fields
+$id_kurse = isset($_POST['id_kurse']) ? $_POST['id_kurse'] : '';
+$titel_kurse = isset($_POST['titel_kurse']) ? $_POST['titel_kurse'] : '';
+$kursziele_kurse = isset($_POST['kursziele_kurse']) ? $_POST['kursziele_kurse'] : '';
+$ort_kurse = isset($_POST['ort_kurse']) ? $_POST['ort_kurse'] : '';
+$kosten_kurse = isset($_POST['kosten_kurse']) ? $_POST['kosten_kurse'] : '';
+$leitung_kurse = isset($_POST['leitung_kurse']) ? $_POST['leitung_kurse'] : '';
+$daten_kurse = isset($_POST['daten_kurse']) ? $_POST['daten_kurse'] : '';
+$platz_kurse = isset($_POST['platz_kurse']) ? $_POST['platz_kurse'] : '';
+$teilnehmer_kurse = isset($_POST['teilnehmer_kurse']) ? $_POST['teilnehmer_kurse'] : '';
+$kurs_art = isset($_POST['kurs_art']) ? $_POST['kurs_art'] : '';
+$datum_kurse = isset($_POST['datum_kurse']) ? $_POST['datum_kurse'] : '';
+
+// Artikel fields
+$titel_artikel = isset($_POST['titel_artikel']) ? $_POST['titel_artikel'] : '';
+$Zeitschrift = isset($_POST['Zeitschrift']) ? $_POST['Zeitschrift'] : '';
+$id_artikel = isset($_POST['id_artikel']) ? $_POST['id_artikel'] : '';
+$file = isset($_POST['file']) ? $_POST['file'] : '';
+$file_name = isset($_POST['file_name']) ? $_POST['file_name'] : '';
+
+// Text fields
+$id_text = isset($_POST['id_text']) ? $_POST['id_text'] : '';
+$bereich_text = isset($_POST['bereich_text']) ? $_POST['bereich_text'] : '';
+$inhalt_text = isset($_POST['inhalt_text']) ? $_POST['inhalt_text'] : '';
+$datum_text = isset($_POST['datum_text']) ? $_POST['datum_text'] : '';
 
 // set mysql-encoding
 mysqli_query($conn1, "SET NAMES 'utf8'"); mysqli_query($conn1, "SET CHARACTER SET utf8"); 
@@ -141,7 +171,7 @@ if ($page == "vortrag" && $new == "true"){
 // with php 5.6 this has to be before the sql query otherwiese
   // the pdf will not be shown/found 
   if( $_FILES['file']['name'] != "" ) {
-    $file_name=$_FILES['file']['name'];
+    $file_name = basename($_FILES['file']['name']);
     $pathto="../../pdf/".$file_name;
     move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
   }
@@ -216,9 +246,9 @@ if ($page == "vortrag" && $change == "true"){
 	$file_name=$_FILES['file']['name'];
 	if ($file_name != "") {
 		if (isset($oldfile) && $oldfile != "" && $file_name != $oldfile) {
-			@unlink("../../pdf/$oldfile");
+			@unlink("../../pdf/" . basename($oldfile));
 		}
-		$pathto="../../pdf/".$file_name;
+		$pathto="../../pdf/" . basename($file_name);
 		move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
 	}
 
@@ -265,11 +295,12 @@ if ($page == "vortrag" && $change == "true"){
 				thema_id=?, 
 				datumchange=?";
 	
-	$query="UPDATE vortrag SET $placeholders WHERE id='$id'";
+	$query="UPDATE vortrag SET $placeholders WHERE id=?";
 	$stmt = mysqli_prepare($conn1, $query);
+	$id_int = intval($id);
 	mysqli_stmt_bind_param(
 		$stmt,
-		'ssssisssissiiiiis',
+		'ssssisssissiiiiisi',
 		$Titel,
 		$Zusammenfassung,
 		$Zielpublikum,
@@ -286,7 +317,8 @@ if ($page == "vortrag" && $change == "true"){
 		$Gesundheit,
 		$Familie,
 		$searchnew,
-		$datumchange
+		$datumchange,
+		$id_int
 	);
 	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
@@ -303,7 +335,7 @@ if ($page == "vortrag" && $change == "true"){
 
 if ($page == "vortrag" && $delete == "true"){
 
-	$delfile = "../../pdf/$oldfile";
+	$delfile = "../../pdf/" . basename($oldfile);
 
 	if (!mysqli_query($conn1, "DELETE FROM vortrag WHERE id = '" . mysqli_real_escape_string($conn1,$id) . "'")) {
 		die($conn1->error);
@@ -319,11 +351,13 @@ if ($page == "vortrag" && $delete == "true"){
 
 //Pdf L?schen
 if ($page == "vortrag" && $pdfdelete == "true"){
-
-	if (!mysqli_query($conn1, "UPDATE vortrag SET pdf = '' WHERE id = '" . mysqli_real_escape_string($conn1,$id) . "'")) {
+	$stmt = mysqli_prepare($conn1, "UPDATE vortrag SET pdf = '' WHERE id = ?");
+	$id_int = intval($id);
+	mysqli_stmt_bind_param($stmt, 'i', $id_int);
+	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
 	}
-	$delfile = "../../pdf/$oldfile";
+	$delfile = "../../pdf/" . basename($oldfile);
 	@unlink($delfile);
 	@header("Location: admin.php?page=$page&search=$search");
 
@@ -510,17 +544,41 @@ if ($page == "kurse" && $change == "true"){
 	$Gesundheit = isset($Gesundheit) ? $Gesundheit : 0;
 	$Familie = isset($Familie) ? $Familie : 0;
 
-	$form = "'$id_kurse','$titel_kurse','$kursziele_kurse','$ort_kurse','$kosten_kurse','$Arbeit','$Erziehung','$Gesundheit','$Familie','$searchnew','$datum_kurse','$beginn_kurse','$ende_kurse','$daten_kurse','$leitung_kurse','$platz_kurse','$teilnehmer_kurse','$kurs_art'";
-	$query = "REPLACE INTO kurse VALUES ($form)";
-	//echo $query;
-	if (!mysqli_query($conn1, $query)) {
+	$mysql = "id_kurse,titel_kurse,kursziele_kurse,ort_kurse,kosten_kurse,Arbeit,Erziehung,Gesundheit,Familie,thema_id,datum_kurse,beginn_kurse,ende_kurse,daten_kurse,leitung_kurse,platz_kurse,teilnehmer_kurse,kurs_art";
+	$placeholders = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+	$stmt = mysqli_prepare($conn1, "REPLACE INTO kurse ($mysql) VALUES ($placeholders)");
+	mysqli_stmt_bind_param(
+		$stmt,
+		'sssssiiiiissssssss',
+		$id_kurse,
+		$titel_kurse,
+		$kursziele_kurse,
+		$ort_kurse,
+		$kosten_kurse,
+		$Arbeit,
+		$Erziehung,
+		$Gesundheit,
+		$Familie,
+		$searchnew,
+		$datum_kurse,
+		$beginn_kurse,
+		$ende_kurse,
+		$daten_kurse,
+		$leitung_kurse,
+		$platz_kurse,
+		$teilnehmer_kurse,
+		$kurs_art
+	);
+	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
 	}
 	@header("Location: admin.php?page=$page&search=$search");
 }
 //loeschen
 if ($page == "kurse" && $delete == "true"){
-	if (!mysqli_query($conn1, "DELETE FROM kurse WHERE id_kurse = '$id_kurse'")) {
+	$stmt = mysqli_prepare($conn1, "DELETE FROM kurse WHERE id_kurse = ?");
+	mysqli_stmt_bind_param($stmt, 's', $id_kurse);
+	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
 	}
 	@header("Location: admin.php?page=$page&search=$search");
@@ -534,7 +592,7 @@ if ($page == "artikel" && $new == "true"){
   // the pdf will not be shown/found
 	try {
 		if( $_FILES['file']['name'] != "" ) {
-		    $file_name=$_FILES['file']['name'];
+		    $file_name = basename($_FILES['file']['name']);
 		    $pathto="../../pdf/".$file_name;
 		    move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
 		}
@@ -548,10 +606,22 @@ if ($page == "artikel" && $new == "true"){
 	$Gesundheit = isset($Gesundheit) ? $Gesundheit : 0;
 	$Familie = isset($Familie) ? $Familie : 0;
 	$felder_mysql = "titel_artikel,Zeitschrift,pdf,Arbeit,Erziehung,Gesundheit,Familie,thema_id,erschienen";
-	$felder_form = "'$titel_artikel', '$Zeitschrift', '$file_name', '$Arbeit', '$Erziehung', '$Gesundheit', '$Familie', '$searchnew', '$erschienen'";
-  
-	$sql = "INSERT INTO artikel ($felder_mysql) VALUES ($felder_form)";
-	if (!mysqli_query($conn1, $sql)) {
+	$placeholders_artikel = "?,?,?,?,?,?,?,?,?";
+	$stmt = mysqli_prepare($conn1, "INSERT INTO artikel ($felder_mysql) VALUES ($placeholders_artikel)");
+	mysqli_stmt_bind_param(
+		$stmt,
+		'sssiiiiis',
+		$titel_artikel,
+		$Zeitschrift,
+		$file_name,
+		$Arbeit,
+		$Erziehung,
+		$Gesundheit,
+		$Familie,
+		$searchnew,
+		$erschienen
+	);
+	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
 	}
 //	echo nl2br($query);
@@ -569,43 +639,37 @@ if ($page == "artikel" && $change == "true"){
 	$Erziehung = isset($Erziehung) ? $Erziehung : 0;
 	$Gesundheit = isset($Gesundheit) ? $Gesundheit : 0;
 	$Familie = isset($Familie) ? $Familie : 0;
+	$pdf_value = $oldfile;
 	if ($file != ""){
 		// for the deleting part it can come after the sql query ;) no idea why.
 		if( $_FILES['file']['name'] != "" ) {
-			$file_name=$_FILES['file']['name'];
+			$file_name = basename($_FILES['file']['name']);
 			$pathto="../../pdf/".$file_name;
 			move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
+			$pdf_value = $file_name;
 		} else {
-			$delfile = "../../pdf/$oldfile";
-			if ($file_name != $oldfile) 
+			$delfile = "../../pdf/" . basename($oldfile);
+			if ($file_name != $oldfile)
 				@unlink($delfile);
+			$pdf_value = $file_name;
 		}
-		$fields = "
-			titel_artikel='$titel_artikel', 
-			Zeitschrift='$Zeitschrift', 
-			pdf='$file_name', 
-			Arbeit='$Arbeit', 
-			Erziehung='$Erziehung', 
-			Gesundheit='$Gesundheit', 
-			Familie='$Familie', 
-			thema_id='$searchnew', 
-			erschienen='$erschienen'";
-	} else {
-		$fields = "	
-			titel_artikel='$titel_artikel', 
-			Zeitschrift='$Zeitschrift', 
-			pdf='$oldfile', 
-			Arbeit='$Arbeit', 
-			Erziehung='$Erziehung', 
-			Gesundheit='$Gesundheit', 
-			Familie='$Familie', 
-			thema_id='$searchnew', 
-			erschienen='$erschienen'
-		";
-
 	}
-	$query="UPDATE artikel SET $fields WHERE id_artikel='$id_artikel'";
-	if (!mysqli_query($conn1, $query)) {
+	$stmt = mysqli_prepare($conn1, "UPDATE artikel SET titel_artikel=?, Zeitschrift=?, pdf=?, Arbeit=?, Erziehung=?, Gesundheit=?, Familie=?, thema_id=?, erschienen=? WHERE id_artikel=?");
+	mysqli_stmt_bind_param(
+		$stmt,
+		'sssiiiiiss',
+		$titel_artikel,
+		$Zeitschrift,
+		$pdf_value,
+		$Arbeit,
+		$Erziehung,
+		$Gesundheit,
+		$Familie,
+		$searchnew,
+		$erschienen,
+		$id_artikel
+	);
+	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
 	}
 	header("Location: admin.php?page=$page&search=$searchnew");
@@ -613,23 +677,25 @@ if ($page == "artikel" && $change == "true"){
 
 //loeschen
 if ($page == "artikel" && $delete == "true"){
-	$delfile = "../../pdf/$oldfile";
-	if (!mysqli_query($conn1, "DELETE FROM artikel WHERE id_artikel = '$id_artikel'")) {
+	$delfile = "../../pdf/" . basename($oldfile);
+	$stmt = mysqli_prepare($conn1, "DELETE FROM artikel WHERE id_artikel = ?");
+	mysqli_stmt_bind_param($stmt, 's', $id_artikel);
+	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
 	}
 	@unlink($delfile);
 	@header("Location: admin.php?page=$page&search=$searchnew");
 }
-//Artikel pdf l?schen
+//Artikel pdf loeschen
 if ($page == "artikel" && $pdfdelete == "true"){
-
-	if (!mysqli_query($conn1, "UPDATE artikel SET pdf = '' WHERE id = '$id_artikel'")) {
+	$stmt = mysqli_prepare($conn1, "UPDATE artikel SET pdf = '' WHERE id_artikel = ?");
+	mysqli_stmt_bind_param($stmt, 's', $id_artikel);
+	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
 	}
-	$delfile = "../../pdf/$oldfile";
+	$delfile = "../../pdf/" . basename($oldfile);
 	@unlink($delfile);
 	@header("Location: admin.php?page=$page&search=$searchnew");
-
 }
 
 //
@@ -641,28 +707,27 @@ if ($page == "text"){
 }
 //neu
 if ($page == "text" && $new == "true"){
-	$mysql = "bereich_text,inhalt_text,datum_text";
-	$form = "'$bereich_text','$inhalt_text','$datum_text'";
-	$query = "INSERT INTO text ($mysql) VALUES ($form)";
-	//echo $query;
-	if (!mysqli_query($conn1, $query)) {
+	$stmt = mysqli_prepare($conn1, "INSERT INTO text (bereich_text,inhalt_text,datum_text) VALUES (?,?,?)");
+	mysqli_stmt_bind_param($stmt, 'sss', $bereich_text, $inhalt_text, $datum_text);
+	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
 	}
 	@header("Location: admin.php?page=$page&search=$search");
 }
 //aendern
 if ($page == "text" && $change == "true"){
-	$form = "'$id_text','$bereich_text','$inhalt_text','$datum_text'";
-	$query = "REPLACE INTO text VALUES ($form)";
-	//echo $query;
-	if (!mysqli_query($conn1, $query)) {
+	$stmt = mysqli_prepare($conn1, "REPLACE INTO text (id_text,bereich_text,inhalt_text,datum_text) VALUES (?,?,?,?)");
+	mysqli_stmt_bind_param($stmt, 'ssss', $id_text, $bereich_text, $inhalt_text, $datum_text);
+	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
 	}
 	@header("Location: admin.php?page=$page&search=$search");
 }
 //loesche
 if ($page == "text" && $delete == "true"){
-	if (!mysqli_query($conn1, "DELETE FROM text WHERE id_text = '$id_text'")) {
+	$stmt = mysqli_prepare($conn1, "DELETE FROM text WHERE id_text = ?");
+	mysqli_stmt_bind_param($stmt, 's', $id_text);
+	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
 	}
 	@header("Location: admin.php?page=$page&search=$search");

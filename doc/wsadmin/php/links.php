@@ -1,6 +1,9 @@
 <?php
 if ($change == "true"){
-$result = mysqli_query($conn1, "SELECT * FROM links WHERE id_links ='$id'");
+$stmt = mysqli_prepare($conn1, "SELECT * FROM links WHERE id_links = ?");
+mysqli_stmt_bind_param($stmt, 's', $id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 	$row = @mysqli_fetch_array($result);
 		$id_vortrag = $row["id_links"];
 		$datum = $row["datum"];
