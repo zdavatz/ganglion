@@ -57,6 +57,9 @@ Then update credentials in each file.
 - **HTML output**: Always wrap variables in `htmlspecialchars($val, ENT_QUOTES, 'UTF-8')` before echoing into HTML.
 - **Request parameters**: Read from `$_GET` / `$_POST` explicitly. Never use `extract()` on superglobals.
 - **File paths**: Use `basename()` on any user-supplied filename before using it in file operations (`unlink`, `move_uploaded_file`, path construction).
+- **File uploads**: Validate extensions with `validate_upload()` in `save.php` (allowlist: pdf, doc, docx, txt, jpg, jpeg, png, gif).
+- **Email headers**: Strip `\r\n` from Subject/header values to prevent header injection. Validate email addresses with `filter_var($email, FILTER_VALIDATE_EMAIL)`.
+- **Sessions**: Use explicit `$_SESSION[]` reads at start and write-back at end of included files. Never use deprecated `session_register()`.
 
 ## Conventions
 
