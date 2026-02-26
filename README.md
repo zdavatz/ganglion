@@ -61,6 +61,15 @@ Sample apache.conf (located in: `/etc/apache2/sites-enabled/ganglion.ch.conf`)
   CustomLog "|/usr/bin/cronolog -l /var/www/ganglion.ch/log/access_log /var/www/ganglion.ch/log/%Y/%m/%d/access_log" combined
 </VirtualHost>
 ```
+## Security
+
+The codebase has been hardened against common web vulnerabilities:
+
+* **SQL Injection**: All database queries use prepared statements with parameter binding (`mysqli_prepare` / `mysqli_stmt_bind_param`)
+* **XSS**: All variable output in HTML context is wrapped in `htmlspecialchars(ENT_QUOTES, 'UTF-8')`
+* **Register Globals**: The dangerous `extract()` emulation of `register_globals` has been removed; all request parameters are read explicitly from `$_GET` / `$_POST`
+* **Directory Traversal**: File paths from user input are sanitized with `basename()`
+
 ## Links
 
 Useful tools for MySQL connections:

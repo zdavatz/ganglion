@@ -51,6 +51,13 @@ cp doc/wsadmin/php/auth.inc{.sample,}
 ```
 Then update credentials in each file.
 
+## Security Conventions
+
+- **SQL queries**: Always use prepared statements with `mysqli_prepare` / `mysqli_stmt_bind_param`. Never interpolate variables into SQL strings.
+- **HTML output**: Always wrap variables in `htmlspecialchars($val, ENT_QUOTES, 'UTF-8')` before echoing into HTML.
+- **Request parameters**: Read from `$_GET` / `$_POST` explicitly. Never use `extract()` on superglobals.
+- **File paths**: Use `basename()` on any user-supplied filename before using it in file operations (`unlink`, `move_uploaded_file`, path construction).
+
 ## Conventions
 
 - The site is in **German** (Swiss German context). Content fields, UI text, and page names are in German.
