@@ -1,11 +1,11 @@
 <?php
-//set session variables
-session_register("vortrag_array");
-session_register("php_vortrag_pointer");
-session_register("php_vortrag_id");
-session_register("php_search");
-session_register("php_sortierung");
-session_register("php_zeitfenster");
+//set session variables (replaced deprecated session_register)
+$vortrag_array = isset($_SESSION['vortrag_array']) ? $_SESSION['vortrag_array'] : null;
+$php_vortrag_pointer = isset($_SESSION['php_vortrag_pointer']) ? $_SESSION['php_vortrag_pointer'] : null;
+$php_vortrag_id = isset($_SESSION['php_vortrag_id']) ? $_SESSION['php_vortrag_id'] : null;
+$php_search = isset($_SESSION['php_search']) ? $_SESSION['php_search'] : null;
+$php_sortierung = isset($_SESSION['php_sortierung']) ? $_SESSION['php_sortierung'] : null;
+$php_zeitfenster = isset($_SESSION['php_zeitfenster']) ? $_SESSION['php_zeitfenster'] : null;
 
 //keep vars or replace by new vars?
 if (empty($request))	$request	= "uebersicht";
@@ -184,9 +184,17 @@ if (isset($request) && $request=="directThread"){
 }
 
 if (isset($request) && $request=="updateDownloads"){
-	
+
 	mysqli_query($conn1, "UPDATE vortrag SET downloads=(downloads+1) WHERE id=$pdf_id");
 	echo "<p>&eof=true&</p>\n";
-	
+
 }
+
+// Write session variables back
+$_SESSION['vortrag_array'] = $vortrag_array;
+$_SESSION['php_vortrag_pointer'] = $php_vortrag_pointer;
+$_SESSION['php_vortrag_id'] = $php_vortrag_id;
+$_SESSION['php_search'] = $php_search;
+$_SESSION['php_sortierung'] = $php_sortierung;
+$_SESSION['php_zeitfenster'] = $php_zeitfenster;
 ?>

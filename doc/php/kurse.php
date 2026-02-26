@@ -1,12 +1,12 @@
 <?php //kurse.php
 
-//set session variables
-session_register("kurse_array");
-session_register("php_kurse_pointer");
-session_register("php_kurse_id");
-session_register("php_kurse_search");
-session_register("php_kurse_sortierung");
-session_register("php_kurse_zeitfenster");
+//read session variables (replaced deprecated session_register)
+$kurse_array = isset($_SESSION['kurse_array']) ? $_SESSION['kurse_array'] : null;
+$php_kurse_pointer = isset($_SESSION['php_kurse_pointer']) ? $_SESSION['php_kurse_pointer'] : null;
+$php_kurse_id = isset($_SESSION['php_kurse_id']) ? $_SESSION['php_kurse_id'] : null;
+$php_kurse_search = isset($_SESSION['php_kurse_search']) ? $_SESSION['php_kurse_search'] : null;
+$php_kurse_sortierung = isset($_SESSION['php_kurse_sortierung']) ? $_SESSION['php_kurse_sortierung'] : null;
+$php_kurse_zeitfenster = isset($_SESSION['php_kurse_zeitfenster']) ? $_SESSION['php_kurse_zeitfenster'] : null;
 
 
 if (isset($request) && ($request == "uebersicht" || $request == "zeitfenster")){
@@ -246,6 +246,14 @@ if (isset($request) && $request == "print"){
 	mysqli_free_result($result);
 
 }
+
+// Write session variables back
+$_SESSION['kurse_array'] = $kurse_array;
+$_SESSION['php_kurse_pointer'] = $php_kurse_pointer;
+$_SESSION['php_kurse_id'] = $php_kurse_id;
+$_SESSION['php_kurse_search'] = $php_kurse_search;
+$_SESSION['php_kurse_sortierung'] = $php_kurse_sortierung;
+$_SESSION['php_kurse_zeitfenster'] = $php_kurse_zeitfenster;
 
 ?>
 

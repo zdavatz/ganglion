@@ -2,13 +2,14 @@
 $_SESSION['user_input'] = @$$user_input;
 $_SESSION['missing'] = @$$missing;
 $email=$_POST["email"];
-$user_input = array(); 
+$user_input = array();
 $mandatory = array("name", "email");
 $missing = false;
-foreach($mandatory as $key) 
+foreach($mandatory as $key)
 {
 	if(empty($_POST[$key])) $missing = true;
 }
+if(!filter_var($email, FILTER_VALIDATE_EMAIL)) $missing = true;
 if($missing)
 {
 	$user_input = $_POST;
@@ -25,7 +26,7 @@ $headers["MIME-Version"]=  '1.0';
 $headers["Content-type"]= 'text/plain charset=utf-8';
 
 
-$headers['Subject']= stripslashes($subject);
+$headers['Subject']= str_replace(array("\r", "\n"), '', stripslashes($subject));
 
 
 $title=$_POST["title"];

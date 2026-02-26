@@ -3,7 +3,7 @@ $_SESSION['user_input'] = @$$user_input;
 $_SESSION['missing_email'] = @$$missing_email;
 $user_input = array(); 
 $email=$_POST["email"];
-if(empty($_POST["email"]))
+if(empty($_POST["email"]) || !filter_var($email, FILTER_VALIDATE_EMAIL))
 {
 	$user_input = $_POST;
 	$missing_email = true;

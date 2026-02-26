@@ -4,6 +4,15 @@ include("property.php");
 
 //error_reporting(E_ALL);
 
+// Validate uploaded file has an allowed extension
+function validate_upload($filename) {
+	$allowed_extensions = array('pdf', 'doc', 'docx', 'txt', 'jpg', 'jpeg', 'png', 'gif');
+	$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+	if (!in_array($ext, $allowed_extensions)) {
+		die("Upload rejected: file type '.$ext.' is not allowed.");
+	}
+}
+
 // Read request parameters explicitly instead of emulating register_globals
 $page = isset($_POST['page']) ? $_POST['page'] : '';
 $new = isset($_POST['new']) ? $_POST['new'] : '';
@@ -172,6 +181,7 @@ if ($page == "vortrag" && $new == "true"){
   // the pdf will not be shown/found 
   if( $_FILES['file']['name'] != "" ) {
     $file_name = basename($_FILES['file']['name']);
+    validate_upload($file_name);
     $pathto="../../pdf/".$file_name;
     move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
   }
@@ -245,10 +255,12 @@ if ($page == "vortrag" && $new == "true"){
 if ($page == "vortrag" && $change == "true"){
 	$file_name=$_FILES['file']['name'];
 	if ($file_name != "") {
+		$file_name = basename($file_name);
+		validate_upload($file_name);
 		if (isset($oldfile) && $oldfile != "" && $file_name != $oldfile) {
 			@unlink("../../pdf/" . basename($oldfile));
 		}
-		$pathto="../../pdf/" . basename($file_name);
+		$pathto="../../pdf/" . $file_name;
 		move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
 	}
 
@@ -593,6 +605,7 @@ if ($page == "artikel" && $new == "true"){
 	try {
 		if( $_FILES['file']['name'] != "" ) {
 		    $file_name = basename($_FILES['file']['name']);
+		    validate_upload($file_name);
 		    $pathto="../../pdf/".$file_name;
 		    move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
 		}
@@ -644,6 +657,7 @@ if ($page == "artikel" && $change == "true"){
 		// for the deleting part it can come after the sql query ;) no idea why.
 		if( $_FILES['file']['name'] != "" ) {
 			$file_name = basename($_FILES['file']['name']);
+			validate_upload($file_name);
 			$pathto="../../pdf/".$file_name;
 			move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
 			$pdf_value = $file_name;

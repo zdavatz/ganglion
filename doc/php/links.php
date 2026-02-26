@@ -1,9 +1,9 @@
 <?php //links.php
 
-//register session variables
-session_register("php_link_search");
-session_register("php_link_sortierung");
-session_register("php_link_zeitfenster");
+//read session variables (replaced deprecated session_register)
+$php_link_search = isset($_SESSION['php_link_search']) ? $_SESSION['php_link_search'] : null;
+$php_link_sortierung = isset($_SESSION['php_link_sortierung']) ? $_SESSION['php_link_sortierung'] : null;
+$php_link_zeitfenster = isset($_SESSION['php_link_zeitfenster']) ? $_SESSION['php_link_zeitfenster'] : null;
 
 //keep vars or replace?
 if (!isset($search)) 		$search 	= (empty($php_link_search) ? "all" : $php_link_search);
@@ -14,6 +14,11 @@ if (!isset($zeitfenster)) 	$zeitfenster = (empty($php_link_zeitfenster) ? 0 : $p
 $php_link_search=$search;
 $php_link_sortierung=trim($sortierung);
 $php_link_zeitfenster=$zeitfenster;
+
+// Write back to session
+$_SESSION['php_link_search'] = $php_link_search;
+$_SESSION['php_link_sortierung'] = $php_link_sortierung;
+$_SESSION['php_link_zeitfenster'] = $php_link_zeitfenster;
 
 //check in which Bereich there are entries to be displayed...
 $query = "SELECT MAX(Familie) AS f, MAX(Arbeit) AS a, MAX(Gesundheit) AS g, MAX(Erziehung) AS e FROM links";

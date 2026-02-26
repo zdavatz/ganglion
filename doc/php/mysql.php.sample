@@ -87,11 +87,11 @@ if (isset($command) && $command=="angebot"){
 	include("angebot.php");
 }
 if (isset($command) && $command=="navigate"){
-	session_register("navigation_open");
-	session_register("php_desired_action");
-	session_register("php_desired_id");
-	session_register("php_desired_page");
-	session_register("last_page");
+	$navigation_open = isset($_SESSION['navigation_open']) ? $_SESSION['navigation_open'] : null;
+	$php_desired_action = isset($_SESSION['php_desired_action']) ? $_SESSION['php_desired_action'] : null;
+	$php_desired_id = isset($_SESSION['php_desired_id']) ? $_SESSION['php_desired_id'] : null;
+	$php_desired_page = isset($_SESSION['php_desired_page']) ? $_SESSION['php_desired_page'] : null;
+	$last_page = isset($_SESSION['last_page']) ? $_SESSION['last_page'] : null;
 	$navigation_open=$offen;
 	$last_page=$currentPage;
 	if (!empty($desiredAction)) $php_desired_action=$desiredAction;
@@ -99,6 +99,12 @@ if (isset($command) && $command=="navigate"){
 	if (!empty($desiredPage)) $php_desired_page=$desiredPage;
 	//echo "input: $desiredPage<br>";
 	//echo "session: $php_desired_page";
+	// Write session variables back
+	$_SESSION['navigation_open'] = $navigation_open;
+	$_SESSION['php_desired_action'] = $php_desired_action;
+	$_SESSION['php_desired_id'] = $php_desired_id;
+	$_SESSION['php_desired_page'] = $php_desired_page;
+	$_SESSION['last_page'] = $last_page;
 	echo "<p>&eof=true</p>\n";
 }
 if (isset($command) && $command=="kontaktmail"){
