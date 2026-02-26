@@ -69,6 +69,10 @@ The codebase has been hardened against common web vulnerabilities:
 * **XSS**: All variable output in HTML context is wrapped in `htmlspecialchars(ENT_QUOTES, 'UTF-8')`
 * **Register Globals**: The dangerous `extract()` emulation of `register_globals` has been removed; all request parameters are read explicitly from `$_GET` / `$_POST`
 * **Directory Traversal**: File paths from user input are sanitized with `basename()`
+* **File Uploads**: Extension allowlist validation before accepting uploads (pdf, doc, docx, txt, jpg, jpeg, png, gif)
+* **Email Header Injection**: Newlines stripped from email headers; email addresses validated with `filter_var`
+* **Session Handling**: Deprecated `session_register()` replaced with explicit `$_SESSION[]` read/write
+* **Server Info**: Removed `phpinfo.php` to prevent server configuration exposure
 
 ## Links
 
