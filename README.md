@@ -8,6 +8,13 @@
 * PHP 8.0.7
 * Cronolog
 
+### Optional (for scripts)
+
+* Ruby with `mysql` gem — for RSS feed generation (`create_xml_from_db.rb`)
+* `qrencode` — for QR code PDF generation
+* ImageMagick (`convert`) — for QR code PDF generation
+* `cpdf` — for QR code PDF generation
+
 ## Setup
 
 ### Credentials
