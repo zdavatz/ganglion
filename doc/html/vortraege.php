@@ -108,7 +108,7 @@ if (@$new == "true" || @$change == "true"){
 	 		$thema = urldecode($row["thema"]);
 	 		$select = "";
 	 		if ($idWWW == $thema_id) $select = "selected";
-	 		echo "<option value='$idWWW' $select>$thema</option>\n";
+	 		echo "<option value='".htmlspecialchars($idWWW, ENT_QUOTES, 'UTF-8')."' $select>".htmlspecialchars($thema, ENT_QUOTES, 'UTF-8')."</option>\n";
 		  	$i++;
 	}
 	echo "</select>\n";
@@ -132,7 +132,7 @@ if ($search == "all"){ $select = "selected"; }
 	 		$thema = urldecode($row["thema"]);
 	 		$select = "";
 	 		if ($id == $search){ $select = "selected"; }
-	 			echo "<option value='$id' $select>$thema</option>\n";
+	 			echo "<option value='".htmlspecialchars($id, ENT_QUOTES, 'UTF-8')."' $select>".htmlspecialchars($thema, ENT_QUOTES, 'UTF-8')."</option>\n";
 			$lastThema=$row["thema"];
 	}
 	echo "</select>\n";
@@ -194,13 +194,13 @@ mysqli_free_result($result);
 		echo "<table class='nopaddingTABLE'>";
 		echo "<tr>";
 		echo "<td colspan='2' class='TDbold-big'>";
-		echo urldecode ($values["Titel"]);
+		echo htmlspecialchars(urldecode ($values["Titel"]), ENT_QUOTES, 'UTF-8');
 		echo "</td>\n";
 		echo "</tr>";
 		echo "<tr>\n";
 		if (!empty($values["gehalten_formatted"]))
 			{
-				echo '<td>Datum:</td><td class="TDbold">'.stripslashes(urldecode($values["gehalten_formatted"].'</td>'));
+				echo '<td>Datum:</td><td class="TDbold">'.htmlspecialchars(stripslashes(urldecode($values["gehalten_formatted"])), ENT_QUOTES, 'UTF-8').'</td>';
 			}
 		echo "</tr>";
 		echo "<tr>";
@@ -214,13 +214,13 @@ mysqli_free_result($result);
 		echo "<tr>";
 		if (!empty($values["location"]))
 			{
-				echo '<td>Ort:</td><td class="TDbold">'.stripslashes(urldecode($values["location"])).'</td>';
+				echo '<td>Ort:</td><td class="TDbold">'.htmlspecialchars(stripslashes(urldecode($values["location"])), ENT_QUOTES, 'UTF-8').'</td>';
 			}
 		echo "</tr>";
 		if (!empty($values["thema"]))
 			{
 				echo '<tr><td class="nopaddingTABLE" colspan="2">Ein Vortrag zum Thema:</td></tr>';
-				echo '<tr><td class="nopaddingTABLE" colspan="2">'.stripslashes(urldecode($values["thema"])).'</td></tr>';
+				echo '<tr><td class="nopaddingTABLE" colspan="2">'.htmlspecialchars(stripslashes(urldecode($values["thema"])), ENT_QUOTES, 'UTF-8').'</td></tr>';
 			}
 		echo "</table>";
 		echo "</td>";
@@ -239,31 +239,31 @@ mysqli_free_result($result);
 			$umfeld = array();
 			if (!empty($values["Zielpublikum"]))
 			{
-				$umfeld[] = 'Zielpublikum: '.urldecode($values["Zielpublikum"]);
+				$umfeld[] = 'Zielpublikum: '.htmlspecialchars(urldecode($values["Zielpublikum"]), ENT_QUOTES, 'UTF-8');
 			}
 			if (!empty($values["location"]))
 			{
-				$umfeld[] = 'Ort: '.urldecode($values["location"]);
+				$umfeld[] = 'Ort: '.htmlspecialchars(urldecode($values["location"]), ENT_QUOTES, 'UTF-8');
 			}
 			$zieltext = implode(', ', $umfeld);
 			echo "<td>";
 			if(empty($values["google_video_url"]))
 			{
-				echo "".stripslashes(urldecode ($values["Titel"]))."";
-			}	
+				echo htmlspecialchars(stripslashes(urldecode ($values["Titel"])), ENT_QUOTES, 'UTF-8');
+			}
 			else
 			{
- 				list($google_video_hours, $google_video_minutes, $google_video_seconds) = explode(":", $values["google_video_size"]); 
- 				$videoLength = $google_video_hours."h&nbsp;".$google_video_minutes."m&nbsp;".$google_video_seconds."s";
- 				echo "<a class='links".$suffix."'	href='/html/php/download_vortrag.php?id=".$values["id"]."&download=google_video' alt='Google Video: ".$videoLength."' title='Google Video: ".$videoLength."' target='_blank'>
- 						".stripslashes(urldecode ($values["Titel"]))."
+ 				list($google_video_hours, $google_video_minutes, $google_video_seconds) = explode(":", $values["google_video_size"]);
+ 				$videoLength = htmlspecialchars($google_video_hours."h ".$google_video_minutes."m ".$google_video_seconds."s", ENT_QUOTES, 'UTF-8');
+ 				echo "<a class='links".$suffix."'	href='/html/php/download_vortrag.php?id=".htmlspecialchars($values["id"], ENT_QUOTES, 'UTF-8')."&amp;download=google_video' alt='Google Video: ".$videoLength."' title='Google Video: ".$videoLength."' target='_blank'>
+ 						".htmlspecialchars(stripslashes(urldecode ($values["Titel"])), ENT_QUOTES, 'UTF-8')."
 				</a>";
 			}	
 			echo "</td>";
 			
-			echo "<td class='tabltxt-l"."'>".stripslashes(urldecode ($values["thema"]))."</td>";
+			echo "<td class='tabltxt-l"."'>".htmlspecialchars(stripslashes(urldecode ($values["thema"])), ENT_QUOTES, 'UTF-8')."</td>";
 			echo "<td>";
-			$popurl = "popup_vortrag.php?id=".$values["id"];
+			$popurl = "popup_vortrag.php?id=".urlencode($values["id"]);
 			$script = 'window.open("'.$popurl.'", "popup", "menubar=no,resizable=no,scrollbars=yes,height=400,locationbar=no,toolbar=yes,width=500").focus(); return false';
 			echo "<a class='big-dot' href='$popurl' onClick='".$script."'>?</a>";
 			echo "</td>";
@@ -274,7 +274,7 @@ mysqli_free_result($result);
 			}
 			else
 			{
-				echo "<a class='pdf-ico".$suffix."'	href='/html/php/download_vortrag.php?id=".$values["id"]."&download=pdf'
+				echo "<a class='pdf-ico".$suffix."'	href='/html/php/download_vortrag.php?id=".htmlspecialchars($values["id"], ENT_QUOTES, 'UTF-8')."&amp;download=pdf'
 				target='_blank'><img src='../html/images/adobe.gif' alt='PDF File'></a>";
 				if(empty($values["google_video_url"])) {
 					echo "";
@@ -285,7 +285,7 @@ mysqli_free_result($result);
 			if(empty($values["google_video_url"])) {
 				echo "";
 			} else {
-				echo "<a class='pdf-ico".$suffix."'	href='/html/php/download_vortrag.php?id=".$values["id"]."&download=google_video'
+				echo "<a class='pdf-ico".$suffix."'	href='/html/php/download_vortrag.php?id=".htmlspecialchars($values["id"], ENT_QUOTES, 'UTF-8')."&amp;download=google_video'
 				target='_blank'><img src='../html/images/google_video.gif' alt='Google Video: ".$videoLength."' title='Google Video: ".$videoLength."'></a>";
 			}
 			echo "</td>";
@@ -294,13 +294,13 @@ mysqli_free_result($result);
 				echo "&nbsp;";
 			} else {
 				$sizeMb = strval(round($values["audiofile_size"]/1024/1024, 2))."M";
-				echo "<audio controls='pdf-ico"."'	src='/html/php/download_vortrag.php?id=".$values["id"]."&download=audiofile'
+				echo "<audio controls='pdf-ico"."'	src='/html/php/download_vortrag.php?id=".htmlspecialchars($values["id"], ENT_QUOTES, 'UTF-8')."&amp;download=audiofile'
 				target='_blank'><img src='../html/images/audiofile.gif' alt='Audio File'>".$sizeMb."</audio>";
 			}
 			echo "</td>";
-			echo "<td class='tabltxt-c"."'>".urldecode ($values["downloads"])."</td>";	
-			echo "<td class='tabltxt-c"."'>".urldecode ($values["audiofile_downloads"])." / ".urldecode ($values["google_video_downloads"])."</td>";	
-			echo "<td class='tabltxt-c"."'>".$values["gehalten_formatted"]."</td>";
+			echo "<td class='tabltxt-c"."'>".htmlspecialchars(urldecode ($values["downloads"]), ENT_QUOTES, 'UTF-8')."</td>";
+			echo "<td class='tabltxt-c"."'>".htmlspecialchars(urldecode ($values["audiofile_downloads"]), ENT_QUOTES, 'UTF-8')." / ".htmlspecialchars(urldecode ($values["google_video_downloads"]), ENT_QUOTES, 'UTF-8')."</td>";
+			echo "<td class='tabltxt-c"."'>".htmlspecialchars($values["gehalten_formatted"], ENT_QUOTES, 'UTF-8')."</td>";
 			echo "</tr>\n";
 			if(empty($suffix))
 			{

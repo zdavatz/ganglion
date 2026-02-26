@@ -314,24 +314,24 @@ if (isset($change) && $change == "true"){
  </table>
 </form>
 <form method="post" action="save.php" name="entrydelete" enctype="multipart/form-data">
-<input type="hidden" name="page" value="<?php echo $page ?>">
+<input type="hidden" name="page" value="<?php echo htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
 <input type="hidden" name="delete" value="true">
-<input type="hidden" name="search" value="<?php echo $search ?>">
-<input type="hidden" name="id" value="<?php echo $id ?>">
-<input type="hidden" name="oldfile" value="<?php echo $file_name ?>">
-<input type="hidden" name="oldaudiofile" value="<?php echo $audiofile_name ?>">
+<input type="hidden" name="search" value="<?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="id" value="<?php echo htmlspecialchars($id, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="oldfile" value="<?php echo htmlspecialchars($file_name, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="oldaudiofile" value="<?php echo htmlspecialchars($audiofile_name, ENT_QUOTES, 'UTF-8') ?>">
 </form>
 <form method="post" action="save.php" name="pdfdelete" enctype="multipart/form-data">
-<input type="hidden" name="page" value="<?php echo $page ?>">
+<input type="hidden" name="page" value="<?php echo htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
 <input type="hidden" name="pdfdelete" value="true">
-<input type="hidden" name="search" value="<?php echo $search ?>">
-<input type="hidden" name="id" value="<?php echo $id ?>">
-<input type="hidden" name="oldfile" value="<?php echo $file_name ?>">
+<input type="hidden" name="search" value="<?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="id" value="<?php echo htmlspecialchars($id, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="oldfile" value="<?php echo htmlspecialchars($file_name, ENT_QUOTES, 'UTF-8') ?>">
 </form>
 <form method="post" action="save.php" name="audiofiledelete" enctype="multipart/form-data">
-<input type="hidden" name="page" value="<?php echo $page ?>">
+<input type="hidden" name="page" value="<?php echo htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
 <input type="hidden" name="audiofiledelete" value="true">
-<input type="hidden" name="search" value="<?php echo $search ?>">
-<input type="hidden" name="id" value="<?php echo $id ?>">
-<input type="hidden" name="oldaudiofile" value="<?php echo $audiofile_name ?>">
+<input type="hidden" name="search" value="<?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="id" value="<?php echo htmlspecialchars($id, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="oldaudiofile" value="<?php echo htmlspecialchars($audiofile_name, ENT_QUOTES, 'UTF-8') ?>">
 </form>

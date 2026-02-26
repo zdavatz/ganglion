@@ -176,7 +176,7 @@ for($i=1980; $i <= 2035; $i++){
 <tr> 
 <td>Leitung:</td>
 <td colspan="2"> 
-<input class='INPUTtext' type="text" name="leitung_kurse" value="<?php print $leitung_kurse; ?>" size="35" maxlength="100">
+<input class='INPUTtext' type="text" name="leitung_kurse" value="<?php print htmlspecialchars($leitung_kurse, ENT_QUOTES, 'UTF-8'); ?>" size="35" maxlength="100">
 </td>
 </tr>
 <tr> 
@@ -196,25 +196,25 @@ for($i=1980; $i <= 2035; $i++){
 <tr> 
 <td>Kursort:</td>
 <td colspan="2"> 
-<input class='INPUTtext' type="text" name="ort_kurse" value="<?php print $ort_kurse; ?>" size="35" maxlength="100">
+<input class='INPUTtext' type="text" name="ort_kurse" value="<?php print htmlspecialchars($ort_kurse, ENT_QUOTES, 'UTF-8'); ?>" size="35" maxlength="100">
 </td>
 </tr>
 <tr> 
 <td>Zeit:</td>
 <td colspan="2"> 
-<input class='INPUTtext' type="text" name="platz_kurse" size="35" value="<?php print $platz_kurse; ?>">
+<input class='INPUTtext' type="text" name="platz_kurse" size="35" value="<?php print htmlspecialchars($platz_kurse, ENT_QUOTES, 'UTF-8'); ?>">
 </td>
 </tr>
 <tr> 
 <td>Teilnehmer:</td>
 <td colspan="2"> 
-<input class='INPUTtext' type="text" name="teilnehmer_kurse" size="35" value="<?php print $teilnehmer_kurse; ?>">
+<input class='INPUTtext' type="text" name="teilnehmer_kurse" size="35" value="<?php print htmlspecialchars($teilnehmer_kurse, ENT_QUOTES, 'UTF-8'); ?>">
 </td>
 </tr>
 <tr> 
 <td>Kosten:</td>
 <td colspan="2"> 
-<input class='INPUTtext' type="text" name="kosten_kurse" size="35" value="<?php print $kosten_kurse; ?>">
+<input class='INPUTtext' type="text" name="kosten_kurse" size="35" value="<?php print htmlspecialchars($kosten_kurse, ENT_QUOTES, 'UTF-8'); ?>">
 </td>
 </tr>
 <tr> 
@@ -259,9 +259,9 @@ if (isset($change) && $change == "true"){
 </table>
 </form>
 <form method="post" action="save.php" name="entrydelete" enctype="multipart/form-data">
-<input type="hidden" name="page" value="<?php echo $page ?>">
+<input type="hidden" name="page" value="<?php echo htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
 <input type="hidden" name="delete" value="true">
-<input type="hidden" name="search" value="<?php echo $search ?>">
-<input type="hidden" name="id_kurse" value="<?php echo $id_kurse?>">
-<input type='hidden' name='datum_kurse' value='<?php print $datum_kurse ?>'>
+<input type="hidden" name="search" value="<?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="id_kurse" value="<?php echo htmlspecialchars($id_kurse, ENT_QUOTES, 'UTF-8')?>">
+<input type='hidden' name='datum_kurse' value='<?php print htmlspecialchars($datum_kurse, ENT_QUOTES, 'UTF-8') ?>'>
 </form>

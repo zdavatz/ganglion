@@ -99,8 +99,8 @@ if($orderdir == "asc")
 			{
 				$open_row = true;
 			}
-			echo "<td><a class='links".@$suffix."'href='/html/php/download_artikel.php?id=".$values["id_artikel"]."'target='_blank'>".urldecode ($values["titel_artikel"])."</a></td>";
-			echo "<td class='tabltxt-l".@$suffix."'>".stripslashes(urldecode($values["Zeitschrift"]))."</td>";	
+			echo "<td><a class='links".@$suffix."'href='/html/php/download_artikel.php?id=".htmlspecialchars($values["id_artikel"], ENT_QUOTES, 'UTF-8')."'target='_blank'>".htmlspecialchars(urldecode ($values["titel_artikel"]), ENT_QUOTES, 'UTF-8')."</a></td>";
+			echo "<td class='tabltxt-l".@$suffix."'>".htmlspecialchars(stripslashes(urldecode($values["Zeitschrift"])), ENT_QUOTES, 'UTF-8')."</td>";
 			echo "<td class='tabltxt-c".@$suffix."'>";
 			if(empty($values["pdf"]))
 			{
@@ -108,11 +108,11 @@ if($orderdir == "asc")
 			}
 			else
 			{
-				echo "<a class='tabltxt-c".@$suffix."'	href='/html/php/download_artikel.php?id=".$values["id_artikel"]."'
+				echo "<a class='tabltxt-c".@$suffix."'	href='/html/php/download_artikel.php?id=".htmlspecialchars($values["id_artikel"], ENT_QUOTES, 'UTF-8')."'
 				target='_blank'><img src='../html/images/adobe.gif' alt='PDF File'></a>";
 			}
-			echo "<td class='tabltxt-c".@$suffix."'>".urldecode ($values["downloads"])."</td>";	
-			echo "<td class='tabltxt-c".@$suffix."'>".$values["erschienen_formatted"]."</td>";
+			echo "<td class='tabltxt-c".@$suffix."'>".htmlspecialchars(urldecode ($values["downloads"]), ENT_QUOTES, 'UTF-8')."</td>";
+			echo "<td class='tabltxt-c".@$suffix."'>".htmlspecialchars($values["erschienen_formatted"], ENT_QUOTES, 'UTF-8')."</td>";
 			echo "</tr>\n";
 			if(empty($suffix))
 			{

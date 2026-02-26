@@ -110,7 +110,7 @@ for($i=1980; $i <= 2035; $i++){
 <tr> 
 <td>Zeitschrift:</td>
 <td colspan="2"> 
-<input class='INPUTtext' type="text" name="Zeitschrift" value="<?php print $Zeitschrift; ?>" size="35" maxlength="100">
+<input class='INPUTtext' type="text" name="Zeitschrift" value="<?php print htmlspecialchars($Zeitschrift, ENT_QUOTES, 'UTF-8'); ?>" size="35" maxlength="100">
 </td>
 </tr>
   <tr> 
@@ -178,16 +178,16 @@ if (isset($change) && $change == "true"){
 </table>
 </form>
 <form method="post" action="save.php" name="entrydelete" enctype="multipart/form-data">
-<input type="hidden" name="page" value="<?php echo $page ?>">
+<input type="hidden" name="page" value="<?php echo htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
 <input type="hidden" name="delete" value="true">
-<input type="hidden" name="search" value="<?php echo $search ?>">
-<input type="hidden" name="id_artikel" value="<?php echo $id_artikel?>">
-<input type="hidden" name="oldfile" value="<?php echo $file_name ?>">
+<input type="hidden" name="search" value="<?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="id_artikel" value="<?php echo htmlspecialchars($id_artikel, ENT_QUOTES, 'UTF-8')?>">
+<input type="hidden" name="oldfile" value="<?php echo htmlspecialchars($file_name, ENT_QUOTES, 'UTF-8') ?>">
 </form>
 <form method="post" action="save.php" name="pdfdelete" enctype="multipart/form-data">
-<input type="hidden" name="page" value="<?php echo $page ?>">
+<input type="hidden" name="page" value="<?php echo htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
 <input type="hidden" name="pdfdelete" value="true">
-<input type="hidden" name="search" value="<?php echo $search ?>">
-<input type="hidden" name="id_artikel" value="<?php echo $id_artikel?>">
-<input type="hidden" name="oldfile" value="<?php echo $file_name ?>">
+<input type="hidden" name="search" value="<?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="id_artikel" value="<?php echo htmlspecialchars($id_artikel, ENT_QUOTES, 'UTF-8')?>">
+<input type="hidden" name="oldfile" value="<?php echo htmlspecialchars($file_name, ENT_QUOTES, 'UTF-8') ?>">
 </form>

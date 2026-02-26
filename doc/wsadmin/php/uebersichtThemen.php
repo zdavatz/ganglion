@@ -118,16 +118,16 @@ if ( $i >= $Pstart && $i <= $Pend ){
 echo "<tr>\n";
     echo "<td class='TDnr'>".$i."</td>\n";
     echo "<td class='TDtitel'>\n";  ?> 
-	<a href="admin.php?page=themen&change=true&id=<?php echo $idThema; ?>"> 
-	<?php echo $thema ?> 
+	<a href="admin.php?page=themen&amp;change=true&amp;id=<?php echo htmlspecialchars($idThema, ENT_QUOTES, 'UTF-8'); ?>">
+	<?php echo htmlspecialchars($thema, ENT_QUOTES, 'UTF-8') ?>
 	</a> 
 	</td>
 <?php
     echo "<td class='TDtrash'>\n";include("trash.php"); echo "</td>\n";
-	echo "<td class='TDbereich'>".$datum."</td>\n";
-    echo "<td class='TDzahl'>".$row["anzahlLinks"]."</td>\n";
-    echo "<td class='TDzahl'>".$row["anzahlVortrag"]."</td>\n";
-    echo "<td class='TDzahl'>".$row["anzahlKurse"]."</td>\n";
+	echo "<td class='TDbereich'>".htmlspecialchars($datum, ENT_QUOTES, 'UTF-8')."</td>\n";
+    echo "<td class='TDzahl'>".htmlspecialchars($row["anzahlLinks"], ENT_QUOTES, 'UTF-8')."</td>\n";
+    echo "<td class='TDzahl'>".htmlspecialchars($row["anzahlVortrag"], ENT_QUOTES, 'UTF-8')."</td>\n";
+    echo "<td class='TDzahl'>".htmlspecialchars($row["anzahlKurse"], ENT_QUOTES, 'UTF-8')."</td>\n";
     echo "</tr>\n";
     $nummerThema[$r] = $row["id_thema"];
     $Thema[$r] = $thema;
@@ -159,9 +159,9 @@ mysqli_free_result($resultKurse);
 <tr valign="bottom"> 
 <td nowrap colspan="2"> 
 <form method="post" action="save.php">
-<input type="hidden" name="search" value="<?php print $search ?>">
-<input type="hidden" name="datumchange" value="<?php $datumchange = date("Y-m-d"); echo $datumchange?>">
-<input type="hidden" name="page" value="<?php print $page ?>">
+<input type="hidden" name="search" value="<?php print htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="datumchange" value="<?php $datumchange = date("Y-m-d"); echo htmlspecialchars($datumchange, ENT_QUOTES, 'UTF-8')?>">
+<input type="hidden" name="page" value="<?php print htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
 <input type="hidden" name="new" value="true">
 <table>
 <tr>

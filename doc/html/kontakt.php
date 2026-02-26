@@ -23,7 +23,7 @@ if(isset($_GET["id"]))
 		$result = mysqli_stmt_get_result($stmt);
 		$values = mysqli_fetch_assoc($result);
 		mysqli_stmt_close($stmt);
-		$textvalue = "Anmeldung f&uuml;r den Kurs:\n".urldecode($values["titel_kurse"]);
+		$textvalue = "Anmeldung f&uuml;r den Kurs:\n".htmlspecialchars(urldecode($values["titel_kurse"]), ENT_QUOTES, 'UTF-8');
 		$subject = "apply";
 }
 elseif(isset($user_input["textfield"]))
@@ -84,39 +84,39 @@ if($missing_email = false)
 			</tr>
 			<tr>
 				<td class="TDbold">Wie bewahren wir unsere Kinder<br>vor der Drogensucht?</td>
-				<td><INPUT class="small-textinput" TYPE="text"	Name="book_bewahren" value="<?php echo @$user_input["book_bewahren"];?>">&nbsp;Anzahl</td>
+				<td><INPUT class="small-textinput" TYPE="text"	Name="book_bewahren" value="<?php echo htmlspecialchars(@$user_input["book_bewahren"], ENT_QUOTES, 'UTF-8');?>">&nbsp;Anzahl</td>
 			</tr>
 			<tr>
 				<td class="TDbold">Fusion and Differentiation</td>
-				<td><INPUT class="small-textinput" TYPE="text" Name="book_fusion"	value="<?php echo @$user_input["book_fusion"];?>">&nbsp;Anzahl</td>
+				<td><INPUT class="small-textinput" TYPE="text" Name="book_fusion"	value="<?php echo htmlspecialchars(@$user_input["book_fusion"], ENT_QUOTES, 'UTF-8');?>">&nbsp;Anzahl</td>
 			</tr>
 					<tr>
 						<td>Anrede</td>
-						<td><INPUT TYPE="text" Name="title"value="<?php echo @$user_input["title"];?>"></td>
+						<td><INPUT TYPE="text" Name="title"value="<?php echo htmlspecialchars(@$user_input["title"], ENT_QUOTES, 'UTF-8');?>"></td>
 					</tr>
 					<tr>
 						<td>Name</td>
-						<td><INPUT TYPE="text" Name="name"value="<?php echo	@$user_input["name"];?>"></td>
+						<td><INPUT TYPE="text" Name="name"value="<?php echo htmlspecialchars(@$user_input["name"], ENT_QUOTES, 'UTF-8');?>"></td>
 					</tr>	
 					<tr>
 						<td>Vorname</td>
-						<td><INPUT TYPE="text" Name="firstname"value="<?php echo @$user_input["firstname"];?>"></td>
+						<td><INPUT TYPE="text" Name="firstname"value="<?php echo htmlspecialchars(@$user_input["firstname"], ENT_QUOTES, 'UTF-8');?>"></td>
 					</tr>
 					<tr>
 						<td>Firma</td>
-						<td><INPUT TYPE="text" Name="company"value="<?php echo @$user_input["company"];?>"></td>
+						<td><INPUT TYPE="text" Name="company"value="<?php echo htmlspecialchars(@$user_input["company"], ENT_QUOTES, 'UTF-8');?>"></td>
 					</tr>
 					<tr>
 						<td>Adresse</td>
-						<td><INPUT TYPE="text" Name="address"value="<?php echo @$user_input["address"];?>"></td>
+						<td><INPUT TYPE="text" Name="address"value="<?php echo htmlspecialchars(@$user_input["address"], ENT_QUOTES, 'UTF-8');?>"></td>
 					</tr>
 					<tr>
 						<td>PLZ / Ort</td>
-						<td><INPUT TYPE="text" Name="plz_location"value="<?php echo	@$user_input["plz_location"];?>"></td>
+						<td><INPUT TYPE="text" Name="plz_location"value="<?php echo htmlspecialchars(@$user_input["plz_location"], ENT_QUOTES, 'UTF-8');?>"></td>
 					</tr>
 					<tr>
 						<td>Telefon</td>
-						<td><INPUT TYPE="text" Name="phone"value="<?php echo @$user_input["phone"];?>"></td>
+						<td><INPUT TYPE="text" Name="phone"value="<?php echo htmlspecialchars(@$user_input["phone"], ENT_QUOTES, 'UTF-8');?>"></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -150,7 +150,7 @@ if($missing_email = false)
 	?>
 					</tr>
 			<tr>
-				<td colspan="3"><TEXTAREA wrap="hard" rows="20" cols="72" class="TEXTAREA" Name="textfield"><?php	echo $textvalue;?></TEXTAREA></td>
+				<td colspan="3"><TEXTAREA wrap="hard" rows="20" cols="72" class="TEXTAREA" Name="textfield"><?php echo htmlspecialchars($textvalue, ENT_QUOTES, 'UTF-8');?></TEXTAREA></td>
 			</tr>
 		</table>
 			</td>

@@ -244,8 +244,7 @@ if (isset($request) && $request=="uebersicht"){
 					else{
 						$pdf_file ="";
 					}
-					$thema = stripslashes(urldecode($row["thema"]));
-					//$thema = htmlentities($thema);
+					$thema = htmlspecialchars(stripslashes(urldecode($row["thema"])), ENT_QUOTES, 'UTF-8');
 					$audiofile = $row["audiofile"];
 					$hits = $row["hits"];
 					$fam = $row["Familie"];
@@ -263,13 +262,13 @@ if (isset($request) && $request=="uebersicht"){
 					echo "<tr>\n";
 					echo "<td class='TDnr'>$i</td>\n";
 					echo "	<td class='TDtitel'>\n";
-					echo "		<a href='$url&change=true&id=$id&thema=$thema_id'";?>> <?php echo"$Titel</a></td>\n";
-					echo "	<td class='TDdatum'>".$gehalten."</td>\n";
+					echo "		<a href='".htmlspecialchars($url, ENT_QUOTES, 'UTF-8')."&amp;change=true&amp;id=".htmlspecialchars($id, ENT_QUOTES, 'UTF-8')."&amp;thema=".htmlspecialchars($thema_id, ENT_QUOTES, 'UTF-8')."'>".htmlspecialchars($Titel, ENT_QUOTES, 'UTF-8')."</a></td>\n";
+					echo "	<td class='TDdatum'>".htmlspecialchars($gehalten, ENT_QUOTES, 'UTF-8')."</td>\n";
 					echo "	<td class='TDzahl'>".$pdf_file."</td>\n";
-					echo "	<td class='TDzahl'>".$audiofile."</td>\n";
-					echo "	<td class='TDzahl'>".$row["hits"]."</td>\n";
-					echo "	<td class='TDzahl'>".$row["downloads"]."</td>\n";
-					echo "	<td class='TDzahl'>".$row["audiofile_downloads"]."</td>\n";
+					echo "	<td class='TDzahl'>".htmlspecialchars($audiofile, ENT_QUOTES, 'UTF-8')."</td>\n";
+					echo "	<td class='TDzahl'>".htmlspecialchars($row["hits"], ENT_QUOTES, 'UTF-8')."</td>\n";
+					echo "	<td class='TDzahl'>".htmlspecialchars($row["downloads"], ENT_QUOTES, 'UTF-8')."</td>\n";
+					echo "	<td class='TDzahl'>".htmlspecialchars($row["audiofile_downloads"], ENT_QUOTES, 'UTF-8')."</td>\n";
 					echo "	<td class='TDthema'>$thema</td>\n";
 					echo "	<td class='TDbereich'>$fam</td>\n";
 					echo "	<td class='TDbereich'>$arb</td>\n";

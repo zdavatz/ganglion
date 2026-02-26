@@ -10,15 +10,15 @@
 <tr> 
 <td colspan="2"> 
 <form method="post" action="save.php">
-<input type="hidden" name="search" value="<?php print $search ?>">
-	<input type="hidden" name="datumchange" value="<?php $datumchange = date("Y-m-d"); echo $datumchange; ?>">
-	<input type="hidden" name="page" value="<?php print $page ?>">
-	<input type="hidden" name="idThema" value="<?php echo $nummerThema[$r]; ?>">
+<input type="hidden" name="search" value="<?php print htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
+	<input type="hidden" name="datumchange" value="<?php $datumchange = date("Y-m-d"); echo htmlspecialchars($datumchange, ENT_QUOTES, 'UTF-8'); ?>">
+	<input type="hidden" name="page" value="<?php print htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
+	<input type="hidden" name="idThema" value="<?php echo htmlspecialchars($nummerThema[$r], ENT_QUOTES, 'UTF-8'); ?>">
 	<input type="hidden" name="change" value="true">
 <table>
 <tr>
 <td>
-<input class='INPUTtexts' type="text" name="Thema" value="<?php echo $Thema[$r]; ?>">
+<input class='INPUTtexts' type="text" name="Thema" value="<?php echo htmlspecialchars($Thema[$r], ENT_QUOTES, 'UTF-8'); ?>">
 </td>
 <td>
 <input type="submit" name="send" value="Abschicken">

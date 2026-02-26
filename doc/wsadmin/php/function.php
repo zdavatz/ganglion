@@ -192,21 +192,21 @@ function htmlflashen($input){
 	return $out;
 }
 
-//hier wird eine für flash codierte datei wieder für html lesbar gemacht.
+//hier wird eine fï¿½r flash codierte datei wieder fï¿½r html lesbar gemacht.
 function htmlflashde($haystack){
 	$needle = "%0A";
 	$str = "%0D%0A";
 	$out = str_replace($needle,$str,$haystack);
 	$out = urldecode($out);
 	$out = stripslashes($out);
-	//$out = htmlentities($out);
+	$out = htmlspecialchars($out, ENT_QUOTES, 'UTF-8');
 	return $out;
 }
 
 function cleanfilename($input){
-	$string = eregi_replace("[ö]","oe",$input);
-	$string = eregi_replace("[ä]","ae",$string);
-	$string = eregi_replace("[ü]","ue",$string);
+	$string = eregi_replace("[ï¿½]","oe",$input);
+	$string = eregi_replace("[ï¿½]","ae",$string);
+	$string = eregi_replace("[ï¿½]","ue",$string);
 	$string = eregi_replace("[^[:alnum:]^.]","",$string);
 	return $string;
 }

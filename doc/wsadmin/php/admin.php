@@ -211,7 +211,7 @@ if ($page == "links" && $new != "true" && $change == "true"){
 //
 //vortrag
 if  ($page == "vortrag" && $new != "true" && $change != "true"){
-		$titel=(empty($searchterm))?"&Uuml;bersicht Vortr&auml;ge":"Suchresultat&nbsp;f&uuml;r&nbsp;&quot;".$searchterm."&quot;";
+		$titel=(empty($searchterm))?"&Uuml;bersicht Vortr&auml;ge":"Suchresultat&nbsp;f&uuml;r&nbsp;&quot;".htmlspecialchars($searchterm, ENT_QUOTES, 'UTF-8')."&quot;";
 		$table = "vortrag";
 		include("navigation.php");
 		include("uebersicht.php");

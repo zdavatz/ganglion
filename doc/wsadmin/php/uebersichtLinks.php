@@ -475,10 +475,7 @@ if (isset($request) && $request=="uebersicht"){
 					$statusTitel = addslashes($Titel);
 
 
-					$thema = urldecode($row["thema"]);
-
-
-					//$thema = htmlentities($thema);
+					$thema = htmlspecialchars(urldecode($row["thema"]), ENT_QUOTES, 'UTF-8');
 
 
 					$fam = $row["Familie"];
@@ -526,10 +523,10 @@ if (isset($request) && $request=="uebersicht"){
 					echo "	<td class='TDtitel'>\n";
 
 
-					echo "		<a href='$url&change=true&id=$id&thema=$thema_id'";?>> <?php echo"$Titel</a></td>\n";
+					echo "		<a href='".htmlspecialchars($url, ENT_QUOTES, 'UTF-8')."&amp;change=true&amp;id=".htmlspecialchars($id, ENT_QUOTES, 'UTF-8')."&amp;thema=".htmlspecialchars($thema_id, ENT_QUOTES, 'UTF-8')."'>".htmlspecialchars($Titel, ENT_QUOTES, 'UTF-8')."</a></td>\n";
 
 
-					echo "	<td class='TDdatum'>$gehalten</td>\n";
+					echo "	<td class='TDdatum'>".htmlspecialchars($gehalten, ENT_QUOTES, 'UTF-8')."</td>\n";
 
 
 					echo "	<td class='TDthema'>$thema</td>\n";

@@ -83,9 +83,9 @@ $query = "select thema, text, url, date_format(datum,'%d.%m.%Y')
 				$http_url = "http://".$values['url'];
 			}	
 			echo "<td class='tabltxt-l".@$suffix."'><a class='links".@$suffix;
-			echo "' href='".urldecode($http_url)."' target='_blank'>".($values["text"])."</a></td>";
-			echo "<td class='tabltxt-l".@$suffix."'>".urldecode ($values["thema"])."</td>";
-			echo "<td class='tabltxt-c".@$suffix."'>".$values["linkdate_formatted"]."</td>";
+			echo "' href='".htmlspecialchars(urldecode($http_url), ENT_QUOTES, 'UTF-8')."' target='_blank'>".htmlspecialchars($values["text"], ENT_QUOTES, 'UTF-8')."</a></td>";
+			echo "<td class='tabltxt-l".@$suffix."'>".htmlspecialchars(urldecode ($values["thema"]), ENT_QUOTES, 'UTF-8')."</td>";
+			echo "<td class='tabltxt-c".@$suffix."'>".htmlspecialchars($values["linkdate_formatted"], ENT_QUOTES, 'UTF-8')."</td>";
 			echo "</tr>\n";
 			if(empty($suffix))
 			{

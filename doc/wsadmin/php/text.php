@@ -68,8 +68,8 @@ if (isset($change) && $change == "true"){
 </table>
 </form>
 <form method="post" action="save.php" name="entrydelete" enctype="multipart/form-data">
-<input type="hidden" name="page" value="<?php echo $page ?>">
+<input type="hidden" name="page" value="<?php echo htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
 <input type="hidden" name="delete" value="true">
-<input type="hidden" name="search" value="<?php echo $search ?>">
-<input type="hidden" name="id_text" value="<?php echo $id_text ?>">
+<input type="hidden" name="search" value="<?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="id_text" value="<?php echo htmlspecialchars($id_text, ENT_QUOTES, 'UTF-8') ?>">
 </form>

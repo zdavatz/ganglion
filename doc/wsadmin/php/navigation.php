@@ -11,7 +11,7 @@
 	  <?php 
 	  echo "<b>".$titel."</b>"; 
 	  if ($debug == "true"){ 
-	  	echo "         $QUERY_STRING\n";
+	  	echo "         ".htmlspecialchars($_SERVER['QUERY_STRING'], ENT_QUOTES, 'UTF-8')."\n";
 	  }
 	  ?>
 	  </td>
@@ -36,7 +36,7 @@
 		 <option value="themen">Themen</option>
 		 <option value="links">Links</option>
 		</select>
-		<input type="hidden" name="search" value="<?php print $search ?>">
+		<input type="hidden" name="search" value="<?php print htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
 		<noscript> 
 		<input type=SUBMIT value=Go name="SUBMIT"/>
 		</noscript> 

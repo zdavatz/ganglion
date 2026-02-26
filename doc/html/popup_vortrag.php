@@ -26,11 +26,11 @@ $url = $_SERVER["PHP_SELF"];
 		$values = mysqli_fetch_assoc($result);
 			echo "<table class='borderTABLE'>";
 			echo "<tr><td colspan='2' class='TDbold-big'>Ganglion Vortrag Kurzinformationen</td></tr>";
-			echo "<tr><td colspan='2' class='TDbold-big'>".stripslashes(trim(urldecode ($values["Titel"])))."</td></tr>";
-			echo "<tr><td colspan='2' class='tabltxt-l'>".stripslashes(trim(urldecode ($values["Zusammenfassung"])))."</td></tr>";
-			echo "<tr><td colspan='2' class='TDbold'>".stripslashes(trim(urldecode ($values["location"])))."</td></tr>";
-			echo "<tr><td class='TDbold'>".stripslashes(trim(urldecode ($values["gehalten_formatted"])))."</td>";
-			echo "<td class='TDbold'>".strftime('%H:%M' ,$values["zeit"])."</td></tr>";
+			echo "<tr><td colspan='2' class='TDbold-big'>".htmlspecialchars(stripslashes(trim(urldecode ($values["Titel"]))), ENT_QUOTES, 'UTF-8')."</td></tr>";
+			echo "<tr><td colspan='2' class='tabltxt-l'>".htmlspecialchars(stripslashes(trim(urldecode ($values["Zusammenfassung"]))), ENT_QUOTES, 'UTF-8')."</td></tr>";
+			echo "<tr><td colspan='2' class='TDbold'>".htmlspecialchars(stripslashes(trim(urldecode ($values["location"]))), ENT_QUOTES, 'UTF-8')."</td></tr>";
+			echo "<tr><td class='TDbold'>".htmlspecialchars(stripslashes(trim(urldecode ($values["gehalten_formatted"]))), ENT_QUOTES, 'UTF-8')."</td>";
+			echo "<td class='TDbold'>".htmlspecialchars(strftime('%H:%M' ,$values["zeit"]), ENT_QUOTES, 'UTF-8')."</td></tr>";
 			echo "</table>";
 			// echo "<tr><td>&nbsp;</td></tr>";
 			?>

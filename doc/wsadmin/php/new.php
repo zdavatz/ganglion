@@ -2,8 +2,8 @@
  <tr>
   <td>
    <form name="new" method="get"  action="admin.php">
-	<input type="hidden" name="search" value="<?php print $search ?>">
-	<input type="hidden" name="page" value="<?php print $page ?>">
+	<input type="hidden" name="search" value="<?php print htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
+	<input type="hidden" name="page" value="<?php print htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
 	<input type="hidden" name="new" value="true">
 	<input type="submit" name="send" value="neuer Eintrag">
    </form>

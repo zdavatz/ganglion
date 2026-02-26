@@ -6,7 +6,7 @@ if ($new == "true" || $change == "true"){
 	$lastThema="";
 ?>
 
-		<input type="hidden" name="page" value="<?php echo $page ?>">
+		<input type="hidden" name="page" value="<?php echo htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
 		<input type="hidden" name="sortby" value="standart">
 		<select name="searchnew" size="1">
 <?php
@@ -20,7 +20,7 @@ if ($new == "true" || $change == "true"){
 	 		$thema = urldecode($row["thema"]);
 	 		$select = "";
 	 		if ($idWWW == $thema_id) $select = "selected";
-	 		echo "<option value='$idWWW' $select>$thema</option>\n";
+	 		echo "<option value='".htmlspecialchars($idWWW, ENT_QUOTES, 'UTF-8')."' $select>".htmlspecialchars($thema, ENT_QUOTES, 'UTF-8')."</option>\n";
 		  	$i++;
 	}
 	echo "</select>\n";
@@ -33,20 +33,20 @@ else
 	$lastThema="";
 ?>
 <form method="get" action="admin.php" name="themen">
-<input type="hidden" name="page" value="<?php echo $page ?>">
+<input type="hidden" name="page" value="<?php echo htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
 <input type="hidden" name="sortby" value="standart">
 <input type="hidden" name="searchterm" value="">
-<select name="search" size="1" onChange=themen.submit() onMouseOut="" onMouseOver="">		
+<select name="search" size="1" onChange=themen.submit() onMouseOut="" onMouseOver="">
 <?php
 if ($search == "all"){ $select = "selected"; }
 	echo"<option value='all' $select>alle Themen</option>";
-	
+
 	while ($row = mysqli_fetch_array($result)){
 	 		$id = $row["id_thema"];
 	 		$thema = urldecode($row["thema"]);
 	 		$select = "";
 	 		if ($id == $search){ $select = "selected"; }
-	 			echo "<option value='$id' $select>$thema</option>\n";
+	 			echo "<option value='".htmlspecialchars($id, ENT_QUOTES, 'UTF-8')."' $select>".htmlspecialchars($thema, ENT_QUOTES, 'UTF-8')."</option>\n";
 			$lastThema=$row["thema"];
 	}
 	echo "</select>\n";

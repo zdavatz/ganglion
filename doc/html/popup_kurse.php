@@ -45,7 +45,7 @@ $url = $_SERVER["PHP_SELF"];
 			<table class="bordertable">
 			<tr><td class='TDbold-big'>Anmeldung</td></tr>
 			<tr>
-			<?php echo "<td colspan='2' class='TDbold'>".stripslashes(trim(urldecode ($values["titel_kurse"])))."</td>"; ?>
+			<?php echo "<td colspan='2' class='TDbold'>".htmlspecialchars(stripslashes(trim(urldecode ($values["titel_kurse"]))), ENT_QUOTES, 'UTF-8')."</td>"; ?>
 			</tr>
 			<tr><td class='TDbold'>Anmeldeformular <a href="https://forms.gle/q6Da1cFhF5jvQHA89" target="_blank">hier klicken</a></td></tr>
 			</table>
@@ -61,17 +61,17 @@ $url = $_SERVER["PHP_SELF"];
 			echo "<table class='borderTABLE'>";
 			echo "<tr>";
 			echo "<tr><td colspan='2' class='TDbold-big'>Inhalt</td></tr>";
-			echo "<td colspan='2' class='TDbold-big'>".stripslashes(trim(urldecode ($values["titel_kurse"])))."</td>";
+			echo "<td colspan='2' class='TDbold-big'>".htmlspecialchars(stripslashes(trim(urldecode ($values["titel_kurse"]))), ENT_QUOTES, 'UTF-8')."</td>";
 			echo "<td>&nbsp;</td>";
 			echo "</tr>";
-			echo "<td colspan='6'>".nl2br(stripslashes(trim(urldecode ($values["kursziele_kurse"]))))."</td>";
+			echo "<td colspan='6'>".nl2br(htmlspecialchars(stripslashes(trim(urldecode ($values["kursziele_kurse"]))), ENT_QUOTES, 'UTF-8'))."</td>";
 			echo "</tr>";
-			echo "<tr><td class='tabltxt-l'>Zeit:</td><td>". ($values["platz_kurse"])."</td></tr>";
-			echo "<tr><td class='tabltxt-l'>Beginn:</td><td>". ($values["beginn_formatted"])."</td></tr>";
-			echo "<tr><td class='tabltxt-l'>Daten:</td><td>".urldecode ($values["daten_kurse"])."</td></tr>";
-			echo "<tr><td class='tabltxt-l'>Kosten:</td><td>".urldecode ($values["kosten_kurse"])."</td></tr>";
-			echo "<tr><td class='tabltxt-l'>Ort:</td><td>".urldecode ($values["ort_kurse"])."</td></tr>";
-			echo "<tr><td class='tabltxt-l'>Leitung:</td><td>".urldecode ($values["leitung_kurse"])."</td></tr>";
+			echo "<tr><td class='tabltxt-l'>Zeit:</td><td>".htmlspecialchars($values["platz_kurse"], ENT_QUOTES, 'UTF-8')."</td></tr>";
+			echo "<tr><td class='tabltxt-l'>Beginn:</td><td>".htmlspecialchars($values["beginn_formatted"], ENT_QUOTES, 'UTF-8')."</td></tr>";
+			echo "<tr><td class='tabltxt-l'>Daten:</td><td>".htmlspecialchars(urldecode ($values["daten_kurse"]), ENT_QUOTES, 'UTF-8')."</td></tr>";
+			echo "<tr><td class='tabltxt-l'>Kosten:</td><td>".htmlspecialchars(urldecode ($values["kosten_kurse"]), ENT_QUOTES, 'UTF-8')."</td></tr>";
+			echo "<tr><td class='tabltxt-l'>Ort:</td><td>".htmlspecialchars(urldecode ($values["ort_kurse"]), ENT_QUOTES, 'UTF-8')."</td></tr>";
+			echo "<tr><td class='tabltxt-l'>Leitung:</td><td>".htmlspecialchars(urldecode ($values["leitung_kurse"]), ENT_QUOTES, 'UTF-8')."</td></tr>";
 			echo "</table>";
 			echo "<tr><td>&nbsp;</td></tr>";
 			?>

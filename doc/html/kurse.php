@@ -80,8 +80,8 @@ if($orderdir == "asc")
 		echo "<td>";
 		$popurl = "popup_kurse.php?kurs_id=".$values["id_kurse"];
 		$script = 'window.open("'.$popurl.'", "popup", "menubar=no,resizable=no,scrollbars=yes,height=650,locationbar=no,toolbar=yes,width=650").focus(); return false';
-		echo "<a class='TDbold' href='$popurl' onClick='".$script."'>".stripslashes(urldecode ($values["titel_kurse"]))."</a>";
-		echo "<td class='tabltxt-l'>".($values["beginn_formatted"])."</td>";
+		echo "<a class='TDbold' href='$popurl' onClick='".$script."'>".htmlspecialchars(stripslashes(urldecode ($values["titel_kurse"])), ENT_QUOTES, 'UTF-8')."</a>";
+		echo "<td class='tabltxt-l'>".htmlspecialchars($values["beginn_formatted"], ENT_QUOTES, 'UTF-8')."</td>";
 		echo "</td>";
 		echo "</tr>";
 		}
@@ -106,8 +106,8 @@ if($orderdir == "asc")
 		echo "<td>";
 		$popurl = "popup_kurse.php?kurs_id=".$values["id_kurse"];
 		$script = 'window.open("'.$popurl.'", "popup", "menubar=no,resizable=no,scrollbars=yes,height=560,locationbar=no,toolbar=yes,width=650").focus(); return false';
-		echo "<a class='TDbold' href='$popurl' onClick='".$script."'>".stripslashes(urldecode ($values["titel_kurse"]))."</a>";
-		echo "<td class='tabltxt-l'>".($values["beginn_formatted"])."</td>";
+		echo "<a class='TDbold' href='$popurl' onClick='".$script."'>".htmlspecialchars(stripslashes(urldecode ($values["titel_kurse"])), ENT_QUOTES, 'UTF-8')."</a>";
+		echo "<td class='tabltxt-l'>".htmlspecialchars($values["beginn_formatted"], ENT_QUOTES, 'UTF-8')."</td>";
 		echo "</td>";
 		echo "</tr>";
 		}
@@ -134,8 +134,8 @@ if($orderdir == "asc")
 		echo "<td>";
 		$popurl = "popup_kurse.php?kurs_id=".$values["id_kurse"];
 		$script = 'window.open("'.$popurl.'", "popup", "menubar=no,resizable=no,scrollbars=yes,height=560,locationbar=no,toolbar=yes,width=650").focus(); return false';
-		echo "<a class='TDbold' href='$popurl' onClick='".$script."'>".stripslashes(urldecode ($values["titel_kurse"]))."</a>";
-		echo "<td class='tabltxt-l'>".($values["beginn_formatted"])."</td>";
+		echo "<a class='TDbold' href='$popurl' onClick='".$script."'>".htmlspecialchars(stripslashes(urldecode ($values["titel_kurse"])), ENT_QUOTES, 'UTF-8')."</a>";
+		echo "<td class='tabltxt-l'>".htmlspecialchars($values["beginn_formatted"], ENT_QUOTES, 'UTF-8')."</td>";
 		echo "</td>";
 		echo "</tr>";
 		}
