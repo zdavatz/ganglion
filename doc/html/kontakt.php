@@ -17,11 +17,12 @@
 
 if(isset($_GET["id"]))
 {
-		$query =	"select titel_kurse, date_format(beginn_kurse,'%d.%m.%Y') as
-						beginn_formatted from kurse
-						where id_kurse = ".$_GET["id"];
-		$result = mysqli_query($conn1, $query);
-  	$values = mysqli_fetch_assoc($result);
+		$stmt = mysqli_prepare($conn1, "SELECT titel_kurse, date_format(beginn_kurse,'%d.%m.%Y') AS beginn_formatted FROM kurse WHERE id_kurse = ?");
+		mysqli_stmt_bind_param($stmt, "i", $_GET["id"]);
+		mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
+		$values = mysqli_fetch_assoc($result);
+		mysqli_stmt_close($stmt);
 		$textvalue = "Anmeldung f&uuml;r den Kurs:\n".urldecode($values["titel_kurse"]);
 		$subject = "apply";
 }
