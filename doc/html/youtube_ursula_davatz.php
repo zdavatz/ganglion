@@ -27,7 +27,8 @@ $channelId = 'UCDZ9tWjHLJIvwwl40XbaT1w';
 $uploadsPlaylistId = 'UUDZ9tWjHLJIvwwl40XbaT1w';
 
 // Cache results for 1 hour to conserve API quota
-$cacheFile = sys_get_temp_dir() . '/yt_cache_' . md5($channelId) . '.json';
+$cacheVersion = 2;
+$cacheFile = sys_get_temp_dir() . '/yt_cache_v' . $cacheVersion . '_' . md5($channelId) . '.json';
 $cacheMaxAge = 3600;
 $videos = null;
 
