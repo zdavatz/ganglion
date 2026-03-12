@@ -68,4 +68,4 @@ Then update credentials in each file.
 - PDFs are stored in `doc/html/pdf/`, audio files tracked via database URL fields.
 - Download counts are tracked in the `vortrag` and `artikel` tables.
 - The `.gitignore` excludes credential files, audio directories, and generated configs.
-- `doc/html/youtube_ursula_davatz.php` — YouTube video listing page using the YouTube Data API v3. Clickable column headers for sorting (Titel, Aufrufe, Likes, Veröffentlicht). API key stored in `.yt-keys` (gitignored). Results cached in `/tmp` for 1 hour.
+- `doc/html/youtube_ursula_davatz.php` — YouTube video listing page using the YouTube Data API v3. Clickable column headers for sorting (Titel, Aufrufe, Likes, Kommentare, Veröffentlicht). API key stored in `.yt-keys` (gitignored). Results cached in `/tmp` for 1 hour.

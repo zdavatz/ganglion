@@ -90,6 +90,7 @@ if ($videos === null) {
 					: $v['snippet']['thumbnails']['default']['url'],
 				'views'       => isset($v['statistics']['viewCount']) ? (int)$v['statistics']['viewCount'] : 0,
 				'likes'       => isset($v['statistics']['likeCount']) ? (int)$v['statistics']['likeCount'] : 0,
+				'comments'    => isset($v['statistics']['commentCount']) ? (int)$v['statistics']['commentCount'] : 0,
 			);
 		}
 	}
@@ -104,6 +105,7 @@ $valid = array(
 	'Titel'          => 'title',
 	'Aufrufe'        => 'views',
 	'Likes'          => 'likes',
+	'Kommentare'     => 'comments',
 	'Veroeffentlicht' => 'published',
 );
 if (isset($_GET['orderby']) && isset($valid[$_GET['orderby']])) {
@@ -120,6 +122,7 @@ $directions = array(
 	'title'     => 'asc',
 	'views'     => 'asc',
 	'likes'     => 'asc',
+	'comments'  => 'asc',
 	'published' => 'asc',
 );
 if ($orderdir == 'asc') {
@@ -146,6 +149,7 @@ if (empty($videos)) {
 	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Titel&amp;orderdir=' . $directions['title'] . '">Titel sortieren</a></th>';
 	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Aufrufe&amp;orderdir=' . $directions['views'] . '">Aufrufe sortieren</a></th>';
 	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Likes&amp;orderdir=' . $directions['likes'] . '">Likes sortieren</a></th>';
+	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Kommentare&amp;orderdir=' . $directions['comments'] . '">Kommentare sortieren</a></th>';
 	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Veroeffentlicht&amp;orderdir=' . $directions['published'] . '">Ver&ouml;ffentlicht sortieren</a></th>';
 	echo '</tr>';
 	$suffix = '';
@@ -160,6 +164,7 @@ if (empty($videos)) {
 		echo htmlspecialchars($video['title'], ENT_QUOTES, 'UTF-8') . '</a></td>';
 		echo '<td class="tabltxt-c">' . number_format($video['views'], 0, '.', "'") . '</td>';
 		echo '<td class="tabltxt-c">' . number_format($video['likes'], 0, '.', "'") . '</td>';
+		echo '<td class="tabltxt-c">' . number_format($video['comments'], 0, '.', "'") . '</td>';
 		echo '<td class="tabltxt-c">' . htmlspecialchars($pubDate, ENT_QUOTES, 'UTF-8') . '</td>';
 		echo '</tr>' . "\n";
 		$suffix = empty($suffix) ? '-bg' : '';
