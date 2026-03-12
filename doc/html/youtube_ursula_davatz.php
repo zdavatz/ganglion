@@ -94,14 +94,47 @@ if ($videos === null) {
 		}
 	}
 
-	// Sort by views descending
-	usort($videos, function($a, $b) {
-		return $b['views'] - $a['views'];
-	});
-
-	// Cache results
+	// Cache unsorted results
 	@file_put_contents($cacheFile, json_encode($videos));
 }
+
+// Sorting
+$url = $_SERVER["PHP_SELF"];
+$valid = array(
+	'Titel'          => 'title',
+	'Aufrufe'        => 'views',
+	'Likes'          => 'likes',
+	'Veroeffentlicht' => 'published',
+);
+if (isset($_GET['orderby']) && isset($valid[$_GET['orderby']])) {
+	$orderby = $valid[$_GET['orderby']];
+} else {
+	$orderby = 'views';
+}
+if (isset($_GET['orderdir']) && $_GET['orderdir'] == 'asc') {
+	$orderdir = 'asc';
+} else {
+	$orderdir = 'desc';
+}
+$directions = array(
+	'title'     => 'asc',
+	'views'     => 'asc',
+	'likes'     => 'asc',
+	'published' => 'asc',
+);
+if ($orderdir == 'asc') {
+	$directions[$orderby] = 'desc';
+}
+usort($videos, function($a, $b) use ($orderby, $orderdir) {
+	if ($orderby == 'title') {
+		$cmp = strcasecmp($a['title'], $b['title']);
+	} elseif ($orderby == 'published') {
+		$cmp = strcmp($a['published'], $b['published']);
+	} else {
+		$cmp = $a[$orderby] - $b[$orderby];
+	}
+	return ($orderdir == 'asc') ? $cmp : -$cmp;
+});
 
 if (empty($videos)) {
 	echo '<p>Keine Videos gefunden.</p>';
@@ -110,10 +143,10 @@ if (empty($videos)) {
 	echo '<tr>';
 	echo '<th>Nr.</th>';
 	echo '<th>Vorschau</th>';
-	echo '<th>Titel</th>';
-	echo '<th>Aufrufe</th>';
-	echo '<th>Likes</th>';
-	echo '<th>Ver&ouml;ffentlicht</th>';
+	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Titel&amp;orderdir=' . $directions['title'] . '">Titel sortieren</a></th>';
+	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Aufrufe&amp;orderdir=' . $directions['views'] . '">Aufrufe sortieren</a></th>';
+	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Likes&amp;orderdir=' . $directions['likes'] . '">Likes sortieren</a></th>';
+	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Veroeffentlicht&amp;orderdir=' . $directions['published'] . '">Ver&ouml;ffentlicht sortieren</a></th>';
 	echo '</tr>';
 	$suffix = '';
 	$nr = 1;

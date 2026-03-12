@@ -76,7 +76,7 @@ The codebase has been hardened against common web vulnerabilities:
 
 ## YouTube Integration
 
-The page `doc/html/youtube_ursula_davatz.php` lists all videos from the Ursula Davatz YouTube channel, sorted by views (descending). It uses the YouTube Data API v3 and caches results for 1 hour.
+The page `doc/html/youtube_ursula_davatz.php` lists all videos from the Ursula Davatz YouTube channel, sorted by views (descending) by default. Columns (Titel, Aufrufe, Likes, Veröffentlicht) are clickable to sort ascending/descending. It uses the YouTube Data API v3 and caches results for 1 hour.
 
 **Setup:** Place your YouTube API key in `.yt-keys` in the project root (one line, key only). This file is gitignored.
 
