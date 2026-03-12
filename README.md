@@ -74,6 +74,12 @@ The codebase has been hardened against common web vulnerabilities:
 * **Session Handling**: Deprecated `session_register()` replaced with explicit `$_SESSION[]` read/write
 * **Server Info**: Removed `phpinfo.php` to prevent server configuration exposure
 
+## YouTube Integration
+
+The page `doc/html/youtube_ursula_davatz.php` lists all videos from the Ursula Davatz YouTube channel, sorted by views (descending). It uses the YouTube Data API v3 and caches results for 1 hour.
+
+**Setup:** Place your YouTube API key in `.yt-keys` in the project root (one line, key only). This file is gitignored.
+
 ## Links
 
 Useful tools for MySQL connections:
