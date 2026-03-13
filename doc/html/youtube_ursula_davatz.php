@@ -147,11 +147,11 @@ if (empty($videos)) {
 	echo '<tr>';
 	echo '<th>Nr.</th>';
 	echo '<th>Vorschau</th>';
-	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Titel&amp;orderdir=' . $directions['title'] . '">Titel sortieren</a></th>';
-	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Aufrufe&amp;orderdir=' . $directions['views'] . '">Aufrufe sortieren</a></th>';
-	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Likes&amp;orderdir=' . $directions['likes'] . '">Likes sortieren</a></th>';
-	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Kommentare&amp;orderdir=' . $directions['comments'] . '">Kommentare sortieren</a></th>';
-	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Veroeffentlicht&amp;orderdir=' . $directions['published'] . '">Ver&ouml;ffentlicht sortieren</a></th>';
+	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Titel&amp;orderdir=' . $directions['title'] . '">Titel</a></th>';
+	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Aufrufe&amp;orderdir=' . $directions['views'] . '">Aufrufe</a></th>';
+	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Likes&amp;orderdir=' . $directions['likes'] . '">Likes</a></th>';
+	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Kommentare&amp;orderdir=' . $directions['comments'] . '">Kommentare</a></th>';
+	echo '<th><a class="th" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '?orderby=Veroeffentlicht&amp;orderdir=' . $directions['published'] . '">Ver&ouml;ffentlicht</a></th>';
 	echo '</tr>';
 	$suffix = '';
 	$nr = 1;
