@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Emotionskontrolle & Psychiatrie im Offside – Reflexions-Quiz</title>
+<style>
+body {font-family: Arial, sans-serif; max-width: 960px; margin: 40px auto; line-height: 1.7; background: #fdfdfd; padding: 0 15px;}
+h1, h2 {color: #1a3c5e; text-align: center;}
+.progress-container {width: 100%; background: #e5e7eb; border-radius: 20px; margin: 20px 0; overflow: hidden;}
+.progress-bar {width: 0%; height: 30px; background: linear-gradient(90deg, #10b981, #34d399); text-align: center; color: white; font-weight: bold; line-height: 30px; transition: width 0.6s ease;}
+.question-container {display: none; margin-bottom: 40px; padding: 25px; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);}
+.options {list-style: none; padding-left: 0;}
+.options li {margin: 16px 0; padding: 16px 20px; cursor: pointer; border: 1px solid #d1d5db; border-radius: 8px; transition: all 0.25s; font-size: 1.02em;}
+.options li:hover {background: #f3f4f6; transform: translateX(4px);}
+.options li.correct {background: #d1fae5 !important; border-color: #10b981; color: #065f46; font-weight: bold;}
+.options li.incorrect {background: #fee2e2; border-color: #ef4444; color: #991b1b;}
+.options li.blink-correct {animation: blinkGreen 0.5s infinite alternate; background: #d1fae5 !important;}
+@keyframes blinkGreen {from {opacity: 0.4;} to {opacity: 1;}}
+.explanation {display: none; margin-top: 20px; padding: 18px; background: #f1f5f9; border-left: 6px solid #64748b; border-radius: 6px; font-size: 0.97em;}
+.next-btn {display: none; margin-top: 25px; padding: 14px 28px; background: #1e40af; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1em;}
+.next-btn:hover {background: #1e3a8a;}
+#start-screen {text-align: center; padding: 60px 20px;}
+button {padding: 14px 32px; font-size: 1.1em; margin: 15px; border: none; border-radius: 8px; cursor: pointer;}
+button#start {background: #10b981; color: white;}
+button#start:hover {background: #059669;}
+button#reset {background: #6b7280; color: white;}
+button#reset:hover {background: #4b5563;}
+#answers {display: none; margin-top: 50px; padding: 30px; background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0;}
+#congrats {display: none; margin: 40px auto; max-width: 700px; padding: 30px; background: #d1fae5; border-radius: 12px; font-size: 1.3em; color: #065f46;}
+</style>
+<script>
+let currentQuestion = 0;
+let correctCount = 0;
+const totalQuestions = 15;
+
+function updateProgress() {
+  const percentage = (correctCount / totalQuestions) * 100;
+  document.getElementById('progress-fill').style.width = percentage + '%';
+  document.getElementById('progress-text').textContent = Math.round(percentage) + '% (' + correctCount + '/' + totalQuestions + ')';
+}
+
+function showQuestion(num) {
+  document.querySelectorAll('.question-container').forEach(el => el.style.display = 'none');
+  document.getElementById('q' + num).style.display = 'block';
+}
+
+function selectAnswer(li, isCorrect, explanationId, qNum) {
+  const parent = li.parentElement;
+  const correctLi = Array.from(parent.children).find(item => item.dataset.correct === "true");
+
+  parent.querySelectorAll('li').forEach(item => {
+    item.onclick = null;
+    item.style.pointerEvents = 'none';
+  });
+
+  if (isCorrect) {
+    li.classList.add('correct');
+    correctCount++;
+    updateProgress();
+  } else {
+    li.classList.add('incorrect');
+    // Richtige Antwort blinken lassen
+    if (correctLi) {
+      correctLi.classList.add('blink-correct');
+      setTimeout(() => correctLi.classList.remove('blink-correct'), 2000); // Blinken 2 Sekunden
+      correctLi.classList.add('correct'); // Danach dauerhaft grün
+    }
+  }
+
+  document.getElementById(explanationId).style.display = 'block';
+  document.getElementById('next-' + qNum).style.display = 'inline-block';
+}
+
+function nextQuestion(current) {
+  if (current < totalQuestions) {
+    showQuestion(current + 1);
+  } else {
+    document.getElementById('answers').style.display = 'block';
+    if (correctCount === totalQuestions) {
+      document.getElementById('congrats').style.display = 'block';
+    }
+  }
+}
+
+function startQuiz() {
+  document.getElementById('start-screen').style.display = 'none';
+  showQuestion(1);
+}
+
+function resetQuiz() {
+  correctCount = 0;
+  updateProgress();
+  document.getElementById('congrats').style.display = 'none';
+  document.getElementById('answers').style.display = 'none';
+  document.querySelectorAll('.question-container').forEach(q => {
+    q.querySelectorAll('li').forEach(li => {
+      li.classList.remove('correct', 'incorrect', 'blink-correct');
+      li.style.pointerEvents = 'auto';
+    });
+    q.querySelectorAll('.explanation').forEach(e => e.style.display = 'none');
+    q.querySelectorAll('.next-btn').forEach(b => b.style.display = 'none');
+  });
+  document.getElementById('start-screen').style.display = 'block';
+}
+</script>
+</head>
+<body>
+
+<div id="start-screen">
+  <h1>Emotionskontrolle & Psychiatrie im Offside</h1>
+  <p style="font-size:1.25em; margin:30px 0;">15 offene Fragen zum Nachdenken</p>
+  <p>Wähle die Aussage, die dir am meisten einleuchtet.<br>Bei „falscher“ Wahl blinkt die nahe am Vortrag liegende Antwort kurz grün auf.</p>
+  <button id="start" onclick="startQuiz()">Start</button>
+</div>
+
+<div class="progress-container">
+  <div id="progress-fill" class="progress-bar"><span id="progress-text">0% (0/15)</span></div>
+</div>
+
+<!-- Frage 1 -->
+<div id="q1" class="question-container">
+  <h2>Frage 1</h2>
+  <p>Wenn man das Prinzip „Offside“ aus dem Fußball auf die Psychiatrie überträgt – was könnte das bedeuten?</p>
+  <ul class="options">
+    <li onclick="selectAnswer(this, false, 'exp1', 1)">A. Die Behandlung funktioniert nur, wenn der Behandler immer einen Schritt voraus ist.</li>
+    <li onclick="selectAnswer(this, false, 'exp1', 1)">B. Es ist egal, ob man zu früh oder zu spät handelt – Hauptsache man handelt.</li>
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp1', 1)">C. Wenn man mit eigenen Vorstellungen vorauseilt und nicht beim realen Erleben des Betroffenen bleibt, wird die ganze Intervention ungültig – wie ein Tor, das nicht zählt.</li>
+  </ul>
+  <div id="exp1" class="explanation">„Für mich ist Offside neben draussen. Es funktioniert nicht. [...] Das wäre das Offside.“<br><br>(Seite 1–2 & 6)</div>
+  <button id="next-1" class="next-btn" onclick="nextQuestion(1)">Weiter →</button>
+</div>
+
+<!-- Frage 2 -->
+<div id="q2" class="question-container">
+  <h2>Frage 2</h2>
+  <p>Wie könnte man erklären, dass Menschen nicht nur hilfreiche, sondern auch sehr belastende oder krankmachende Muster lernen und behalten?</p>
+  <ul class="options">
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp2', 2)">A. Das Gehirn ist extrem formbar – man kann ebenso gut positives wie negatives Verhalten und sogar ganze Krankheitsmuster lernen und festigen.</li>
+    <li onclick="selectAnswer(this, false, 'exp2', 2)">B. Das Gehirn ist nach der Kindheit fast unveränderbar – schlechte Muster entstehen deshalb kaum noch.</li>
+    <li onclick="selectAnswer(this, false, 'exp2', 2)">C. Das Gehirn filtert negative Einflüsse weitgehend heraus und lernt hauptsächlich aus positiven Erfahrungen.</li>
+  </ul>
+  <div id="exp2" class="explanation">„Man kann auch negatives Zeugs lernen. Man kann auch Krankheiten lernen.“<br><br>(Seite 7)</div>
+  <button id="next-2" class="next-btn" onclick="nextQuestion(2)">Weiter →</button>
+</div>
+
+<!-- Frage 3 -->
+<div id="q3" class="question-container">
+  <h2>Frage 3</h2>
+  <p>Wenn man Symptome nicht isoliert betrachtet – worauf könnte man stattdessen den Fokus legen, um das Geschehen besser zu verstehen?</p>
+  <ul class="options">
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp3', 3)">A. Auf die Interaktionen und Beziehungen im System, statt nur auf einzelne Symptome einer Person.</li>
+    <li onclick="selectAnswer(this, false, 'exp3', 3)">B. Auf einen möglichst detaillierten Symptomkatalog innerhalb einer Person.</li>
+    <li onclick="selectAnswer(this, false, 'exp3', 3)">C. Auf eine standardisierte Checkliste, die Beziehungen außen vor lässt.</li>
+  </ul>
+  <div id="exp3" class="explanation">„Ich schaue viel mehr die Interaktion an als einzelne Symptome des Patienten.“<br><br>(Seite 8)</div>
+  <button id="next-3" class="next-btn" onclick="nextQuestion(3)">Weiter →</button>
+</div>
+
+<!-- Frage 4 -->
+<div id="q4" class="question-container">
+  <h2>Frage 4</h2>
+  <p>Wenn man nur Symptome einer einzelnen Person auflistet und daraus eine Diagnose macht – was könnte daran problematisch sein?</p>
+  <ul class="options">
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp4', 4)">A. Es blendet die zwischenmenschlichen Dynamiken aus und führt oft zu unvollständigen oder irreführenden Bildern.</li>
+    <li onclick="selectAnswer(this, false, 'exp4', 4)">B. Es ist die einzige Methode, die wirklich wissenschaftlich fundiert ist.</li>
+    <li onclick="selectAnswer(this, false, 'exp4', 4)">C. Es vermeidet unnötige Komplikationen durch Einbeziehung anderer Personen.</li>
+  </ul>
+  <div id="exp4" class="explanation">„Nur die Betrachtung von Symptomen oder von der Symptomkette im Individuum ist für mich das Offside in der Psychiatrie, welches nicht funktioniert.“<br><br>(Seite 8)</div>
+  <button id="next-4" class="next-btn" onclick="nextQuestion(4)">Weiter →</button>
+</div>
+
+<!-- Frage 5 -->
+<div id="q5" class="question-container">
+  <h2>Frage 5</h2>
+  <p>Wenn man sagt „Der Betroffene hat keine Krankheitseinsicht“ – was könnte das über die eigene Haltung aussagen?</p>
+  <ul class="options">
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp5', 5)">A. Man setzt voraus, dass die eigene Vorstellung von der „Krankheit“ die einzig richtige ist und der Betroffene sie übernehmen sollte.</li>
+    <li onclick="selectAnswer(this, false, 'exp5', 5)">B. Man erkennt an, dass jeder Mensch immer volle Einsicht in seine eigene Lage hat.</li>
+    <li onclick="selectAnswer(this, false, 'exp5', 5)">C. Man gibt dem Betroffenen bewusst Zeit, selbst zu einer Einsicht zu kommen.</li>
+  </ul>
+  <div id="exp5" class="explanation">„Unsere Vorstellung von seiner Krankheit ist eine Vorstellung.“<br><br>(Seite 6)</div>
+  <button id="next-5" class="next-btn" onclick="nextQuestion(5)">Weiter →</button>
+</div>
+
+<!-- Frage 6 -->
+<div id="q6" class="question-container">
+  <h2>Frage 6</h2>
+  <p>Wenn in einer therapeutischen Beziehung der Behandler konsequent schweigt und nicht reagiert – wie könnte das vom Gegenüber erlebt werden?</p>
+  <ul class="options">
+    <li onclick="selectAnswer(this, false, 'exp6', 6)">A. Als besonders stärkende und vertrauensbildende Haltung.</li>
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp6', 6)">B. Als eine Form von Liebesentzug oder emotionalem Rückzug.</li>
+    <li onclick="selectAnswer(this, false, 'exp6', 6)">C. Als ideale Bedingung für freie Assoziation ohne Beeinflussung.</li>
+  </ul>
+  <div id="exp6" class="explanation">„Nicht-Kommunikation ist wie Liebesentzug, dem Empfinden nach.“<br><br>(Seite 3–4)</div>
+  <button id="next-6" class="next-btn" onclick="nextQuestion(6)">Weiter →</button>
+</div>
+
+<!-- Frage 7 -->
+<div id="q7" class="question-container">
+  <h2>Frage 7</h2>
+  <p>Wenn man technische Fachbegriffe und Diagnoseetiketten weglässt und stattdessen alles in normaler Alltagssprache beschreibt – was könnte das bewirken?</p>
+  <ul class="options">
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp7', 7)">A. Es reduziert die Gefahr, dass vorgefertigte Theorien die Wahrnehmung der realen Situation überlagern.</li>
+    <li onclick="selectAnswer(this, false, 'exp7', 7)">B. Es macht die Beschreibung ungenau und unwissenschaftlich.</li>
+    <li onclick="selectAnswer(this, false, 'exp7', 7)">C. Es verhindert, dass Familien überhaupt miteinander sprechen können.</li>
+  </ul>
+  <div id="exp7" class="explanation">„Dem Personal hat er befohlen: sie dürfen gar keine technische Ausdrücke verwenden, sie dürfen nur mit der ganz normalen Sprachen beschreiben.“<br><br>(Seite 5)</div>
+  <button id="next-7" class="next-btn" onclick="nextQuestion(7)">Weiter →</button>
+</div>
+
+<!-- Frage 8 -->
+<div id="q8" class="question-container">
+  <h2>Frage 8</h2>
+  <p>Wenn Kinder trotz ausreichender Nahrung und Wärme ohne jede emotionale Beziehung schwer krank werden oder sterben – was sagt das über die Bedeutung von Beziehungen aus?</p>
+  <ul class="options">
+    <li onclick="selectAnswer(this, false, 'exp8', 8)">A. Beziehungen sind nett, aber nicht lebensnotwendig.</li>
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp8', 8)">B. Soziale und emotionale Beziehungen sind für das Überleben und die Entwicklung grundlegend notwendig.</li>
+    <li onclick="selectAnswer(this, false, 'exp8', 8)">C. Körperliche Versorgung allein reicht aus, emotionale Bindung ist zweitrangig.</li>
+  </ul>
+  <div id="exp8" class="explanation">„Wir brauchen soziale Beziehungen.“<br><br>(Seite 4)</div>
+  <button id="next-8" class="next-btn" onclick="nextQuestion(8)">Weiter →</button>
+</div>
+
+<!-- Frage 9 -->
+<div id="q9" class="question-container">
+  <h2>Frage 9</h2>
+  <p>Wenn jemand in einer Beziehung bewusst schweigt – welche Wirkung kann das haben?</p>
+  <ul class="options">
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp9', 9)">A. Schweigen kann eine sehr starke Form der Beeinflussung sein – ähnlich wie aktives Sprechen oder Handeln.</li>
+    <li onclick="selectAnswer(this, false, 'exp9', 9)">B. Schweigen ist neutral und hat praktisch keine Auswirkung auf den anderen.</li>
+    <li onclick="selectAnswer(this, false, 'exp9', 9)">C. Schweigen fördert automatisch Offenheit und freies Sprechen beim Gegenüber.</li>
+  </ul>
+  <div id="exp9" class="explanation">„Nicht zu reden ist eine starke Beeinflussung.“<br><br>(Seite 3)</div>
+  <button id="next-9" class="next-btn" onclick="nextQuestion(9)">Weiter →</button>
+</div>
+
+<!-- Frage 10 -->
+<div id="q10" class="question-container">
+  <h2>Frage 10</h2>
+  <p>Wenn man Kommunikation betrachtet – welches Ziel könnte fast jeder Austausch (auch Schweigen) verfolgen?</p>
+  <ul class="options">
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp10', 10)">A. Kommunikation will – bewusst oder unbewusst – immer irgendwie auf den anderen einwirken oder ihn beeinflussen.</li>
+    <li onclick="selectAnswer(this, false, 'exp10', 10)">B. Kommunikation dient ausschließlich dem reinen Informationsaustausch ohne jede Beeinflussungsabsicht.</li>
+    <li onclick="selectAnswer(this, false, 'exp10', 10)">C. Gute Kommunikation vermeidet jede Form von Einflussnahme auf den anderen.</li>
+  </ul>
+  <div id="exp10" class="explanation">„Mit der Kommunikation wollen wir immer den anderen beeinflussen.“<br><br>(Seite 3)</div>
+  <button id="next-10" class="next-btn" onclick="nextQuestion(10)">Weiter →</button>
+</div>
+
+<!-- Frage 11 -->
+<div id="q11" class="question-container">
+  <h2>Frage 11</h2>
+  <p>Wenn viele psychiatrische Theorien stark von Philosophie, Thermodynamik und dem Denken der damaligen Oberschicht beeinflusst waren – was könnte das für die Nähe zum Patienten bedeuten?</p>
+  <ul class="options">
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp11', 11)">A. Es könnte dazu geführt haben, dass der reale Mensch und seine aktuelle Situation aus dem Blick gerieten.</li>
+    <li onclick="selectAnswer(this, false, 'exp11', 11)">B. Es hat die Psychiatrie besonders patientennah und lebensnah gemacht.</li>
+    <li onclick="selectAnswer(this, false, 'exp11', 11)">C. Es hat verhindert, dass überhaupt Theorien entwickelt wurden.</li>
+  </ul>
+  <div id="exp11" class="explanation">„Psychiater haben viele Theorien aus der Philosophie reingebracht und damit verpasst, den Patienten genau anzuschauen.“<br><br>(Seite 3)
+  </div>
+  <button id="next-11" class="next-btn" onclick="nextQuestion(11)">Weiter →</button>
+</div>
+
+<!-- Frage 12 -->
+<div id="q12" class="question-container">
+  <h2>Frage 12</h2>
+  <p>Wenn man ADHS/ADS und Schizophrenie vergleicht – welche Wahrnehmungseigenschaft wird oft als besonders auffällig beschrieben?</p>
+  <ul class="options">
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp12', 12)">A. Eine extrem hohe Sensibilität und die Fähigkeit, weit mehr Reize und Details wahrzunehmen als der Durchschnitt.</li>
+    <li onclick="selectAnswer(this, false, 'exp12', 12)">B. Eine deutlich reduzierte Wahrnehmung und Abstumpfung gegenüber Reizen.</li>
+    <li onclick="selectAnswer(this, false, 'exp12', 12)">C. Vollkommen unterschiedliche Wahrnehmungsweisen ohne jegliche Gemeinsamkeit.</li>
+  </ul>
+  <div id="exp12" class="explanation">„Herausgestochen ist die hohe Sensibilität.“<br><br>(Seite 9–10)</div>
+  <button id="next-12" class="next-btn" onclick="nextQuestion(12)">Weiter →</button>
+</div>
+
+<!-- Frage 13 -->
+<div id="q13" class="question-container">
+  <h2>Frage 13</h2>
+  <p>Wenn man die Entwicklung der Psychiatrie über die Jahrzehnte betrachtet – was könnte hilfreich sein, um aktuelle Ansätze besser einzuordnen?</p>
+  <ul class="options">
+    <li onclick="selectAnswer(this, false, 'exp13', 13)">A. Die Annahme, dass sich seit 150 Jahren nichts Wesentliches verändert hat.</li>
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp13', 13)">B. Ein kurzer historischer Überblick, wie sich Theorien und Praktiken im Laufe der Zeit gewandelt haben.</li>
+    <li onclick="selectAnswer(this, false, 'exp13', 13)">C. Die Überzeugung, dass nur die allerneuesten Theorien (nach 2000) relevant sind.</li>
+  </ul>
+  <div id="exp13" class="explanation">„In meinem Buch hat es einen kleinen historischen Abriss, wie sich die Psychiatrie entwickelt hat.“<br><br>(Seite 2)</div>
+  <button id="next-13" class="next-btn" onclick="nextQuestion(13)">Weiter →</button>
+</div>
+
+<!-- Frage 14 -->
+<div id="q14" class="question-container">
+  <h2>Frage 14</h2>
+  <p>Wenn man bewusst auf Krankheitsbegriffe und Diagnoseetiketten verzichtet und stattdessen alles konkret beschreibt – was könnte das verändern?</p>
+  <ul class="options">
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp14', 14)">A. Es zwingt dazu, das tatsächliche Verhalten, die Interaktionen und Gefühle genau zu beschreiben – ohne sie sofort zu etikettieren.</li>
+    <li onclick="selectAnswer(this, false, 'exp14', 14)">B. Es macht die Arbeit ungenauer und weniger wissenschaftlich.</li>
+    <li onclick="selectAnswer(this, false, 'exp14', 14)">C. Es verlängert die Behandlung unnötig und kompliziert sie.</li>
+  </ul>
+  <div id="exp14" class="explanation">„Man muss alles beschreiben.“<br><br>(Seite 7)</div>
+  <button id="next-14" class="next-btn" onclick="nextQuestion(14)">Weiter →</button>
+</div>
+
+<!-- Frage 15 -->
+<div id="q15" class="question-container">
+  <h2>Frage 15</h2>
+  <p>Warum könnte es schwierig sein, nicht mit eigenen theoretischen Vorstellungen dem Erleben des Betroffenen vorauszueilen?</p>
+  <ul class="options">
+    <li data-correct="true" onclick="selectAnswer(this, true, 'exp15', 15)">A. Unser Gehirn neigt automatisch dazu, sofort Erwartungen und Vorstellungen zu bilden – das ist ein natürlicher Mechanismus.</li>
+    <li onclick="selectAnswer(this, false, 'exp15', 15)">B. Das Gehirn kann Vorstellungen komplett unterdrücken und bleibt immer neutral.</li>
+    <li onclick="selectAnswer(this, false, 'exp15', 15)">C. Es ist relativ einfach, in jeder Begegnung völlig vorurteilsfrei und ohne Erwartungen zu bleiben.</li>
+  </ul>
+  <div id="exp15" class="explanation">„Das ist sehr schwierig. Unser Gehirn funktioniert so.“<br><br>(Seite 6)</div>
+  <button id="next-15" class="next-btn" onclick="nextQuestion(15)">Zum Abschluss</button>
+</div>
+
+<button id="reset" onclick="resetQuiz()">Alles zurücksetzen</button>
+
+<div id="answers">
+<h2>Zusammenfassung – Gedankenanstöße aus dem Vortrag</h2>
+<ol>
+<li>C – Wenn man mit eigenen Vorstellungen vorauseilt, wird die Intervention ungültig – wie ein Tor, das nicht zählt.</li>
+<li>A – Das Gehirn ist extrem formbar – man kann ebenso gut positives wie negatives Verhalten und sogar ganze Krankheitsmuster lernen.</li>
+<li>A – Auf die Interaktionen und Beziehungen im System, statt nur auf einzelne Symptome einer Person.</li>
+<li>A – Es blendet die zwischenmenschlichen Dynamiken aus und führt oft zu unvollständigen oder irreführenden Bildern.</li>
+<li>A – Man setzt voraus, dass die eigene Vorstellung von der „Krankheit“ die einzig richtige ist.</li>
+<li>B – Als eine Form von Liebesentzug oder emotionalem Rückzug.</li>
+<li>A – Es reduziert die Gefahr, dass vorgefertigte Theorien die Wahrnehmung überlagern.</li>
+<li>B – Soziale und emotionale Beziehungen sind für das Überleben und die Entwicklung grundlegend notwendig.</li>
+<li>A – Schweigen kann eine sehr starke Form der Beeinflussung sein.</li>
+<li>A – Kommunikation will – bewusst oder unbewusst – immer irgendwie auf den anderen einwirken.</li>
+<li>A – Es könnte dazu geführt haben, dass der reale Mensch und seine aktuelle Situation aus dem Blick gerieten.</li>
+<li>A – Eine extrem hohe Sensibilität und die Fähigkeit, weit mehr Reize wahrzunehmen als der Durchschnitt.</li>
+<li>B – Ein kurzer historischer Überblick, wie sich Theorien und Praktiken gewandelt haben.</li>
+<li>A – Es zwingt dazu, das tatsächliche Verhalten, Interaktionen und Gefühle genau zu beschreiben.</li>
+<li>A – Unser Gehirn neigt automatisch dazu, sofort Erwartungen und Vorstellungen zu bilden.</li>
+</ol>
+</div>
+
+<div id="congrats">
+🎉 Du hast alle 15 Fragen durchdacht – danke fürs Mitmachen!
+</div>
+
+<div style="text-align:center; margin:60px 0; font-size:1.1em;">
+<a href="https://ganglion.ch/pdf/Emotionskontrolle_14.1.2026.m4a.pdf" target="_blank">Komplettes Transkript (65 Seiten)</a>
+</div>
+
+</body>
+</html>
