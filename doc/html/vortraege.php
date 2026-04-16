@@ -169,7 +169,7 @@ function ftsAsk() {
 
   box.style.display = 'block';
   header.textContent = 'Frage: "' + q + '"';
-  list.innerHTML = '<div id="fts-ask-sources"></div><div id="fts-ask-answer" style="margin-top: 8px; white-space: pre-wrap; font: 13px Arial, Helvetica, sans-serif; color: #002050; line-height: 1.5;"></div>';
+  list.innerHTML = '<div id="fts-ask-sources"></div><div id="fts-ask-loading" style="margin-top: 8px; font: italic 13px Arial, Helvetica, sans-serif; color: #002050;">Antwort wird erstellt ...</div><div id="fts-ask-answer" style="margin-top: 8px; white-space: pre-wrap; font: 13px Arial, Helvetica, sans-serif; color: #002050; line-height: 1.5; display: none;"></div>';
   clearBtn.style.display = 'inline';
   submitBtn.disabled = true;
   submitBtn.textContent = 'Bitte warten...';
@@ -221,10 +221,16 @@ function ftsAsk() {
               srcDiv.innerHTML = srcHtml;
             }
           } else if (msg.type === 'token' && msg.content) {
+            var loading = document.getElementById('fts-ask-loading');
+            if (loading) loading.style.display = 'none';
             var ansDiv = document.getElementById('fts-ask-answer');
+            ansDiv.style.display = 'block';
             ansDiv.textContent += msg.content;
           } else if (msg.type === 'error') {
+            var loading = document.getElementById('fts-ask-loading');
+            if (loading) loading.style.display = 'none';
             var ansDiv = document.getElementById('fts-ask-answer');
+            ansDiv.style.display = 'block';
             ansDiv.textContent += '\nFehler: ' + (msg.content || 'Unbekannter Fehler');
             submitBtn.disabled = false;
             submitBtn.textContent = 'Fragen';
