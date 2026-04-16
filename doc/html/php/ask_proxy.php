@@ -22,29 +22,27 @@ header('X-Accel-Buffering: no');
 $url = 'http://127.0.0.1:3000/api/ask';
 $postData = json_encode(['question' => $question]);
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Content-Type: application/json',
-    'Accept: text/event-stream',
-]);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-curl_setopt($ch, CURLOPT_TIMEOUT, 120);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, false);
-curl_setopt($ch, CURLOPT_WRITEFUNCTION, function($ch, $data) {
-    echo $data;
-    flush();
-    return strlen($data);
-});
+$ctx = stream_context_create(['http' => [
+    'method' => 'POST',
+    'header' => "Content-Type: application/json\r\nAccept: text/event-stream\r\n",
+    'content' => $postData,
+    'timeout' => 120,
+]]);
 
-$result = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$stream = @fopen($url, 'r', false, $ctx);
 
-if ($result === false || $httpCode !== 200) {
+if ($stream === false) {
     echo "data: {\"type\":\"error\",\"content\":\"Suchserver nicht erreichbar\"}\n\n";
     flush();
+    exit;
 }
 
-curl_close($ch);
+while (!feof($stream)) {
+    $line = fgets($stream);
+    if ($line !== false) {
+        echo $line;
+        flush();
+    }
+}
+
+fclose($stream);

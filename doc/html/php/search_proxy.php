@@ -10,18 +10,10 @@ if ($q === '') {
 
 $url = 'http://127.0.0.1:3000/api/search?q=' . urlencode($q);
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+$ctx = stream_context_create(['http' => ['timeout' => 5]]);
+$response = @file_get_contents($url, false, $ctx);
 
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-$error = curl_error($ch);
-curl_close($ch);
-
-if ($response === false || $httpCode !== 200) {
+if ($response === false) {
     http_response_code(502);
     echo json_encode(['error' => 'Suchserver nicht erreichbar']);
     exit;
