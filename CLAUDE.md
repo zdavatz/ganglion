@@ -69,3 +69,4 @@ Then update credentials in each file.
 - Download counts are tracked in the `vortrag` and `artikel` tables.
 - The `.gitignore` excludes credential files, audio directories, and generated configs.
 - `doc/html/youtube_ursula_davatz.php` — YouTube video listing page using the YouTube Data API v3. Clickable column headers for sorting (Titel, Aufrufe, Likes, Kommentare, Veröffentlicht). API key stored in `.yt-keys` (gitignored). Results cached in `/tmp` for 1 hour.
+- `doc/html/vortraege.php` includes full-text search and KI Q&A via the `gang2fts5` server (must be running on `127.0.0.1:3000`). PHP proxies: `doc/html/php/search_proxy.php` (GET, forwards to `/api/search`) and `doc/html/php/ask_proxy.php` (POST, SSE streaming proxy for `/api/ask` using Grok AI).

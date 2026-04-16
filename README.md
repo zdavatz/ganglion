@@ -80,6 +80,22 @@ The page `doc/html/youtube_ursula_davatz.php` lists all videos from the Ursula D
 
 **Setup:** Place your YouTube API key in `.yt-keys` in the project root (one line, key only). This file is gitignored.
 
+## Full-Text Search & AI Q&A
+
+The lectures page (`doc/html/vortraege.php`) integrates with the [gang2fts5](https://github.com/zdavatz/gang2fts5) full-text search server for two features:
+
+- **Volltextsuche** — FTS5-based keyword search across all lecture transcripts (supports phrases, wildcards, boolean operators)
+- **Fragen (KI)** — Natural language Q&A powered by Grok AI with streamed answers and source references
+
+**Requirements:** The `gang2fts5` server must be running on the same host:
+
+```bash
+cd /path/to/gang2fts5
+XAI_API_KEY=your-key ./gang2fts5 serve  # starts on port 3000
+```
+
+The PHP proxy scripts (`doc/html/php/search_proxy.php` and `doc/html/php/ask_proxy.php`) forward requests to `http://127.0.0.1:3000`. The search works without the API key; the KI Q&A requires `XAI_API_KEY`.
+
 ## Links
 
 Useful tools for MySQL connections:

@@ -39,6 +39,223 @@ Downloads Vortr&auml;ge:&nbsp;
 ?>
 &nbsp;(als Video-File)
 </div>
+<div style="margin: 10px 5px;">
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px;">
+  <label style="font: bold 13px Arial, Helvetica, sans-serif; color: #002050; cursor: pointer;">
+    <input type="radio" name="fts-mode" value="search" checked onchange="ftsToggleMode()"> Volltextsuche
+  </label>
+  <label style="font: bold 13px Arial, Helvetica, sans-serif; color: #002050; cursor: pointer;">
+    <input type="radio" name="fts-mode" value="ask" onchange="ftsToggleMode()"> Fragen (KI)
+  </label>
+</div>
+<form id="fts-form" onsubmit="ftsSubmit(); return false;" style="display: flex; align-items: center; gap: 6px; margin: 0;">
+  <input type="text" id="fts-input" placeholder="z.B. ADHS Schule" style="font: 13px Arial, Helvetica, sans-serif; padding: 4px 8px; border: 1px solid #002050; width: 300px;">
+  <button type="submit" id="fts-submit-btn" style="font: bold 13px Arial, Helvetica, sans-serif; color: #e4e1ee; background: #002050; border: 1px solid #002050; padding: 4px 12px; cursor: pointer;">Suchen</button>
+  <button type="button" onclick="ftsClear()" id="fts-clear-btn" style="font: bold 13px Arial, Helvetica, sans-serif; color: #002050; background: #d57530; border: 1px solid #002050; padding: 4px 12px; cursor: pointer; display: none;">Zur&uuml;cksetzen</button>
+</form>
+</div>
+<div id="fts-results" style="display: none; margin: 0 5px 10px 5px; padding: 8px; background: #e9ac72; border: 1px solid #002050;">
+  <div id="fts-results-header" style="font: bold 13px Arial, Helvetica, sans-serif; color: #002050; margin-bottom: 6px;"></div>
+  <div id="fts-results-list"></div>
+</div>
+<script>
+var ftsEventSource = null;
+
+function ftsGetMode() {
+  var radios = document.getElementsByName('fts-mode');
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) return radios[i].value;
+  }
+  return 'search';
+}
+
+function ftsToggleMode() {
+  var mode = ftsGetMode();
+  var input = document.getElementById('fts-input');
+  var btn = document.getElementById('fts-submit-btn');
+  if (mode === 'ask') {
+    input.placeholder = 'z.B. Was hilft Kindern mit ADHS in der Schule?';
+    btn.textContent = 'Fragen';
+  } else {
+    input.placeholder = 'z.B. ADHS Schule';
+    btn.textContent = 'Suchen';
+  }
+}
+
+function ftsSubmit() {
+  if (ftsGetMode() === 'ask') {
+    ftsAsk();
+  } else {
+    ftsSearch();
+  }
+}
+
+function ftsSearch() {
+  var q = document.getElementById('fts-input').value.trim();
+  if (!q) return;
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/html/php/search_proxy.php?q=' + encodeURIComponent(q));
+  xhr.onload = function() {
+    var box = document.getElementById('fts-results');
+    var header = document.getElementById('fts-results-header');
+    var list = document.getElementById('fts-results-list');
+    var clearBtn = document.getElementById('fts-clear-btn');
+    if (xhr.status !== 200) {
+      box.style.display = 'block';
+      header.textContent = 'Fehler: Suchserver nicht erreichbar.';
+      list.innerHTML = '';
+      clearBtn.style.display = 'inline';
+      return;
+    }
+    var data;
+    try { data = JSON.parse(xhr.responseText); } catch(e) {
+      box.style.display = 'block';
+      header.textContent = 'Fehler beim Verarbeiten der Suchergebnisse.';
+      list.innerHTML = '';
+      clearBtn.style.display = 'inline';
+      return;
+    }
+    if (data.error) {
+      box.style.display = 'block';
+      header.textContent = data.error;
+      list.innerHTML = '';
+      clearBtn.style.display = 'inline';
+      return;
+    }
+    if (!data.length) {
+      box.style.display = 'block';
+      header.textContent = 'Keine Ergebnisse f\u00fcr "' + q + '".';
+      list.innerHTML = '';
+      clearBtn.style.display = 'inline';
+      return;
+    }
+    box.style.display = 'block';
+    header.textContent = data.length + ' Ergebnis' + (data.length !== 1 ? 'se' : '') + ' f\u00fcr "' + q + '":';
+    var html = '<table style="width:100%; border-collapse: collapse;">';
+    html += '<tr><th style="text-align:left; padding: 3px 6px;">Titel</th><th style="text-align:left; padding: 3px 6px;">Datum</th><th style="text-align:left; padding: 3px 6px;">Textstelle</th></tr>';
+    for (var i = 0; i < data.length; i++) {
+      var r = data[i];
+      var bg = (i % 2 === 1) ? ' background: #fca455;' : '';
+      var link = r.vortrag_id ? '/html/php/download_vortrag.php?id=' + encodeURIComponent(r.vortrag_id) + '&download=pdf' : '#';
+      html += '<tr style="' + bg + '">';
+      html += '<td style="padding: 3px 6px;"><a href="' + link + '" target="_blank" style="color: #002050; text-decoration: underline;">' + (r.title || r.filename) + '</a></td>';
+      html += '<td style="padding: 3px 6px; white-space: nowrap;">' + (r.date || '') + '</td>';
+      html += '<td style="padding: 3px 6px; font-size: 12px;">' + (r.snippet || '') + '</td>';
+      html += '</tr>';
+    }
+    html += '</table>';
+    list.innerHTML = html;
+    clearBtn.style.display = 'inline';
+  };
+  xhr.onerror = function() {
+    document.getElementById('fts-results').style.display = 'block';
+    document.getElementById('fts-results-header').textContent = 'Fehler: Suchserver nicht erreichbar.';
+    document.getElementById('fts-results-list').innerHTML = '';
+    document.getElementById('fts-clear-btn').style.display = 'inline';
+  };
+  xhr.send();
+}
+
+function ftsAsk() {
+  var q = document.getElementById('fts-input').value.trim();
+  if (!q) return;
+  if (ftsEventSource) { ftsEventSource.close(); ftsEventSource = null; }
+
+  var box = document.getElementById('fts-results');
+  var header = document.getElementById('fts-results-header');
+  var list = document.getElementById('fts-results-list');
+  var clearBtn = document.getElementById('fts-clear-btn');
+  var submitBtn = document.getElementById('fts-submit-btn');
+
+  box.style.display = 'block';
+  header.textContent = 'Frage: "' + q + '"';
+  list.innerHTML = '<div id="fts-ask-sources"></div><div id="fts-ask-answer" style="margin-top: 8px; white-space: pre-wrap; font: 13px Arial, Helvetica, sans-serif; color: #002050; line-height: 1.5;"></div>';
+  clearBtn.style.display = 'inline';
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Bitte warten...';
+
+  // Use fetch + ReadableStream for SSE via POST proxy
+  fetch('/html/php/ask_proxy.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ question: q })
+  }).then(function(response) {
+    if (!response.ok) {
+      header.textContent = 'Fehler: Suchserver nicht erreichbar.';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Fragen';
+      return;
+    }
+    var reader = response.body.getReader();
+    var decoder = new TextDecoder();
+    var buffer = '';
+
+    function processStream() {
+      reader.read().then(function(result) {
+        if (result.done) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Fragen';
+          return;
+        }
+        buffer += decoder.decode(result.value, { stream: true });
+        var lines = buffer.split('\n');
+        buffer = lines.pop();
+        for (var i = 0; i < lines.length; i++) {
+          var line = lines[i].trim();
+          if (line.indexOf('data: ') !== 0) continue;
+          var jsonStr = line.substring(6);
+          try {
+            var msg = JSON.parse(jsonStr);
+          } catch(e) { continue; }
+
+          if (msg.type === 'sources' && msg.sources) {
+            var srcDiv = document.getElementById('fts-ask-sources');
+            if (msg.sources.length > 0) {
+              var srcHtml = '<strong>Quellen:</strong> ';
+              for (var s = 0; s < msg.sources.length; s++) {
+                var src = msg.sources[s];
+                var srcLink = src.vortrag_id ? '/html/php/download_vortrag.php?id=' + encodeURIComponent(src.vortrag_id) + '&download=pdf' : '#';
+                if (s > 0) srcHtml += ', ';
+                srcHtml += '<a href="' + srcLink + '" target="_blank" style="color: #002050; text-decoration: underline;">' + (src.title || src.filename) + '</a>';
+              }
+              srcDiv.innerHTML = srcHtml;
+            }
+          } else if (msg.type === 'token' && msg.content) {
+            var ansDiv = document.getElementById('fts-ask-answer');
+            ansDiv.textContent += msg.content;
+          } else if (msg.type === 'error') {
+            var ansDiv = document.getElementById('fts-ask-answer');
+            ansDiv.textContent += '\nFehler: ' + (msg.content || 'Unbekannter Fehler');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Fragen';
+          } else if (msg.type === 'done') {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Fragen';
+          }
+        }
+        processStream();
+      });
+    }
+    processStream();
+  }).catch(function(err) {
+    header.textContent = 'Fehler: Suchserver nicht erreichbar.';
+    list.innerHTML = '';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Fragen';
+  });
+}
+
+function ftsClear() {
+  if (ftsEventSource) { ftsEventSource.close(); ftsEventSource = null; }
+  document.getElementById('fts-input').value = '';
+  document.getElementById('fts-results').style.display = 'none';
+  document.getElementById('fts-results-list').innerHTML = '';
+  document.getElementById('fts-clear-btn').style.display = 'none';
+  var btn = document.getElementById('fts-submit-btn');
+  btn.disabled = false;
+  btn.textContent = ftsGetMode() === 'ask' ? 'Fragen' : 'Suchen';
+}
+</script>
 <table>
 <?php 
 $url = $_SERVER["PHP_SELF"];
