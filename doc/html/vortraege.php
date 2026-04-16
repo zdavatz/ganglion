@@ -75,9 +75,11 @@ function ftsToggleMode() {
   var btn = document.getElementById('fts-submit-btn');
   if (mode === 'ask') {
     input.placeholder = 'z.B. Was hilft Kindern mit ADHS in der Schule?';
+    input.style.width = '600px';
     btn.textContent = 'Fragen';
   } else {
     input.placeholder = 'z.B. ADHS Schule';
+    input.style.width = '300px';
     btn.textContent = 'Suchen';
   }
 }
