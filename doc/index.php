@@ -81,25 +81,25 @@ Langj&auml;hrige Mitarbeit in Gremien, Organisationen und Projekten gesundheitsp
 </tr>
 <tr>
 <td class="TDbold" colspan="2">"Fusion und Differentiation"<br>Fusing behavior in animal and man</td>
-<td><a href="html/kontakt.php">Buch bestellen</a></td>
+<td><a href="html/kontakt.php" target="_blank" rel="noopener">Buch bestellen</a></td>
 </tr>
 <tr>
 <td class="TDbold" colspan="2">"Wie bewahren wir unsere Kinder<br>vor der Drogensucht"</td>
-<td><a href="html/kontakt.php">Buch bestellen</a></td>
+<td><a href="html/kontakt.php" target="_blank" rel="noopener">Buch bestellen</a></td>
 </tr>
 <tr>
 <td class="TDbold" colspan="2">"ADHS und Schizophrenie - Grenzzerfall"</td>
-<td><a href="http://www.somedia-buchverlag.ch/gesamtverzeichnis/adhs-und-schizophrenie/">Buch bestellen</a> | <a href="https://www.amazon.de/ADHS-Schizophrenie-emotionale-Monsterwellen-entstehen-ebook/dp/B07ND672ZH/">E-Book bei Amazon bestellen</a></td>
+<td><a href="http://www.somedia-buchverlag.ch/gesamtverzeichnis/adhs-und-schizophrenie/" target="_blank" rel="noopener">Buch bestellen</a> | <a href="https://www.amazon.de/ADHS-Schizophrenie-emotionale-Monsterwellen-entstehen-ebook/dp/B07ND672ZH/" target="_blank" rel="noopener">E-Book bei Amazon bestellen</a></td>
 </tr>
 </td>
 <tr>
 <td class="TDbold" colspan="2">"AD(H)D and Schizophrenia - Guiding Principles (English Updated Version)"</td>
-<td><a href="https://itunes.apple.com/us/book/id1451739789">Bei iBooks (Apple) kaufen</a> | <a href="https://www.amazon.com/dp/B07NGRBLQ1">Bei Amazon (Kindle) kaufen</a> | <a href="https://www.amazon.de/dp/3033070779">Bei Amazon als Buch kaufen</a></td>
+<td><a href="https://itunes.apple.com/us/book/id1451739789" target="_blank" rel="noopener">Bei iBooks (Apple) kaufen</a> | <a href="https://www.amazon.com/dp/B07NGRBLQ1" target="_blank" rel="noopener">Bei Amazon (Kindle) kaufen</a> | <a href="https://www.amazon.de/dp/3033070779" target="_blank" rel="noopener">Bei Amazon als Buch kaufen</a></td>
 </tr>
 </td>
 <tr>
 <td class="TDbold" colspan="2">"ADHS/ADS Folgekrankheiten - Psychiatrie im Offside"</td>
-<td><a href="https://www.somedia-buchverlag.ch/gesamtverzeichnis/deadhsads-folgekrankheiten/">Buch bestellen</a></td>
+<td><a href="https://www.somedia-buchverlag.ch/gesamtverzeichnis/deadhsads-folgekrankheiten/" target="_blank" rel="noopener">Buch bestellen</a></td>
 </tr>
 </td>
 </tr>
