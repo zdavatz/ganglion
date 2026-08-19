@@ -34,7 +34,7 @@ $url = $_SERVER["PHP_SELF"];
 		<table>
 <?php
 		$query = "	SELECT thema, titel_kurse, id_kurse, teilnehmer_kurse, leitung_kurse,	
-								platz_kurse, kosten_kurse, kursziele_kurse, ort_kurse, daten_kurse, date_format(beginn_kurse,'%d.%m.%Y')
+								platz_kurse, kosten_kurse, kursziele_kurse, ort_kurse, daten_kurse, pdf_kurse, date_format(beginn_kurse,'%d.%m.%Y')
 								as beginn_formatted
 								FROM kurse, thema 
 								WHERE id_kurse = '". mysqli_real_escape_string($conn1,$id)."'"; 
@@ -72,6 +72,11 @@ $url = $_SERVER["PHP_SELF"];
 			echo "<tr><td class='tabltxt-l'>Kosten:</td><td>".htmlspecialchars(urldecode ($values["kosten_kurse"]), ENT_QUOTES, 'UTF-8')."</td></tr>";
 			echo "<tr><td class='tabltxt-l'>Ort:</td><td>".htmlspecialchars(urldecode ($values["ort_kurse"]), ENT_QUOTES, 'UTF-8')."</td></tr>";
 			echo "<tr><td class='tabltxt-l'>Leitung:</td><td>".htmlspecialchars(urldecode ($values["leitung_kurse"]), ENT_QUOTES, 'UTF-8')."</td></tr>";
+			if(!empty($values["pdf_kurse"]))
+			{
+				echo "<tr><td class='tabltxt-l'>Flyer:</td><td><a class='pdf-ico' href='/html/pdf/".rawurlencode($values["pdf_kurse"])."'
+				target='_blank'><img src='../html/images/adobe.gif' alt='PDF File'></a></td></tr>";
+			}
 			echo "</table>";
 			echo "<tr><td>&nbsp;</td></tr>";
 			?>

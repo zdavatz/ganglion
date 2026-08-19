@@ -518,13 +518,21 @@ if ($page == "kurse" && $new == "true") {
 	$teilnehmer_kurse = isset($teilnehmer_kurse) ? $teilnehmer_kurse : "";
 	$kurs_art = isset($kurs_art) ? $kurs_art : "";
 
-	$mysql = "titel_kurse,kursziele_kurse,ort_kurse,kosten_kurse,Arbeit,Erziehung,Gesundheit,Familie,thema_id,datum_kurse,beginn_kurse,ende_kurse,daten_kurse,leitung_kurse,platz_kurse,teilnehmer_kurse,kurs_art";
-	$placeholders = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+	$pdf_kurse = "";
+	if ($_FILES['file']['name'] != "") {
+		$pdf_kurse = basename($_FILES['file']['name']);
+		validate_upload($pdf_kurse);
+		$pathto = "../../html/pdf/" . $pdf_kurse;
+		move_uploaded_file($_FILES['file']['tmp_name'], $pathto) or die("Could not copy file!");
+	}
+
+	$mysql = "titel_kurse,kursziele_kurse,ort_kurse,kosten_kurse,Arbeit,Erziehung,Gesundheit,Familie,thema_id,datum_kurse,beginn_kurse,ende_kurse,daten_kurse,leitung_kurse,platz_kurse,teilnehmer_kurse,kurs_art,pdf_kurse";
+	$placeholders = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
 	$query = "INSERT INTO kurse ($mysql) VALUES ($placeholders)";
 	$stmt = mysqli_prepare($conn1, $query);
 	mysqli_stmt_bind_param(
 		$stmt,
-		'ssssiiiiissssssss',
+		'ssssiiiiisssssssss',
 		$titel_kurse,
 		$kursziele_kurse,
 		$ort_kurse,
@@ -542,6 +550,7 @@ if ($page == "kurse" && $new == "true") {
 		$platz_kurse,
 		$teilnehmer_kurse,
 		$kurs_art,
+		$pdf_kurse,
 	);
 	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
@@ -556,12 +565,23 @@ if ($page == "kurse" && $change == "true"){
 	$Gesundheit = isset($Gesundheit) ? $Gesundheit : 0;
 	$Familie = isset($Familie) ? $Familie : 0;
 
-	$mysql = "id_kurse,titel_kurse,kursziele_kurse,ort_kurse,kosten_kurse,Arbeit,Erziehung,Gesundheit,Familie,thema_id,datum_kurse,beginn_kurse,ende_kurse,daten_kurse,leitung_kurse,platz_kurse,teilnehmer_kurse,kurs_art";
-	$placeholders = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+	$pdf_kurse = $oldfile;
+	if ($_FILES['file']['name'] != "") {
+		$pdf_kurse = basename($_FILES['file']['name']);
+		validate_upload($pdf_kurse);
+		if ($oldfile != "" && $pdf_kurse != basename($oldfile)) {
+			@unlink("../../html/pdf/" . basename($oldfile));
+		}
+		$pathto = "../../html/pdf/" . $pdf_kurse;
+		move_uploaded_file($_FILES['file']['tmp_name'], $pathto) or die("Could not copy file!");
+	}
+
+	$mysql = "id_kurse,titel_kurse,kursziele_kurse,ort_kurse,kosten_kurse,Arbeit,Erziehung,Gesundheit,Familie,thema_id,datum_kurse,beginn_kurse,ende_kurse,daten_kurse,leitung_kurse,platz_kurse,teilnehmer_kurse,kurs_art,pdf_kurse";
+	$placeholders = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
 	$stmt = mysqli_prepare($conn1, "REPLACE INTO kurse ($mysql) VALUES ($placeholders)");
 	mysqli_stmt_bind_param(
 		$stmt,
-		'sssssiiiiissssssss',
+		'sssssiiiiisssssssss',
 		$id_kurse,
 		$titel_kurse,
 		$kursziele_kurse,
@@ -579,7 +599,8 @@ if ($page == "kurse" && $change == "true"){
 		$leitung_kurse,
 		$platz_kurse,
 		$teilnehmer_kurse,
-		$kurs_art
+		$kurs_art,
+		$pdf_kurse
 	);
 	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
@@ -592,6 +613,22 @@ if ($page == "kurse" && $delete == "true"){
 	mysqli_stmt_bind_param($stmt, 's', $id_kurse);
 	if (!mysqli_stmt_execute($stmt)) {
 		die($conn1->error);
+	}
+	if ($oldfile != "") {
+		@unlink("../../html/pdf/" . basename($oldfile));
+	}
+	@header("Location: admin.php?page=$page&search=$search");
+}
+
+//Pdf loeschen
+if ($page == "kurse" && $pdfdelete == "true"){
+	$stmt = mysqli_prepare($conn1, "UPDATE kurse SET pdf_kurse = '' WHERE id_kurse = ?");
+	mysqli_stmt_bind_param($stmt, 's', $id_kurse);
+	if (!mysqli_stmt_execute($stmt)) {
+		die($conn1->error);
+	}
+	if ($oldfile != "") {
+		@unlink("../../html/pdf/" . basename($oldfile));
 	}
 	@header("Location: admin.php?page=$page&search=$search");
 }

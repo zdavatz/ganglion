@@ -4,3 +4,5 @@
 /doc/wsadmin/php/auth.inc
 /doc/wsadmin/php/property.php
 .yt-keys
+/etc/htpasswd
+/log/

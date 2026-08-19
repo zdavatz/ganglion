@@ -30,7 +30,7 @@ The document root is `doc/`. All public-facing pages are under `doc/html/`, admi
 
 - `vortrag` — lectures (title, summary, date, PDF, audio, location, audience, download count)
 - `artikel` — articles (title, journal, PDF, topic, publication date, download count)
-- `kurse` — courses (title, start dates)
+- `kurse` — courses (title, start/end dates, `kurs_art`: `regkurse` / `spezkurse` / `gruppe`, `pdf_kurse` flyer filename)
 - `thema` — topic categories (Arbeit, Erziehung, Gesundheit, Familie)
 - `links` — external links
 - `forum_inhalt` / `forum_thread` — forum content
@@ -65,7 +65,9 @@ Then update credentials in each file.
 
 - The site is in **German** (Swiss German context). Content fields, UI text, and page names are in German.
 - Date format is Swiss: `d.m.Y` (handled by `datum_ch()` in `function.php`).
-- PDFs are stored in `doc/html/pdf/`, audio files tracked via database URL fields.
+- Vortrag/Artikel PDFs are stored in `doc/pdf/` (served from `/pdf/`, uploaded by `save.php` to `../../pdf/`); Kurse flyer PDFs are stored in `doc/html/pdf/` (served from `/html/pdf/`). Audio files are tracked via database URL fields.
+- Course flyers: `kurse.pdf_kurse` holds the bare filename. Rendered as an Adobe icon in `doc/html/kurse.php` and as a "Flyer:" row in `doc/html/popup_kurse.php`; managed in the admin via the "pdf - Datei:" upload in `doc/wsadmin/php/kurse.php`. Note that the Kurse update path uses `REPLACE INTO`, so every new column must be added to both the insert and the update statement in `save.php` or it will be wiped on edit.
+- Schema/content migrations are checked in as SQL files under `mysql/`.
 - Download counts are tracked in the `vortrag` and `artikel` tables.
 - The `.gitignore` excludes credential files, audio directories, and generated configs.
 - `doc/html/youtube_ursula_davatz.php` — YouTube video listing page using the YouTube Data API v3. Clickable column headers for sorting (Titel, Aufrufe, Likes, Kommentare, Veröffentlicht). API key stored in `.yt-keys` (gitignored). Results cached in `/tmp` for 1 hour.

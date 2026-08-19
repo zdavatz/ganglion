@@ -80,6 +80,29 @@ The page `doc/html/youtube_ursula_davatz.php` lists all videos from the Ursula D
 
 **Setup:** Place your YouTube API key in `.yt-keys` in the project root (one line, key only). This file is gitignored.
 
+## Kurse (Courses)
+
+The courses page (`doc/html/kurse.php`) lists entries from the `kurse` table in three
+sections, selected by the `kurs_art` column: `regkurse` (Regelmässige Kurse),
+`spezkurse` (Spezielle Kurse) and `gruppe` (Gruppen). Clicking a title opens the
+detail/registration popup `doc/html/popup_kurse.php`.
+
+A course can carry a flyer PDF in the `pdf_kurse` column. When it is set, an Adobe
+icon linking to the file appears next to the course title in the list and as a
+"Flyer:" row in the popup. The files live in `doc/html/pdf/` and are served from
+`/html/pdf/`.
+
+Flyers are managed from the admin panel (Kurse → "pdf - Datei:"); uploads are
+validated against the extension allowlist and stored under `doc/html/pdf/`. The
+"Pdf löschen" button clears the column and removes the file.
+
+Schema changes and content inserts are kept as SQL files under `mysql/`, e.g.
+`mysql/kurse_spezkurs_educational_engineering.sql`, applied with:
+
+```bash
+$ mysql -u<user> -p <database> < mysql/kurse_spezkurs_educational_engineering.sql
+```
+
 ## Full-Text Search & AI Q&A
 
 The lectures page (`doc/html/vortraege.php`) integrates with the [gang2fts5](https://github.com/zdavatz/gang2fts5) full-text search server for two features:

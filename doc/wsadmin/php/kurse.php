@@ -22,6 +22,8 @@ $result = mysqli_stmt_get_result($stmt);
 		$leitung_kurse = $row["leitung_kurse"];
 		$daten_kurse = $row["daten_kurse"];
 		$ort_kurse = $row["ort_kurse"];
+		$pdf_kurse = $row["pdf_kurse"];
+		$filecheck = $_SERVER['DOCUMENT_ROOT']."/html/pdf/".$pdf_kurse;
 
 	$titel_kurse = urldecode($titel_kurse);
 	$kursziele_kurse = urldecode($kursziele_kurse);
@@ -48,6 +50,7 @@ elseif ($new == "true") {
 	$platz_kurse = "";
 	$teilnehmer_kurse = "";
 	$kosten_kurse = "";
+	$pdf_kurse = "";
 	$Familie = 0;
 	$Gesundheit = 0;
 	$Arbeit = 0;
@@ -218,6 +221,27 @@ for($i=1980; $i <= 2035; $i++){
 </td>
 </tr>
 <tr> 
+<td>pdf - Datei:</td>
+<td colspan="2"> 
+<input class='INPUTtext' type="file" name="file">
+</td>
+</tr>
+<?php
+if ($change == "true"){
+	echo "<tr>\n";
+	echo "<td>&nbsp;</td>\n";
+	if (@filetype($filecheck) == "file")
+	{
+		echo "<td colspan='2'>Es existiert eine Pdf Datei: ".htmlspecialchars($pdf_kurse, ENT_QUOTES, 'UTF-8')."</td>\n";
+	}
+	else
+	{
+		echo "<td colspan='2'>Es existiert keine Pdf Datei</td>\n";
+	}
+	echo "</tr>\n";
+}
+?>
+<tr> 
 <td rowspan="2">Bereich:</td>
 <td class="TABLEvortrag"> 
 <input type="checkbox" value="1" name="Familie" <?php if ($Familie == 1) echo"checked"?>>
@@ -252,16 +276,25 @@ if (isset($new) && $new == "true")
 if (isset($change) && $change == "true"){
 	echo "<input type='hidden' name='change' value='true'>\n";
 	echo "<input type='hidden' name='id_kurse' value='$id_kurse'>\n";
+	echo "<input type='hidden' name='oldfile' value='".htmlspecialchars($pdf_kurse, ENT_QUOTES, 'UTF-8')."'>\n";
 }
 ?> </td>
-  <td colspan="2"> <?php SendFormButtons(array("delete")); ?> </td>
+  <td colspan="2"> <?php SendFormButtons(array("delete", "delete_pdf")); ?> </td>
 </tr>
 </table>
+</form>
+<form method="post" action="save.php" name="pdfdelete" enctype="multipart/form-data">
+<input type="hidden" name="page" value="<?php echo htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="pdfdelete" value="true">
+<input type="hidden" name="search" value="<?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="id_kurse" value="<?php echo htmlspecialchars($id_kurse, ENT_QUOTES, 'UTF-8')?>">
+<input type="hidden" name="oldfile" value="<?php echo htmlspecialchars($pdf_kurse, ENT_QUOTES, 'UTF-8') ?>">
 </form>
 <form method="post" action="save.php" name="entrydelete" enctype="multipart/form-data">
 <input type="hidden" name="page" value="<?php echo htmlspecialchars($page, ENT_QUOTES, 'UTF-8') ?>">
 <input type="hidden" name="delete" value="true">
 <input type="hidden" name="search" value="<?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
 <input type="hidden" name="id_kurse" value="<?php echo htmlspecialchars($id_kurse, ENT_QUOTES, 'UTF-8')?>">
+<input type="hidden" name="oldfile" value="<?php echo htmlspecialchars($pdf_kurse, ENT_QUOTES, 'UTF-8') ?>">
 <input type='hidden' name='datum_kurse' value='<?php print htmlspecialchars($datum_kurse, ENT_QUOTES, 'UTF-8') ?>'>
 </form>
