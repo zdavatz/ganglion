@@ -22,7 +22,8 @@
 Aus gesundheitlichen Gr&uuml;nden gibt Frau Dr. med. Ursula Davatz ihre Praxis per Ende 2026 auf.
 Bereits vereinbarte Termine bis Ende Jahr k&ouml;nnen leider nicht mehr wahrgenommen werden, neue Zuweisungen werden ab sofort nicht mehr entgegengenommen. Eine Nachfolgeregelung besteht nicht.
 Vortr&auml;ge zu ADHS, ADS und Folgeerkrankungen sowie Beratungen auf Selbstzahlerbasis werden weiterhin angeboten.<br><br>
-<b><a href="html/pdf/Praxisschliessung_2026.pdf" target="_blank" rel="noopener">Brief an Fachpersonen zur Praxisaufl&ouml;sung (PDF)</a></b>
+<b><a href="html/pdf/Praxisschliessung_Patienten_2026.pdf" target="_blank" rel="noopener">Brief an Patientinnen und Patienten (PDF)</a></b><br>
+<b><a href="html/pdf/Praxisschliessung_2026.pdf" target="_blank" rel="noopener">Brief an Fachpersonen (PDF)</a></b>
 </td>
 </tr>
 </table>
