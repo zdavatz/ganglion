@@ -103,6 +103,22 @@ Schema changes and content inserts are kept as SQL files under `mysql/`, e.g.
 $ mysql -u<user> -p <database> < mysql/kurse_spezkurs_educational_engineering.sql
 ```
 
+## Homepage notices
+
+`doc/index.php` carries a highlighted notice box (CSS class `praxis-hinweis` in
+`doc/html/css/browser5.css`) directly under the navigation. It currently announces
+the closure of the practice per end of 2026 and links to the secretariat's letter
+`doc/html/pdf/Praxisschliessung_2026.pdf`. Edit or remove the block in `index.php`
+when the notice is no longer current.
+
+## Secretariat mails
+
+The secretariat (`sekretariat@ganglion.ch`) sends course flyers, group notices and
+announcements as PDF attachments to `zdavatz@ywesee.com`. They are read and answered
+via the Gmail REST API with a service account (domain-wide delegation, scopes
+`gmail.readonly` + `gmail.send`). The scripts and credentials live outside this
+repository in `~/software/gmail-ywesee/` and `~/.config/gmail-ywesee/`.
+
 ## Full-Text Search & AI Q&A
 
 The lectures page (`doc/html/vortraege.php`) integrates with the [gang2fts5](https://github.com/zdavatz/gang2fts5) full-text search server for two features:
