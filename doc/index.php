@@ -15,6 +15,18 @@
   require_once($_SERVER['DOCUMENT_ROOT']."/html/php/navbar.php");
 ?>
 <br>
+<table class="praxis-hinweis">
+<tr>
+<td>
+<span class="TDbold-big">Wichtige Information: Praxisschliessung per Ende 2026</span><br><br>
+Aus gesundheitlichen Gr&uuml;nden gibt Frau Dr. med. Ursula Davatz ihre Praxis per Ende 2026 auf.
+Bereits vereinbarte Termine bis Ende Jahr k&ouml;nnen leider nicht mehr wahrgenommen werden, neue Zuweisungen werden ab sofort nicht mehr entgegengenommen. Eine Nachfolgeregelung besteht nicht.
+Vortr&auml;ge zu ADHS, ADS und Folgeerkrankungen sowie Beratungen auf Selbstzahlerbasis werden weiterhin angeboten.<br><br>
+<b><a href="html/pdf/Praxisschliessung_2026.pdf" target="_blank" rel="noopener">Brief an Fachpersonen zur Praxisaufl&ouml;sung (PDF)</a></b>
+</td>
+</tr>
+</table>
+<br>
 <table>
 <tr>
 <td width="310"><img src="../images/drdavatz.jpg" alt="Fr. Dr.med. Ursula Davatz" width="640" height="427"><br><br>

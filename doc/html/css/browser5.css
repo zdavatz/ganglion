@@ -452,6 +452,19 @@ a.TDbold-big:hover {
 	border-width : 0;
 }
 
+.praxis-hinweis {
+  font : 13px Arial, Helvetica, sans-serif;
+  color : #002050;
+  background : #fff4d6;
+  border : 2px solid #002050;
+  margin : 0 8px 0 8px;
+  width : 95%;
+}
+
+.praxis-hinweis td {
+  padding : 10px 14px 10px 14px;
+}
+
 .missing-email {
   font : bold 14px Arial, Helvetica, sans-serif;
   color : black;
