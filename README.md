@@ -107,9 +107,10 @@ $ mysql -u<user> -p <database> < mysql/kurse_spezkurs_educational_engineering.sq
 
 `doc/index.php` carries a highlighted notice box (CSS class `praxis-hinweis` in
 `doc/html/css/browser5.css`) directly under the navigation. It currently announces
-the closure of the practice per end of 2026 and links to the secretariat's letter
-`doc/html/pdf/Praxisschliessung_2026.pdf`. Edit or remove the block in `index.php`
-when the notice is no longer current.
+the closure of the practice per end of 2026 and links to the two letters from the
+secretariat, `doc/html/pdf/Praxisschliessung_Patienten_2026.pdf` (patients) and
+`doc/html/pdf/Praxisschliessung_2026.pdf` (professionals). Edit or remove the block
+in `index.php` when the notice is no longer current.
 
 ## Secretariat mails
 
