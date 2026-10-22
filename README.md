@@ -2,14 +2,15 @@
 
 ## Requirements
 
-* Ubuntu 20.04
-* Apache 2.4.41
-* MySQL MariaDB 10.3.29
-* PHP 8.0.7
+* Ubuntu 22.04
+* Apache 2.4.52
+* MariaDB 10.6
+* PHP 8.4 (switched from the end-of-life PHP 8.0 in October 2026)
 * Cronolog
 
 ### Optional (for scripts)
 
+* PEAR `Mail` + `Net_SMTP` and an MTA — required by the contact form, see [Mail](#mail)
 * Ruby with `mysql` gem — for RSS feed generation (`create_xml_from_db.rb`)
 * `qrencode` — for QR code PDF generation
 * ImageMagick (`convert`) — for QR code PDF generation
@@ -31,10 +32,12 @@ $ cp doc/wsadmin/php/auth.inc{.sample,}
 ```
 
 ##### Modules
-* sudo apt install php8.0 libapache2-mod-php8.0
-* sudo a2enmod php8.0
-* sudo apt-get install php8.0-mysql
+* sudo apt install php8.4 libapache2-mod-php8.4 php8.4-mysql php8.4-curl
+* sudo a2dismod php8.0 && sudo a2enmod php8.4
 * sudo phpenmod mysqli
+
+Install the `php8.4-*` extensions **before** switching the Apache module —
+without `php8.4-mysql` no page can reach the database.
 
 ##### Apache2
 Sample apache.conf (located in: `/etc/apache2/sites-enabled/ganglion.ch.conf`)
@@ -102,6 +105,48 @@ Schema changes and content inserts are kept as SQL files under `mysql/`, e.g.
 ```bash
 $ mysql -u<user> -p <database> < mysql/kurse_spezkurs_educational_engineering.sql
 ```
+
+## Mail
+
+The contact form (`doc/html/kontakt.php` → `doc/html/mail_gesendet.php` →
+`doc/html/php/feedback_mail.php`) sends with PEAR `Mail` through
+`/usr/sbin/sendmail`. That binary is provided by **msmtp**, which relays every
+message through the **Google Workspace SMTP relay** of ganglion.ch:
+
+```bash
+$ sudo apt install php-mail php-net-smtp msmtp-mta
+```
+
+`/etc/msmtprc`:
+
+```
+defaults
+tls            on
+tls_starttls   on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+syslog         LOG_MAIL
+
+account        google_relay
+host           smtp-relay.gmail.com
+port           587
+domain         ganglion.ch
+from           kontakt@ganglion.ch
+auth           off
+
+account default : google_relay
+```
+
+No password is involved: the relay is authorised by IP in the Workspace admin
+console (Apps → Gmail → Routing → SMTP relay service, "only addresses in my
+domains", TLS required). Allow **both** server addresses, `49.12.40.36` and
+`2a01:4f8:c17:6dc6::1` — msmtp connects over IPv6 when it can.
+
+Test from the shell with
+`printf "Subject: test\n\nhi\n" | /usr/sbin/sendmail -f kontakt@ganglion.ch you@example.com`.
+A failed send is written to the Apache error log and the visitor is told to
+write to sekretariat@ganglion.ch directly. Until October 2026 the form lost
+every message silently (no PEAR Mail, no MTA) — check the error log after any
+mail-related change.
 
 ## Homepage notices
 

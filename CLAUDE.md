@@ -8,7 +8,7 @@ ganglion.ch is a PHP/MySQL website for Dr. med. Ursula Davatz (psychiatrist). It
 
 ## Tech Stack
 
-- PHP 8.0.7 (procedural, no framework), Apache 2.4.41, MySQL/MariaDB 10.3.29
+- PHP 8.4 (procedural, no framework; Apache module `php8.4`, switched from EOL 8.0 in Oct 2026), Apache 2.4.52, MariaDB 10.6, Ubuntu 22.04
 - Ruby scripts for RSS feed generation (`create_xml_from_db.rb`)
 - Bash scripts for QR code PDF generation (`generate_qr_pdf`, `gen_link_1`, `gen_qr_only_2`)
 
@@ -70,6 +70,8 @@ Then update credentials in each file.
 - Schema/content migrations are checked in as SQL files under `mysql/`.
 - Homepage notice box: `doc/index.php` has a `praxis-hinweis` table (CSS in `browser5.css`) under the navbar, currently announcing the practice closure per end of 2026 with links to `doc/html/pdf/Praxisschliessung_Patienten_2026.pdf` (patients, listed first) and `doc/html/pdf/Praxisschliessung_2026.pdf` (professionals). Remove or replace it there when outdated.
 - Secretariat content arrives by mail at `zdavatz@ywesee.com` (not gmail.com). Read/reply with `~/software/gmail-ywesee/gmail_fetch.py` (`search`, `show`, `attachments`, `reply`) — service account, outside the repo. Always reply from the ywesee mailbox, never via the gmail.com connector. PDFs from those mails go to `doc/html/pdf/` with ASCII filenames.
+- Contact form mail: `feedback_mail.php` uses PEAR `Mail::factory('sendmail')` → `/usr/sbin/sendmail` = msmtp → Google Workspace SMTP relay (`/etc/msmtprc`, IP-allowlisted, no password). Send errors must be checked (`PEAR_Error`) and logged, never swallowed — the form was silently broken from at least Jan to Oct 2026. Test sends go to `zdavatz@ywesee.com`, never to the secretariat or udavatz@.
+- PHP 8.4 compatibility: no `strftime()` (use `date()`), guard `mysqli_fetch_assoc()` results that may be `null`, use `??` for optional `$_GET` keys. `/usr/share/php/Mail.php` emits a harmless deprecation under 8.4 (hidden by `E_ALL & ~E_DEPRECATED`); do not patch system files.
 - Download counts are tracked in the `vortrag` and `artikel` tables.
 - The `.gitignore` excludes credential files, audio directories, and generated configs.
 - `doc/html/youtube_ursula_davatz.php` — YouTube video listing page using the YouTube Data API v3. Clickable column headers for sorting (Titel, Aufrufe, Likes, Kommentare, Veröffentlicht). API key stored in `.yt-keys` (gitignored). Results cached in `/tmp` for 1 hour.
