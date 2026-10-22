@@ -55,7 +55,7 @@ else
 }
 $directions = array
 (
-	"Titel"						=>	"asc",
+	"titel_artikel"						=>	"asc",
 	"Zeitschrift"	=>	"asc",
 	"downloads"				=>	"asc",
 	"erschienen"				=>	"asc",

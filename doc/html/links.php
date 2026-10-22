@@ -46,9 +46,9 @@ else
 }
 $directions = array
 (
-	"Titel"			=>	"asc",
-	"Thema"			=>	"asc",
-	"Datum"			=>	"asc",
+	"text"			=>	"asc",
+	"thema"			=>	"asc",
+	"datum"			=>	"asc",
 );
 if($orderdir == "asc")
 {

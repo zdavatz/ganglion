@@ -348,7 +348,8 @@ else
 <form method="get" action="vortraege.php" name="themen">
 <select name="search" size="1" onChange='this.form.submit()'>		
 <?php
-$search = $_GET["search"] or "";
+$search = $_GET["search"] ?? "";
+$select = "";
 if ($search == "all"){ $select = "selected"; }
 	echo"<option value='all' $select>alle Themen</option>";
 	
@@ -419,7 +420,7 @@ mysqli_free_result($result);
 		echo "<table class='nopaddingTABLE'>";
 		echo "<tr>";
 		echo "<td colspan='2' class='TDbold-big'>";
-		echo htmlspecialchars(urldecode ($values["Titel"]), ENT_QUOTES, 'UTF-8');
+		echo htmlspecialchars(urldecode ($values["Titel"] ?? ""), ENT_QUOTES, 'UTF-8');
 		echo "</td>\n";
 		echo "</tr>";
 		echo "<tr>\n";
@@ -429,11 +430,9 @@ mysqli_free_result($result);
 			}
 		echo "</tr>";
 		echo "<tr>";
-		$time_H = date("h",$values["zeit"]);
-		$time_M = date("i",$values["zeit"]);
 		if (!empty($values["zeit"]))
 			{
-				echo '<td>Zeit:</td><td class="TDbold">'.strftime('%H:%M' ,$values["zeit"]).'</td>';
+				echo '<td>Zeit:</td><td class="TDbold">'.date('H:i', $values["zeit"]).'</td>';
 			}
 		echo "</tr>";
 		echo "<tr>";
@@ -450,6 +449,7 @@ mysqli_free_result($result);
 		echo "</table>";
 		echo "</td>";
 		$open_row = false;
+		$suffix = "";
 		
 		while($values = mysqli_fetch_assoc($vortrag_result))
 		{

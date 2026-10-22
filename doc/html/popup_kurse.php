@@ -41,6 +41,11 @@ $url = $_SERVER["PHP_SELF"];
 		$kurse_result = mysqli_query($conn1, $query);
 		$result = mysqli_query($conn1, $query);
   	$values = mysqli_fetch_assoc($result);
+		if (!$values)
+		{
+			echo "<tr><td class='TDbold'>Dieser Kurs ist nicht mehr verf&uuml;gbar.</td></tr></table></body></html>";
+			exit;
+		}
 		?>
 			<table class="bordertable">
 			<tr><td class='TDbold-big'>Anmeldung</td></tr>
