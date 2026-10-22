@@ -106,9 +106,16 @@ if(!empty($phone))
 {
 	$body.='Telefon: '.$phone."\r\n";
 }
+$mail_failed = false;
 if(!empty($body))
 {
-	$mail_object=&Mail::factory('sendmail');
-	$mail_object->send($recipients,$headers,$body);
+	$mail_object = Mail::factory('sendmail');
+	$result = $mail_object->send($recipients,$headers,$body);
+	if (is_a($result, 'PEAR_Error'))
+	{
+		// Never swallow this silently: the form was broken for months unnoticed.
+		error_log("ganglion.ch Kontaktformular: Mail nicht versendet: ".$result->getMessage());
+		$mail_failed = true;
+	}
 }
 ?>
